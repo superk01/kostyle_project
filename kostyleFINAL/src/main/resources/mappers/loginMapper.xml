@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kostyle.login.mappers.loginMapper">
+
+  <select id="cuslogin" resultType="CustomerVO">
+  	select c_num, c_id, c_name, p_powernum, c_gender, c_birth from customer
+  		where c_id=#{cus_id} and c_pass = #{user_pass}
+  </select>
+  <select id="shoplogin" resultType="AdShopVO">
+  	select s_num, ad_id, p_powernum  from adshoppingmall
+  		where ad_id=#{adshop_id} and ad_pass = #{user_pass}
+  </select>
+  
+  
+</mapper>  
+
