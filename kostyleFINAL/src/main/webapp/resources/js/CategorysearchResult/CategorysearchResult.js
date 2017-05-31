@@ -2,7 +2,7 @@ $(function(){
 	CategoryItemClick();
 	CategoryFilterClick();
 });
-
+//
 function CategoryItemClick(){
 	$('.CategoryResult_oneItemBox a').click(function(event){
 		var link = $(this).attr('href');

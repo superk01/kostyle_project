@@ -1,5 +1,5 @@
 package kostyle.stats.persistence;
 
-public class DAO {
+public interface StatsDAO {
 
 }
