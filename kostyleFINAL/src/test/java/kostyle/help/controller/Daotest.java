@@ -24,5 +24,6 @@ public class Daotest {
 	public void daoTest() {
 		List<BoardVO> list = dao.list();
 		System.out.println("daoTest:"+list);
+		//수정
 	}
 }
