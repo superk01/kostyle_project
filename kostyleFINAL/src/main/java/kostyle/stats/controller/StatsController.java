@@ -1,5 +1,5 @@
 package kostyle.stats.controller;
 
-public class Controller {
+public class StatsController {
 
 }
