@@ -1,0 +1,34 @@
+@CHARSET "UTF-8";
+
+	#menu{
+		position: relative ;
+		width: 100%;
+		height : 50px;
+		background-color: #3c3c3c;
+		padding-top: 1px;
+		text-align: center;
+	}
+	
+	#menu ul{
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+	
+	
+	#menu li {
+		list-style: none;
+		float: left;
+		margin-right: 60px;
+	}
+	
+	#menu a{
+		text-decoration: none;
+		font-weight: bold;
+		color: #b69469;
+		font-family: sans-serif;
+	}
+	
+	#menu a:HOVER {
+		color:white;
+	}
+	

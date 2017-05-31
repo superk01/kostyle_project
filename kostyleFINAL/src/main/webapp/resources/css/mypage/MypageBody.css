@@ -1,0 +1,239 @@
+ @CHARSET "UTF-8";
+ 
+h1{ 
+   font-family: 맑은 고딕;
+   font-size:45px;
+   text-align: center;   
+}
+
+h1 img{
+	width: 35px;
+	margin-right: 10px;
+}
+
+body{
+ 	position: relative;
+	border: 2px solid black;
+	height: 1050px;
+}
+
+
+section {
+	/*  border: 2px solid black;  */
+	height: 900px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+ 
+#container {
+ 	width: 970px;
+ 	position: relative;
+ 	margin-bottom: 21px;
+ 	z-index: 1;
+ }
+ 
+#select_mypage {
+	float:left;
+	border: 2px solid black;
+	width: 300px;
+	min-height: 300px;
+}
+
+#select_mypage ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	
+	max-width: 250px;
+	width: 100%;
+}
+
+#select_mypage li {
+	padding: 5px 0px 5px 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #efefef;
+	font-size: 20px;
+	margin-left: 15px;
+}
+
+#select_mypage a {
+	text-decoration: none;
+}
+
+#select_mypage li:last-child {
+	border-bottom: 0px;
+}
+
+#select_mypage li:before{
+	content: ">";
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0px 5px 6px 0px;
+}
+
+#contents {
+	margin-left: 400px;
+ 	width: 735px;
+ 	padding: 13px 0 0 0;
+ 	position: relative;	
+}
+
+#contents #cont_area {
+	min-height: 675px;
+	padding: 0 15px 35px 15px;
+}
+
+#context_in {
+	width: 705px;
+}
+
+.findMsg {
+	margin: 33px 0 14px 0;
+	padding-left: 16px;
+}
+
+.myAdmin {
+	padding: 0 0 0 48px;
+}
+
+.findForm {
+	width: 800px;
+	padding-bottom: 17px;
+	background: #f6f6f6;
+	no-repeat left bottom;
+}
+
+.findFormWrap {
+	padding-top: 25px;
+	padding-left: 190px;
+	no-repeat left top;
+}
+
+.Ty04 {
+	padding-left: 3px;
+	height:19px;
+	border: 1px solid #d9d9d9;
+	background: #fff
+	no-repeat 5px 5px;
+}
+
+.findBtn {
+	padding-top: 15px;
+	padding-left: 260px;
+}
+
+footer {
+	
+	border: 2px solid black;
+	clear:both;
+	width:100%;
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:0;
+	padding:10px;
+	text-align:center;
+}
+
+
+
+.memberJoin {
+    padding-left: 12px;
+}
+
+.dataAdd {
+    width: 100%;
+    border-top: 1px solid #d5d5d5;
+}
+
+colgroup {
+    display: table-column-group;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.dataAdd th {
+    padding: 10px 0;
+    border-bottom: 1px solid #ebebeb;
+    text-align: left;
+    text-indent: 15px;
+    background-color: #f9f9f9;
+}
+
+label {
+    font-size: 100%;
+    color: #666;
+}
+
+.agreement label img {
+    vertical-align: middle;
+}
+
+a:link, a:visited {
+    color: #454545;
+    text-decoration: none;
+}
+
+.agreement .inputTxt1 {
+    width: 208px;
+    height: 24px;
+    padding: 2px 0 2px 5px;
+    border: 1px solid #d4d4d4;
+    font-size: 12px;
+}
+
+a:link, a:visited {
+    color: #454545;
+    text-decoration: none;
+}
+
+.myChange td img {
+    vertical-align: middle;
+}
+
+element.style {
+    display: block;
+    color: red;
+}
+
+.dataAdd td {
+    padding: 6px 0 6px 10px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+
+.dataAdd th {
+    padding: 10px 0;
+    border-bottom: 1px solid #ebebeb;
+    text-align: left;
+    text-indent: 15px;
+    background-color: #f9f9f9;
+}
+
+.dataAdd td select {
+    width: 98px;
+    height: 22px;
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+.btn_mySite {
+    padding-top: 15px;
+    text-align: right;
+}
