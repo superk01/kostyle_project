@@ -31,8 +31,29 @@
 	<context:component-scan base-package="kostyle.mypage.controller" />
 	<context:component-scan base-package="kostyle.search.controller" />
 	<context:component-scan base-package="kostyle.stats.controller" />
-	<context:component-scan base-package="kostyle.home.controller" />
+	 <context:component-scan base-package="kostyle.home.controller" /> 
 	
-	
+		<!-- 인터셉터 -->
+<beans:bean id="loginInterceptor" class="kostyle.login.interceptor.LoginInterceptor"></beans:bean>
+<beans:bean id="checkLoginInterceptor" class="kostyle.login.interceptor.CheckILoginnterceptor"></beans:bean>
+
+<interceptors>
+		<interceptor>
+			<mapping path="/cuslogin/loginCheck" />
+			<beans:ref bean="loginInterceptor"	/>
+		</interceptor> 
+ 		<interceptor>
+			<mapping path="/shoplogin/loginCheck" />
+			<beans:ref bean="loginInterceptor"	/>
+		</interceptor>
+		
+		
+ 		<interceptor>
+			<mapping path="/cuslogin/logout"/>
+			<beans:ref bean="checkLoginInterceptor"/>
+		</interceptor>
+</interceptors>
+
+
 	
 </beans:beans>
