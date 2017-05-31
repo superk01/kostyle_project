@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+
+#loginimg{
+	width: 30px;
+	position: absolute;
+	top: 30px;
+	right: 30px;
+}
+
+
+#logo{
+	display:block;
+	width: 500px;
+	margin:0 auto; 
+	
+}

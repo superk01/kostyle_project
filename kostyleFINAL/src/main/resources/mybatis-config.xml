@@ -4,15 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<package name="kostyl.category.domain"/>
-		<package name="kostyl.closet.domain"/>
-		<package name="kostyl.favorite.domain"/>
-		<package name="kostyl.help.domain"/>
-		<package name="kostyl.history.domain"/>
-		<package name="kostyl.join.domain"/>
-		<package name="kostyl.login.domain"/>
-		<package name="kostyl.mypage.domain"/>
-		<package name="kostyl.search.domain"/>
-		<package name="kostyl.stats.domain"/>
+		<!-- <package name="kostyle.category.domain"/>
+		<package name="kostyle.closet.domain"/>
+		<package name="kostyle.favorite.domain"/> -->
+		<package name="kostyle.help.domain"/>
+	<!-- 	<package name="kostyle.history.domain"/>
+		<package name="kostyle.join.domain"/>
+		<package name="kostyle.login.domain"/>
+		<package name="kostyle.mypage.domain"/>
+		<package name="kostyle.search.domain"/>
+		<package name="kostyle.stats.domain"/> -->
 	</typeAliases>
 </configuration>

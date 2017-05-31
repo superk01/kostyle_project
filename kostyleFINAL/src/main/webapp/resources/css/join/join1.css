@@ -1,0 +1,157 @@
+@CHARSET "UTF-8";
+
+body{
+	margin: 0% 3%;
+	border: solid 1px;
+	background-color: #e8e7e0;
+}
+
+h1{
+	font-family: 맑은 고딕;
+	font-size:45px;
+	text-align: center;	
+}
+
+h1 img{
+	width: 40px;
+}
+
+
+form{
+	margin: 0% 10%;
+	border: solid 1px;
+	background-color: white;
+}
+
+table{
+	font-family: 맑은 고딕;	
+}
+
+th{
+	width: 150px;
+	height: 50px;
+	text-align: left;
+	padding-left: 20px;
+	background-color: #e8e7e0;
+}
+
+td{
+	padding-left: 20px;
+}
+
+input {
+	font-family: 맑은 고딕;
+}
+
+input[name=c_birth_year]{
+	width: 50px;
+}	
+
+input[name=c_p2]{
+	width: 40px;
+}
+	
+input[name=c_p3]{
+	width: 40px;
+}
+	
+input[name=c_zipcode]{
+	width: 50px;
+}
+	
+input[name=c_adress]{
+	width: 800px;
+}	
+
+select {
+	height: 23px;
+	padding-top: 1px;
+}
+
+.accordion_sub{
+	width:100%;
+}
+
+#termstext1, #termstext2{
+	resize: none;
+	padding: 20px;
+	height:150px;
+	outline: none;
+	width: 96%;
+}
+
+#termscheck{
+	cursor: pointer;
+}
+
+.accordion_title{
+	display: inline;
+}
+
+.accordion_sub{
+	display: none;
+}
+
+.termsbt1, .termsbt2 {
+	width: 100%;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #637aad), color-stop(1, #5972a7));
+	background:-moz-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:-webkit-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:-o-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:-ms-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#637aad', endColorstr='#5972a7',GradientType=0);
+	background-color:#637aad;
+	border:1px solid #314179;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:맑은 고딕;
+	font-size:20px;
+	font-weight: bold;
+	padding:13px 76px;
+	outline: none;
+}
+
+h3{
+	background-color:#637aad;
+	border:1px solid #314179;
+	color:#ffffff;
+	padding:13px 30px;
+	margin-top: 0;
+	font-family: 맑은 고딕;
+	text-align: right;
+}
+
+
+.accordion input[type=checkbox]{
+	cursor: pointer;
+	/* Double-sized Checkboxes */
+  	-ms-transform: scale(2); /* IE */
+  	-moz-transform: scale(2); /* FF */
+  	-webkit-transform: scale(2); /* Safari and Chrome */
+  	-o-transform: scale(2); /* Opera */
+}
+	
+input[type=submit]{
+	background-color:#637aad;
+	border:1px solid #314179;
+	color:#ffffff;
+	padding:13px 30px;
+	font-family: 맑은 고딕;
+	font-size: 15px;
+	position: relative;
+	left: 45%;
+	cursor: pointer;
+	outline: none;
+}
+
+
+span{
+	color: red;
+}
+
+
+
+
+

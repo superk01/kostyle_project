@@ -1,0 +1,100 @@
+#sidebar{
+	background-color: #3C3C3C;
+	bottom : 50px;
+	left:0px;
+	width : 2.5%;
+	height : 100px;
+	position: fixed;
+	overflow: hidden;
+	z-index: 1;
+	float : left;
+}
+
+#sidebarTitle{
+	padding : 7px;
+	display: block;
+	font-size: 17px;
+	color : white;
+	font-weight: bold;
+}
+
+#sidebarContent{
+	display: none;
+	padding : 7px;
+	font-size: 17px;
+	color : white;
+	font-weight: bold;
+	float:left;
+}
+
+#sildebarClose{
+	padding : 7px;
+	font-size: 17px;
+	color : white;
+	font-weight: bold;
+	border-bottom : 2px solid white;
+	display:none;
+}
+
+#sidebarSubMenu{
+	padding : 7px;
+	font-size: 17px;
+	color : white;
+	font-weight: bold;
+	border-bottom : 2px solid white;
+	display:none;
+}
+
+#sidebarCategoryListTotal{
+	font-size:17px;
+	padding : 7px;
+	height : 380px;	
+	margin-left: 140px;
+	color: white;
+	font-weight: bold;
+	border-left : 2px solid white;
+	display: none
+}
+
+.sidebarCategoryListTotalNext{
+	margin-right : 50px;
+	float : left;	
+}
+
+.sidebarCategoryListTotalOneItem{
+	float: left;
+	margin-left: 20px;
+	margin-right : 10px;	
+}
+
+
+#sidebarContentAdd{
+	float : none;
+}
+
+#categoryContentAdd{
+	margin-left : 150px;
+}
+
+#categoryContentAddTextField{
+	width : 80px;
+	height : 20px;
+	border : 1px solid white;
+}
+
+.categorylist{
+	float : left;	
+}
+
+.categorylist_hit{
+	margin-left : 100px;
+}
+
+.categorylist_hit_11{
+	float:left;
+	margin-right : 30px;
+}
+
+.sidebarCategoryList_box{
+	width : 250px;
+}

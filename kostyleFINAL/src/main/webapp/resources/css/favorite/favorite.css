@@ -1,0 +1,134 @@
+@CHARSET "UTF-8";
+
+
+body{
+	margin: 0% 3%;
+	border: solid 1px;
+	background-color: #e8e7e0;
+}
+
+
+h1{
+	font-family: 맑은 고딕;
+	font-size:45px;
+	text-align: center;	
+}
+
+
+h1 img{
+	width: 40px;
+}
+
+
+#favoriteTb{
+	margin-left:auto;
+	margin-right:auto;
+	text-align: center;
+	background-color: white;
+}
+
+
+
+#favoriteTb th:nth-child(1){
+	width: 120px;
+}
+
+
+#favoriteTb th:nth-child(2){
+	width: 500px;
+}
+
+
+#favoriteTb th:nth-child(3){
+	width: 120px;
+}
+
+
+#favoriteTb th:nth-child(4){
+	width: 120px;
+}
+
+#favoriteTb th:nth-child(5){
+	width: 120px;
+}
+
+
+#favoriteTb td{
+	height: 80px;
+}
+
+#shoplink img{
+	width: 50px;
+}
+
+#shopImg{
+	width:50px;
+}
+
+#comentlink img{
+	width: 50px;
+}
+
+#deleteRow img{
+	width: 50px;
+}
+
+textarea{
+	width: 500px;
+	height:110px;
+	resize: none;
+}
+
+
+th{
+	border: solid 1px #e8e7e0;
+	color: #e8e7e0;
+	background-color: #e8e7e0;
+}
+
+
+td{
+	border-bottom: solid 3px #e8e7e0;
+}
+
+td a{
+	text-decoration: none;
+	color: black;
+	font-family: 맑은 고딕;
+	text-align: center;
+	font-size: 23px
+}
+
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+
+section{
+	text-align: center;
+}
+
+
+#pageNo{
+	padding: 10px 17px;
+	background-image: url("../../images/favoriteImg/shirt3.png");
+	background-repeat: no-repeat;
+	background-position: center;	
+}
+
+#iframeRemove{
+ 	width : 1.5%;
+ 	height : 110px;
+ 	position: fixed;
+ 	overflow: hidden;
+ 	background: #3C3C3C;
+ 	bottom: 30%;
+ 	
+ 	font-size : 17px;
+ 	color: white;
+ 	font-weight : bold;
+ 	padding: 7px;
+ }
+ 

@@ -1,0 +1,14 @@
+ @CHARSET "UTF-8";
+ 
+.site-footer {
+    color: white;
+    text-transform: uppercase;
+    clear: both;
+}
+
+.site-footer--top {
+    font-size: 12px;
+    font-size: 1rem;
+    background: #292929;
+    padding: 0;
+}

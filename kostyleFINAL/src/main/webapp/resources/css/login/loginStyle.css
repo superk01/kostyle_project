@@ -1,0 +1,214 @@
+@CHARSET "utf-8";
+
+	*{
+		list-style: none;
+	    text-decoration: none;
+	    font-family: 'Ubuntu', nanumsquare, 'Open Sans', Sans-serif;
+	    }
+	 a{
+	 	color:#fff;
+	 }
+	 p{
+	 	color:#fff;
+	 }
+	body{
+	  	background:url('../../images/login/backgroundImg.jpg')  fixed 50% 50%/ 100% 100%;
+	  }
+	#bodys{
+		padding : 0 10%;
+		overflow: hidden;
+	}
+	
+	/*-leftSection--------------------------------*/
+	#leftSection{
+		width : 45%;
+		 height: 393px;
+	    min-height: 100vh;
+		float: left; 
+		display:inline-block;	
+    	border-right: 1px solid rgba(255,255,255,.2);
+    	border-bottom: none;
+	}
+	#homeIcon {
+	}
+	#homeIcon img{
+		position:absolute;
+		width: 27vw;
+		height : 15vh;
+		text-align: left top;
+		margin-left : -11vw;
+		margin-top:-1vh;
+	}
+	
+	#joinSection{
+		margin-top: 18vh
+	}
+	#joinSection h3{
+		margin-top : 0;
+		padding-top : 0;
+		text-align:left;
+		margin-left : -4vw;
+	    font-size: 2.5vw;
+	    color: #fff;
+	    }
+	#joinSection img{
+		margin-top: -0.5vh;
+	}
+	#joinCustomer{
+		margin-left:3.5vw;
+		width: 16vw;
+		height:23vh;
+	}
+	#joinShop{
+		margin-left:5vw;
+		width: 13vw;
+		height:23vh;
+	}
+	#joinSection p{
+		margin-left:9.5vw;
+		margin-bottom: 7.5vh;
+		font-size: 1.2vw;
+	}
+
+	
+	/*-rightSection--------------------------------*/
+	#rightSection{
+		width: 64%;
+	    height: 100vh;
+	    min-height: 100vh;
+		margin-left : 41%;	
+	}
+	#rightSection h3{
+		text-align : left;
+	    font-size: 2.5vw;
+	    color: #fff;
+	    margin-left : 4vw;
+	    margin-bottom : 5.5vh;
+	    }
+	#typeUL{
+		text-align: right;
+		margin-left: 3vw;
+		border-bottom: solid 1px  #fff;
+		padding: 2vh 0;
+	}
+	#typeUL li {
+		display : inline;
+		padding: 2vh 3vw;
+	 	border : 1px solid #fff;
+	 	border-bottom: none;
+	 	color : #fff;
+	 	background: none;
+	 	text-align: center;
+	 }
+	 #typeUL img{
+	 	margin-left: -1vw;
+	 }
+	 
+	 /*---non체크시 변경css---*/
+
+	 
+	 
+	 #tupeUL a{
+	 	color: white;
+	 
+	 }
+	#loginDiv{
+	    width: 40vw;
+	    margin:0 auto;
+		display:block;
+		margin: 0 10%;
+	} 
+	#loginForm{
+		margin-top: 18vh;		
+	}
+	
+	#loginForm div{
+		width: 33vw;
+		margin-top:-0.2vw;
+	    margin-left:7vw;
+	    margin-bottom:1vh;
+	
+	}
+	#loginForm input{
+		font-color : #fff;
+	}
+	#loginForm #id{
+		text-align : center;
+		width: 32vw;
+	    height: 6vh;
+	    border: 1px solid #fff ; 
+	    border-radius: 3px;
+	    background: 0 0;
+	    font-size: 14px;
+	    text-indent: 1em;
+	    color: #fff;
+	    opacity: .3;
+	}
+	#loginForm label{
+		display:block;
+		margin-top : 5vh;
+		margin-bottom : 0.8vh;
+	    text-align : left;
+		font-size:  1.2vw;
+		color: #fff;
+	} 
+	
+	#loginForm #password{
+		text-align : center;
+		width: 32vw;
+	    height: 6vh;
+	    border: 1px solid #fff ;
+	    border-radius: 3px;
+	    background: 0 0;
+	    font-size: 14px;
+	    text-indent: 1em;
+	    color: #fff; 
+	    opacity: .3;
+	}
+
+	#customerBtn{
+		display : block;
+		text-align : center;
+	    margin-top: 9.5vh;
+	    margin-bottom: 24px;
+	    width: 32vw;
+	    height: 11vh;
+	    color: #fff;
+	    font-size: 20px;
+	    border: none;
+	    border-radius: 3px;
+	    box-shadow: 0 2px 4px 0 rgba(0,0,0,5);
+	    cursor: pointer;
+	    background-color: #f73859;
+	}
+	#shopBtn{
+		display : block;
+		text-align : center;
+	    margin-top: 9.5vh;
+	    margin-bottom: 24px;
+	    width: 32vw;
+	    height: 11vh;
+	    color: #fff;
+	    font-size: 20px;
+	    border: none;
+	    border-radius: 3px;
+	    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+	    cursor: pointer;
+		background-color: green;s		
+	}
+	
+	.text_right{
+		font-size: 12px;
+	    color: red;
+		display:none;
+	}
+	.text_view{
+		display: normal;
+	}
+	
+
+}//css end
+
+
+
+
