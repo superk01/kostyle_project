@@ -1,16 +1,16 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="Category.model.Category"%>
+<%@page import="kostyle.category.domain.Category"%>
 <%@page import="java.util.List"%>
-<%@page import="Category.model.CategoryDao"%>
+
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
 	String data = request.getParameter("categoryAddList");
 	System.out.println(data);
-	CategoryDao dao = CategoryDao.getDao();
+//	CategoryDao dao = CategoryDao.getDao();
 	//받아온 데이터 중복 검사후 insert 하기.
 	List<Category> categoryList = new ArrayList<Category>();
-	categoryList = dao.getCategoryList();
+	//categoryList = dao.getCategoryList();
 	
 	for(int i=0; i<categoryList.size(); i++){
 		if(categoryList.get(i).getName().equals(data)){
@@ -20,7 +20,7 @@
 	}
 	
 	if(!(data.equals("중복"))){
-		dao.insertCategoryList(data);
+	//	dao.insertCategoryList(data);
 	}
 %>
 

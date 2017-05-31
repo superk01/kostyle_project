@@ -1,13 +1,13 @@
-<%@page import="Category.model.Customer_taste_stack"%>
-<%@page import="Category.model.CategoryDao"%>
+<%@page import="kostyle.category.domain.Customer_taste_stack"%>
+
 <%@page import="java.util.ArrayList"%>
-<%@page import="Category.model.Product"%>
+<%@page import="kostyle.category.domain.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	
-	CategoryDao dao = CategoryDao.getDao();
+//	CategoryDao dao = CategoryDao.getDao();
 	//취향 사전
 	String taste[] = {
 		"골지",
@@ -45,7 +45,7 @@
 			if( p_name.indexOf(taste[i]) != -1){
 				c_click_keyword = taste[i];
 				Customer_taste_stack ct = new  Customer_taste_stack(c_num, c_click_keyword, p_url);
-				dao.insertCustomer_taste_stack(ct);
+				//dao.insertCustomer_taste_stack(ct);
 				break;
 			}	
 		}
