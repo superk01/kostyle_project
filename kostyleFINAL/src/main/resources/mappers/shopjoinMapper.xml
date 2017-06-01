@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kostyle.shopjoin.mappers.shopjoinMapper">
+
+<insert id="insertShoppingMall" parameterType="ShoppingMall">
+	insert into shoppingmall (s_manager, s_shopurl, s_searchurl, s_shopreg, s_sname, s_email, s_age, s_phonenumber, s_image)
+		values(#{s_manager}, #{s_shopurl}, #{s_searchurl}, #{s_shopreg}, #{s_sname}, #{s_email}, #{s_age}, #{s_phonenumber}, #{s_image})
+</insert>
+  
+<select id="countShoppingMall">
+	select count(*) from shoppingmall
+</select>
+  
+</mapper>  
+
