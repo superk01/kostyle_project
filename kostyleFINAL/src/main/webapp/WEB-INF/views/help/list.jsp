@@ -22,15 +22,20 @@
 	 location href = "write.jsp"; 
 	 });
 	 });  */
-	function fn_searchMine() {
-		location.href = "searchMineAction.a?c_num=1"
-	}
-	function fn_write() {
-		location.href = "/help/insert"
-	}
-	function fn_list() {
-		location.href = "listAction2.a?reset=1"
-	}
+	 $(document).ready(function(){
+			
+		 	alert(${pageMaker.prev});
+		 	function fn_searchMine() {
+				location.href = "searchMineAction.a?c_num=1";
+			};
+			function fn_write() {
+				location.href = "/help/insert";
+			};
+			function fn_list() {
+				location.href = "listAction2.a?reset=1";
+			};
+	 });
+	
 </script>
 </head>
 <body>
@@ -79,7 +84,7 @@
 				</li>
 			</c:forEach>
 			<!-- 이후 -->
-			<c:if test="${pageMaker.endPage&&pageMaker.next>0 }">
+			<c:if test="${pageMaker.endPage>0&&pageMaker.next }">
 				<li><a href="list?page=${pageMaker.endPage + 1 }">[이후]</a></li>
 			</c:if>
 		</ul>

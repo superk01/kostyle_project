@@ -27,13 +27,14 @@ public class HelpController {
 	@RequestMapping(value="list", method=RequestMethod.GET)
 	public ModelAndView list(@ModelAttribute("cri") Criteria cri)throws Exception {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", service.list());
+		mav.addObject("list", service.list(cri));
 		
 		PageMaker maker = new PageMaker();
 		maker.setCri(cri);
 		maker.setTotalCount(service.totalCount());
 		System.out.println("HelpController-PageMaker:"+maker);
 		System.out.println("HelpController-Criteria:"+cri);
+		mav.addObject("pageMaker", maker);
 		mav.setViewName("/help/list");
 		return mav;
 	}

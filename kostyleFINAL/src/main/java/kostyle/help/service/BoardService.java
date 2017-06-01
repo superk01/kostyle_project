@@ -8,7 +8,7 @@ import kostyle.help.domain.Criteria;
 
 public interface BoardService {
 	
-	public List<BoardVO> list()throws Exception;					
+	public List<BoardVO> list(Criteria cri)throws Exception;					
 	
 	public void insert(BoardVO baBoardVO)throws Exception;				
 

@@ -9,7 +9,7 @@ public class PageMaker {
 	private boolean prev;
 	private boolean next;
 	
-	private int displayPageNum = 10;
+	private int displayPageNum = 3;
 	
 	private Criteria cri;
 
@@ -81,8 +81,8 @@ public class PageMaker {
 			endPage=tempEndPage;
 		}
 		
-		prev = startPage==1?false:true;
-		next = endPage>=tempEndPage?false:true;
+		prev = (startPage==1)?false:true;
+		next = (endPage>=tempEndPage)?false:true;
 		//원래 책에는
 		/*next = endPage*cri.getPerPageNum() >= totalCount ? false: true;*/
 	}

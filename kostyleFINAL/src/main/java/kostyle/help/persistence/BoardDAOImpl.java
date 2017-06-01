@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -21,9 +22,9 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	private static String namespace="kostyle.mapper.BoardMapper";
 	@Override
-	public List<BoardVO> list() {
+	public List<BoardVO> list(Criteria cri) {
 		
-		return session.selectList(namespace+".list");
+		return session.selectList(namespace+".list",cri, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 
 	@Override

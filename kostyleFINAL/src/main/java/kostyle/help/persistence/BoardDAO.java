@@ -8,7 +8,7 @@ import kostyle.help.domain.Criteria;
 
 public interface BoardDAO {
 	
-	public List<BoardVO> list()throws Exception;											//게시판 리스트(쇼핑몰 이름 나오는 거 까지...)
+	public List<BoardVO> list(Criteria cri)throws Exception;											//게시판 리스트(쇼핑몰 이름 나오는 거 까지...)
 	
 	public void insert(BoardVO baBoardVO)throws Exception;									//글 추가
 
