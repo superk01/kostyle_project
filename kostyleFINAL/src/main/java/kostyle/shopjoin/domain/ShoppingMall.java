@@ -11,6 +11,7 @@ public class ShoppingMall {
 	private String s_Age;
 	private String s_PhoneNumber;
 	private String s_Image;
+	
 	public String getS_Num() {
 		return s_Num;
 	}
@@ -70,6 +71,10 @@ public class ShoppingMall {
 	}
 	public void setS_Image(String s_Image) {
 		this.s_Image = s_Image;
+	}
+	@Override
+	public String toString() {
+		return "ShoppingMall= "+s_Num+s_ShopUrl+s_SearchUrl+s_ShopReg+s_Sname+s_Email+s_Age+s_PhoneNumber+s_Image;
 	}
 	
 	
