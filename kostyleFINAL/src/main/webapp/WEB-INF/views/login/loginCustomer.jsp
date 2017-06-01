@@ -23,7 +23,7 @@
 
 	<section id="leftSection">
 		<div>
-			<a href="../main.csh" id="homeIcon"><div><img src="../resources/images/kostyle_icon/개인.png"></div></a>
+			<a href="../main.csh" id="homeIcon"><div><img src="/../../resources/images/kostyle_icon/개인.png"></div></a>
 		</div>
 		<section id="joinSection">
 	         <h3 class="menuText">JOIN US</h3>

@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>게시글 상세보기</title>
-<script src="../jquery/jquery-3.2.1.js"></script>
+<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 /* $(function(){
 	$('.update').on('click',function(){
@@ -18,7 +18,7 @@
 	
 	
 } */
-function fn_update(){
+/* function fn_update(){
 	location.href = "updateForm.a?q_num=${board.q_Num}";
 }
 function fn_delete(){
@@ -26,7 +26,23 @@ function fn_delete(){
 }
 function fn_list(){
 	location.href = "listAction2.a";
-}
+} */
+
+$(document).ready(function(){
+	/* alert("이벤트 발생"); */
+	$('#list').on('click', function(){
+		/* alert("list"); */
+		location.href="/help/list";
+	});
+	$('#update').on('click', function(){
+		/* alert("update"); */
+		location.href="/help/update?q_Num=${board.q_Num}";
+	});
+	$('#remove').on('click', function(){
+		alert("remove");
+		location.href="/help/remove?q_Num=${board.q_Num}";
+	});
+});
 
 </script>
 </head>
@@ -61,9 +77,9 @@ function fn_list(){
 		</tr>
 		<tr height="30">			
 			<td colspan="4">
-				<input type="button" value="글목록" onclick="fn_list()">
-				<input type="button" value="수정" onclick="fn_update()">
-				<input type="button" value="삭제" onclick="fn_delete()">
+				<input type="button" value="글목록" id="list">
+				<input type="button" value="수정" id="update">
+				<input type="button" value="삭제" id="remove">
 			</td>			
 		</tr>
 		
@@ -83,7 +99,7 @@ function fn_list(){
 			<form action="detailAction.a" method="post">
 				<input type="text" name="as_title">
 				<textarea rows="3" cols="70" name="as_content"></textarea>
-				<input type="hidden" name = "q_num" value="${board.q_Num }">
+				<input type="hidden" name = "q_Num" value="${board.q_Num }">
 				<input type="text" name = "as_writer">
 				<input type="submit" value="댓글달기" >
 				</form>
