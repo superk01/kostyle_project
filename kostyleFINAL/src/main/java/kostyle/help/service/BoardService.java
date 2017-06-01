@@ -2,18 +2,23 @@ package kostyle.help.service;
 
 import java.util.List;
 
+import kostyle.help.domain.AdShoppingMall;
 import kostyle.help.domain.BoardVO;
+import kostyle.help.domain.Criteria;
 
 public interface BoardService {
 	
-	public List<BoardVO> list();						//리스트
+	public List<BoardVO> list()throws Exception;					
 	
-	public void insert(BoardVO baBoardVO);				//글쓰기
+	public void insert(BoardVO baBoardVO)throws Exception;				
+
+	public void delete(int q_Num)throws Exception;						
 	
-	public void delete(int bno);						//삭제
+	public void update(BoardVO boardVO)throws Exception;				
 	
-	public void update(BoardVO boardVO);				//수정
+	public BoardVO detail(int q_Num)throws Exception;						
 	
-	public void detail(int bno);						//글보기
+	public List<AdShoppingMall> adShoppingMallList()throws Exception; 
 	
+	public int totalCount()throws Exception;
 }

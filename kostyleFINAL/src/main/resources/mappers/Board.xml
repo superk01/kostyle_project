@@ -7,11 +7,12 @@
 <mapper namespace="kostyle.mapper.BoardMapper">
 	<cache />
 	
-	<select id="list" resultType="BoardVO">
+	<!-- <select id="list" resultType="BoardVO">
 		select * from question
-	</select>
-	<!-- <select id="list" resultType="C_Board" parameterType="Search">
-		select q_num as q_Num, q_title as q_Title, q_content as q_Content, sysdate as q_Date, 
+	</select> -->
+	<!-- 고객문의 계시판 글 목록 보기(전체) -->
+	<select id="list" resultType="BoardVO">
+		select q_num as q_Num, q_title as q_Title, q_content as q_Content, q_date as q_Date,
 		
 		(SELECT DISTINCT c.c_id 
 		from QUESTION q, CUSTOMER c 
@@ -25,7 +26,7 @@
 		and q.q_num = qu.q_num) as s_Name
 		from question qu
 		
-			<if test="area != null">
+			<!-- <if test="area != null">
 				<where>
 					<foreach collection="area" item="area">
 						${area} LIKE #{searchKey}
@@ -36,10 +37,47 @@
 				<where>
 					c_num = #{searchMine}
 				</where>
-			</if>
+			</if> -->
 			order by q_num desc
 	</select>
-	<select id="countBoard" resultType="int" parameterType="Search">
+	
+	<select id="adShoppingMallList" resultType="AdShoppingMall">
+		select 
+		(SELECT DISTINCT s_sname 
+		 from ADSHOPPINGMALL a, SHOPPINGMALL s 
+		 where s.s_num = a.s_num 
+		 and s.s_num = ad.s_num) as S_Name from adshoppingmall ad
+	</select>
+	
+	<insert id="insert" parameterType="BoardVO">
+		insert into question 
+		(q_num, q_title, q_content, q_date, c_num, s_num)
+		VALUES
+		((select nvl(max(q_num+1),1) from question),#{q_Title},#{q_Content},sysdate,#{c_Num},#{s_Num})
+	</insert>
+	<select id="getS_Num" parameterType="String" resultType="String">
+		select s_num from shoppingmall where s_sname = #{value}
+	</select>
+	<select id="detail" resultType="BoardVO" parameterType="int">
+		select temp.*,(SELECT c.c_id from question q, customer c where q.c_num=c.c_num 
+              and q_num=#{value})as c_Id 
+			  from ((SELECT * FROM question)temp) where q_num=#{value}
+		<!-- select * from question where q_num = #{value} -->
+	</select>
+	<update id="update" parameterType="BoardVO">
+		update question set 
+			q_title = #{q_Title},
+			q_content = #{q_Content}
+			where q_num = #{q_Num}
+	</update>
+	<delete id="delete">
+		delete from question where q_num = #{value}
+	</delete>
+	<select id="totalCount" resultType="int">
+		select count(q_num) from question
+	</select>
+	
+	<!-- <select id="countBoard" resultType="int" parameterType="Search">
 		select count(*) from question
 		<if test="area != null">
 				<where>
@@ -56,30 +94,17 @@
 		</if>
 	</select>
 	
+	
 	<select id="searchMineBoard" resultType="C_Board">
 		select * from customer where c_num = ${value}
 	</select>
-	<insert id="insertBoard" parameterType="C_Board">
-		insert into question 
-		(q_num, q_title, q_content, q_date, c_num, s_num)
-		VALUES
-		(#{q_Num},#{q_Title},#{q_Content},sysdate,#{c_Num},#{s_Num})
-	</insert>
+	
 	<select id="add" resultType="Integer">
 		select max(q_num) from question
 	</select>
-	<select id="detailBoard" resultType="C_Board" parameterType="int">
-		select * from question where q_num = #{value}
-	</select>
-	<update id="updateBoard" parameterType="C_Board">
-		update question set 
-			q_title = #{q_Title},
-			q_content = #{q_Content}
-			where q_num = #{q_Num}
-	</update>
-	<delete id="deleteBoard">
-		delete from question where q_num = #{value}
-	</delete>
+
+	
+	
 	
 	<select id="getC_Id" parameterType="int" resultType="String">
 		select c_id from customer where c_num = #{value}
@@ -101,21 +126,17 @@
 	<select id="countAnswer" resultType="int">
 		select count(*) from answer where q_num = #{value}
 	</select>
-	<select id="adShoppingMallList" resultType="ShoppingMall">
-		select 
-		(SELECT DISTINCT s_sname 
-		 from ADSHOPPINGMALL a, SHOPPINGMALL s 
-		 where s.s_num = a.s_num 
-		 and s.s_num = ad.s_num) as S_Name from adshoppingmall ad
-	</select>
-	<select id="getS_Num" parameterType="String" resultType="String">
-		select s_num from shoppingmall where s_sname = #{value}
-	</select>
+
+	
 	<select id="getC_Num" parameterType="String" resultType="String">
 		select c_num from customer where c_id = #{value}
 	</select> -->
 	
-	<!-- <insert id="insertBoard" parameterType="board">
+	
+	
+	<!-- 옛 board.xml
+	
+	<insert id="insertBoard" parameterType="board">
 		insert into board3 (b_id, b_name, b_title, b_content, b_pwd, b_date, b_hit)
 		values(#{b_id},#{b_name},#{b_title},#{b_content},#{b_pwd},sysdate,0)
 	</insert>

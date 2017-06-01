@@ -20,10 +20,10 @@ public class Daotest {
 	@Inject
 	private BoardDAO dao;
 	
-	@Test
+/*	@Test
 	public void daoTest() {
 		List<BoardVO> list = dao.list();
 		System.out.println("daoTest:"+list);
 		//수정
-	}
+	}*/
 }

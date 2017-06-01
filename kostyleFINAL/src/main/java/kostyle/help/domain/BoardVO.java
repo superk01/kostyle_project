@@ -14,6 +14,7 @@ public class BoardVO implements Serializable{
 	private String s_Name;
 	private String s_Num;
 	private	int answerNum;
+	
 	public int getQ_Num() {
 		return q_Num;
 	}
