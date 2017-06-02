@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  mapper interface경로 -->
+<!--  mapperinterface 메소드명과 id명이 일치해야한다.. -->
+<mapper namespace="kostyle.category.mapper.CategoryMapper"> 
+	<cache />
+	
+	<select id="adsList" resultType="kostyle.category.domain.Adshoppingmall_category">
+		select * from shoppingmall
+	</select>
+	
+	<!-- 
+	<select id="categorysmallSelect" resultType="Category.model.Categorysmall" parameterType="String">
+		select * from categorysmall where cm_num = #{cm_num}
+	</select>
+	 
+	<select id="categorymidSelect" resultType="String" parameterType="String">
+		select cm_num from categorymid where cl_num = #{cl_num}
+	</select>
+	
+	<select id="getADShoppingmall" resultType="Category.model.Adshoppingmall">
+		select s_num, s_shopurl, s_searchurl from shoppingmall
+
+	</select>
+	
+	<select id="getAdShoppingmallJoin" resultType="Category.model.Adshoppingmall">
+		select * from SHOPPINGMALL s, ADSHOPPINGMALL a 
+  		where s.S_NUM = a.S_NUM
+	</select> 
+	
+	<select id="getCategoryList" resultType="Category.model.Category">
+		select rownum, alias.* from (select * from categorylist order by hitcount desc) alias where rownum &lt;= 10
+	</select>
+	
+	<select id="getPickProduct_List_s" resultType="Category.model.PickProduct_List">
+		select clo_prdurl, clo_zzim from CLOSETDETAIL order by 2 desc
+	</select>
+	
+	<insert id="insertCustomer_taste_stack" parameterType="Category.model.Customer_taste_stack">
+		insert into customer_taste(c_num, c_click_keyword,p_url) values(#{c_num}, #{c_click_keyword}, #{p_url})
+	</insert>
+	
+	<select id="getCustomer_taste" resultType="Category.model.Customer_taste_Select" parameterType="String">
+		select count(c_click_keyword), c_click_keyword from customer_taste 
+			group by C_NUM, c_click_keyword 
+			having c_num = #{c_num}
+			order by 1 desc
+	</select>
+	
+	<insert id="insertCategoryList" parameterType="String">
+		insert into categorylist values(#{name},0,'0')
+	</insert>
+	
+	<select id="getCategorylist_brother" resultType="Category.model.Category">
+		select * from(select rownum as row_num, temp.* from(select * from categorylist order by hitcount desc) temp) where row_num between 11 and 100
+	</select>
+	
+	<update id="click_CategoryList" parameterType="String">
+		update categorylist set hitcount = hitcount+1 where name = #{name}
+	</update>
+	 -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
