@@ -1,6 +1,6 @@
 package kostyle.admin.domain;
 
-public class ShoppingMall {
+public class ShoppingMallAdmin {
 	private String s_num;
 	private String s_manager;
 	private String s_shopurl;
