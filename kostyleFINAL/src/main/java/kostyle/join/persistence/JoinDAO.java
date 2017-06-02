@@ -1,10 +1,11 @@
 package kostyle.join.persistence;
 
-import kostyle.join.domain.JoinVO;
+import kostyle.join.domain.JoinJoin;
 
 public interface JoinDAO {
 
-	public void insertJoin(JoinVO join)throws Exception;
+	public void insertJoin(JoinJoin join)throws Exception;
 	
+	public String autoNum()throws Exception;
 	
 }

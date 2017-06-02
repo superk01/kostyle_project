@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
 	      changeYear: true
 	    })
 	  } );
-  </script>
+</script>
   
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
@@ -87,7 +88,7 @@
 			</h1>
 		</div>
 
-		<form class="form-horizontal" action="join" method="post">
+		<form:form class="form-horizontal" action="join" method="post" commandName="JoinCommand">
 		
 		<div id="terms">
 		<h3>이용약관 동의</h3>
@@ -284,7 +285,7 @@
 부 칙(개정) 이 약관은 2016년 10 월 13 일부터 시행합니다.
 부 칙(개정) 이 약관은 2016년 11 월 9 일부터 시행합니다. 
 			</textarea>
-		<h4> 이용약관에 동의합니다. &nbsp;<input name="check1" id="check1" type="checkbox"></h5>
+		<h4> 이용약관에 동의합니다. &nbsp;<input name="check1" id="check1" type="checkbox"></h4>
 		<br>
     	
     	<h3>개인정보 수집 및 이용 동의</h3>
@@ -309,7 +310,7 @@
 
 회사는 개인정보 수집 및 이용목적이 달성된 후에는 예외 없이 해당 정보를 지체 없이 파기합니다. 
 			</textarea>
-		<h4> 개인정보 수집 및 이용에 동의합니다. &nbsp;<input name="check2" id="check2" type="checkbox"></h5>
+		<h4> 개인정보 수집 및 이용에 동의합니다. &nbsp;<input name="check2" id="check2" type="checkbox"></h4>
 		</div>
 	
 	<br><br><br>
@@ -318,35 +319,39 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputName">이름</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputName" type="text" name="c_name" placeholder="이름을 입력해 주세요">
+					<form:input class="form-control" id="inputName" type="text" name="c_name" placeholder="이름을 입력해 주세요" path="c_name"/>
+					<form:errors path="writer" cssClass="error"/><br>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputBirth">생년월일</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputBirth" type="text" name="c_birth" style="cursor:pointer;" readonly="readonly" placeholder="클릭하세요">
+					<form:input class="form-control" id="inputBirth" type="text" name="c_birth" style="cursor:pointer;" readonly="readonly" placeholder="클릭하세요" path="c_birth"/>
+					<form:errors path="writer" cssClass="error"/><br>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputId">아이디</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputId" type="text" name="c_id"	placeholder="아이디를 입력해 주세요">
+					<form:input class="form-control" id="inputId" type="text" name="c_id"	placeholder="아이디를 입력해 주세요" path="c_id"/>
+					<form:errors path="writer" cssClass="error"/><br>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputPassword" type="password" name="c_pass" placeholder="비밀번호">
+					<form:input class="form-control" id="inputPassword" type="password" name="c_pass" placeholder="비밀번호" path="c_pass"/>
 					<p class="help-block">영문소문자/숫자, 4~16자</p>
+					<form:errors path="writer" cssClass="error"/><br>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 확인</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputPasswordCheck" type="password" name="c_pass2" placeholder="비밀번호 확인">
+					<input class="form-control" id="inputPasswordCheck" type="password" name="c_pass2" placeholder="비밀번호 확인" >
 					<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
 				</div>
 			</div>
@@ -363,27 +368,30 @@
 				<label class="col-sm-3 control-label" for="inputAdress">주소</label>
 				<div class="col-sm-6">
 					<div class="input-group">
-						<input class="form-control" id="inputPostcode" type="text" name="c_zipcode" placeholder="우편번호" readonly="readonly">
+						<form:input class="form-control" id="inputPostcode" type="text" name="c_zipcode" placeholder="우편번호" readonly="readonly" path="c_zipcode"/>
 						<span class="input-group-btn">
 							<button id="btn-zip" class="btn btn-default" type="button" onclick="sample6_execDaumPostcode()">우편번호찾기 <i class="fa fa-home"></i></button>
 						</span>
 					</div>
-					<input class="form-control" id="inputAdress" type="text" name="c_adress" readonly="readonly">
-					<input class="form-control" id="inputAdress2" type="text" name="c_adress2" placeholder="상세 주소를 입력하세요"> 
+					<input class="form-control" id="inputAdress" type="text" name="c_adress">
+					<form:errors path="writer" cssClass="error"/><br>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputEmail" type="email" name="c_email"	placeholder="ex) gildong@kostyle.com">
+					<form:input class="form-control" id="inputEmail" type="email" name="c_email"	placeholder="ex) gildong@kostyle.com" path="c_email"/>
+					<form:errors path="writer" cssClass="error"/><br>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputNumber" type="tel" placeholder="- 없이 입력해 주세요" name="c_phonenumber">
+					<form:input class="form-control" id="inputNumber" type="tel" placeholder="- 없이 입력해 주세요" name="c_phonenumber" path="c_phonenumber"/>
+					<h5> sms로 KOStyle의 소식을 받아보겠습니다.  &nbsp;<input name="c_sms" id="inputSms" type="checkbox"></h5>
+					<form:errors path="writer" cssClass="error"/><br>
 				</div>
 			</div>
 		</div>
@@ -401,7 +409,7 @@
 					
 				</div>
 			</div>
-		</form>
+		</form:form>
 		<hr>
 	</div>
 	</article>

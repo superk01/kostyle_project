@@ -1,7 +1,7 @@
 package kostyle.join.domain;
 
 
-public class JoinVO{
+public class JoinJoin{
 	
 	private String c_num;//자동으로 번호 부여
 	private String c_name;
@@ -16,9 +16,9 @@ public class JoinVO{
 	private String c_adress;
 	private String c_sms = "off"; //check:0, uncheck:1
 
-	public JoinVO(){}
+	public JoinJoin(){}
 
-	public JoinVO(String c_num, String c_name, String c_birth, String c_phonenumber, String c_gender, String c_email,
+	public JoinJoin(String c_num, String c_name, String c_birth, String c_phonenumber, String c_gender, String c_email,
 			int p_powernum, String c_id, String c_pass, int c_zipcode, String c_adress, String c_sms) {
 		super();
 		this.c_num = c_num;

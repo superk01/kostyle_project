@@ -5,22 +5,24 @@
   
 <mapper namespace="kostyle.join.mappers.joinMapper">
 
-    <insert id="insertJoin" parameterType="JoinVO"><!-- 회원가입 데이터 입력 -->
+    <insert id="insertJoin" parameterType="JoinJoin"><!-- 회원가입 데이터 입력 -->
 		insert into customer(
 			c_num, c_birth, c_phonenumber, c_gender, c_email, p_powernum, c_id,
 			c_pass, c_zipcode, c_adress, c_sms, c_name
 		)
 		values(
-			11, 20010101, #{c_phonenumber}, #{c_gender}, #{c_email}, 2, #{c_id},
+			#{c_num}, #{c_birth}, #{c_phonenumber}, #{c_gender}, #{c_email}, 2, #{c_id},
 			#{c_pass}, #{c_zipcode}, #{c_adress}, #{c_sms}, #{c_name}
 		)
 	</insert>
-	<!-- 
-	<select id = "autoNum" resultType="String"> 회원번호 c_num 자동부여
-		select max(c_num) from customer
+	 
+	<select id = "autoNum" resultType="String"> <!-- 회원번호 c_num 자동부여 -->
+		SELECT c_num FROM 
+ 		(SELECT * FROM customer ORDER BY ROWNUM DESC) 
+		WHERE ROWNUM = 1
 	</select>
 	
-	
+	<!--
 	<select id = "overlapId" parameterType="Join" resultType="Integer"> 아이디 중복체크
 		select count(*) from customer where c_id = #{c_id}
 	</select> -->
