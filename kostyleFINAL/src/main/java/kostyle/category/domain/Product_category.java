@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Product implements Serializable{
+public class Product_category implements Serializable{
     
     private String product_link = ""; //臾쇨굔 留곹겕媛�
     //臾쇨굔 �꽕紐낃컪
@@ -38,7 +38,7 @@ public class Product implements Serializable{
 		this.product_ImageLink = product_ImageLink;
 	}
 	
-	public Product(String product_shopurl, String product_link, String product_name, String product_price, String product_ImageLink) {
+	public Product_category(String product_shopurl, String product_link, String product_name, String product_price, String product_ImageLink) {
 		super();
 		this.product_link = product_link;
 		this.product_name = product_name;
@@ -71,7 +71,7 @@ public class Product implements Serializable{
 	
 	
 	
-	public Product(){}
+	public Product_category(){}
 	@Override
 	public String toString() {
 		return "Product [product_link=" + product_link + ", product_name=" + product_name + ", product_price="

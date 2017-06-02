@@ -1,116 +1,63 @@
-function checkId() {
-	var id_exp = /^[a-z][a-zA-Z0-9]{3,15}$/;
+/*function checkValue() {
 	
-	if(!document.joinform.user_id.value.match(id_exp)){
-		alert("영문자 소문자로 시작해서 4~16글자로 입력하세요.");
-		return false;
+	var check1 = $("#check1").val();
+	var check2 = $("#check2").val();
+	var name = $("#inputName").val();
+	var birth = $("#inputBirth").val();
+	var phonenumber = $("#inputNumber").val();
+	var email = $("#inputEmail").val();
+	var id = $("#inputId").val();
+	var password = $("#inputPassword").val();
+	var passwordCheck = $("#inputPasswordCheck").val();
+	var zipcode = $("#inputPostcode").val();
+	var adress = $("#inputAdress").val();
+	
+	
+}*/
+
+
+
+function id_validation() {
+	var regExp = /^[a-z][a-zA-Z0-9]{3,15}$/;
+	var id = $("#inputId").val();
+	var out = regExp.test(id);
+	if(out == false){
+		$('#m_id').html('아이디를 4~16글자의 영소문자와 숫자조합으로 입력하세요.');
 	}else{
-		alert("사용가능한 아이디 입니다.");
-		return true;
+		$('#m_id').empty();
 	}
 }
 
-function checkValue() {
-	
-	var reg_exp=/^[a-z][a-zA-Z0-9]{3,15}$/; //4~16글자 범위
-	if(!document.joinform.user_id.value.match(reg_exp)){
-		alert("아이디를 4~16글자의 영소문자로 입력하세요.");
-		return false;
-	}//reg_exp값이 정규식과 일치하는 값이 있으면 배열을 출력, 아니면 alert창을 출력
 
-	var pw_exp=/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*|W)).{4,16}$/;
-	if(!document.joinform.user_pw1.value.match(pw_exp)){
-		alert("비밀번호를 4~16글자의 영소문자로 입력하세요.");
-		return false;
+function pass_validation() {
+	var regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,16}$/;
+	var pass =$("#inputPassword").val();
+	var out = regExp.test(pass);
+	if(out == false){
+		$('#m_pass').html('비밀번호를 4~16자의 영문, 숫자, 특수문자의 조합으로 입력하세요.');
+	}else{
+		$('#m_pass').empty();
 	}
-	
-	if(!document.joinform.user_pw1.value.equals(document.joinform.user_pw2.value)){
-		alert("비밀번호가 일치하지 않습니다.");
-		return false;
-	}
-	
-	if(document.joinform.user_name.value==""){
-		alert("이름을 입력하세요.");
-		document.loginform.user_name.focus();
-		return false;
-		
-	}else if(document.joinform.user_id.value==""){
-		alert("아이디를 입력하세요.");
-		document.loginform.user_id.focus();
-		return false;
-		
-	}else if(document.joinform.user_pw1.value==""){
-		alert("비밀번호를 입력하세요.");
-		document.loginform.user_pw1.focus();
-		return false;
-		
-	}else if(document.joinform.user_pw2.value==""){
-		alert("비밀번호 확인을 입력하세요.");
-		document.loginform.user_pw2.focus();
-		return false;
-		
-	}else if(document.joinform.gender.value==""){
-		alert("성별을 입력하세요.");
-		document.loginform.gender.focus();
-		return false;
-		
-	}else if(document.joinform.user_birth_year.value==""){
-		alert("생일을 입력하세요.");
-		document.loginform.user_birth_year.focus();
-		return false;
-		
-	}else if(document.joinform.user_zip.value==""){
-		alert("우편번호을 입력하세요.");
-		document.loginform.user_zip.focus();
-		return false;
-		
-	}else if(document.joinform.user_adress.value==""){
-		alert("주소를 입력하세요.");
-		document.loginform.user_adress.focus();
-		return false;
-		
-	}else if(document.joinform.user_email1.value==""){
-		alert("이메일 입력하세요.");
-		document.loginform.user_email1.focus();
-		return false;
-		
-	}else if(document.joinform.user_email2.value==""){
-		alert("이메일을 입력하세요.");
-		document.loginform.user_email2.focus();
-		return false;
-		
-	}else if(document.joinform.user_p1.value==""){
-		alert("휴대폰 번호를 입력하세요.");
-		document.loginform.user_p1.focus();
-		return false;
-		
-	}else if(document.joinform.user_p2.value==""){
-		alert("휴대폰 번호를 입력하세요.");
-		document.loginform.user_p2.focus();
-		return false;
-		
-	}else if(document.joinform.user_p3.value==""){
-		alert("휴대폰 번호를 입력하세요.");
-		document.loginform.user_p3.focus();
-		return false;
-		
-	}else if(document.joinform.sms.value==""){
-		alert("sms 수신여부를 확인하세요.");
-		document.loginform.user_sms.focus();
-		return false;
-		
-	}else {
-		alert("가입이 완료되었습니다.")
-	}
-	/*var tel_exp=/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-	if(!document.joinform.user_pw1.value.match(document.joinform.user_pw2.value)){
-		alert("비밀번호가 일치하지 않습니다.");
-		return false;
-	}*/
-	
-	return true;
 }
 
+function pass2_validation() {
+	var pass =$("#inputPassword").val();
+	var pass2 =$("#inputPasswordCheck").val();
+	
+	if(pass != pass2){
+		$('#m_pass2').html('비밀번호가 일치하지 않습니다.');
+	}else{
+		$('#m_pass2').empty();
+	}
+}
 
-
-
+function phone_validation() {
+	var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})([0-9]{3,4})([0-9]{4})$/;
+	var phone =$("#inputNumber").val();
+	var out = regExp.test(phone);
+	if(out == false){
+		$('#m_phone').html('핸드폰번호 형식이 아닙니다.');
+	}else{
+		$('#m_phone').empty();
+	}
+}

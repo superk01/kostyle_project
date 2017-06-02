@@ -30,7 +30,7 @@
 </head>
 <body>
 
-등록여부, 신청날짜
+신청날짜
 <br><br><br>
 <!-- shoppingmall list -->
 	<div id="shopList">
@@ -42,33 +42,28 @@
  		<span>쇼핑몰 URL</span>
  	</div>
  	
- 	<c:forEach items="${list }" var="ShoppingMallAdmin">
+ 	<c:forEach items="${list }" var="AdShoppingMallAdmin">
  		<div>
- 			<span>
- 				<input type="checkbox" name="s_num" id="check" value="${ShoppingMallAdmin.s_num }">
- 			</span>
- 			
- 			<span class="shopInfo" id="s_num">${ShoppingMallAdmin.s_num }</span>
+ 		
+ 			<span class="shopInfo" id="s_num">${AdShoppingMallAdmin.s_num }</span>
+ 			<%-- 
  			<span class="shopInfo" id="s_sname">
- 				<a class="s_sname" data-toggle="modal" data-target="#myModal">${ShoppingMallAdmin.s_sname }</a>
+ 				<a class="s_sname" data-toggle="modal" data-target="#myModal">${AdShoppingMallAdmin.s_sname }</a>
  			</span>
- 			<span style="display: none;" class="shopInfo" id="s_image" >${ShoppingMallAdmin.s_image }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_image" >${AdShoppingMallAdmin.s_image }</span>
  			<span class="shopInfo" id="s_shopurl">
- 				<a href="${ShoppingMallAdmin.s_shopurl }"> ${ShoppingMallAdmin.s_shopurl }</a>
+ 				<a href="${AdShoppingMallAdmin.s_shopurl }"> ${AdShoppingMallAdmin.s_shopurl }</a>
  				</span>
- 			<span style="display: none;" class="shopInfo" id="s_shopreg" >${ShoppingMallAdmin.s_shopreg }</span>
- 			<span style="display: none;" class="shopInfo" id="s_age" >${ShoppingMallAdmin.s_age }</span>
- 			<span style="display: none;" class="shopInfo" id="s_searchurl" >${ShoppingMallAdmin.s_searchurl }</span>
- 			<span style="display: none;" class="shopInfo" id="s_manager" >${ShoppingMallAdmin.s_manager }</span>
- 			<span style="display: none;" class="shopInfo" id="s_phonenumber" >${ShoppingMallAdmin.s_phonenumber }</span>
- 			<span style="display: none;" class="shopInfo" id="s_email" >${ShoppingMallAdmin.s_email }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_shopreg" >${AdShoppingMallAdmin.s_shopreg }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_age" >${AdShoppingMallAdmin.s_age }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_searchurl" >${AdShoppingMallAdmin.s_searchurl }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_manager" >${AdShoppingMallAdmin.s_manager }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_phonenumber" >${AdShoppingMallAdmin.s_phonenumber }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_email" >${AdShoppingMallAdmin.s_email }</span>
+ 			 --%>
  		</div>
  	</c:forEach>
  	
- 		<div>
- 			<button type="submit" id="adShop" class="btn btn-primary">ADSHOP</button>
-		 </div>
-
 	 </form>
  	</div>
  
@@ -110,7 +105,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-3">사이트 URL</div>
-								<div class="col-md-9" id="m_shopurl">${ShoppingMallAdmin.s_shopurl }</div>
+								<div class="col-md-9" id="m_shopurl">${AdShoppingMallAdmin.s_shopurl }</div>
 							</div>
 							<div class="row">
 								<div class="col-md-3">사업자번호</div>
@@ -136,14 +131,13 @@
 								<div class="col-md-3">Email</div>
 								<div class="col-md-9" id="m_email"></div>
 							</div>
-							
+
 								
 							</div>
 						</div>
 						
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-info" id="adshopModal">ADSHOP</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
 					
@@ -156,8 +150,6 @@
 
 
 
-
-lll
 </body>
 
 <script>
@@ -178,28 +170,11 @@ lll
 		$("#m_phonenumber").html($(this).parent().find("#s_phonenumber").text());
 		$("#m_email").html($(this).parent().find("#s_email").text());
 	});
-	
-	
-	$("#adshopModal").on("click", function(){
-		
-		var s_num = $("#m_num").html();
-		alert(s_num);
-		
-		$.ajax({
-			type:'post',
-			url:'/admin/shopModal',
-			headers:{
-				"Content-Type":"application/json"},
-			dataType:'text',
-			data: JSON.stringify({s_num:s_num}),
-			success:function(result){
-				alert("dd");
-			}
-		});
-		
-		
-	});
 
+	$("#adShop").on("click", function(){
+		var s_num = $("#check").value();
+		alert(s_num);
+	});
 /* 	
 	$("#adShopList").submit(function(event){
 		event.preventDefault();

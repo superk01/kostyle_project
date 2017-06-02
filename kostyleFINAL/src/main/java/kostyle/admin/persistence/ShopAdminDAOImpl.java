@@ -7,7 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import kostyle.admin.domain.ShoppingMall;
+import kostyle.admin.domain.AdShoppingMallAdmin;
+import kostyle.admin.domain.ShoppingMallAdmin;
 
 @Repository
 public class ShopAdminDAOImpl implements ShopAdminDAO{
@@ -18,7 +19,7 @@ public class ShopAdminDAOImpl implements ShopAdminDAO{
 	private static String namespace = "kostyle.admin.mappers.adminMapper";
 	
 	@Override
-	public void insertShoppingMall(ShoppingMall shop) throws Exception {
+	public void insertShoppingMall(ShoppingMallAdmin shop) throws Exception {
 		session.insert(namespace+".insertShoppingMall", shop);
 	}
 
@@ -28,13 +29,23 @@ public class ShopAdminDAOImpl implements ShopAdminDAO{
 	}
 
 	@Override
-	public List<ShoppingMall> shopList() throws Exception {
+	public List<ShoppingMallAdmin> shopList() throws Exception {
 		return session.selectList(namespace+".shopList");
 	}
 
 	@Override
-	public ShoppingMall shopDetail(String s_num) throws Exception {
-		return session.selectOne(namespace+".shopDetail", s_num);
+	public ShoppingMallAdmin getShoppingMall(String s_num) throws Exception {
+		return session.selectOne(namespace+".getShoppingMall", s_num);
+	}
+
+	@Override
+	public void insertAdShoppingMall(ShoppingMallAdmin shop) throws Exception {
+		session.insert(namespace+".insertAdShoppingMall", shop);
+	}
+
+	@Override
+	public List<AdShoppingMallAdmin> adShopList() throws Exception {
+		return session.selectList(namespace+".adShopList");
 	}
 	
 

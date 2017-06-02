@@ -22,10 +22,10 @@
 		WHERE ROWNUM = 1
 	</select>
 	
-	<!--
-	<select id = "overlapId" parameterType="Join" resultType="Integer"> 아이디 중복체크
+	
+	<select id = "overlapId" resultType="Integer"> <!-- 아이디 중복체크 -->
 		select count(*) from customer where c_id = #{c_id}
-	</select> -->
+	</select>
   
 </mapper>  
 

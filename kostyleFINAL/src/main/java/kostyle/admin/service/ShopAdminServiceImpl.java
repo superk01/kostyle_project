@@ -6,7 +6,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import kostyle.admin.domain.ShoppingMall;
+import kostyle.admin.domain.AdShoppingMallAdmin;
+import kostyle.admin.domain.ShoppingMallAdmin;
 import kostyle.admin.persistence.ShopAdminDAO;
 
 @Service
@@ -16,7 +17,7 @@ public class ShopAdminServiceImpl implements ShopAdminService{
 	public ShopAdminDAO dao;
 	
 	@Override
-	public void insertShoppingMall(ShoppingMall shop) throws Exception {
+	public void insertShoppingMall(ShoppingMallAdmin shop) throws Exception {
 		dao.insertShoppingMall(shop);
 	}
 
@@ -26,14 +27,25 @@ public class ShopAdminServiceImpl implements ShopAdminService{
 	}
 
 	@Override
-	public List<ShoppingMall> shopList() throws Exception {
+	public List<ShoppingMallAdmin> shopList() throws Exception {
 		return dao.shopList();
 	}
 
 	@Override
-	public ShoppingMall shopDetail(String s_num) throws Exception {
-		return dao.shopDetail(s_num);
+	public ShoppingMallAdmin getShoppingMall(String s_num) throws Exception {
+		return dao.getShoppingMall(s_num);
 	}
 
+	@Override
+	public void insertAdShoppingMall(ShoppingMallAdmin shop) throws Exception {
+		dao.insertAdShoppingMall(shop);
+	}
+
+	@Override
+	public List<AdShoppingMallAdmin> adShopList() throws Exception {
+		return dao.adShopList();
+	}
+	
+	
 
 }
