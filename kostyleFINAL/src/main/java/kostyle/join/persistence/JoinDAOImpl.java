@@ -30,4 +30,9 @@ public class JoinDAOImpl implements JoinDAO {
 		}
 	}
 
+	@Override
+	public int overlapId(String c_id) throws Exception {
+		return session.selectOne(namespace+".overlapId", c_id);
+	}
+
 }
