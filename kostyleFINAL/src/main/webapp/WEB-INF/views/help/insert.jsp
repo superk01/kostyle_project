@@ -63,6 +63,7 @@
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
+				<input type="checkbox" name="q_Secret">비밀글
 				<input type="submit" value="제  출">
 				<input type="reset" value="내용삭제">
 				 
@@ -70,6 +71,6 @@
 			</tr>
 		</table>	
 	</form>
-	<a href = "listAction2.a?reset=1"><button>목록보기</button></a>
+	<a href = "/help/list"><button>목록보기</button></a>
 </body>
 </html>

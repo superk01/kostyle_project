@@ -28,8 +28,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public void insert(BoardVO BoardVO) {
-		session.insert(namespace+".insert", BoardVO);
+	public void insert(BoardVO boardVO) {
+		System.out.println("BoardDAOImpl:"+boardVO.getQ_Secret());
+		session.insert(namespace+".insert", boardVO);
 
 	}
 

@@ -25,15 +25,18 @@
 	 $(document).ready(function(){
 			
 		 	alert(${pageMaker.prev});
-		 	function fn_searchMine() {
+		 	$('#fn_write').on('click', function(){
+		 		location.href="/help/insert";
+		 	});
+		 	/* function fn_searchMine() {
 				location.href = "searchMineAction.a?c_num=1";
 			};
 			function fn_write() {
 				location.href = "/help/insert";
 			};
 			function fn_list() {
-				location.href = "listAction2.a?reset=1";
-			};
+				location.href = "/help/list";
+			}; */
 	 });
 	
 </script>
@@ -107,7 +110,7 @@
 		<input type="text" name="searchKey" size="10"> <input
 			type="submit" value="검색">
 	</form>
-	<input type="button" value="글쓰기" id="fn_write" onclick="fn_write()">
+	<input type="button" value="글쓰기" id="fn_write">
 	<input type="button" value="내글보기" id="fn_searchMine"
 		onclick="fn_searchMine()">
 	<input type="button" value="전체글목록" id="list" onclick="fn_list()">

@@ -3,7 +3,9 @@ package kostyle.help.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +27,12 @@ public class HelpController {
 	private BoardService service;
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public ModelAndView list(@ModelAttribute("cri") Criteria cri)throws Exception {
+	public ModelAndView list(@ModelAttribute("cri") Criteria cri, HttpServletRequest request)throws Exception {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", service.list(cri));
+		HttpSession session = request.getSession();
+		Object userVO = session.getAttribute("login");
+		System.out.println("HelpController-list():"+userVO);
+		mav.addObject("list", service.list(cri,session));
 		
 		PageMaker maker = new PageMaker();
 		maker.setCri(cri);
@@ -53,17 +58,18 @@ public class HelpController {
 		response.sendRedirect("/help/list");
 	}
 	@RequestMapping(value="detail", method=RequestMethod.GET)
-	public ModelAndView detail(@RequestParam("q_num") int q_num)throws Exception{
+	public ModelAndView detail(@RequestParam("q_num") int q_Num, HttpSession session)throws Exception{
 		ModelAndView mav = new ModelAndView();
-		System.out.println("HelpController:"+q_num);
-		mav.addObject("board", service.detail(q_num));
+		System.out.println("HelpController:"+q_Num);
+		System.out.println("HelpController:"+service.detail(q_Num,session));
+		mav.addObject("board", service.detail(q_Num,session));
 		return mav;
 	}
 	@RequestMapping(value="update", method=RequestMethod.GET)
-	public ModelAndView updateGET(@RequestParam("q_Num") int q_Num)throws Exception{
+	public ModelAndView updateGET(@RequestParam("q_Num") int q_Num, HttpSession session)throws Exception{
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("board", service.detail(q_Num));
-		System.out.println(service.detail(q_Num));
+		mav.addObject("board", service.detail(q_Num,session));
+		System.out.println(service.detail(q_Num, session));
 		return mav;
 	}
 	@RequestMapping(value="update", method=RequestMethod.POST)
