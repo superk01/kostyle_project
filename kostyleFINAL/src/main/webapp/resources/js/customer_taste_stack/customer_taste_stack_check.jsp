@@ -1,7 +1,7 @@
 <%@page import="kostyle.category.domain.Customer_taste_stack"%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="kostyle.category.domain.Product"%>
+<%@page import="kostyle.category.domain.Product_category"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -26,8 +26,8 @@
 	String p_url = request.getParameter("user_taste_url");
 	
 	if(c_num != null){
-		List<Product> product_list = new ArrayList<Product>();
-		product_list = (List<Product>)session.getAttribute("product_list");
+		List<Product_category> product_list = new ArrayList<Product_category>();
+		product_list = (List<Product_category>)session.getAttribute("product_list");
 		
 		if(p_url.indexOf("http://") != -1){
 			p_url = p_url.substring(8,p_url.length());

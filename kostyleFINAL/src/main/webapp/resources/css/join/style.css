@@ -1,0 +1,64 @@
+/*
+
+bootstrap template - login-form Template
+Version: 1.0
+By: dave-cheon
+
+*/
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+* { font-family: 'Nanum Gothic', sans-serif; }
+
+.spaceLeft {
+  margin-left: 10px;
+}
+.spaceRight {
+  margin-right: 10px;
+}
+
+/* custom checkbox */
+.btn span.fa {
+	opacity: 0;
+}
+.btn.active span.fa {
+	opacity: 1;
+}
+#btn-join{
+  background-color: hsl(287, 30%, 75%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ad82ab", endColorstr="#ad82ab");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#ad82ab), to(#ad82ab));
+  background-image: -moz-linear-gradient(top, #ad82ab, #ad82ab);
+  background-image: -ms-linear-gradient(top, #ad82ab, #ad82ab);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ad82ab), color-stop(100%, #ad82ab));
+  background-image: -webkit-linear-gradient(top, #ad82ab, #ad82ab);
+  background-image: -o-linear-gradient(top, #ad82ab, #ad82ab);
+  background-image: linear-gradient(#ad82ab, #ad82ab);
+  border-color: #ad82ab #ad82ab hsl(287, 30%, 75%);
+  color: white !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+  -webkit-font-smoothing: antialiased;
+}
+
+
+h3{
+	text-align: center;
+}
+
+h4{
+	text-align: right;
+}
+
+#terms{
+	padding: 20px 40px;
+	border: solid 8px #ad82ab;
+}
+
+#memberJoin{
+	border: solid 8px #ad82ab;
+	padding: 40px 20px;
+}
+
+input:focus {outline: none;}
+
+
+

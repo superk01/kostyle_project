@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import kostyle.help.domain.AdShoppingMall;
 import kostyle.help.domain.BoardVO;
 import kostyle.help.domain.Criteria;
+import kostyle.help.domain.SearchCriteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -22,14 +23,15 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	private static String namespace="kostyle.mapper.BoardMapper";
 	@Override
-	public List<BoardVO> list(Criteria cri) {
+	public List<BoardVO> list(SearchCriteria cri) {
 		
 		return session.selectList(namespace+".list",cri, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 
 	@Override
-	public void insert(BoardVO BoardVO) {
-		session.insert(namespace+".insert", BoardVO);
+	public void insert(BoardVO boardVO) {
+		System.out.println("BoardDAOImpl:"+boardVO.getQ_Secret());
+		session.insert(namespace+".insert", boardVO);
 
 	}
 
