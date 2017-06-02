@@ -54,8 +54,6 @@
 				<td colspan="3">
 					<input type="text" name="q_Title" style="width:305px">
 				</td>
-				
-				
 			</tr>
 			<tr>
 				<td id = "category">문의 내용</td>

@@ -24,7 +24,7 @@
 	 });  */
 	 $(document).ready(function(){
 			
-		 	alert(${pageMaker.prev});
+		 	/* alert(${pageMaker.prev}); */
 		 	$('#fn_write').on('click', function(){
 		 		location.href="/help/insert";
 		 	});
@@ -37,6 +37,12 @@
 			function fn_list() {
 				location.href = "/help/list";
 			}; */
+			var formObj = $("form[role='form']");
+			$("input[type='submit']").on('click', function(){
+				formObj.attr("action","list");
+				formObj.attr("method","get");
+				formObj.submit();
+			});
 	 });
 	
 </script>
@@ -98,17 +104,17 @@
 
 
 
-	<form action="listAction2.a" method="post">
-		<input type="hidden" name="temp" value="temp"></input> <select
-			id="searchCat" name="area">
+	<form action="listAction2.a" method="post" role="form">
+		<!-- <input type="hidden" name="searchType" value="temp"></input>  -->
+		<select id="searchCat" name="searchType">
 			<option value="q_title">제목</option>
-			<option value="c_num">작성자</option>
+			<option value="c_Id">작성자</option>
 		</select>
 
 		<!-- <input type="checkbox" name="area" value="q_title">제목</input>
 		 <input type="checkbox" name="area" value="q_name">작성자</input> -->
-		<input type="text" name="searchKey" size="10"> <input
-			type="submit" value="검색">
+		<input type="text" name="keyWord" size="10"> 
+		<input type="submit" value="검색">
 	</form>
 	<input type="button" value="글쓰기" id="fn_write">
 	<input type="button" value="내글보기" id="fn_searchMine"
