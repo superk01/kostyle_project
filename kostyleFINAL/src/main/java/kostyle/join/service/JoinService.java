@@ -1,11 +1,10 @@
 package kostyle.join.service;
 
-import kostyle.join.domain.JoinVO;
+import kostyle.join.domain.JoinJoin;
 
 public interface JoinService {
 
-	public void insertJoin_S(JoinVO join)throws Exception;
-	
+	public void insertJoin_S(JoinJoin join)throws Exception;
 	
 	
 }
