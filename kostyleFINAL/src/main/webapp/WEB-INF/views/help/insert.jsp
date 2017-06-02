@@ -13,17 +13,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>문의글 작성 폼</title>
-<link rel="stylesheet" type="text/css" href="write.css">
+<!-- <link rel="stylesheet" type="text/css" href="write.css"> -->
 </head>
 <body>
 
-	<form action="insertAction.a" method = "post">
+	<form action="/help/insert" method = "post">
 		<table border="1px solid">
 			<tr>
 				<td id = "category">쇼핑몰 선택</td>
 				<td>
 					<div style="width: 95px">
-						<select id="shoppingmall" name = "selectshop">
+						<select id="shoppingmall" name = "s_Name">
 							<option>선택</option>
 							<c:forEach var="shoppingMall" items="${list }">
 								<option>${shoppingMall.s_Name }</option>
@@ -52,14 +52,14 @@
 			<tr>
 				<td id = "category">문의 제목</td>
 				<td colspan="3">
-					<input type="text" name="title" style="width:305px">
+					<input type="text" name="q_Title" style="width:305px">
 				</td>
 				
 				
 			</tr>
 			<tr>
 				<td id = "category">문의 내용</td>
-				<td colspan="3"><textarea rows="7" cols="60" name="content"></textarea></td>
+				<td colspan="3"><textarea rows="7" cols="60" name="q_Content"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
