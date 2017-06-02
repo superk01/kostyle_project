@@ -47,7 +47,7 @@ function pass2_validation() {
 	}
 }
 
-function year_validation() {
+/*function year_validation() {
 	var regExp = /^[1-2]{1}[0-9]{3}$/;
 	var year =document.joinform.c_birth_year.value;
 	var out = regExp.test(year);
@@ -57,9 +57,9 @@ function year_validation() {
 	}else{
 		$('#m_year').empty();
 	}
-}
+}*/
 
-function zip_validation() {
+/*function zip_validation() {
 	var regExp = /^\d{3}-?\d{3}$/;
 	var zip =document.joinform.c_zipcode.value;
 	var out = regExp.test(zip);
@@ -69,9 +69,9 @@ function zip_validation() {
 	}else{
 		$('#m_zip').empty();
 	}
-}
+}*/
 
-function p2_validation() {
+/*function p2_validation() {
 	var regExp = /^\d{3,4}$/;
 	var p2 =document.joinform.c_p2.value;
 	var out = regExp.test(p2);
@@ -93,7 +93,7 @@ function p3_validation() {
 	}else{
 		$('#m_phone').empty();
 	}
-}
+}*/
 
 function onlyNum() {
 
@@ -115,7 +115,7 @@ function checkValue() {
 	var check1 = document.getElementById('check1');
 	var check2 = document.getElementById('check2');
 	var check1Result = check1.getAttribute("checked");
-	var check2Result = check2.getAttribute("checked") 
+	var check2Result = check2.getAttribute("checked");
 	
 	var chk1 =document.joinform.check1.checked;
     var chk2 =document.joinform.check2.checked;
@@ -126,17 +126,6 @@ function checkValue() {
     var passregExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,16}$/;
     var pass =document.joinform.c_pass.value;
     
-    var yearregExp = /^[1-2]{1}[0-9]{3}$/;
-    var year =document.joinform.c_birth_year.value;
-    
-    var zipregExp = /^\d{3}-?\d{3}$/;
-    var zip =document.joinform.c_zipcode.value;
-    
-    var p2regExp = /^\d{3,4}$/;
-    var p2 =document.joinform.c_p2.value;
-    
-    var p3regExp = /^\d{4}$/;
-    var p3 =document.joinform.c_p3.value;
 
     
     if(!chk1){
@@ -179,24 +168,9 @@ function checkValue() {
 		document.joinform.c_pass2.focus();
 		return false;
 		
-	}else if(document.joinform.c_birth_year.value==""){
+	}else if(document.joinform.c_birth.value==""){
 		alert("생일을 입력하세요.");
-		document.joinform.c_birth_year.focus();
-		return false;
-		
-	}else if(yearregExp.test(year)==false){
-		alert("생일은 4자리의 숫자로 입력해주세요.");
-		document.joinform.c_birth_year.focus();
-		return false;
-		
-	}else if(document.joinform.c_zipcode.value==""){
-		alert("우편번호을 입력하세요.");
-		document.joinform.c_zipcode.focus();
-		return false;
-		
-	}else if(zipregExp.test(zip)==false){
-		alert("우편번호는 6자리입니다.");
-		document.joinform.c_zipcode.focus();
+		document.joinform.c_birth.focus();
 		return false;
 		
 	}else if(document.joinform.c_adress.value==""){
@@ -204,34 +178,14 @@ function checkValue() {
 		document.joinform.c_adress.focus();
 		return false;
 		
-	}else if(document.joinform.c_email1.value==""){
+	}else if(document.joinform.c_email.value==""){
 		alert("이메일 입력하세요.");
-		document.joinform.c_email1.focus();
+		document.joinform.c_email.focus();
 		return false;
 		
-	}else if(document.joinform.c_email2.value==""){
-		alert("이메일을 입력하세요.");
-		document.joinform.c_email2.focus();
-		return false;
-		
-	}else if(document.joinform.c_p2.value==""){
+	}else if(document.joinform.c_phonenumber.value==""){
 		alert("휴대폰 번호를 입력하세요.");
-		document.joinform.c_p2.focus();
-		return false;
-		
-	}else if(p2regExp.test(p2)==false){
-		alert("휴대폰 번호를 확인하세요.");
-		document.joinform.c_p2.focus();
-		return false;
-		
-	}else if(document.joinform.c_p3.value==""){
-		alert("휴대폰 번호를 입력하세요.");
-		document.joinform.c_p3.focus();
-		return false;
-		
-	}else if(p3regExp.test(p3)==false){
-		alert("휴대폰 번호를 확인하세요.");
-		document.joinform.c_p3.focus();
+		document.joinform.c_phonenumber.focus();
 		return false;
 		
 	}else {

@@ -16,7 +16,6 @@ public class JoinServiceImpl implements JoinService {
 	@Override
 	public void insertJoin_S(JoinJoin join) throws Exception {
 		
-		
 		String num1 = dao.autoNum();//String 0
 		System.out.println("num1 : " + num1);
 		
@@ -35,6 +34,12 @@ public class JoinServiceImpl implements JoinService {
 		
 		dao.insertJoin(join);
 	}
+
+	@Override
+	public int overlapId_S(String c_id) throws Exception {
+		return dao.overlapId(c_id);
+	}
+
 	
 	
 	

@@ -8,4 +8,6 @@ public interface JoinDAO {
 	
 	public String autoNum()throws Exception;
 	
+	public int overlapId(String c_id)throws Exception;
+
 }

@@ -1,7 +1,12 @@
 package kostyle.join.domain;
 
+import java.io.Serializable;
 
-public class JoinJoin{
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+public class JoinJoin implements Serializable{
 	
 	private String c_num;//자동으로 번호 부여
 	private String c_name;
