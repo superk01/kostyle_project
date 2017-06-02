@@ -6,7 +6,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>KOStylemall 회원가입</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Bootstrap -->
@@ -16,68 +15,22 @@
 <!-- Custom style -->
 <link rel="stylesheet" href="../../../resources/css/join/style.css"	media="screen" title="no title" charset="utf-8">
 
-
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-  $( function() {
-	    $( "#inputBirth" ).datepicker({
-	      changeMonth: true,
-	      changeYear: true
-	    })
-	  } );
-  </script>
-  
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
-    function sample6_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var fullAddr = ''; // 최종 주소 변수
-                var extraAddr = ''; // 조합형 주소 변수
+<script type="text/javascript" src="../../../resources/js/join/joinAPI.js"></script>
+<script type="text/javascript" src="../../../resources/js/join/validate.js"></script>
 
-                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    fullAddr = data.roadAddress;
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script><!-- 다음 주소API -->
 
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    fullAddr = data.jibunAddress;
-                }
 
-                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-                if(data.userSelectedType === 'R'){
-                    //법정동명이 있을 경우 추가한다.
-                    if(data.bname !== ''){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있을 경우 추가한다.
-                    if(data.buildingName !== ''){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-                }
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('inputPostcode').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('inputAdress').value = fullAddr;
-
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById('inputAdress2').focus();
-            }
-        }).open();
-    }
-</script>
 </head>
 <body>
 
 
-	<article class="container">
+<article class="container">
 
 	<div class="col-md-12">
 
@@ -284,7 +237,7 @@
 부 칙(개정) 이 약관은 2016년 10 월 13 일부터 시행합니다.
 부 칙(개정) 이 약관은 2016년 11 월 9 일부터 시행합니다. 
 			</textarea>
-		<h4> 이용약관에 동의합니다. &nbsp;<input name="check1" id="check1" type="checkbox"></h5>
+		<h4> 이용약관에 동의합니다. &nbsp;<input name="check1" id="check1" type="checkbox"  required=""></h4>
 		<br>
     	
     	<h3>개인정보 수집 및 이용 동의</h3>
@@ -309,7 +262,7 @@
 
 회사는 개인정보 수집 및 이용목적이 달성된 후에는 예외 없이 해당 정보를 지체 없이 파기합니다. 
 			</textarea>
-		<h4> 개인정보 수집 및 이용에 동의합니다. &nbsp;<input name="check2" id="check2" type="checkbox"></h5>
+		<h4> 개인정보 수집 및 이용에 동의합니다. &nbsp;<input name="check2" id="check2" type="checkbox"  required=""></h4>
 		</div>
 	
 	<br><br><br>
@@ -318,36 +271,42 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputName">이름</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputName" type="text" name="c_name" placeholder="이름을 입력해 주세요">
+					<input class="form-control" id="inputName" type="text" name="c_name" required=""
+					 placeholder="이름을 입력해 주세요" autocomplete="off">
 				</div>
 			</div>
 			
-			<div class="form-group">
-				<label class="col-sm-3 control-label" for="inputBirth">생년월일</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="inputBirth" type="text" name="c_birth" style="cursor:pointer;" readonly="readonly" placeholder="클릭하세요">
-				</div>
-			</div>
-
-			<div class="form-group">
+		<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputId">아이디</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputId" type="text" name="c_id"	placeholder="아이디를 입력해 주세요">
+					<div class="input-group">
+						<input class="form-control" id="inputId" type="text" name="c_id" required=""
+						 onkeypress="id_validation();"	placeholder="아이디를 입력해 주세요" autocomplete="off">
+						<span class="input-group-btn">
+							<button id="btn-overlap" class="btn btn-success" type="button" onclick="overlapId();">중복체크 <i class="fa fa-check spaceLeft"></i></button>
+						</span>
+					</div>
+					<span id="m_id"></span>
+					<p class="help-block">영문소문자/숫자, 4~16자</p>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputPassword" type="password" name="c_pass" placeholder="비밀번호">
-					<p class="help-block">영문소문자/숫자, 4~16자</p>
+					<input class="form-control" id="inputPassword" type="password" required=""
+					 onkeypress="pass_validation();" name="c_pass" placeholder="비밀번호">
+					<span id="m_pass"></span>
+					<p class="help-block">영문/숫자/특수문자 조합, 4~16자</p>
 				</div>
 			</div>
+			
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 확인</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputPasswordCheck" type="password" name="c_pass2" placeholder="비밀번호 확인">
-					<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
+					<input class="form-control" id="inputPasswordCheck" type="password" required=""
+					 onkeypress="pass2_validation();" name="c_pass2" placeholder="비밀번호 확인">
+					<span id="m_pass2"></span>
 				</div>
 			</div>
 
@@ -363,27 +322,41 @@
 				<label class="col-sm-3 control-label" for="inputAdress">주소</label>
 				<div class="col-sm-6">
 					<div class="input-group">
-						<input class="form-control" id="inputPostcode" type="text" name="c_zipcode" placeholder="우편번호" readonly="readonly">
+						<input class="form-control" id="inputPostcode" type="text" required=""
+						 name="c_zipcode" placeholder="우편번호" readonly="readonly">
 						<span class="input-group-btn">
-							<button id="btn-zip" class="btn btn-default" type="button" onclick="sample6_execDaumPostcode()">우편번호찾기 <i class="fa fa-home"></i></button>
+							<button id="btn-zip" class="btn btn-success" type="button" onclick="sample6_execDaumPostcode()">우편번호찾기 <i class="fa fa-home"></i></button>
 						</span>
 					</div>
-					<input class="form-control" id="inputAdress" type="text" name="c_adress" readonly="readonly">
-					<input class="form-control" id="inputAdress2" type="text" name="c_adress2" placeholder="상세 주소를 입력하세요"> 
+					<input class="form-control" id="inputAdress" type="text" required="" name="c_adress"
+					 autocomplete="off">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputEmail" type="email" name="c_email"	placeholder="ex) gildong@kostyle.com">
+					<input class="form-control" id="inputEmail" type="email" name="c_email"	required=""
+					 placeholder="ex) gildong@kostyle.com" autocomplete="off">
 				</div>
 			</div>
 			
 			<div class="form-group">
+				<label class="col-sm-3 control-label" for="inputBirth">생년월일</label>
+				<div class="col-sm-6">
+					<input class="form-control" id="inputBirth" type="date" required="" name="c_birth"
+					  placeholder="클릭하세요">
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputNumber" type="tel" placeholder="- 없이 입력해 주세요" name="c_phonenumber">
+					<input class="form-control" id="inputNumber" type="tel" required="" placeholder="- 없이 입력해 주세요" name="c_phonenumber" autocomplete="off">
+					<span id="m_phone"></span>
+					<h5> sms로 KOStyle의 소식을 받아보겠습니다.  &nbsp;<input name="c_sms" id="inputSms"
+					 type="checkbox"></h5>
 				</div>
 			</div>
 		</div>
@@ -391,7 +364,7 @@
 			<br><br><br>
 			<div class="form-group">
 				<div class="col-sm-12 text-center">
-					<button id="btn-join" class="btn btn-default btn-lg" type="submit">
+					<button id="btn-join" class="btn btn-default btn-lg" type="submit" class="submit">
 						회원가입<i class="fa fa-check spaceLeft"></i>
 					</button>
 					<button id="btn-cancle" class="btn btn-default btn-lg" type="submit">

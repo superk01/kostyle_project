@@ -49,6 +49,6 @@
 	<context:component-scan base-package="kostyle.search.service"/>
 	<context:component-scan base-package="kostyle.stats.persistence"/>
 	<context:component-scan base-package="kostyle.stats.service"/>
-	<context:component-scan base-package="kostyle.shopjoin.persistence"/>
-	<context:component-scan base-package="kostyle.shopjoin.service"/>
+	<context:component-scan base-package="kostyle.admin.persistence"/>
+	<context:component-scan base-package="kostyle.admin.service"/>
 </beans>

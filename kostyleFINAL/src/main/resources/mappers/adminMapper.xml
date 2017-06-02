@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kostyle.admin.mappers.adminMapper">
+
+<insert id="insertShoppingMall" parameterType="ShoppingMallAdmin">
+	insert into ShoppingMall (s_num, s_manager, s_shopurl, s_searchurl, s_shopreg, s_sname, s_email, s_age, s_phonenumber, s_image)
+		values(#{s_num}, #{s_manager}, #{s_shopurl}, #{s_searchurl}, #{s_shopreg}, #{s_sname}, #{s_email}, #{s_age}, #{s_phonenumber}, #{s_image})
+</insert>
+  
+<select id="countShoppingMall" resultType="int">
+	select count(*) from ShoppingMall
+</select>
+
+<select id="shopList" resultType="ShoppingMallAdmin">
+	select * from shoppingMall order by s_num
+</select>
+
+<select id="getShoppingMall" resultType="ShoppingMallAdmin">
+	select * from shoppingMall where s_num = #{s_num}
+</select>
+
+<insert id="insertAdShoppingMall" parameterType="ShoppingMallAdmin">
+	insert into adshoppingmall (s_num, ad_id, ad_pass, p_powernum) values(#{s_num}, #{s_email}, '1111', 2)
+</insert>
+
+<select id="adShopList" resultType="AdShoppingMallAdmin">
+	select * from adshoppingmall order by s_num
+</select>
+
+
+</mapper>  
+
