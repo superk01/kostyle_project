@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import kostyle.help.domain.AdShoppingMall;
+import kostyle.help.domain.AdShoppingMallHelp;
 import kostyle.help.domain.BoardVO;
 import kostyle.help.domain.Criteria;
 import kostyle.help.domain.SearchCriteria;
@@ -21,7 +21,7 @@ public interface BoardService {
 	
 	public BoardVO detail(int q_Num, HttpSession session)throws Exception;						
 	
-	public List<AdShoppingMall> adShoppingMallList()throws Exception; 
+	public List<AdShoppingMallHelp> adShoppingMallList()throws Exception; 
 	
 	public int totalCount()throws Exception;
 }

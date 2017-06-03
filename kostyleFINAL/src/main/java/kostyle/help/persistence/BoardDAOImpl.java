@@ -10,7 +10,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import kostyle.help.domain.AdShoppingMall;
+import kostyle.help.domain.AdShoppingMallHelp;
 import kostyle.help.domain.BoardVO;
 import kostyle.help.domain.Criteria;
 import kostyle.help.domain.SearchCriteria;
@@ -21,7 +21,7 @@ public class BoardDAOImpl implements BoardDAO {
 	@Inject
 	private SqlSession session;
 	
-	private static String namespace="kostyle.mapper.BoardMapper";
+	private static String namespace="kostyle.help.mappers.helpMapper";
 	@Override
 	public List<BoardVO> list(SearchCriteria cri) {
 		
@@ -58,7 +58,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<AdShoppingMall> adShoppingMallList() {
+	public List<AdShoppingMallHelp> adShoppingMallList() {
 		
 		return session.selectList(namespace+".adShoppingMallList");
 	}
