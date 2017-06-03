@@ -2,7 +2,7 @@ package kostyle.help.domain;
 
 import java.io.Serializable;
 
-public class AdShoppingMall implements Serializable{
+public class AdShoppingMallHelp implements Serializable{
 	
 	private String s_Name;
 	private String ad_Id;
@@ -11,9 +11,9 @@ public class AdShoppingMall implements Serializable{
 	private int s_Grade;
 	private int p_PowerNum;
 	
-	public AdShoppingMall(){}
+	public AdShoppingMallHelp(){}
 
-	public AdShoppingMall(String s_Name, String ad_Id, String ad_Pass, int ad_Hitcount, int s_Grade, int p_PowerNum) {
+	public AdShoppingMallHelp(String s_Name, String ad_Id, String ad_Pass, int ad_Hitcount, int s_Grade, int p_PowerNum) {
 		super();
 		this.s_Name = s_Name;
 		this.ad_Id = ad_Id;

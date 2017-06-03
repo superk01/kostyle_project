@@ -10,6 +10,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>게시글 상세보기</title>
 <script src="../../../resources/jquery/jquery-3.2.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<script id="template" type="text/x-handlebars-template">
+				{{#each .}}
+	         <li class="replyLi" data-as_Num={{as_Num}}>
+             <i class="fa fa-comments bg-blue"></i>
+             <div class="timeline-item" >
+                <span class="time">
+                  <i class="fa fa-clock-o"></i>{{as_Date}}
+                </span>
+                <h3 class="timeline-header"><strong>{{as_Num}}</strong> -{{c_Id}}</h3>
+                <div class="timeline-body">{{as_Content}} </div>
+								<div class="timeline-footer">
+								{{#eqReplyer c_Id }}
+                  <a class="btn btn-primary btn-xs" 
+									data-toggle="modal" data-target="#modifyModal">Modify</a>
+								{{/eqReplyer}}
+							  </div>
+	            </div>			
+           </li>
+        {{/each}}
+</script> 
 <script type="text/javascript">
 /* $(function(){
 	$('.update').on('click',function(){
@@ -29,6 +53,25 @@ function fn_list(){
 } */
 
 $(document).ready(function(){
+	
+	
+	function getPage(pageInfo){
+		alert('getPage호출');
+		$.getJSON(pageInfo,function(data){
+			alert(data.list);
+			printData(data.list, $('#repliesDiv'), $('#template'));
+		});
+	}
+	
+	var printData = function(replyArr, target, templateObject){
+		alert('printData');
+		var template = Handlebars.compile(templateObject.html());
+		
+		var html = template(replyArr);
+		$('.replyLi').remove();
+		target.after(html);
+	}
+
 	/* alert("이벤트 발생"); */
 	$('#list').on('click', function(){
 		/* alert("list"); */
@@ -42,6 +85,34 @@ $(document).ready(function(){
 		alert("remove");
 		location.href="/help/remove?q_Num=${board.q_Num}";
 	});
+	$('#replyAddBtn').on('click', function(){
+		var replyer = $('#newReplyWriter').val();
+		var replytext = $('#newReplyText').val();
+		var q_Num = ${board.q_Num};
+		alert(replyer+","+replytext+","+q_Num);
+		$.ajax({
+			type:'post',
+			url:'/replies/',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"POST"
+			},
+			dataType:'text',
+			data : JSON.stringify({
+				q_Num : q_Num,
+				c_Id : replyer,
+				as_Content : replytext
+			}),
+			success : function(result){
+				alert(result);
+				if(result=='success'){
+					getPage("/replies/"+q_Num);
+					$('#newReplyText').val("");
+				}
+			}
+		});
+	});
+	
 });
 
 </script>
@@ -83,10 +154,10 @@ $(document).ready(function(){
 			</td>			
 		</tr>
 		
-		<c:forEach var="answer" items="${list }">
+	<%--	<c:forEach var="answer" items="${list }">
 		<tr height="30">
 			<td align="center" colspan="2">${answer.as_Title }</td>
-			<%-- <td align="center">${작성자 }</td> --%>
+			<%-- <td align="center">${작성자 }</td> 
 			<td align="center">${answer.as_Date }</td>
 		</tr>
 		<tr>
@@ -94,7 +165,7 @@ $(document).ready(function(){
 		</tr>
 		</c:forEach>
 		
-		<tr height="30">
+	 	<tr height="30">
 			<td colspan="3">
 			<form action="detailAction.a" method="post">
 				<input type="text" name="as_title">
@@ -104,10 +175,65 @@ $(document).ready(function(){
 				<input type="submit" value="댓글달기" >
 				</form>
 				</td>
-				
+				 --%>
+				 
 				
 	</table>
+	<div class="col-md-12">
 
-</table>
+
+<div class="box box-success">
+  <div class="box-header">
+    <h3 class="box-title">ADD NEW REPLY</h3>
+  </div>
+  
+  
+
+
+ <%--  <c:if test="${not empty login}">  --%> 
+  <div class="box-body">
+    <label for="exampleInputEmail1">Writer</label>
+    <input class="form-control" type="text" placeholder="USER ID" 
+    	<%-- id="newReplyWriter" value="${login.urd }" readonly="readonly">   --%>   
+    	id="newReplyWriter" value="">     
+    <label for="exampleInputEmail1">Reply Text</label> 
+    <input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">
+    </div>
+  
+		<div class="box-footer">
+		  <button type="submit" class="btn btn-primary" id="replyAddBtn">ADD REPLY</button>
+		</div>
+ <%--  </c:if> --%>
+  
+ <%--  <c:if test="${empty login}">
+    <div class="box-body">
+      <div><a href="javascript:goLogin();" >Login Please</a></div>
+    </div>
+  </c:if> --%>				                 
+</div>            
+
+
+		
+		<!-- The time line -->
+		<ul class="timeline">
+		  <!-- timeline time label -->
+		<li class="time-label" id="repliesDiv">
+		  <span class="bg-green">
+		    Replies List <small id='replycntSmall'> [ ${boardVO.replycnt} ] </small>
+		    </span>
+		  </li>
+		</ul>
+		   
+			<div class='text-center'>
+				<ul id="pagination" class="pagination pagination-sm no-margin ">
+
+				</ul>
+			</div>
+
+		</div>
+		<!-- /.col -->
+	</div>
+
+
 </body>
 </html>

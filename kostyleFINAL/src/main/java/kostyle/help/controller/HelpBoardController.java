@@ -22,7 +22,7 @@ import kostyle.help.service.BoardService;
 
 @RestController
 @RequestMapping("/help/*")
-public class HelpController {
+public class HelpBoardController {
 	
 	@Inject
 	private BoardService service;
@@ -38,10 +38,10 @@ public class HelpController {
 		PageMaker maker = new PageMaker();									//페이징 처리를 위한 객체(책의 내용과 동일하다.)		
 		maker.setCri(cri);													//초기의 페이지 세팅.
 		maker.setTotalCount(service.totalCount());							//모들 글 개수를 카운팅하여 페이지를 계산한다.
-		System.out.println("HelpController-PageMaker:"+maker);
+		System.out.println("HelpController-Page87Maker:"+maker);
 		System.out.println("HelpController-Criteria:"+cri);
 		mav.addObject("pageMaker", maker);									//데이터 전달.
-		mav.setViewName("/help/list");										//view로 이동
+		mav.setViewName("/help/list");										//view(view/help/list.jsp)로 이동
 		return mav;															//리턴
 	}//list()
 	@RequestMapping(value="insert", method=RequestMethod.GET)

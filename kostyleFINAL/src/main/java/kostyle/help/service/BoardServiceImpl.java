@@ -11,7 +11,7 @@ import javax.swing.plaf.synth.SynthSeparatorUI;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.css.CSSUnknownRule;
 
-import kostyle.help.domain.AdShoppingMall;
+import kostyle.help.domain.AdShoppingMallHelp;
 import kostyle.help.domain.BoardVO;
 import kostyle.help.domain.Criteria;
 import kostyle.help.domain.SearchCriteria;
@@ -27,6 +27,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> list(SearchCriteria cri, HttpSession session)throws Exception {
 		List<BoardVO> list = dao.list(cri);
+		System.out.println("BoardServiceImpl-list:"+list);
 		Object userVO = session.getAttribute("login");
 		/*cri.setKeyWord("%"+cri.getKeyWord()+"%");*/
 		CustomerVO customerVO = null;
@@ -62,6 +63,7 @@ public class BoardServiceImpl implements BoardService {
 		if(userVO instanceof CustomerVO){
 			customerVO = (CustomerVO)userVO;
 		}																			//세션에서 로그인 정보를 가져옴.
+		System.out.println("BoardServiceImpl-세션정보확인:"+customerVO);
 		
 		boardVO.setC_Num(customerVO.getC_num());
 		System.out.println("BoardServiceImpl:"+boardVO);
@@ -121,7 +123,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<AdShoppingMall> adShoppingMallList() throws Exception{
+	public List<AdShoppingMallHelp> adShoppingMallList() throws Exception{
 		
 		return dao.adShoppingMallList();
 	}
