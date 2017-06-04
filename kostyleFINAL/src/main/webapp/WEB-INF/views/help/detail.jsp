@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>게시글 상세보기</title>
 <script src="../../../resources/jquery/jquery-3.2.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
@@ -19,48 +19,61 @@
 	         <li class="replyLi" data-as_Num={{as_Num}}>
              <i class="fa fa-comments bg-blue"></i>
              <div class="timeline-item" >
-                <span class="time">
-                  <i class="fa fa-clock-o"></i>{{as_Date}}
-                </span>
+                <span class="time"> <i class="fa fa-clock-o"></i>{{prettifyDate as_Date}}</span>
                 <h3 class="timeline-header"><strong>{{as_Num}}</strong> -{{c_Id}}</h3>
                 <div class="timeline-body">{{as_Content}} </div>
-								<div class="timeline-footer">
-								{{#eqReplyer c_Id }}
-                  <a class="btn btn-primary btn-xs" 
-									data-toggle="modal" data-target="#modifyModal">Modify</a>
-								{{/eqReplyer}}
-							  </div>
-	            </div>			
-           </li>
+								<div class="timeline-footer"></div></div></li>
         {{/each}}
 </script> 
 <script type="text/javascript">
-/* $(function(){
-	$('.update').on('click',function(){
-		location.href = "updateForm.a?q_num=${board.q_Num}";
-	});
-	
-	
-} */
-/* function fn_update(){
-	location.href = "updateForm.a?q_num=${board.q_Num}";
-}
-function fn_delete(){
-	location.href = "deleteAction.a?q_num=${board.q_Num}";
-}
-function fn_list(){
-	location.href = "listAction2.a";
-} */
+
 
 $(document).ready(function(){
 	
 	
 	function getPage(pageInfo){
-		alert('getPage호출');
-		$.getJSON(pageInfo,function(data){
-			alert(data.list);
+		alert(pageInfo);
+		/* $.getJSON(pageInfo,function(data){
+			alert('ajax get호출');
+			alert(data);
 			printData(data.list, $('#repliesDiv'), $('#template'));
-		});
+		}); */
+		
+		 /* $.getJSON(pageInfo,function(data){
+				alert('ajax get호출');
+				alert("successHandler진입.");
+				
+				var source = "";
+ 				source += "<c:forEach var='answer' items='${data.list }'>"
+ 				source += "<li class='replyLi' data-as_Num='${answer.as_Num}'>"
+ 				source += "<i class='fa fa-comments bg-blue'></i>"
+ 				source += "<div class='timeline-item' >"
+ 				source += "<span class='time'> <i class='fa fa-clock-o'></i>${answer.as_Date}</span>"
+ 				source += "<h3 class='timeline-header'><strong>${answer.as_Num}</strong> -${answer.c_Id}</h3>"
+ 				source += "<div class='timeline-body'>${answer.as_Content} </div>"
+ 				source += "<div class='timeline-footer'></div></div></li>"
+ 				source += "</c:forEach>"
+				$('#displayDiv').html(source);
+			}); */ 
+			/* var source = ""; */
+			$.ajax({
+			type:'get',
+			url: pageInfo,
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"GET"
+			},
+			dataType:'text',
+			success : function(data){
+				alert("successHandler진입.");
+				$('#repliesDiv').html(data);
+				/* var source = $('#template').html();
+				var template = Handlebars.compile(source);
+ */				
+ 		
+				
+			}
+		}); 
 	}
 	
 	var printData = function(replyArr, target, templateObject){
@@ -224,15 +237,15 @@ $(document).ready(function(){
 		  </li>
 		</ul>
 		   
-			<div class='text-center'>
+			<!-- <div class='text-center'>
 				<ul id="pagination" class="pagination pagination-sm no-margin ">
 
 				</ul>
 			</div>
-
+ -->
 		</div>
 		<!-- /.col -->
-	</div>
+	<!-- </div> -->
 
 
 </body>

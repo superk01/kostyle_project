@@ -1,6 +1,8 @@
 package kostyle.help.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -41,18 +43,20 @@ public class HelpReplyController {
 		return entity;
 	}
 	
-	@RequestMapping(value="/{q_Num}", method=RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> ReplyList(@PathVariable("q_Num") int q_Num){
+	/*@RequestMapping(value="/{q_Num}", method=RequestMethod.GET)
+	public ResponseEntity<List<ReplyVO>> ReplyList(@PathVariable("q_Num") int q_Num){
+		System.out.println("컨트롤러의 리스트 뽑는 메소드");
+		
 		ResponseEntity<Map<String, Object>> entity = null;
-		Map<String, Object> map = new HashMap<>();
+		List<ReplyVO> list = new ArrayList<>();
 		try {
-			map.put("list",service.ReplyList(q_Num));
-			entity= new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+			list = service.ReplyList(q_Num);
+			System.out.println("리플리스트의 맵:"+map);
+			entity= new ResponseEntity<List<ReplyVO>>(HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
 		}
-		
 		return entity;
-	}
+	}*/
 }

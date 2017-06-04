@@ -1,8 +1,9 @@
 package kostyle.help.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ReplyVO {
+public class ReplyVO implements Serializable{
 	private String as_Num;
 	private String as_Content;
 	private String as_Title;
