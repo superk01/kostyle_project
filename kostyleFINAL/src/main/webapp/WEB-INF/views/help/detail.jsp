@@ -69,7 +69,17 @@ $(document).ready(function(){
 				$('#repliesDiv').html(data);
 				/* var source = $('#template').html();
 				var template = Handlebars.compile(source);
- */				
+ */				var output = "<table>"
+ 				for( var i in data){
+ 					output+="<tr>";
+ 					output+="<td>"+data[i].c_Id;
+ 					output+="("+data[i].as_Date+")<br>";
+ 					output+=data[i].as_Content+"</td>";
+ 					output+="</tr>";
+ 				}
+ 				output+="</table>";
+ 				$('#displayDiv').html(output);
+ 
  		
 				
 			}

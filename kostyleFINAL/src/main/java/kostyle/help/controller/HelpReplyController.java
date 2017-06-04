@@ -59,4 +59,12 @@ public class HelpReplyController {
 		}
 		return entity;
 	}*/
+	
+
+	@RequestMapping(value="/{q_Num}", method=RequestMethod.GET)
+	public List<ReplyVO> ReplyList(@PathVariable("q_Num") int q_Num){
+		List<ReplyVO> list = new ArrayList<>();
+		list = service.ReplyList(q_Num);
+		return list;
+	}
 }
