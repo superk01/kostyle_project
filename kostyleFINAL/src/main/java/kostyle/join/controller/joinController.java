@@ -59,7 +59,7 @@ public class joinController {
 		String resultMsg="";
 		
 		if(cnt == 0){
-			result="success";
+			result="success"; 
 			resultMsg="사용 가능한 아이디 입니다.";
 		}else{
 			result="fail";

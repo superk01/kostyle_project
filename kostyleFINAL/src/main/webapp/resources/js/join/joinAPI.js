@@ -21,9 +21,7 @@ $.ajax({
   $(".ui-dialog-titlebar").hide();
   
   if ( data.result == "success") {
-   
   } else {
-   
   }
  }
       });

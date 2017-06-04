@@ -5,6 +5,10 @@ Version: 1.0
 By: dave-cheon
 
 */
+.error{
+	color: #ff0000;
+}
+
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 * { font-family: 'Nanum Gothic', sans-serif; }
 
