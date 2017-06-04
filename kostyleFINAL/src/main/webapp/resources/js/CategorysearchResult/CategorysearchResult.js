@@ -21,19 +21,19 @@ function CategoryItemClick(){
 
 function CategoryFilterClick(){
 	$('#CategoryFilterrandom').click(function(){
-		location = "../categoryfilter.csh?sortstandard=random";
+		location = "/category/categoryResult/random";
 	});
 	
 	$('#CategoryFiltermaxprice').click(function(){
-		location = "../categoryfilter.csh?sortstandard=maxprice";
+		location = "/category/categoryResult/maxprice";
 	});
 	
 	$('#CategoryFilterminprice').click(function(){
-		location = "../categoryfilter.csh?sortstandard=minprice";
+		location = "/category/categoryResult/minprice";
 	});
 	
 	$('#CategoryFilterhotproduct').click(function(){
-		location = "../categoryfilter.csh?sortstandard=hotproduct";
+		location = "/category/categoryResult/hotproduct";
 	});
 	
 }

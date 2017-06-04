@@ -4,44 +4,22 @@
 
 
 
-<mapper namespace="kostyle.mapper.BoardMapper">
+<mapper namespace="kostyle.help.mappers.helpMapper">
 	<cache />
-	
-	<!-- <select id="list" resultType="BoardVO">
-		select * from question
-	</select> -->
-	<!-- 고객문의 계시판 글 목록 보기(전체) -->
-	<select id="list" resultType="BoardVO">
-		select q_num as q_Num, q_title as q_Title, q_content as q_Content, q_date as q_Date,
-		
-		(SELECT DISTINCT c.c_id 
-		from QUESTION q, CUSTOMER c 
-		where q.C_NUM = c.C_NUM 
-		and c.c_num = qu.c_num) as c_Id,
-		
-		(SELECT DISTINCT s_sname 
-		from ADSHOPPINGMALL a, SHOPPINGMALL s, QUESTION q 
-		where q.s_num = a.s_num 
-		and s.s_num = q.s_num 
-		and q.q_num = qu.q_num) as s_Name
-		from question qu
-		
-			<!-- <if test="area != null">
-				<where>
-					<foreach collection="area" item="area">
-						${area} LIKE #{searchKey}
-					</foreach>
-				</where>
-			</if>
-			<if test="searchMine !=null">
-				<where>
-					c_num = #{searchMine}
-				</where>
-			</if> -->
-			order by q_num desc
+
+	<!-- 여기부터 게시판 관련 -->
+	<!-- 고객문의 게시판 글 목록 보기(전체) -->
+	<select id="list" resultType="BoardVO" parameterType="SearchCriteria">
+		select q_num as q_Num, q_title as q_Title, q_content as q_Content, q_date as q_Date, c_id as c_Id, s_sname as s_Name, q_secret as q_Secret 
+				from question q 
+                     INNER JOIN customer c ON q.c_num=c.c_num
+                     INNER JOIN adshoppingmall a ON q.s_num=a.s_num
+                     INNER JOIN shoppingmall s ON s.s_num=q.s_num
+                    	<include refid="search"></include>
+                     order by q_num desc
 	</select>
 	
-	<select id="adShoppingMallList" resultType="AdShoppingMall">
+	<select id="adShoppingMallList" resultType="AdShoppingMallHelp">
 		select 
 		(SELECT DISTINCT s_sname 
 		 from ADSHOPPINGMALL a, SHOPPINGMALL s 
@@ -51,9 +29,9 @@
 	
 	<insert id="insert" parameterType="BoardVO">
 		insert into question 
-		(q_num, q_title, q_content, q_date, c_num, s_num)
+		(q_num, q_title, q_content, q_date, c_num, s_num, q_secret)
 		VALUES
-		((select nvl(max(q_num+1),1) from question),#{q_Title},#{q_Content},sysdate,#{c_Num},#{s_Num})
+		((select nvl(max(q_num+1),1) from question),#{q_Title},#{q_Content},sysdate,#{c_Num},#{s_Num},#{q_Secret})
 	</insert>
 	<select id="getS_Num" parameterType="String" resultType="String">
 		select s_num from shoppingmall where s_sname = #{value}
@@ -76,6 +54,48 @@
 	<select id="totalCount" resultType="int">
 		select count(q_num) from question
 	</select>
+	
+	<!-- 검색관련 include -->
+	<sql id="search">
+		<if test="searchType != null">
+				<where>
+					<!-- <foreach collection="searchType" item="searchType"> -->
+						${searchType} LIKE '%'||#{keyWord}||'%' 
+					<!-- </foreach> -->
+				</where>
+		</if>
+		<!-- <if test="searchMine !=null">
+			<where>
+				c_num = #{searchMine}
+			</where>
+		</if> -->
+	</sql>
+	<!-- "여기까지 게시판 관련" -->
+	
+	<!-- "아래부터는 Relpy 관련임." -->
+	
+	<insert id="R_insert" parameterType="ReplyVO">
+		insert into answer (as_num, q_num, as_content, c_id, as_date)
+		values ((select nvl(max(as_num)+1,1) from answer),#{q_Num}, #{as_Content}, #{c_Id}, sysdate)
+	</insert>
+	<select id="R_list" resultType="ReplyVO" parameterType="int">
+		select * from answer where q_num = #{q_num}
+	</select>
+	<update id="R_update">
+		update answer set 
+			as_title = #{as_Title},
+			as_content = #{as_Content}
+			where as_num = #{as_Num}
+	</update>
+	<delete id="R_delete" parameterType="int">
+		delete * from answer where as_num=#{as_num}
+	</delete>
+	
+	<!-- 여기까지 Reply 관련부분임. -->
+	
+	
+	
+	<!-- 기존에 사용하던 board.xml부분 -->
 	
 	<!-- <select id="countBoard" resultType="int" parameterType="Search">
 		select count(*) from question
@@ -190,6 +210,26 @@
 		select * from reply where b_id = #{value}
 	</select> 
 	q_num, s_num, q_num, q_title, q_content, q_date,(select count(*) from answer q_num = q.q_num)
+	<select id="list" resultType="BoardVO" parameterType="SearchCriteria">
+		select q_num as q_Num, q_title as q_Title, q_content as q_Content, q_date as q_Date, q_secret as q_Secret,
+		
+		(SELECT DISTINCT c.c_id 
+		from QUESTION q, CUSTOMER c 
+		where q.C_NUM = c.C_NUM 
+		and c.c_num = qu.c_num) as c_Id,
+		
+		(SELECT DISTINCT s_sname 
+		from ADSHOPPINGMALL a, SHOPPINGMALL s, QUESTION q 
+		where q.s_num = a.s_num 
+		and s.s_num = q.s_num 
+		and q.q_num = qu.q_num) as s_Name
+		from question qu
+		
+		
+		<include refid="search"></include>
+			
+			order by q_num desc
+	</select>
 	-->
 </mapper>
 

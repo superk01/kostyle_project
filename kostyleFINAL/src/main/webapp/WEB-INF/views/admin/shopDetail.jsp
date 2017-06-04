@@ -16,45 +16,45 @@
     <div class="container">
     
     <form role="form" method="post">
-    <input type='hidden' name='s_num' value='${ShoppingMall.s_num }'>
+    <input type='hidden' name='s_num' value='${ShoppingMallAdmin.s_num }'>
     </form>
     
     	<table class="table table-hover">
     		<tr>
     			<td>번호</td>
-    			<td>${ShoppingMall.s_num }</td>
+    			<td>${ShoppingMallAdmin.s_num }</td>
     		</tr>
     		<tr>
     			<td>쇼핑몰명</td>
-    			<td>${ShoppingMall.s_sname }</td>
+    			<td>${ShoppingMallAdmin.s_sname }</td>
     		</tr>
     		<tr>
     			<td>쇼핑몰 URL</td>
-    			<td>${ShoppingMall.s_shopurl }</td>
+    			<td>${ShoppingMallAdmin.s_shopurl }</td>
     		</tr>
     		<tr>
     			<td>검색 URL</td>
-    			<td>${ShoppingMall.s_searchurl }</td>
+    			<td>${ShoppingMallAdmin.s_searchurl }</td>
     		</tr>
     		<tr>
     			<td>사업자등록번호</td>
-    			<td>${ShoppingMall.s_shopreg }</td>
+    			<td>${ShoppingMallAdmin.s_shopreg }</td>
     		</tr>
     		<tr>
     			<td>연령대</td>
-    			<td>${ShoppingMall.s_age }</td>
+    			<td>${ShoppingMallAdmin.s_age }</td>
     		</tr>
     		<tr>
     			<td>담당자</td>
-    			<td>${ShoppingMall.s_manager }</td>
+    			<td>${ShoppingMallAdmin.s_manager }</td>
     		</tr>
     		<tr>
     			<td>이메일</td>
-    			<td>${ShoppingMall.s_email }</td>
+    			<td>${ShoppingMallAdmin.s_email }</td>
     		</tr>
     		<tr>
     			<td>연락처</td>
-    			<td>${ShoppingMall.s_phonenumber }</td>
+    			<td>${ShoppingMallAdmin.s_phonenumber }</td>
     		</tr>
     	</table>
     	

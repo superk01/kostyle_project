@@ -9,6 +9,7 @@ public class BoardVO implements Serializable{
 	private String q_Content;
 	private Date q_Date;
 	private String q_Sort;
+	private String q_Secret;
 	private String c_Num;
 	private String c_Id;
 	private String s_Name;
@@ -75,11 +76,17 @@ public class BoardVO implements Serializable{
 	public void setAnswerNum(int answerNum) {
 		this.answerNum = answerNum;
 	}
+	public String getQ_Secret() {
+		return q_Secret;
+	}
+	public void setQ_Secret(String q_Secret) {
+		this.q_Secret = q_Secret;
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [q_Num=" + q_Num + ", q_Title=" + q_Title + ", q_Content=" + q_Content + ", q_Date=" + q_Date
-				+ ", q_Sort=" + q_Sort + ", c_Num=" + c_Num + ", c_Id=" + c_Id + ", s_Name=" + s_Name + ", s_Num="
-				+ s_Num + ", answerNum=" + answerNum + "]";
+				+ ", q_Sort=" + q_Sort + ", q_Secret=" + q_Secret + ", c_Num=" + c_Num + ", c_Id=" + c_Id + ", s_Name="
+				+ s_Name + ", s_Num=" + s_Num + ", answerNum=" + answerNum + "]";
 	}
 	
 	

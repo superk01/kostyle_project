@@ -51,6 +51,13 @@ public class Adshoppingmall_category implements Serializable{
 	public void setS_searchurl(String s_searchurl) {
 		this.s_searchurl = s_searchurl;
 	}
+
+	@Override
+	public String toString() {
+		return "Adshoppingmall_category [s_num=" + s_num + ", s_manager=" + s_manager + ", s_shopurl=" + s_shopurl
+				+ ", s_searchurl=" + s_searchurl + "]";
+	}
+	
 	
 	
 }
