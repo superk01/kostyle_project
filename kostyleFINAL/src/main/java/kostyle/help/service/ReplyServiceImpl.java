@@ -39,4 +39,10 @@ public class ReplyServiceImpl implements ReplyService {
 		replydao.ReplyDelete(as_Num);
 	}
 
+	@Override
+	public ReplyVO ReplyDetail(int as_Num) {
+		
+		return replydao.ReplyDetail(as_Num);
+	}
+
 }

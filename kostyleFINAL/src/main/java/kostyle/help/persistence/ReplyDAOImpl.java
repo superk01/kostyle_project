@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import kostyle.help.domain.ReplyVO;
 
 @Repository
-public class ReplyDAOImpl implements ReplyDAO {
+public  class ReplyDAOImpl implements ReplyDAO {
 	
 	@Inject
 	private SqlSession session;
@@ -40,6 +40,12 @@ public class ReplyDAOImpl implements ReplyDAO {
 	public void ReplyDelete(int as_Num) {
 		
 		session.delete(namespace+".R_delete", as_Num);
+	}
+
+	@Override
+	public ReplyVO ReplyDetail(int as_Num) {
+		
+		return session.selectOne(namespace+".R_detail", as_Num);
 	}
 
 }

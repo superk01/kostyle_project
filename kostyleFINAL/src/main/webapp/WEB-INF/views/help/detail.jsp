@@ -26,7 +26,20 @@
         {{/each}}
 </script> 
 <script type="text/javascript">
-
+function showModify(as_Num){
+	/* $('#modifyReply').show("slow"); */
+	alert(as_Num);
+	$.ajax({
+		type:"get",
+		url:"${path}/replies/detail/"+as_Num,
+		success:function(result){
+			$('#modifyReply').html(result);
+			$('#modifyReply').css("visibility","visible");
+		}
+	});
+	
+	
+}
 
 $(document).ready(function(){
 	
@@ -65,23 +78,21 @@ $(document).ready(function(){
 			},
 			dataType:'text',
 			success : function(data){
+				alert(data);
 				alert("successHandler진입.");
-				$('#repliesDiv').html(data);
 				/* var source = $('#template').html();
 				var template = Handlebars.compile(source);
- */				var output = "<table>"
- 				for( var i in data){
+ */			/* 	
+ 				var output = "<table>"
+ 				$.each(data,function(i, value){
  					output+="<tr>";
- 					output+="<td>"+data[i].c_Id;
- 					output+="("+data[i].as_Date+")<br>";
- 					output+=data[i].as_Content+"</td>";
+ 					output+="<td>"+value.c_Id;
+ 					output+="("+value.as_Date+")<br>";
+ 					output+=value.as_Content+"</td>";
  					output+="</tr>";
- 				}
- 				output+="</table>";
- 				$('#displayDiv').html(output);
- 
- 		
-				
+ 				});
+ 				output+="</table>"; */
+ 				$('#repliesDiv').html(data);
 			}
 		}); 
 	}
@@ -135,10 +146,44 @@ $(document).ready(function(){
 			}
 		});
 	});
+	$('#btnReplyUpdate').click(function(){
+		$.ajax({
+			type:"put",
+			url:"${path}/reply/update/${reply.as_Num}",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			data:JSON.stringify({
+				as_Content : as_Content
+			}),
+			dataType:"text",
+			success: function(result){
+				if(result == "success"){
+					$("#modifyReply").hide();
+					
+				}
+			}
+		});
+	});
 	
 });
 
 </script>
+<style type="text/css">
+#modifyReply{
+	width: 350px;
+	height: 120px;
+	background-color: gray;
+	position: absolute;															/* 절대 좌표 */
+	top: 50%;
+	left: 50%;																	/* 가운데로 지정 */
+	margin-top: -50px;
+	margin-left: -150px;
+	padding: 10px;
+	z-index: 10;																/* 엘리먼트드 레벨? z-index가 클수록 화면 위로 보여진다. */
+	visibility: hidden;
+}
+</style>
 </head>
 <body>
 	<h2>글 상세보기</h2>
@@ -246,6 +291,10 @@ $(document).ready(function(){
 		    </span>
 		  </li>
 		</ul>
+		<div id="modifyReply">댓글 수정 화면 영역
+		
+		
+		</div>
 		   
 			<!-- <div class='text-center'>
 				<ul id="pagination" class="pagination pagination-sm no-margin ">

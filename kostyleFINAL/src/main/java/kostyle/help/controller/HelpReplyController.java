@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import kostyle.help.domain.ReplyVO;
 import kostyle.help.service.ReplyService;
 
 @RestController
-@RequestMapping("/replies")
+@RequestMapping("/replies/*")
 public class HelpReplyController {
 	
 	@Inject
@@ -62,9 +63,16 @@ public class HelpReplyController {
 	
 
 	@RequestMapping(value="/{q_Num}", method=RequestMethod.GET)
-	public List<ReplyVO> ReplyList(@PathVariable("q_Num") int q_Num){
+	public ModelAndView ReplyList(@PathVariable("q_Num") int q_Num){
 		List<ReplyVO> list = new ArrayList<>();
 		list = service.ReplyList(q_Num);
-		return list;
+		return new ModelAndView("help/replyList", "list", list);
+	}
+	
+	@RequestMapping(value="/detail/{as_Num}", method=RequestMethod.GET)
+	public ModelAndView ReplyDetail(@PathVariable("as_Num") int as_Num){
+		System.out.println("ReplyDetail 진입");
+		ReplyVO replyVO = service.ReplyDetail(as_Num);
+		return new ModelAndView("help/reply_detail","reply",replyVO);
 	}
 }

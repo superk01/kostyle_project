@@ -38,7 +38,7 @@ public class HelpBoardController {
 		PageMaker maker = new PageMaker();									//페이징 처리를 위한 객체(책의 내용과 동일하다.)		
 		maker.setCri(cri);													//초기의 페이지 세팅.
 		maker.setTotalCount(service.totalCount());							//모들 글 개수를 카운팅하여 페이지를 계산한다.
-		System.out.println("HelpController-Page87Maker:"+maker);
+		System.out.println("HelpController-PageMaker:"+maker);
 		System.out.println("HelpController-Criteria:"+cri);
 		mav.addObject("pageMaker", maker);									//데이터 전달.
 		mav.setViewName("/help/list");										//view(view/help/list.jsp)로 이동
@@ -48,7 +48,7 @@ public class HelpBoardController {
 	public ModelAndView insertGET()throws Exception{						//글입력을 위한 폼으로 이동하는 메소드.
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", service.adShoppingMallList());				//글 입력폼에 쇼핑몰들의 리스트가 사용되기 때문에 쇼핑몰들의 리스트를 넘겨준다.
-		/*mav.setViewName("help/insert");*/									//요청주소가 따로 없으면 "컨트롤러가 받은 요청주소.jsp"를 찾아가기 때문에 주석처리
+		mav.setViewName("help/register");									//요청주소가 따로 없으면 "컨트롤러가 받은 요청주소.jsp"를 찾아가기 때문에 주석처리
 		return mav;															//리턴
 		
 	}//insertGET()

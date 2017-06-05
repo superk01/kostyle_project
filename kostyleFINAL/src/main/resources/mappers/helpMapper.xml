@@ -79,7 +79,7 @@
 		values ((select nvl(max(as_num)+1,1) from answer),#{q_Num}, #{as_Content}, #{c_Id}, sysdate)
 	</insert>
 	<select id="R_list" resultType="ReplyVO" parameterType="int">
-		select * from answer where q_num = #{q_num}
+		select * from answer where q_num = #{q_num} order by as_num desc
 	</select>
 	<update id="R_update">
 		update answer set 
@@ -90,7 +90,9 @@
 	<delete id="R_delete" parameterType="int">
 		delete * from answer where as_num=#{as_num}
 	</delete>
-	
+	<select id="R_detail" resultType="ReplyVO">
+		select * from answer where as_num=#{as_num}
+	</select>
 	<!-- 여기까지 Reply 관련부분임. -->
 	
 	
