@@ -13,6 +13,7 @@
 	Hello world!  
 </h1>
 <a href="/cuslogin/login">로그인</a>
+<br><br><a href="/admin/shopList">shoppingMall List</a>
 
 <P>  The time on the server is ${serverTime}. </P>
 <P>  "${path }" </P>
