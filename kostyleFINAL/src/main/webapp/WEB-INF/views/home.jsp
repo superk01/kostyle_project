@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
+
+  
 <html>
 <head>
 	<title>Home</title>
@@ -13,6 +15,7 @@
 	Hello world!  
 </h1>
 <a href="/cuslogin/login">로그인</a>
+<a href="/remocon/list/${login.c_num }">리모콘</a>
 
 <P>  The time on the server is ${serverTime}. </P>
 <P>  "${path }" </P>

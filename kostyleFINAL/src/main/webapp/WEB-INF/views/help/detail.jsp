@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>게시글 상세보기</title>
 <script src="../../../resources/jquery/jquery-3.2.1.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
@@ -76,7 +76,7 @@ $(document).ready(function(){
 				"Content-Type":"application/json",
 				"X-HTTP-Method-Override":"GET"
 			},
-			dataType:'text',
+			dataType:'json',
 			success : function(data){
 				alert(data);
 				alert("successHandler진입.");
@@ -92,10 +92,35 @@ $(document).ready(function(){
  					output+="</tr>";
  				});
  				output+="</table>"; */
- 				$('#repliesDiv').html(data);
+ 				
+ 				
+ 				
+ 			/* 	var str = "";
+ 				console.log("리스트 길이"+data.length);
+ 				$(data).each(function(){
+ 					str += "<li data-rno='"+this.as_Num+"' class='replyLi'>"
+ 						+this.as_Num+":"+this.as_Content+"</li>";
+ 				});
+ 				$('#repliesDiv').html(str); */
+				/* printData(data, $('#repliesDiv'), $('#template')); */
+				
+				var source = "";
+				$(data).each(function(){
+ 				
+ 				source += "<li class='replyLi' data-rno='"+this.ad_Num+"'>"
+ 				source += "<i class='fa fa-comments bg-blue'></i>"
+ 				source += "<div class='timeline-item' >"
+ 				source += "<span class='time'> <i class='fa fa-clock-o'></i>"+this.as_Date+"</span>"
+ 				source += "<h3 class='timeline-header'><strong>"+this.as_Num+"</strong> -"+this.c_Id+"</h3>"
+ 				source += "<div class='timeline-body'>"+this.as_Content+" </div>"
+ 				source += "<div class='timeline-footer'></div></div></li>"
+ 				
+				});
+				$('#repliesDiv').after(source);
 			}
 		}); 
 	}
+	
 	
 	var printData = function(replyArr, target, templateObject){
 		alert('printData');
@@ -187,19 +212,21 @@ $(document).ready(function(){
 </head>
 <body>
 	<h2>글 상세보기</h2>
-			<table border="1">
+	<table border="1">
 		<tr height="30">
 			<td width="150">글번호</td>
 			<td width="150">${board.q_Num }</td>
-	
-		</tr>
-		<tr height="30">
-			<td width="150">작성자</td>
-			<td width="150">${board.c_Id }</td>
 			<td width="150">작성일</td>
 			<td width="150">
 				<fmt:formatDate value="${board.q_Date }" pattern="yyyy-MM-dd"/>
 			</td>
+		</tr>
+		<tr height="30">
+			<td width="150">작성자</td>
+			<td width="150">${board.c_Id }</td>
+			<td width="150">쇼핑몰</td>
+			<td width="150">${board.s_Name }</td>
+			
 		</tr>			
 		<%-- <tr height="30">
 			<td width="150">파일</td>

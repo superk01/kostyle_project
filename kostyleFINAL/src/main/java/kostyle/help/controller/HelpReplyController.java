@@ -63,12 +63,27 @@ public class HelpReplyController {
 	
 
 	@RequestMapping(value="/{q_Num}", method=RequestMethod.GET)
+	public ResponseEntity<List<ReplyVO>> list(@PathVariable("q_Num") Integer q_Num)throws Exception {
+		
+		ResponseEntity<List<ReplyVO>> entity=null;
+		
+		try {
+			entity=new ResponseEntity<>(service.ReplyList(q_Num), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity= new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			
+		}
+		
+		return entity;
+	}
+/*	@RequestMapping(value="/{q_Num}", method=RequestMethod.GET)
 	public ModelAndView ReplyList(@PathVariable("q_Num") int q_Num){
 		List<ReplyVO> list = new ArrayList<>();
 		list = service.ReplyList(q_Num);
 		return new ModelAndView("help/replyList", "list", list);
 	}
-	
+*/	
 	@RequestMapping(value="/detail/{as_Num}", method=RequestMethod.GET)
 	public ModelAndView ReplyDetail(@PathVariable("as_Num") int as_Num){
 		System.out.println("ReplyDetail 진입");

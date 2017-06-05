@@ -13,4 +13,6 @@ public interface HistoryService {
 	public void insertHistory(HistoryVO historyVO, HttpSession session);
 	
 	public void deleteHistoy(int h_Num);
+	
+	public int countHistory(int c_num);
 }

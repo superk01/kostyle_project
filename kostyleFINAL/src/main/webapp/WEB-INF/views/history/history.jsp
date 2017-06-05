@@ -66,11 +66,11 @@ $(document).ready(function(){
       if(h_num !=""){
          /* location.href="deleteHistoryAction.history?h_num="+h_num+"&c_num="+c_num; */
          $.ajax({
-        	url:"${path}/history/delete/"+h_num,
-        	type : 'delete',
+        	url:"${path}/history/delete?h_num="+h_num,
+        	type : 'get',
 			headers:{
 				"Content-Type":"application/json",
-				"X-HTTP-Method-Override":"DELETE"
+				"X-HTTP-Method-Override":"GET"
 			},
 			dataType:'text',
 			success:function(){

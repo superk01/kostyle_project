@@ -8,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>리모콘</title>
+<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
 <link rel="stylesheet" type="text/css" href="../history/remocon.css">
-<script src="../jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 
 /* function fn_deleteHistory(){
@@ -23,13 +23,19 @@
 	 	})
 	 	console.log(ind);
 		 $('button.wing_btn_delete').on('click',function(){
+			 
+		 		 var h_num=$(this).val();
 				 $.ajax({
-						url : 'deleteAction.history',
-						type : 'post',
-						data : {h_num: $(this).val()},
+						url : "${path}/history/delete?h_num="+h_num,
+						type : 'get',
+						headers:{
+							"Content-Type":"application/json",
+							"X-HTTP-Method-Override":"GET"
+						},
+						dataType:'text',
 						success : function(){
 							/* alert('success'); */
-							location.href="remoconAction.history?c_num="+${c_num};
+							location.href="${path}/remocon/list/"+${login.c_num};
 						}					
 					});
 					return false;
@@ -100,7 +106,7 @@
 	<div id = "wingRecentWrap" class = "wing_prd_wrap" style = ""> <!-- 리모콘 외부 -->
 		<div class="hwrap">											<!-- 히스토리로 이동 -->
 			<strong class = "tit">
-				<a id = "wingRecentCount" href = "listAction.history?c_num=${c_num }">				
+				<a id = "wingRecentCount" href = "${path}/history/list/${c_num }">				
 					<span class = "tx">최근 본상품</span>
 					<span class="count">${history_Num }</span>				<!-- 최대상품은 15개까지. -->
 					<span class = "ico"></span>	
