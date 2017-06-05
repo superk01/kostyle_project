@@ -30,7 +30,7 @@
 </head>
 <body>
 
-등록여부, 신청날짜
+등록여부, 신청날짜, 엑셀 다운로드, 선택삭제, 수정
 <br><br><br>
 <!-- shoppingmall list -->
 	<div id="shopList">
