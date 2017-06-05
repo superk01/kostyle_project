@@ -12,4 +12,5 @@ public interface ShopAdminService {
 	public ShoppingMallAdmin getShoppingMall(String s_num)throws Exception;
 	public void insertAdShoppingMall(ShoppingMallAdmin shop)throws Exception;
 	public List<AdShoppingMallAdmin> adShopList()throws Exception;
+	public void deleteAdShop(String s_num)throws Exception;
 }
