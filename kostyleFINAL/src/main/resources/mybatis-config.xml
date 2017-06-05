@@ -5,15 +5,15 @@
 <configuration>
 	<typeAliases>
 		<!-- <package name="kostyle.category.domain"/>
-		<package name="kostyle.closet.domain"/>
-		<package name="kostyle.favorite.domain"/> -->
+		<package name="kostyle.closet.domain"/> -->
+		<!-- <package name="kostyle.favorite.domain"/> -->
 		<package name="kostyle.help.domain"/>
-	<!-- 	<package name="kostyle.history.domain"/> -->
+		<package name="kostyle.history.domain"/>
 		<package name="kostyle.join.domain"/>
 		<package name="kostyle.login.domain"/>
-		<!-- 	<package name="kostyle.mypage.domain"/>
+		<!-- <package name="kostyle.mypage.domain"/> -->
 		<package name="kostyle.search.domain"/>
-		<package name="kostyle.stats.domain"/> -->
+	<!-- <package name="kostyle.stats.domain"/> -->
 		<package name="kostyle.shopjoin.domain"/>
 		<package name="kostyle.admin.domain"/>
 	</typeAliases>

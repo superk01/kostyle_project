@@ -55,7 +55,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 				if(dest ==null){
 					System.out.println("dest값은 null이다.");
-					dest="/home/";
+					dest="/";
 				}
 				
 				//customer , shop 회원 구분후 경로지정.
