@@ -1,4 +1,4 @@
-package kostyle.closet.service;
+/*package kostyle.closet.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,19 +106,19 @@ public class ClosetServiceImpl implements ClosetService {
 	
 		//----------------
 		
-		/*List<Board> list = dao.listBoard(search);
+		List<Board> list = dao.listBoard(search);
 		   request.setAttribute("list", list);
 		   
 		   ActionForward forward = new ActionForward();
 		  forward.setRedirect(false);
-		  forward.setPath("/list.jsp");*/
+		  forward.setPath("/list.jsp");
 		
 	}
 
 	//옷장(폴더)전체추출
 	@Override
 	public void TabCloset() {
-		ClosetDao dao = ClosetDao.getInstance();
+		ClosetDAO dao = ClosetDao.getInstance();
 		Closet closet= new Closet();
 		HttpSession session = request.getSession();
 		ActionForward forward = new ActionForward();
@@ -248,10 +248,10 @@ public class ClosetServiceImpl implements ClosetService {
 		String clo_prdUrl = request.getParameter("prdUrl");
 		
 		//5. clo_price , imgUrl , prdName
-			/*
+			
 			hash.put("imgUrl", imgUrl);
 			hash.put("price", price);
-			hash.put("prdName", prdName); 한 결과를 넘겨받음.*/
+			hash.put("prdName", prdName); 한 결과를 넘겨받음.
 		HashMap hash = dao.urlRepair(clo_prdUrl);
 		String clo_price = (String) hash.get("price");
 		String clo_imgUrl = (String) hash.get("imgUrl");
@@ -400,7 +400,7 @@ public class ClosetServiceImpl implements ClosetService {
 		int re = -1;
 
 		//받은값: clo_detail_nums 배열
-	/*	String[] clo_detail_numArray = request.getParameterValues("clo_detail_nums");
+		String[] clo_detail_numArray = request.getParameterValues("clo_detail_nums");
 		System.out.println("String배열 clo_detail_numArray: "+clo_detail_numArray);
 		for(int i=0; i<clo_detail_numArray.length; i++){
 			System.out.println("for문진입+실행중인clo_detail_num: "+clo_detail_numArray[i]);
@@ -414,7 +414,7 @@ public class ClosetServiceImpl implements ClosetService {
 				forward.setRedirect(true);
 				forward.setPath("ClosetAction.closet");
 			}
-		}*/
+		}
 		
 		//받은값 : clo_detail_nums 문자열
 		String clo_detail_nums = (String)request.getParameter("clo_detail_nums");
@@ -444,3 +444,4 @@ public class ClosetServiceImpl implements ClosetService {
 
 
 
+*/

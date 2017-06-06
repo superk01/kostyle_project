@@ -1,4 +1,4 @@
-package kostyle.closet.persistence;
+/*package kostyle.closet.persistence;
 
 import java.util.HashMap;
 import java.util.List;
@@ -86,3 +86,4 @@ public interface ClosetDAO {
 
 	
 }//class
+*/

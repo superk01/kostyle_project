@@ -5,7 +5,7 @@
 
 <mapper namespace="closet.mapper.ClosetMapper">
 	<cache />
-	<select id="tabCloset" parameterType="String" resultType="Closet">
+<!-- 	<select id="tabCloset" parameterType="String" resultType="Closet">
 		select * from closet where c_num = #{c_num} order by clo_num
 	</select>
 	<select id="fullCloset" parameterType="ClosetPrd" resultType="ClosetPrd">
@@ -57,7 +57,7 @@
 	</update>
 	<update id="moveClosetPrd" parameterType="ClosetPrd">
 		update closetdetail set clo_num = #{clo_num} where clo_detail_num = #{clo_detail_num}
-	</update>
+	</update> -->
 	
 <!-- 	<insert id = "insertBoard" parameterType="Board">
 		insert into pickproduct(

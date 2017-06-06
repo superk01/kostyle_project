@@ -1,4 +1,4 @@
-package kostyle.closet.controller;
+/*package kostyle.closet.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +25,9 @@ import kostyle.closet.service.ClosetService;
 public class ClosetFolderController {
 	
 	@Inject
-	ClosetService service;
+	private ClosetService service;
 	
-	/*
+	
 	@RequestMapping(value="/all/{bno}", method=RequestMethod.GET)
 	public ResponseEntity<List<ReplyVO>> list(@PathVariable("bno") Integer bno){
 		ResponseEntity<List<ReplyVO>> entity = null;
@@ -41,7 +41,7 @@ public class ClosetFolderController {
 		}
 		return entity;
 	}
-	 * */
+	 * 
 	
 	@RequestMapping(value="/CDSessionAttribute" , method=RequestMethod.POST)
 	public ResponseEntity<List<Closet>> CDSessionAttribute(HttpServletRequest request){
@@ -117,10 +117,10 @@ public class ClosetFolderController {
 	    	  System.out.println(closetTab.get(i));
 	      }
 		//System.out.println("List변환: value: "+attriValue);
-		/*if(attriValue instanceof List){
+		if(attriValue instanceof List){
 			attriValue = (List)request.getAttribute("attriValue");
 			System.out.println("변환한attriValue: "+attriValue);
-		}*/
+		}
 		
 	      //최종목적인 세션에 저장. foreach작동하도록.
 			session.setAttribute(attriName, closetTab);
@@ -235,3 +235,4 @@ public class ClosetFolderController {
 	
 	
 }//class
+*/

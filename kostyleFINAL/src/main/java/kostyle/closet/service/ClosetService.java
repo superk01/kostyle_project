@@ -1,4 +1,4 @@
-package kostyle.closet.service;
+/*package kostyle.closet.service;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,7 +18,7 @@ public interface ClosetService {
 	
 	//옷장변경저장(추가,이름수정,삭제 반영)
 	public void SaveCloset();
-/*	//옷장추가
+	//옷장추가
 	public void InsertCloset();
 	
 	//옷장수정
@@ -26,7 +26,7 @@ public interface ClosetService {
 
 	//옷장삭제
 	public void DeleteCloset();
-*/
+
 
 //---------------------------------------
 	// 찜상품추가
@@ -46,3 +46,4 @@ public interface ClosetService {
 
 	
 }
+*/

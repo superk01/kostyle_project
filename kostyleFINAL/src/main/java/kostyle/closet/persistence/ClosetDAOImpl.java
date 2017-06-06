@@ -1,4 +1,4 @@
-package kostyle.closet.persistence;
+/*package kostyle.closet.persistence;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -137,12 +137,12 @@ public class ClosetDAOImpl implements ClosetDAO {
 	public HashMap urlRepair(String prdUrl) {
 		//class="xans-element- xans-product xans-product-detail" 쪽이 상단 상품정보 위치임.
 		//가격: <string id="span_product_price_text" 이후 ',000원'이면 추출!
-		/*       String strResult = num; //출력할 결과를 저장할 변수
+		       String strResult = num; //출력할 결과를 저장할 변수
         Pattern p = Pattern.compile("(^[+-]?\\d+)(\\d{3})"); //정규표현식 
         Pattern p = Pattern.compile("(^[+-]?\\d+,)*(\\d{3})")원$; //정규표현식 
         Matcher regexMatcher = p.matcher(num); 
 [출처] [Java] 숫자에 쉼표(콤마;Comma) 넣기, 천(1000) 단위 구분 (정규표현식이용, replaceAll())|작성자 자바킹
-*/
+
 
 		//class="xans-element- xans-product xans-product-action " 이전까지 인덱스로 끊으면 상단상품 계산 위쪽까지 모아짐.
 		
@@ -156,9 +156,9 @@ public class ClosetDAOImpl implements ClosetDAO {
 		//String address="http://66girls.co.kr/product/detail.html?product_no=67185&cate_no=81&display_group=2";
 		String address="http://hotping.co.kr/product/detail.html?product_no=19218&cate_no=26&display_group=1";
 		
-		/*String address2= "http://66girls.co.kr/product/search.html?banner_action=&keyword=%EA%B0%80%EB%94%94%EA%B1%B4";
+		String address2= "http://66girls.co.kr/product/search.html?banner_action=&keyword=%EA%B0%80%EB%94%94%EA%B1%B4";
 		address2 = URLDecoder.decode(address2);
-		System.out.println("디코딩된 값: "+address2);*/
+		System.out.println("디코딩된 값: "+address2);
 		
 		String imgUrl ="";
 		String price="";
@@ -209,9 +209,9 @@ public class ClosetDAOImpl implements ClosetDAO {
 		   System.out.println("이미지url인덱스: "+index1);
 		   if(index1 != -1){
 			   source = source.substring(index1);
-			  /* int index2 = sb.indexOf("alt");
+			   int index2 = sb.indexOf("alt");
 			   
-			   code = code.substring(0, index2);*/
+			   code = code.substring(0, index2);
 	        //StringBuffer sb = new StringBuffer();
 	        //String regex ="(http|https|ftp)://[^\\s^\\.]+(\\.[^\\s^\\.^\"^\']+)*"; //공백문자,백슬러시,따옴표 등으로 시작하지 않는
 	
@@ -352,4 +352,4 @@ public class ClosetDAOImpl implements ClosetDAO {
 	
 	
 	
-}//class
+}//class*/

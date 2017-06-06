@@ -90,7 +90,8 @@ public class CusLoginController {
 		String path = request.getHeader("referer");
 		System.out.println("referer값: "+request.getHeader("referer"));
 		if(request.getHeader("referer") == null){
-			path = "redirect:/home/"; //이전url이 없을시, 메인으로 가도록.
+			/*path = "redirect:/home/"; //이전url이 없을시, 메인으로 가도록.*/			
+			path = "redirect:/"; //이전url이 없을시, 메인으로 가도록.
 			System.out.println("referer == null진입 + referer값: "+request.getHeader("referer"));
 			//path = "redirect:/";
 		}

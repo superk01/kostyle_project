@@ -1,4 +1,4 @@
-package kostyle.closet.controller;
+/*package kostyle.closet.controller;
 
 import javax.inject.Inject;
 
@@ -18,3 +18,4 @@ public class ClosetController {
 	
 	
 }//class
+*/

@@ -46,29 +46,7 @@ $(document).ready(function(){
 	
 	function getPage(pageInfo){
 		alert(pageInfo);
-		/* $.getJSON(pageInfo,function(data){
-			alert('ajax get호출');
-			alert(data);
-			printData(data.list, $('#repliesDiv'), $('#template'));
-		}); */
 		
-		 /* $.getJSON(pageInfo,function(data){
-				alert('ajax get호출');
-				alert("successHandler진입.");
-				
-				var source = "";
- 				source += "<c:forEach var='answer' items='${data.list }'>"
- 				source += "<li class='replyLi' data-as_Num='${answer.as_Num}'>"
- 				source += "<i class='fa fa-comments bg-blue'></i>"
- 				source += "<div class='timeline-item' >"
- 				source += "<span class='time'> <i class='fa fa-clock-o'></i>${answer.as_Date}</span>"
- 				source += "<h3 class='timeline-header'><strong>${answer.as_Num}</strong> -${answer.c_Id}</h3>"
- 				source += "<div class='timeline-body'>${answer.as_Content} </div>"
- 				source += "<div class='timeline-footer'></div></div></li>"
- 				source += "</c:forEach>"
-				$('#displayDiv').html(source);
-			}); */ 
-			/* var source = ""; */
 			$.ajax({
 			type:'get',
 			url: pageInfo,
@@ -80,41 +58,16 @@ $(document).ready(function(){
 			success : function(data){
 				alert(data);
 				alert("successHandler진입.");
-				/* var source = $('#template').html();
-				var template = Handlebars.compile(source);*/			
-				
-				
-			 /* var output = "<table>"
- 				$.each(data,function(i, value){
- 					output+="<tr>";
- 					output+="<td>"+value.c_Id;
- 					output+="("+value.as_Date+")<br>";
- 					output+=value.as_Content+"</td>";
- 					output+="</tr>";
- 				});
- 				output+="</table>"; */
- 				
- 				
- 				
- 			/* 	var str = "";
- 				console.log("리스트 길이"+data.length);
- 				$(data).each(function(){
- 					str += "<li data-rno='"+this.as_Num+"' class='replyLi'>"
- 						+this.as_Num+":"+this.as_Content+"</li>";
- 				});
- 				$('#repliesDiv').html(str); */
-				/* printData(data, $('#repliesDiv'), $('#template')); */
-				
 				var source = "";
 				$(data).each(function(){
  				
- 				source += "<li class='replyLi' data-rno='"+this.ad_Num+"'>"
- 				source += "<i class='fa fa-comments bg-blue'></i>"
- 				source += "<div class='timeline-item' >"
- 				source += "<span class='time'> <i class='fa fa-clock-o'></i>"+this.as_Date+"</span>"
- 				source += "<h3 class='timeline-header'><strong>"+this.as_Num+"</strong> -"+this.c_Id+"</h3>"
- 				source += "<div class='timeline-body'>"+this.as_Content+" </div>"
- 				source += "<div class='timeline-footer'></div></div></li>"
+ 				source += "<li class='replyLi' data-rno='"+this.ad_Num+"'>";
+ 				source += "<i class='fa fa-comments bg-blue'></i>";
+ 				source += "<div class='timeline-item' >";
+ 				source += "<span class='time'> <i class='fa fa-clock-o'></i>"+this.as_Date+"</span>";
+ 				source += "<h3 class='timeline-header'><strong>"+this.as_Num+"</strong> -"+this.c_Id+"</h3>";
+ 				source += "<div class='timeline-body'>"+this.as_Content+" </div>";
+ 				source += "<div class='timeline-footer'></div></div></li>";
  				
 				});
 				$('#repliesDiv').after(source);
@@ -145,6 +98,8 @@ $(document).ready(function(){
 		alert("remove");
 		location.href="/help/remove?q_Num=${board.q_Num}";
 	});
+	
+	/* 댓글 추가 */
 	$('#replyAddBtn').on('click', function(){
 		var replyer = $('#newReplyWriter').val();
 		var replytext = $('#newReplyText').val();
@@ -172,6 +127,7 @@ $(document).ready(function(){
 			}
 		});
 	});
+	/* 댓글 수정 */
 	$('#btnReplyUpdate').click(function(){
 		$.ajax({
 			type:"put",
@@ -186,12 +142,18 @@ $(document).ready(function(){
 			success: function(result){
 				if(result == "success"){
 					$("#modifyReply").hide();
-					
 				}
 			}
 		});
 	});
-	
+	/* 댓글 수정 */
+	/* 댓글 보기 */
+	$('#repliesDiv').on('click',function(){
+		/* if($(".timeline li").size()>1){
+			return;
+		} */
+		getPage("/replies/${board.q_Num}");
+	});
 });
 
 </script>

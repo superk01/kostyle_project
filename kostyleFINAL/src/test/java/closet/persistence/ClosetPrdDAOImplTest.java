@@ -1,4 +1,4 @@
-package closet.persistence;
+/*package closet.persistence;
 
 import javax.inject.Inject;
 
@@ -10,12 +10,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import kostyle.closet.persistence.ClosetDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"})
+@ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/*root-context.xml"})
 public class ClosetPrdDAOImplTest {
 	@Inject
 	private ClosetDAO dao;
 	
-/*	@Test
+	@Test
 	public void testCusLogin() throws Exception {
 		LoginDTO dto = new LoginDTO();
 		dto.setCus_id("poi");
@@ -23,7 +23,7 @@ public class ClosetPrdDAOImplTest {
 		
 		CustomerVO vo = dao.cusLogin(dto);
 		System.out.println("뽑아온 VO: "+vo);
-	}*/
+	}
 	@Test
 	public void testInsertClosetPrd() throws Exception{
 		
@@ -52,3 +52,4 @@ public class ClosetPrdDAOImplTest {
 	
 	
 }//class
+*/
