@@ -81,9 +81,10 @@ $(document).ready(function(){
 				alert(data);
 				alert("successHandler진입.");
 				/* var source = $('#template').html();
-				var template = Handlebars.compile(source);
- */			/* 	
- 				var output = "<table>"
+				var template = Handlebars.compile(source);*/			
+				
+				
+			 /* var output = "<table>"
  				$.each(data,function(i, value){
  					output+="<tr>";
  					output+="<td>"+value.c_Id;
