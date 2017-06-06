@@ -36,7 +36,7 @@
 	
 		<!-- 인터셉터 -->
 <beans:bean id="loginInterceptor" class="kostyle.login.interceptor.LoginInterceptor"></beans:bean>
-<beans:bean id="checkLoginInterceptor" class="kostyle.login.interceptor.CheckILoginnterceptor"></beans:bean>
+<beans:bean id="checkLoginInterceptor" class="kostyle.login.interceptor.CheckLoginInterceptor"></beans:bean>
 
 <interceptors>
 		<interceptor>
@@ -51,9 +51,11 @@
 		
  		<interceptor>
 			<mapping path="/cuslogin/logout"/>
+			<mapping path="/logintest/testpage2" />
 			<beans:ref bean="checkLoginInterceptor"/>
 		</interceptor>
 </interceptors>
+
 
 
 	

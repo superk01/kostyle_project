@@ -4,7 +4,7 @@ public class LoginDTO {
 	private String cus_id;
 	private int adshop_id;
 	private String user_pass;
-	private boolean useCookie;
+	private boolean useCookie; //자동로그인쿠키
 
 	
 
