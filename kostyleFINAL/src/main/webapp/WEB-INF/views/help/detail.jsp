@@ -60,8 +60,11 @@ $(document).ready(function(){
 				alert("successHandler진입.");
 				var source = "";
 				$(data).each(function(){
- 				
+				alert(this.c_Id);
  				source += "<li class='replyLi' data-rno='"+this.ad_Num+"'>";
+ 				source += "<c:set var='data' value='val'/>"
+				source += "<c:if test='${val.c_Id eq login.c_id }'><button id='btnUpdateForm' type='button'>수정</button></c:if>"
+ 				source += "<c:if test='${val.c_Id == login.c_id }'><button id='btnRelpyDelete' type='button'>삭제</button></c:if>"
  				source += "<i class='fa fa-comments bg-blue'></i>";
  				source += "<div class='timeline-item' >";
  				source += "<span class='time'> <i class='fa fa-clock-o'></i>"+this.as_Date+"</span>";
@@ -127,6 +130,10 @@ $(document).ready(function(){
 			}
 		});
 	});
+	/* 댓글 수정폼 소환 */
+	$('#btnUpdateForm').click(function(){
+		
+	});	
 	/* 댓글 수정 */
 	$('#btnReplyUpdate').click(function(){
 		$.ajax({
@@ -146,7 +153,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-	/* 댓글 수정 */
+	/* 댓글 삭제 */
 	/* 댓글 보기 */
 	$('#repliesDiv').on('click',function(){
 		/* if($(".timeline li").size()>1){

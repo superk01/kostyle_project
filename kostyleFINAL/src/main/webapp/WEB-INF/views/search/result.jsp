@@ -22,10 +22,10 @@ $(document).ready(function(){
 		var product_name=$(this).children().eq(1).find('a').html();
 		var product_price=$(this).children().eq(2).find('a').html(); */
 		
-		alert($(this).eq(0).find('img').attr('src'));
+/* 		alert($(this).eq(0).find('img').attr('src'));
 		alert($(this).eq(0).find('a').attr('href'));
 		alert($(this).children().eq(1).find('a').html());
-		alert($(this).children().eq(2).find('a').html());
+		alert($(this).children().eq(2).find('a').html()); */
 		
 		/* var nodes=$(this).children();
 		alert(nodes.length); */
