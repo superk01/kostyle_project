@@ -45,9 +45,9 @@ public class ShopLoginInterceptor extends HandlerInterceptorAdapter {
 					session.setAttribute(SHOPLOGIN, (AdShopVO)userVO);
 					System.out.println("세션값확인: "+session.getAttribute(SHOPLOGIN));
 					if(dest == null){
-						dest =  "/home/";
+						dest =  "/";
 					}
-					//System.out.println("판별 후의 URL: "+(dest != null ? (String)dest:"/home/"));
+					//System.out.println("판별 후의 URL: "+(dest != null ? (String)dest:"/"));
 					
 					if(request.getParameter("useCookie") != null){ 
 						//자동로그인시에 쇼핑몰로그인인지 고객로그인인지 구분필요. LoginDTO에 cus_id 와 adshop_id 중 뭐가는지여부.

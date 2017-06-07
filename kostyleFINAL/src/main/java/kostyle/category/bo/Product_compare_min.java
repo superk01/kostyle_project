@@ -13,7 +13,11 @@ public class Product_compare_min implements Comparator<Product_category>{
 		laststr = laststr.replaceAll("[,가-힣]","");
 		friststr = friststr.trim();
 		laststr = laststr.trim();
-		
+		if(friststr.equals("")){
+			friststr = "0";
+		}else if( laststr.equals("")){
+			laststr = "0";
+		}
 		int firstPrice = Integer.parseInt(friststr);
 		int lastPrice = Integer.parseInt(laststr);
 		

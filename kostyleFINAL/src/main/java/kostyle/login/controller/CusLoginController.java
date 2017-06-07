@@ -12,8 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import kostyle.login.domain.CustomerVO;
 import kostyle.login.domain.LoginDTO;
@@ -81,35 +86,53 @@ public class CusLoginController {
 	
 	
 //  이전url설정하면, /logout검사문 지우고 경로는 메인으로 가게 설정해야함...
-	@RequestMapping(value="/logout", method=RequestMethod.GET)
-	public String logout(HttpServletRequest  request )throws Exception{
+	@ResponseBody
+	@RequestMapping(value="/logout", method=RequestMethod.POST)
+	public String logout(@RequestParam("returnPath") String returnPath, HttpServletRequest  request )throws Exception{
 		
+		System.out.println("cusLogout진입");
+		System.out.println("cusLogout returnPath= "+returnPath);
 		request.getSession().removeAttribute("login");
-		request.getSession().removeAttribute("shoplogin");
 		
-		String path = request.getHeader("referer");
+		String refererPath = request.getHeader("referer");
+		System.out.println("referer값: "+request.getHeader("referer"));
+
+		
+		returnPath = returnPath.trim();
+		String path = "redirect:" + returnPath;
+		System.out.println("로그아웃최종경로: "+path);
+		/*ModelAndView mav = new ModelAndView();
+
+		RedirectView redirectView = new RedirectView(); // redirect url 설정
+		redirectView.setUrl(path);
+		redirectView.setExposeModelAttributes(false);
+
+		mav.setView(redirectView);
+
+		return mav;
+*/
+		return "SUCCESS";
+//		return path;
+//		return (ModelAndView)new ModelAndView("redirect:/" + Path.REDIRECT_PATH );
+		//return (ModelAndView)new ModelAndView(path);
+
+	
+	
+	
+	
+	
+	
+		/*String path = request.getHeader("referer");
 		System.out.println("referer값: "+request.getHeader("referer"));
 		if(request.getHeader("referer") == null){
-			/*path = "redirect:/home/"; //이전url이 없을시, 메인으로 가도록.*/			
+			path = "redirect:/home/"; //이전url이 없을시, 메인으로 가도록.			
 			path = "redirect:/"; //이전url이 없을시, 메인으로 가도록.
 			System.out.println("referer == null진입 + referer값: "+request.getHeader("referer"));
 			//path = "redirect:/";
-		}
-		
-		return path;
-		
-		/*String dest= null;
-		String tempPath=(String)session.getAttribute("dest");
-		if(tempPath.equals("/cuslogin/logout") || tempPath.equals("/shoplogin/logout") || tempPath==null){
-			//"redirect:/board/listAll";
-			dest="redirect:/home/";  
-		}else{
-			dest = (String)session.getAttribute("dest");
-		}
-		System.out.println("로그아웃후dest경로: "+dest);
-		return dest;*/
+		}*/
 	}
-	
-	//자동로그인은 customer와 shop을 한번에 같이만든다. 분기는 
+
+
+
 	
 }//class
