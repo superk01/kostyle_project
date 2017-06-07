@@ -96,7 +96,7 @@
 			where as_num = #{as_Num}
 	</update>
 	<delete id="R_delete" parameterType="int">
-		delete * from answer where as_num=#{as_num}
+		delete from answer where as_num=#{as_num}
 	</delete>
 	<select id="R_detail" resultType="ReplyVO">
 		select * from answer where as_num=#{as_num}

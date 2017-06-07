@@ -57,4 +57,10 @@ public class ReplyServiceImpl implements ReplyService {
 		
 	}
 
+	@Override
+	public ReplyVO ReplyDetail(int as_Num) {
+		return replydao.ReplyDetail(as_Num);
+	}
+	
+
 }
