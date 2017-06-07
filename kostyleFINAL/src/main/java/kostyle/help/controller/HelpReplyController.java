@@ -128,9 +128,12 @@ public class HelpReplyController {
 	/*댓글을 수정하는 메소드*/
 	@RequestMapping(value="/{as_Num}", method=RequestMethod.PUT)
 	public ResponseEntity<String> ReplyUpdatePUT(@PathVariable("as_Num") int as_Num, @RequestBody ReplyVO replyVO){
-		System.out.println("HelpReplyController-ReplyUpdatePUT");
+		System.out.println("HelpReplyController-ReplyUpdatePUT진입");
+		System.out.println("replyVO 객체를 받았는가?"+replyVO);
+		System.out.println("as_Num값을 가져 왔는가?"+as_Num);
 		ResponseEntity<String> entity = null;
 		replyVO.setAs_Num(as_Num+"");
+		System.out.println("replyVO에 as_Num값을 세팅 하였는가?"+replyVO);
 		try {
 			service.ReplyUpdate(replyVO);
 			System.out.println("HelpReplyController-ReplyUpdatePUT:"+replyVO);

@@ -197,7 +197,7 @@ $(document).ready(function(){
 				console.log("success핸들러:"+result);
 				var reply = result;
 				console.log(reply);
-				var source = "<div><textarea row='3' cols='50' name='as_Content' id='as_Content' value='"+reply.as_Content+"'></textarea>";
+				var source = "<div class='updateform'><textarea row='3' cols='50' name='as_Content' id='as_Content'></textarea>";
 				source += "<input type='button' id='updateReply' value='수정'>";
 				source += "<input type='button' id='updateCancel' value='취소'>";
 				$replyLi.find('.timeline-footer').append(source);
@@ -209,8 +209,9 @@ $(document).ready(function(){
 	$('.timeline').on('click', '.replyLi #updateReply', function(){
 		alert('수정 작업 ㄱ');
 		var as_Num = $(this).closest('.replyLi').attr('data-rno');
-		var as_Content = $(this).
-		console.log(as_Num);
+		var as_Content = $(this).closest('.updateform').find('textarea[name=as_Content]').val();
+		alert(as_Content);
+		alert(as_Num);
 		$.ajax({
 			url:"${path}/replies/"+as_Num,
 			type: "put",
