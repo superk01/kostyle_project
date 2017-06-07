@@ -179,6 +179,7 @@ $(document).ready(function(){
 			
 		});
 	});
+	/* 댓글 수정 폼 */
 	$('.timeline').on('click', '.replyLi #btnUpdateForm', function(){
 		alert('수정폼 소환 버튼');
 		var $replyLi = $(this).parent();
@@ -196,28 +197,45 @@ $(document).ready(function(){
 				console.log("success핸들러:"+result);
 				var reply = result;
 				console.log(reply);
-				var source = "<div><textarea row='3' cols='50' name='as_Content'>"+reply.as_Content+"</textarea>";
-				source += "<input type='button' value='수정'>";
-				source += "<input type='button' value='취소'>";
+				var source = "<div><textarea row='3' cols='50' name='as_Content' id='as_Content' value='"+reply.as_Content+"'></textarea>";
+				source += "<input type='button' id='updateReply' value='수정'>";
+				source += "<input type='button' id='updateCancel' value='취소'>";
 				$replyLi.find('.timeline-footer').append(source);
 			}
 			
 		});
 	});
+	/* 댓글 수정 작업. */
+	$('.timeline').on('click', '.replyLi #updateReply', function(){
+		alert('수정 작업 ㄱ');
+		var as_Num = $(this).closest('.replyLi').attr('data-rno');
+		var as_Content = $(this).
+		console.log(as_Num);
+		$.ajax({
+			url:"${path}/replies/"+as_Num,
+			type: "put",
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"PUT" 
+			},
+			dataType:"text",
+			data : JSON.stringify({
+				as_Content : as_Content
+			}),
+			success: function(result){
+				if(result=='success'){
+					getPage("${path}/replies/${board.q_Num}");
+				}
+			}
+		});
+	});
 	/* 댓글 보기 */
 	$('#repliesDiv').on('click',function(){
 		alert('#repliesDiv');
-		/* var index=0;
-		for (var i=0; i<3; i++){ */
-			 if($('li.replyLi').length>1){
-				 	console.log($('li.replyLi').length);
-					return;
-				} 
-		/*  } 
-		alert(index);
-		if(index>2){
+		if($('li.replyLi').length>1){
+			console.log($('li.replyLi').length);
 			return;
-		} */
+		} 
 		getPage("/replies/${board.q_Num}");
 	});
 });

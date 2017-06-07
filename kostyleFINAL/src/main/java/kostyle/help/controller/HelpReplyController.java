@@ -125,7 +125,22 @@ public class HelpReplyController {
 		System.out.println("HelpReplyController-ReplyUpdatePOST에서 replyVO객체 가져옴:"+replyVO);
 		return replyVO;
 	}
-	/*댓글을 삭제하는 메소드*/
+	/*댓글을 수정하는 메소드*/
+	@RequestMapping(value="/{as_Num}", method=RequestMethod.PUT)
+	public ResponseEntity<String> ReplyUpdatePUT(@PathVariable("as_Num") int as_Num, @RequestBody ReplyVO replyVO){
+		System.out.println("HelpReplyController-ReplyUpdatePUT");
+		ResponseEntity<String> entity = null;
+		replyVO.setAs_Num(as_Num+"");
+		try {
+			service.ReplyUpdate(replyVO);
+			System.out.println("HelpReplyController-ReplyUpdatePUT:"+replyVO);
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 	
 	
 	/*댓글 삭제 메소드*/
