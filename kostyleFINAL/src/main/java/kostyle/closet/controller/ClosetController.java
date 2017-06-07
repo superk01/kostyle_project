@@ -48,7 +48,6 @@ public class ClosetController {
 	@RequestMapping(value="/closetbasic" , method=RequestMethod.POST)
 	public String closet(@RequestBody Map<Object,Object> param, HttpServletRequest request) throws Exception{
 		System.out.println("/closet의 param(map): "+param);
-		System.out.println("/closet의 param(map): "+param);
 		
 		ResponseEntity<String> entity = null;
 		HttpSession session = request.getSession();

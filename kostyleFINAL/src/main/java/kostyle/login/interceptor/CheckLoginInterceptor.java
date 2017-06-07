@@ -24,7 +24,7 @@ public class CheckLoginInterceptor extends HandlerInterceptorAdapter {
 	LoginService service;
 	
 	private static final String LOGIN = "login";
-	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(CheckLoginInterceptor.class);
 	
 	private void saveDest(HttpServletRequest request){
 		System.out.println("saveDest진입");
@@ -52,7 +52,7 @@ public class CheckLoginInterceptor extends HandlerInterceptorAdapter {
 		logger.info("CheckLoginIntercepter   preHandle진입");
 		HttpSession session = request.getSession();
 		
-		System.out.println("session.login: "+session.getAttribute(LOGIN));
+		System.out.println("CheckLoginIntercepter session.login: "+session.getAttribute(LOGIN));
 	
 		
 		//어디에서 들어왔는지에 따라 shop로그인으로 갈분기와, cus로그인으로 갈 분기 나눌if-else문 나중에 맨밖에 하나 추가해야한다. ->no. 아예 shop인터셉터 따로만듦.
@@ -61,7 +61,6 @@ public class CheckLoginInterceptor extends HandlerInterceptorAdapter {
 			logger.info("current user is lot logined");
 			saveDest(request);
 			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-			
 			
 			//쿠키가 있으면 자동로그인~
 			if(loginCookie != null){
@@ -82,14 +81,16 @@ public class CheckLoginInterceptor extends HandlerInterceptorAdapter {
 				}
 			}else{
 		//쿠키가없으면
+				System.out.println("세션도 쿠키도 없음. 로그인폼으로이동");
 			response.sendRedirect("/cuslogin/login");
 			return false;
 			}//endCookie
 		
-	}
-
+	}else{
+		System.out.println("CheckLoginInterceptor: 처음부터 로그인되어있음(session있음)");
 			return true;//처음부터 로그인 되어있는상태. 당연히 그냥통과.
-
+	}
+		return true;
 	}//preHandle
 
 }//class
