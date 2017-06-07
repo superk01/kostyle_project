@@ -14,15 +14,19 @@ $(window).bind("beforeunload", function (){
 		//alert("세션CDAttri param값: "+param);
 		$.ajax({
 		type: "post",
-		url:"../CDSessionAttributeAction.closet",
-		data: param,
+		url : "/closetfolder/cdSessionAttribute",
+		data : JSON.stringify({
+			attriName : attriName,
+			attriCD : attriCD
+         }),
 		async: false,
 		success: function (data){
 		//alert("ajax결과: session: "+data);
-			alret("세션삭제ajax완료.");
+			alert("세션삭제ajax완료.");
 		}  ,
 		error : function(xhr, status, error) {
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			alert("세션삭제ajax실패");
+			//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});
 });
@@ -99,18 +103,22 @@ $(function(){
 			var param =  "folder_clo_nums="+folder_clo_nums+
 			"&closet_titles="+closet_titles;
 			
-			//alert("보내는 param: "+param);
+			alert("보내는 param: "+param);
 			$.ajax({
 				type:"post",
-				url:"../SaveClosetAction.closet",
-				data: param,
+				url : "/closetfolder/saveCloset",
+				data : JSON.stringify({
+					 folder_clo_nums : folder_clo_nums,
+					closet_titles : closet_titles
+		         }),
 				success: function(data){
 					opener.location.reload();
 					alert("옷장폴더수정 완료");
 					self.close();
 				},
 				error : function(xhr, status, error) {
-					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					alert("folder save ajax실패");
+					//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		
 				}
 			});

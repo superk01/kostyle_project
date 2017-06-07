@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>게시글 상세보기</title>
 <script src="../../../resources/jquery/jquery-3.2.1.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
@@ -46,29 +46,7 @@ $(document).ready(function(){
 	
 	function getPage(pageInfo){
 		alert(pageInfo);
-		/* $.getJSON(pageInfo,function(data){
-			alert('ajax get호출');
-			alert(data);
-			printData(data.list, $('#repliesDiv'), $('#template'));
-		}); */
 		
-		 /* $.getJSON(pageInfo,function(data){
-				alert('ajax get호출');
-				alert("successHandler진입.");
-				
-				var source = "";
- 				source += "<c:forEach var='answer' items='${data.list }'>"
- 				source += "<li class='replyLi' data-as_Num='${answer.as_Num}'>"
- 				source += "<i class='fa fa-comments bg-blue'></i>"
- 				source += "<div class='timeline-item' >"
- 				source += "<span class='time'> <i class='fa fa-clock-o'></i>${answer.as_Date}</span>"
- 				source += "<h3 class='timeline-header'><strong>${answer.as_Num}</strong> -${answer.c_Id}</h3>"
- 				source += "<div class='timeline-body'>${answer.as_Content} </div>"
- 				source += "<div class='timeline-footer'></div></div></li>"
- 				source += "</c:forEach>"
-				$('#displayDiv').html(source);
-			}); */ 
-			/* var source = ""; */
 			$.ajax({
 			type:'get',
 			url: pageInfo,
@@ -76,26 +54,30 @@ $(document).ready(function(){
 				"Content-Type":"application/json",
 				"X-HTTP-Method-Override":"GET"
 			},
-			dataType:'text',
+			dataType:'json',
 			success : function(data){
 				alert(data);
 				alert("successHandler진입.");
-				/* var source = $('#template').html();
-				var template = Handlebars.compile(source);
- */			/* 	
- 				var output = "<table>"
- 				$.each(data,function(i, value){
- 					output+="<tr>";
- 					output+="<td>"+value.c_Id;
- 					output+="("+value.as_Date+")<br>";
- 					output+=value.as_Content+"</td>";
- 					output+="</tr>";
- 				});
- 				output+="</table>"; */
- 				$('#repliesDiv').html(data);
+				var source = "";
+				$(data).each(function(){
+				alert(this.c_Id);
+ 				source += "<li class='replyLi' data-rno='"+this.ad_Num+"'>";
+ 				source += "<c:set var='data' value='val'/>"
+				source += "<c:if test='${val.c_Id eq login.c_id }'><button id='btnUpdateForm' type='button'>수정</button></c:if>"
+ 				source += "<c:if test='${val.c_Id == login.c_id }'><button id='btnRelpyDelete' type='button'>삭제</button></c:if>"
+ 				source += "<i class='fa fa-comments bg-blue'></i>";
+ 				source += "<div class='timeline-item' >";
+ 				source += "<span class='time'> <i class='fa fa-clock-o'></i>"+this.as_Date+"</span>";
+ 				source += "<h3 class='timeline-header'><strong>"+this.as_Num+"</strong> -"+this.c_Id+"</h3>";
+ 				source += "<div class='timeline-body'>"+this.as_Content+" </div>";
+ 				source += "<div class='timeline-footer'></div></div></li>";
+ 				
+				});
+				$('#repliesDiv').after(source);
 			}
 		}); 
 	}
+	
 	
 	var printData = function(replyArr, target, templateObject){
 		alert('printData');
@@ -119,6 +101,8 @@ $(document).ready(function(){
 		alert("remove");
 		location.href="/help/remove?q_Num=${board.q_Num}";
 	});
+	
+	/* 댓글 추가 */
 	$('#replyAddBtn').on('click', function(){
 		var replyer = $('#newReplyWriter').val();
 		var replytext = $('#newReplyText').val();
@@ -146,6 +130,11 @@ $(document).ready(function(){
 			}
 		});
 	});
+	/* 댓글 수정폼 소환 */
+	$('#btnUpdateForm').click(function(){
+		
+	});	
+	/* 댓글 수정 */
 	$('#btnReplyUpdate').click(function(){
 		$.ajax({
 			type:"put",
@@ -160,12 +149,18 @@ $(document).ready(function(){
 			success: function(result){
 				if(result == "success"){
 					$("#modifyReply").hide();
-					
 				}
 			}
 		});
 	});
-	
+	/* 댓글 삭제 */
+	/* 댓글 보기 */
+	$('#repliesDiv').on('click',function(){
+		/* if($(".timeline li").size()>1){
+			return;
+		} */
+		getPage("/replies/${board.q_Num}");
+	});
 });
 
 </script>
@@ -187,19 +182,21 @@ $(document).ready(function(){
 </head>
 <body>
 	<h2>글 상세보기</h2>
-			<table border="1">
+	<table border="1">
 		<tr height="30">
 			<td width="150">글번호</td>
 			<td width="150">${board.q_Num }</td>
-	
-		</tr>
-		<tr height="30">
-			<td width="150">작성자</td>
-			<td width="150">${board.c_Id }</td>
 			<td width="150">작성일</td>
 			<td width="150">
 				<fmt:formatDate value="${board.q_Date }" pattern="yyyy-MM-dd"/>
 			</td>
+		</tr>
+		<tr height="30">
+			<td width="150">작성자</td>
+			<td width="150">${board.c_Id }</td>
+			<td width="150">쇼핑몰</td>
+			<td width="150">${board.s_Name }</td>
+			
 		</tr>			
 		<%-- <tr height="30">
 			<td width="150">파일</td>

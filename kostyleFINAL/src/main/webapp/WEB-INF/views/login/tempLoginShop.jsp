@@ -7,8 +7,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+		$(function(){
+			var html;
+			if(request.getAttribute("msg") != null ){
+//				var html += '<div class="fail_info"><strong>'+request.getAttribute("msg")+'</strong></div>';
+				html += '<strong>'+${msg}+'</strong>';
+				$('#msg').append(html);
+			}
+		});
+			
+/* <div class="fail_info"> <strong>회원 아이디 또는 비밀번호가 일치하지 않습니다. (5회 이상 로그인 오류시 본인확인 후 로그인 가능합니다.)</strong> <p></p> </div> */
+
+</script>
 </head>
 <body>
+	<div> </div>
 	<form action="/shoplogin/loginCheck" method="post">
     <input type="text" name="adshop_id" value="${dto.adshop_id }" class="form-control" placeholder="SHOP ID"/>
     <input type="password" name="user_pass" class="form-control" placeholder="Password"/>

@@ -48,7 +48,7 @@ public class HelpBoardController {
 	public ModelAndView insertGET()throws Exception{						//글입력을 위한 폼으로 이동하는 메소드.
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", service.adShoppingMallList());				//글 입력폼에 쇼핑몰들의 리스트가 사용되기 때문에 쇼핑몰들의 리스트를 넘겨준다.
-		mav.setViewName("help/register");									//요청주소가 따로 없으면 "컨트롤러가 받은 요청주소.jsp"를 찾아가기 때문에 주석처리
+		mav.setViewName("help/register");									
 		return mav;															//리턴
 		
 	}//insertGET()
@@ -64,11 +64,12 @@ public class HelpBoardController {
 		/*System.out.println("HelpController:"+q_Num);
 		System.out.println("HelpController:"+service.detail(q_Num,session));*/
 		BoardVO boardVO = service.detail(q_Num, session);					//boardVO객체를 하나 가져옴.
+		System.out.println("컨트롤러-detail()의 boardVO:"+boardVO);
 		if(boardVO != null){												//비밀글인 경우에 권한 없는 사용자가 접근하면 boardVO객체를 반환하지 않음.
 			mav.addObject("board", boardVO);								//따라서, boardVO객체가 null이 아니면 글 읽기가 가능
 /*			return mav;*/
-		}else{																//null이면 다른 페이지로 이동.
-			mav.setViewName("/help/secret");								
+		}else{																
+			mav.setViewName("/help/secret");								//null이면 다른 페이지로 이동.
 		}
 		return mav;
 	}

@@ -37,10 +37,18 @@
 		select s_num from shoppingmall where s_sname = #{value}
 	</select>
 	<select id="detail" resultType="BoardVO" parameterType="int">
-		select temp.*,(SELECT c.c_id from question q, customer c where q.c_num=c.c_num 
+		<!-- select temp.*,(SELECT c.c_id from question q, customer c where q.c_num=c.c_num 
               and q_num=#{value})as c_Id 
-			  from ((SELECT * FROM question)temp) where q_num=#{value}
+			  from ((SELECT * FROM question)temp) where q_num=#{value} -->
+			  
 		<!-- select * from question where q_num = #{value} -->
+		
+		select q_num as q_Num, q_title as q_Title, q_content as q_Content, q_date as q_Date, c_id as c_Id, s_sname as s_Name, q_secret as q_Secret 
+				from question q 
+                     INNER JOIN customer c ON q.c_num=c.c_num
+                     INNER JOIN adshoppingmall a ON q.s_num=a.s_num
+                     INNER JOIN shoppingmall s ON s.s_num=q.s_num
+                     where q_num=#{value}
 	</select>
 	<update id="update" parameterType="BoardVO">
 		update question set 

@@ -11,4 +11,6 @@ public interface HistoyDAO {
 	public void insertHistory(HistoryVO historyVO);
 	
 	public void deleteHistoy(int h_Num);
+	
+	public int countHistory(int c_num);
 }

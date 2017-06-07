@@ -9,11 +9,35 @@
   	select c_num, c_id, c_name, p_powernum, c_gender, c_birth from customer
   		where c_id=#{cus_id} and c_pass = #{user_pass}
   </select>
-  <select id="shoplogin" resultType="AdShopVO">
-  	select s_num, ad_id, p_powernum  from adshoppingmall
-  		where ad_id=#{adshop_id} and ad_pass = #{user_pass}
+  <select id="shoplogin" parameterType="LoginDTO" resultType="AdShopVO">
+	select distinct ad.s_num, ad.ad_id , ad.p_powernum, s.s_sname
+		from adshoppingmall ad INNER JOIN shoppingmall s
+			ON ad.s_num = s.s_num
+				where ad_id=#{adshop_id} and ad_pass = #{user_pass}
   </select>
+
   
-  
+ <select id="checkCusSessionKey" parameterType="hashmap" resultType="CustomerVO">
+ 	select c_num, c_id, c_name, p_powernum, c_gender, c_birth from customer 
+ 		where c_sessionkey = #{cookieVal} and c_sessionlimit > sysdate
+ </select> 
+  <update id="keepCusLogin">
+  	update customer set c_sessionkey = #{sessionId}, c_sessionlimit = #{next}
+  		where c_id = #{cus_id}
+  </update>
+ 
+ 
+ <select id="checkShopSessionKey"  resultType="AdShopVO">
+ 	 	select s_num, ad_id, p_powernum  from adshoppingmall
+	 		where ad_sessionkey = #{cookieVal} and ad_sessionlimit > sysdate
+ </select>
+ <update id="keepShopLogin">
+ 	update adshoppingmall set ad_sessionkey = #{sessionId}, ad_sessionlimit =  #{next}
+ </update>
+ 
+ 
+ 
+ 
+ 
 </mapper>  
 

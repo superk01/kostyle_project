@@ -1,6 +1,7 @@
 package kostyle.history.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.ws.Response;
 
@@ -51,12 +52,24 @@ public class HistoryController {
 		return new ModelAndView("history/history", "list", service.listHistory(c_Num));
 	}
 	
-	@RequestMapping(value="delete/{h_Num}", method=RequestMethod.DELETE)
-	public ResponseEntity<String> deleteHistory(@PathVariable("h_Num") int h_Num){
+	@RequestMapping(value="delete", method=RequestMethod.GET)
+	public ResponseEntity<String> deleteHistory(HttpServletRequest request){
 		System.out.println("deleteHistory진입");
+		System.out.println("11111어디서 막힌건가11111?");
+		String[] str = request.getParameter("h_num").toString().split(",");
+		
+		System.out.println("배열안의 데이터 숫자 확인: "+str.length);
+		System.out.println("22222어디서 막힌건가22222?");
+		for(int i=0; i<str.length-1; i++){
+			System.out.println("deleteHistory-str("+(i+1)+") :"+str[i]);
+			System.out.println("33333어디서 막힌건가33333?");
+		}
+		System.out.println("44444어디서 막힌건가44444?");
 		ResponseEntity<String> entity= null;
 		try {
-			service.deleteHistoy(h_Num);
+			for(int i=0; i<str.length; i++){
+				service.deleteHistoy(Integer.parseInt(str[i]));
+			}
 			entity = new ResponseEntity<String>("delete",HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();

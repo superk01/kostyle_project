@@ -25,6 +25,7 @@
 	 });
 	 });  */
 	 $(document).ready(function(){
+		 	alert(${login.c_id});
 			
 		 	/* alert(${pageMaker.prev}); */
 		 	$('#fn_write').on('click', function(){

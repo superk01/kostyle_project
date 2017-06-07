@@ -43,4 +43,9 @@ public class HistoryServiceImpl implements HistoryService{
 		
 	}
 
+	@Override
+	public int countHistory(int c_num) {
+		return dao.countHistory(c_num);
+	}
+
 }

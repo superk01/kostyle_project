@@ -16,9 +16,15 @@ $(function(){
 			
 			//ajax를 비동기식(async : false)으로 사용해서 뒤의 ajax연쇄실행
 			$.ajax({
+				 headers: { 
+				        'Accept': 'application/json',
+				        'Content-Type': 'application/json; charset=UTF-8'
+				    },
 				type: "post",
-				url: "../DuplicationCheckClosetPrdAction.closet",
-				data : prdUrl,
+				url: "/closet/duplicationCheckClosetPrd",
+				data : JSON.stringify({
+					 prdUrl : prdUrl
+			         }),
 				async: false,
 				success: function(data){
 					//alert("ajax중복회신결과: "+data);
@@ -30,7 +36,7 @@ $(function(){
 					}
 				},
 				error: function(data){
-					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				//	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 				}
 			});
@@ -40,10 +46,16 @@ $(function(){
 				//alert("ajaxNum == 0.중복없음ajax if진입");
 				//alert("insertAjax함수 진입.");
 				$.ajax({
+					headers: { 
+				        'Accept': 'application/json',
+				        'Content-Type': 'application/json; charset=UTF-8'
+				    },
 					type:"post",
-					url:"../InsertPrdAction.closet",
-					data: param,
-					
+					url:"/closet/insertPrd",
+					data : JSON.stringify({
+						prdUrl : prdUrl,
+						currentUrl : currentUrl
+			         }),
 					success: function(result){
 						//alert("insertAjax결과: "+result);
 						if(result == 1 || result.equals("1")){
@@ -53,7 +65,7 @@ $(function(){
 						}
 					},
 					error: function(data){
-						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				//		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 					}
 				});
 				//alert("insertAjax함수 끝.");

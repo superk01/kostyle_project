@@ -34,4 +34,10 @@ public class HistoryDAOImpl implements HistoyDAO{
 		
 	}
 
+	@Override
+	public int countHistory(int c_num) {
+		
+		return session.selectOne(namespace+".countHistory", c_num);
+	}
+
 }

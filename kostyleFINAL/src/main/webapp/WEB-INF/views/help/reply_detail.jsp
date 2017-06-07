@@ -14,7 +14,7 @@
 ${reply.as_Num }<br><!-- 댓글 번호 -->
 <textarea id="as_Content" rows="3" cols="40">${reply.as_Content}</textarea><br>
 <button id="btnRelpyUpdate" type="button">수정</button>
-<button id="btnRelpyDelete" type="button">삭제</button>
-<button id="btnRelpyClose" type="button">닫기</button>
+<!-- <button id="btnRelpyDelete" type="button">삭제</button>
+<button id="btnRelpyClose" type="button">닫기</button> -->
 </body>
 </html>
