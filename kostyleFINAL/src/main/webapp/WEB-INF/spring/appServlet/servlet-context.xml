@@ -55,13 +55,13 @@
 		
  		<interceptor>
 			<mapping path="/logintest/testpage2" />
+			<mapping path="/closet/" />
 			<beans:ref bean="checkLoginInterceptor"/>
 		</interceptor>
 		
 		
  		<interceptor>
 			<mapping path="/logintest/testpage2" />
-			<mapping path="/closet/" />
 			<beans:ref bean="shopCheckLoginInterceptor"/>
 		</interceptor>
 		

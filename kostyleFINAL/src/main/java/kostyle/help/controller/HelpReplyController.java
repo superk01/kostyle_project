@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.Response;
 
 import org.springframework.http.HttpStatus;
@@ -84,10 +85,10 @@ public class HelpReplyController {
 		return new ModelAndView("help/replyList", "list", list);
 	}
 */	
-	@RequestMapping(value="/detail/{as_Num}", method=RequestMethod.GET)
-	public ModelAndView ReplyDetail(@PathVariable("as_Num") int as_Num){
+	@RequestMapping(value="/{q_Num}/{as_Num}", method=RequestMethod.GET)
+	public ModelAndView ReplyDetail(@PathVariable("as_Num") int as_Num, @PathVariable("q_Num") int q_Num, HttpSession session){
 		System.out.println("ReplyDetail 진입");
-		ReplyVO replyVO = service.ReplyDetail(as_Num);
+		ReplyVO replyVO = service.ReplyDetail(as_Num,q_Num,session);
 		return new ModelAndView("help/reply_detail","reply",replyVO);
 	}
 }

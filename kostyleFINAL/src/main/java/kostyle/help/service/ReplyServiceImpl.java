@@ -3,11 +3,13 @@ package kostyle.help.service;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
 import kostyle.help.domain.ReplyVO;
 import kostyle.help.persistence.ReplyDAO;
+import kostyle.login.domain.CustomerVO;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
@@ -40,9 +42,19 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public ReplyVO ReplyDetail(int as_Num) {
+	public ReplyVO ReplyDetail(int as_Num, int q_Num, HttpSession session) {
+		Object userVO = session.getAttribute("login");
+		CustomerVO customerVO = null;
+		if(userVO instanceof CustomerVO){
+			customerVO = (CustomerVO)userVO;
+		}
+		if(customerVO.getC_num()==(q_Num+"")){
+			return replydao.ReplyDetail(as_Num);
+		}else{
+			return null;
+		}
 		
-		return replydao.ReplyDetail(as_Num);
+		
 	}
 
 }
