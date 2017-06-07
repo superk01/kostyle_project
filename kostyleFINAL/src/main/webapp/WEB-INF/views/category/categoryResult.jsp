@@ -19,14 +19,20 @@
 		<div id="CategoryFilter">
 			<div id="CategoryFilterBox">
 				<div class="CategoryFilterListFirst" id="CategoryResulttop"><a href="#" id="" class="filteraclass">상품 필터　　　　　|　　　　</a></div>
+				<div class="CategoryFilterList" id="CateogyrFilterColor">
+					<a href="#" class="filteraclass">색상</a>
+				</div>
+		
 				<div class="CategoryFilterList"><a href="#" id="CategoryFilterrandom" class="filteraclass">무작위로 보기</a></div>
 				<div class="CategoryFilterList"><a href="#" id="CategoryFilterhotproduct" class="filteraclass">인기상품 보기</a></div>
 				<div class="CategoryFilterList"><a href="#" id="CategoryFilterminprice" class="filteraclass">낮은 가격 순</a></div>
-				<div class="CategoryFilterListEnd"><a href="#" id="CategoryFiltermaxprice" class="filteraclass">높은 가격 순</a></div>								
+				<div class="CategoryFilterList"><a href="#" id="CategoryFilterdefault" class="filteraclass">필터 초기화</a></div>
+				<div class="CategoryFilterListEnd"><a href="#" id="CategoryFiltermaxprice" class="filteraclass">높은 가격 순</a></div>
+												
 			</div>
 		</div>
 		
-		<div id="TotalCategoryResult_size">${product_list_size} 개 상품 찾음</div>
+		<div id="TotalCategoryResult_size">${product_list.size()} 개 상품 찾음</div>
 		<div id="TotalCategoryResult_Box">	
 				<c:forEach var="product" items="${product_list}">
 					<div class="CategoryResult_oneItemBox">
