@@ -4,7 +4,7 @@
 <mapper namespace="kostyle.favorite.mappers.favoriteMapper">
 
 
-	<select id="favoriteList" resultType="Favorite">
+	<!-- <select id="favoriteList" resultType="favorite">
        <![CDATA[
         select f_num, s_image, s_sname, f_coment, s_shopurl
 		From shoppingmall s, adshoppingmall ad, favorite f
@@ -15,7 +15,7 @@
       <![CDATA[     
           order by f.f_date desc
        ]]>
-    </select>
+    </select> -->
     
 </mapper>  
 
