@@ -4,9 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<!-- <package name="kostyle.category.domain"/> -->
-		<package name="kostyle.closet.domain"/>
-		<!-- <package name="kostyle.favorite.domain"/> -->
+		<!-- <package name="kostyle.category.domain"/>
+		<package name="kostyle.closet.domain"/> -->
+		<package name="kostyle.favorite.domain"/>
 		<package name="kostyle.help.domain"/>
 		<package name="kostyle.history.domain"/>
 		<package name="kostyle.join.domain"/>
