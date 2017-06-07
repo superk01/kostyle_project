@@ -33,7 +33,7 @@ public class ShopLoginController {
 	}
 	
 	@RequestMapping(value="/loginCheck", method=RequestMethod.POST)
-	public void loginPOST(LoginDTO dto, HttpServletRequest request ,Model model) throws Exception{
+	public void loginPOST(LoginDTO dto, HttpServletRequest request, Model model) throws Exception{
 		
 		System.out.println("샵로그인컨트롤러 보낸 LoginDTO: "+dto);
 

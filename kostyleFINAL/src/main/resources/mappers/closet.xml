@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<mapper namespace="kostyle.closet.mappers.closetMapper">
 
-<mapper namespace="closet.mapper.ClosetMapper">
 	<cache />
 	<select id="tabCloset" parameterType="String" resultType="Closet">
 		select * from closet where c_num = #{c_num} order by clo_num

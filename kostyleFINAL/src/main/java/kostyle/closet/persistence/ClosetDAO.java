@@ -42,7 +42,7 @@ public interface ClosetDAO {
 	
 
 	//찜상품추가
-	public void insertClosetPrd(ClosetPrd closetPrd);
+	public int insertClosetPrd(ClosetPrd closetPrd);
 	
 	//해당상품의 중복여부 우선확인
 	public int check_duplication(ClosetPrd closetPrd);

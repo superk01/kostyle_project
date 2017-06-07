@@ -52,17 +52,11 @@ public class CheckLoginInterceptor extends HandlerInterceptorAdapter {
 		logger.info("CheckLoginIntercepter   preHandle진입");
 		HttpSession session = request.getSession();
 		
-		System.out.println("session.login: "+session.getAttribute("login"));
+		System.out.println("session.login: "+session.getAttribute(LOGIN));
 	
 		
-		//어디에서 들어왔는지에 따라 shop로그인으로 갈분기와, cus로그인으로 갈 분기 나눌if-else문 나중에 맨밖에 하나 추가해야한다.
-		if(session.getAttribute("login") == null){
-			/*
-			System.out.println("preHandle session login is null.");
-			saveDest(request);
-			response.sendRedirect("/cuslogin/login");
-			
-			return false;*/
+		//어디에서 들어왔는지에 따라 shop로그인으로 갈분기와, cus로그인으로 갈 분기 나눌if-else문 나중에 맨밖에 하나 추가해야한다. ->no. 아예 shop인터셉터 따로만듦.
+		if(session.getAttribute(LOGIN) == null){
 			
 			logger.info("current user is lot logined");
 			saveDest(request);
@@ -81,43 +75,31 @@ public class CheckLoginInterceptor extends HandlerInterceptorAdapter {
 					int oneweek = 60 * 60 * 24 * 7;
 					Date sessionLimit = new Date(System.currentTimeMillis()+(1000*oneweek)); //   1/1000초니까 *1000
 					
-					//고객,쇼핑몰 자동로그인분기점
-					if(userVO instanceof CustomerVO){
-						service.keepCusLoginLimit(((CustomerVO)userVO).getC_id(), session.getId(),sessionLimit);
-						session.setAttribute("login", (CustomerVO)userVO);
-					}else if(userVO instanceof AdShopVO){
-						service.keepShopLoginLimit(((AdShopVO)userVO).getAd_id(), session.getId(), sessionLimit);
-						session.setAttribute("login", (AdShopVO)userVO);
-					}
+					//고객 자동로그인
+					service.keepCusLoginLimit(((CustomerVO)userVO).getC_id(), session.getId(),sessionLimit);
+					session.setAttribute(LOGIN, (CustomerVO)userVO);
 					return true;
 				}
-			}//logincookieIf
-			
+			}else{
 		//쿠키가없으면
 			response.sendRedirect("/cuslogin/login");
 			return false;
-		}
-		//로그아웃시 이전경로저장. 제대로된 경로가되도록 자바스크립트로 구현 후 수정해야함.
-		String uri = request.getRequestURI();
-		if(uri.equals("/cuslogin/logout") || uri.equals("/shoplogin/logout")){
-			saveDest(request);
-		}
+			}//endCookie
 		
-		return true;
 	}
 
+			return true;//처음부터 로그인 되어있는상태. 당연히 그냥통과.
 
-	
+	}//preHandle
 
-}
-
-
-
+}//class
 
 
-
-
-
+	/*		//로그아웃시 이전경로저장. 제대로된 경로가되도록 자바스크립트로 구현 후 수정해야함.
+	String uri = request.getRequestURI();
+	if(uri.equals("/cuslogin/logout") || uri.equals("/shoplogin/logout")){
+		saveDest(request);
+	}*/
 
 
 
