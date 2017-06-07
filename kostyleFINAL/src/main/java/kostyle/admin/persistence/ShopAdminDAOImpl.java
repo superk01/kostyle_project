@@ -50,7 +50,7 @@ public class ShopAdminDAOImpl implements ShopAdminDAO{
 
 	@Override
 	public void deleteAdShop(String s_num) throws Exception {
-		session.delete(namespace+".deleteAdShop");
+		session.delete(namespace+".deleteAdShop", s_num);
 	}
 	
 
