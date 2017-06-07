@@ -322,7 +322,7 @@
 				<label class="col-sm-3 control-label" for="inputAdress">주소</label>
 				<div class="col-sm-6">
 					<div class="input-group">
-						<input class="form-control" id="inputPostcode" type="text" required=""
+						<input class="form-control" id="inputPostcode" type="text" required="" readonly="readonly"
 						 name="c_zipcode" placeholder="우편번호">
 						<span class="input-group-btn">
 							<button id="btn-zip" class="btn btn-success" type="button" onclick="sample6_execDaumPostcode()">우편번호찾기 <i class="fa fa-home"></i></button>
