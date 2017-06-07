@@ -5,7 +5,7 @@
   
 <mapper namespace="kostyle.login.mappers.loginMapper">
 
-  <select id="cuslogin" resultType="CustomerVO" parameterType="LoginDTO">
+  <select id="cuslogin" parameterType="LoginDTO" resultType="CustomerVO">
   	select c_num, c_id, c_name, p_powernum, c_gender, c_birth from customer
   		where c_id=#{cus_id} and c_pass = #{user_pass}
   </select>
