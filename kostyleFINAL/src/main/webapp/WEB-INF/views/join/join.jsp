@@ -40,7 +40,7 @@
 			</h1>
 		</div>
 
-		<form class="form-horizontal" action="join" method="post">
+		<form class="form-horizontal" action="join" method="post" onsubmit="return checkValue()">
 		
 		<div id="terms">
 		<h3>이용약관 동의</h3>
@@ -281,13 +281,13 @@
 				<div class="col-sm-6">
 					<div class="input-group">
 						<input class="form-control" id="inputId" type="text" name="c_id" required=""
-						 onkeypress="id_validation();"	placeholder="아이디를 입력해 주세요" autocomplete="off">
+						 onkeyup="id_validation();"	placeholder="아이디를 입력해 주세요" autocomplete="off">
 						<span class="input-group-btn">
 							<button id="btn-overlap" class="btn btn-success" type="button" onclick="overlapId();">중복체크 <i class="fa fa-check spaceLeft"></i></button>
 						</span>
 					</div>
-					<span id="m_id"></span>
-					<p class="help-block">영문소문자/숫자, 4~16자</p>
+					<span id="m_id" class="error"></span>
+					<p class="help-block">영문/숫자 조합, 6~16자</p>
 				</div>
 			</div>
 
@@ -295,8 +295,8 @@
 				<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="inputPassword" type="password" required=""
-					 onkeypress="pass_validation();" name="c_pass" placeholder="비밀번호">
-					<span id="m_pass"></span>
+					 onkeyup="pass_validation();" name="c_pass" placeholder="비밀번호">
+					<span id="m_pass" class="error"></span>
 					<p class="help-block">영문/숫자/특수문자 조합, 4~16자</p>
 				</div>
 			</div>
@@ -305,8 +305,8 @@
 				<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 확인</label>
 				<div class="col-sm-6">
 					<input class="form-control" id="inputPasswordCheck" type="password" required=""
-					 onkeypress="pass2_validation();" name="c_pass2" placeholder="비밀번호 확인">
-					<span id="m_pass2"></span>
+					 onkeyup="pass2_validation();" name="c_pass2" placeholder="비밀번호 확인">
+					<span id="m_pass2" class="error"></span>
 				</div>
 			</div>
 
@@ -322,8 +322,8 @@
 				<label class="col-sm-3 control-label" for="inputAdress">주소</label>
 				<div class="col-sm-6">
 					<div class="input-group">
-						<input class="form-control" id="inputPostcode" type="text" required=""
-						 name="c_zipcode" placeholder="우편번호" readonly="readonly">
+						<input class="form-control" id="inputPostcode" type="text" required="" readonly="readonly"
+						 name="c_zipcode" placeholder="우편번호">
 						<span class="input-group-btn">
 							<button id="btn-zip" class="btn btn-success" type="button" onclick="sample6_execDaumPostcode()">우편번호찾기 <i class="fa fa-home"></i></button>
 						</span>
@@ -353,8 +353,8 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputNumber" type="tel" required="" placeholder="- 없이 입력해 주세요" name="c_phonenumber" autocomplete="off">
-					<span id="m_phone"></span>
+					<input class="form-control" id="inputNumber" type="text" required="" placeholder="- 없이 입력해 주세요" name="c_phonenumber" autocomplete="off">
+					<span id="m_phone" class="error"></span>
 					<h5> sms로 KOStyle의 소식을 받아보겠습니다.  &nbsp;<input name="c_sms" id="inputSms"
 					 type="checkbox"></h5>
 				</div>

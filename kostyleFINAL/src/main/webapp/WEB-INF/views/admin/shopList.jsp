@@ -30,7 +30,7 @@
 </head>
 <body>
 
-등록여부, 신청날짜
+신청날짜, 엑셀 다운로드, 선택삭제, 수정
 <br><br><br>
 <!-- shoppingmall list -->
 	<div id="shopList">
@@ -40,33 +40,38 @@
  		<span>번호</span>
  		<span>쇼핑몰명</span>
  		<span>쇼핑몰 URL</span>
+ 		<span>등록여부</span>
  	</div>
  	
- 	<c:forEach items="${list }" var="ShoppingMallAdmin">
+ 	<c:forEach items="${list }" var="ShopStateAdmin">
  		<div>
  			<span>
- 				<input type="checkbox" name="s_num" id="check" value="${ShoppingMallAdmin.s_num }">
+ 				<input type="checkbox" name="s_num" id="check" value="${ShopStateAdmin.shop.s_num }">
  			</span>
  			
- 			<span class="shopInfo" id="s_num">${ShoppingMallAdmin.s_num }</span>
+ 			<span class="shopInfo" id="s_num">${ShopStateAdmin.shop.s_num }</span>
  			<span class="shopInfo" id="s_sname">
- 				<a class="s_sname" data-toggle="modal" data-target="#myModal">${ShoppingMallAdmin.s_sname }</a>
+ 				<a class="s_sname" data-toggle="modal" data-target="#myModal">${ShopStateAdmin.shop.s_sname }</a>
  			</span>
- 			<span style="display: none;" class="shopInfo" id="s_image" >${ShoppingMallAdmin.s_image }</span>
  			<span class="shopInfo" id="s_shopurl">
- 				<a href="${ShoppingMallAdmin.s_shopurl }"> ${ShoppingMallAdmin.s_shopurl }</a>
- 				</span>
- 			<span style="display: none;" class="shopInfo" id="s_shopreg" >${ShoppingMallAdmin.s_shopreg }</span>
- 			<span style="display: none;" class="shopInfo" id="s_age" >${ShoppingMallAdmin.s_age }</span>
- 			<span style="display: none;" class="shopInfo" id="s_searchurl" >${ShoppingMallAdmin.s_searchurl }</span>
- 			<span style="display: none;" class="shopInfo" id="s_manager" >${ShoppingMallAdmin.s_manager }</span>
- 			<span style="display: none;" class="shopInfo" id="s_phonenumber" >${ShoppingMallAdmin.s_phonenumber }</span>
- 			<span style="display: none;" class="shopInfo" id="s_email" >${ShoppingMallAdmin.s_email }</span>
+ 				<a href="${ShopStateAdmin.shop.s_shopurl }"> ${ShopStateAdmin.shop.s_shopurl }</a>
+ 			</span>
+			<span class="shopInfo" id="shopstate">${ShopStateAdmin.shopState }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_image" >${ShopStateAdmin.shop.s_image }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_shopreg" >${ShopStateAdmin.shop.s_shopreg }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_age" >${ShopStateAdmin.shop.s_age }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_searchurl" >${ShopStateAdmin.shop.s_searchurl }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_manager" >${ShopStateAdmin.shop.s_manager }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_phonenumber" >${ShopStateAdmin.shop.s_phonenumber }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_email" >${ShopStateAdmin.shop.s_email }</span>
+ 			<span style="display: none;" class="shopInfo" id="ad_hitcount">${ShopStateAdmin.adShop.ad_hitcount }</span>
+ 			<span style="display: none;" class="shopInfo" id="s_grade">${ShopStateAdmin.adShop.s_grade }</span>
  		</div>
  	</c:forEach>
  	
  		<div>
- 			<button type="submit" id="adShop" class="btn btn-primary">ADSHOP</button>
+ 			<button type="button" class="btn btn-primary" id="adShop" >쇼핑몰 등록</button>
+	        <button type="button" class="btn btn-danger" id="delAdShop">등록 취소</button>
 		 </div>
 
 	 </form>
@@ -101,8 +106,13 @@
 								<div class="col-md-12" id="m_image">이미지</div>
 							</div>
 							<div class="row">
+								<div class="col-md-12 m_midtitle">기본정보</div>
+							</div>
+							<div class="row">
 								<div class="col-md-3">쇼핑몰 번호</div>
-								<div class="col-md-9" id="m_num"></div>
+								<div class="col-md-3" id="m_num"></div>
+								<div class="col-md-3">등록 여부</div>
+								<div class="col-md-3" id="m_shopstate"></div>
 							</div>
 							<div class="row">
 								<div class="col-md-3">쇼핑몰명</div>
@@ -110,7 +120,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-3">사이트 URL</div>
-								<div class="col-md-9" id="m_shopurl">${ShoppingMallAdmin.s_shopurl }</div>
+								<div class="col-md-9" id="m_shopurl">${ShopStateAdmin.shop.s_shopurl }</div>
 							</div>
 							<div class="row">
 								<div class="col-md-3">사업자번호</div>
@@ -125,6 +135,9 @@
 								<div class="col-md-12" id="m_searchurl"></div>
 							</div>
 							<div class="row">
+								<div class="col-md-12 m_midtitle">담당자</div>
+							</div>
+							<div class="row">
 								<div class="col-md-3">담당자</div>
 								<div class="col-md-9" id="m_manager"></div>
 							</div>
@@ -135,6 +148,15 @@
 							<div class="row">
 								<div class="col-md-3">Email</div>
 								<div class="col-md-9" id="m_email"></div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 m_midtitle">추가정보</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">방문자수</div>
+								<div class="col-md-3" id="m_hitcount"></div>
+								<div class="col-md-3">심사점수</div>
+								<div class="col-md-3" id="m_grade"></div>
 							</div>
 							
 								
@@ -169,6 +191,7 @@ lll
 		$(".modal-title").html($(this).parent().find(".s_sname").text());
 		$("#m_image").html($(this).parent().find("#s_image").text());
 		$("#m_num").html($(this).parent().find("#s_num").text());
+		$("#m_shopstate").html($(this).parent().find("#shopstate").text());
 		$("#m_sname").html($(this).parent().find(".s_sname").text());
 		$("#m_shopurl").html($(this).parent().find("#s_shopurl").text());
 		$("#m_shopreg").html($(this).parent().find("#s_shopreg").text());
@@ -177,29 +200,81 @@ lll
 		$("#m_manager").html($(this).parent().find("#s_manager").text());
 		$("#m_phonenumber").html($(this).parent().find("#s_phonenumber").text());
 		$("#m_email").html($(this).parent().find("#s_email").text());
+		$("#m_hitcount").html($(this).parent().find("#ad_hitcount").text());
+		$("#m_grade").html($(this).parent().find("#s_grade").text());
 	});
 	
-	
+
+//모달창에서 adshoppingmall 등록하기
 	$("#adshopModal").on("click", function(){
 		
 		var s_num = $("#m_num").html();
-		alert(s_num);
+		var checkState = $("#m_shopstate").html();
 		
-		$.ajax({
-			type:'post',
-			url:'/admin/shopModal',
-			headers:{
-				"Content-Type":"application/json"},
-			dataType:'text',
-			data: JSON.stringify({s_num:s_num}),
-			success:function(result){
-				alert("dd");
+		if(checkState == "등록"){
+			alert("이미 등록된 쇼핑몰입니다.");
+		}else{
+			$.ajax({
+				type:'post',
+				url:'/admin/shopModal',
+				headers:{
+					"Content-Type":"application/json"},
+				dataType:'text',
+				data: JSON.stringify({s_num:s_num}),
+				success:function(result){
+					alert("dd");
+				}
+			});
+		}
+	});
+	
+	
+	//리스트에서 adshoppingmall 등록하기
+	$("#adShop").on("click",function(){
+		
+		if($("#shopList :checked").size()<1){
+			alert("선택ㄱㄱ");
+		}else{
+			var check = true;
+			$("#shopList :checked").each(function(i,item){
+				var checkState = $(this).parent().nextAll("#shopstate").text();
+				if(checkState == "등록"){
+					check=false;
+				}
+			});
+			if(check){
+				$("#adShopList").submit();
+			}else{
+				alert("다시 선택");
 			}
-		});
-		
-		
+		};
 	});
 
+	
+	$("#delAdShop").on("click", function(){
+
+		if($("#shopList :checked").size()<1){
+			alert("선택ㄱㄱ");
+		}else{
+			var check = true;
+			$("#shopList :checked").each(function(i,item){
+				var checkState = $(this).parent().nextAll("#shopstate").text();
+				if(checkState == "미등록"){
+					check=false;
+				}
+			});
+			if(check){
+				$("#adShopList").attr("action","/admin/deleteAdShop");
+				$("#adShopList").submit();
+			}else{
+				alert("다시 선택");
+			}
+		};
+		
+	});
+	
+	
+	
 /* 	
 	$("#adShopList").submit(function(event){
 		event.preventDefault();

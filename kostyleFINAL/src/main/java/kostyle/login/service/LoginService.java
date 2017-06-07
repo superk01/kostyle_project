@@ -1,5 +1,7 @@
 package kostyle.login.service;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -17,5 +19,11 @@ public interface LoginService {
 	public void cusLogout() throws Exception;
 	public void shopLogout() throws Exception;
 	
+	
+	public void keepCusLoginLimit(String cus_id, String sessionId, Date next);
+	public CustomerVO checkCusSessionKey(String cookieVal);
+	
+	public void keepShopLoginLimit(int adshop_id, String sessionId, Date next);
+	public AdShopVO checkShopSessionKey(String cookieVal);
 	
 }

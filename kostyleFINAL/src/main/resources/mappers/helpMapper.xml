@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="kostyle.help.mappers.helpMapper">
+	<cache />
+
+	<!-- 여기부터 게시판 관련 -->
+	<!-- 고객문의 게시판 글 목록 보기(전체) -->
+	<select id="list" resultType="BoardVO" parameterType="SearchCriteria">
+		select q_num as q_Num, q_title as q_Title, q_content as q_Content, q_date as q_Date, c_id as c_Id, s_sname as s_Name, q_secret as q_Secret 
+				from question q 
+                     INNER JOIN customer c ON q.c_num=c.c_num
+                     INNER JOIN adshoppingmall a ON q.s_num=a.s_num
+                     INNER JOIN shoppingmall s ON s.s_num=q.s_num
+                    	<include refid="search"></include>
+                     order by q_num desc
+	</select>
+	
+	<select id="adShoppingMallList" resultType="AdShoppingMallHelp">
+		select 
+		(SELECT DISTINCT s_sname 
+		 from ADSHOPPINGMALL a, SHOPPINGMALL s 
+		 where s.s_num = a.s_num 
+		 and s.s_num = ad.s_num) as S_Name from adshoppingmall ad
+	</select>
+	
+	<insert id="insert" parameterType="BoardVO">
+		insert into question 
+		(q_num, q_title, q_content, q_date, c_num, s_num, q_secret)
+		VALUES
+		((select nvl(max(q_num+1),1) from question),#{q_Title},#{q_Content},sysdate,#{c_Num},#{s_Num},#{q_Secret})
+	</insert>
+	<select id="getS_Num" parameterType="String" resultType="String">
+		select s_num from shoppingmall where s_sname = #{value}
+	</select>
+	<select id="detail" resultType="BoardVO" parameterType="int">
+		<!-- select temp.*,(SELECT c.c_id from question q, customer c where q.c_num=c.c_num 
+              and q_num=#{value})as c_Id 
+			  from ((SELECT * FROM question)temp) where q_num=#{value} -->
+			  
+		<!-- select * from question where q_num = #{value} -->
+		
+		select q_num as q_Num, q_title as q_Title, q_content as q_Content, q_date as q_Date, c_id as c_Id, s_sname as s_Name, q_secret as q_Secret 
+				from question q 
+                     INNER JOIN customer c ON q.c_num=c.c_num
+                     INNER JOIN adshoppingmall a ON q.s_num=a.s_num
+                     INNER JOIN shoppingmall s ON s.s_num=q.s_num
+                     where q_num=#{value}
+	</select>
+	<update id="update" parameterType="BoardVO">
+		update question set 
+			q_title = #{q_Title},
+			q_content = #{q_Content}
+			where q_num = #{q_Num}
+	</update>
+	<delete id="delete">
+		delete from question where q_num = #{value}
+	</delete>
+	<select id="totalCount" resultType="int">
+		select count(q_num) from question
+	</select>
+	
+	<!-- 검색관련 include -->
+	<sql id="search">
+		<if test="searchType != null">
+				<where>
+					<!-- <foreach collection="searchType" item="searchType"> -->
+						${searchType} LIKE '%'||#{keyWord}||'%' 
+					<!-- </foreach> -->
+				</where>
+		</if>
+		<!-- <if test="searchMine !=null">
+			<where>
+				c_num = #{searchMine}
+			</where>
+		</if> -->
+	</sql>
+	<!-- "여기까지 게시판 관련" -->
+	
+	<!-- "아래부터는 Relpy 관련임." -->
+	
+	<insert id="R_insert" parameterType="ReplyVO">
+		insert into answer (as_num, q_num, as_content, c_id, as_date)
+		values ((select nvl(max(as_num)+1,1) from answer),#{q_Num}, #{as_Content}, #{c_Id}, sysdate)
+	</insert>
+	<select id="R_list" resultType="ReplyVO" parameterType="int">
+		select * from answer where q_num = #{q_num} order by as_num desc
+	</select>
+	<update id="R_update">
+		update answer set 
+			as_title = #{as_Title},
+			as_content = #{as_Content}
+			where as_num = #{as_Num}
+	</update>
+	<delete id="R_delete" parameterType="int">
+		delete * from answer where as_num=#{as_num}
+	</delete>
+	<select id="R_detail" resultType="ReplyVO">
+		select * from answer where as_num=#{as_num}
+	</select>
+	<!-- 여기까지 Reply 관련부분임. -->
+	
+	
+	
+	<!-- 기존에 사용하던 board.xml부분 -->
+	
+	<!-- <select id="countBoard" resultType="int" parameterType="Search">
+		select count(*) from question
+		<if test="area != null">
+				<where>
+					<foreach collection="area" item="area">
+						${area} LIKE #{searchKey}
+					</foreach>
+				</where>
+			</if>
+		<if test="searchMine !=null">
+			<where>
+			
+				c_num = #{searchMine}
+			</where>
+		</if>
+	</select>
+	
+	
+	<select id="searchMineBoard" resultType="C_Board">
+		select * from customer where c_num = ${value}
+	</select>
+	
+	<select id="add" resultType="Integer">
+		select max(q_num) from question
+	</select>
+
+	
+	
+	
+	<select id="getC_Id" parameterType="int" resultType="String">
+		select c_id from customer where c_num = #{value}
+	</select>
+	
+	<select id="addAs_Num" resultType="integer">
+		select max(as_num) from answer
+	</select>
+	
+	<insert id="insertAnswer" parameterType="Answer">
+		insert into answer
+		(as_num,as_content,as_title,as_date,q_num)
+		VALUES
+		(#{as_Num},#{as_Content},#{as_Title},sysdate,#{q_Num})
+	</insert>
+	<select id="ListAnswer" resultType="Answer">
+		select * from answer where q_Num = #{value} order by as_num desc
+	</select>
+	<select id="countAnswer" resultType="int">
+		select count(*) from answer where q_num = #{value}
+	</select>
+
+	
+	<select id="getC_Num" parameterType="String" resultType="String">
+		select c_num from customer where c_id = #{value}
+	</select> -->
+	
+	
+	
+	<!-- 옛 board.xml
+	
+	<insert id="insertBoard" parameterType="board">
+		insert into board3 (b_id, b_name, b_title, b_content, b_pwd, b_date, b_hit)
+		values(#{b_id},#{b_name},#{b_title},#{b_content},#{b_pwd},sysdate,0)
+	</insert>
+	<select id="selectBoard" resultType="integer">
+		select max(b_id) from board3
+	</select>
+	<select id="listBoard" resultType="Board" parameterType="Search">
+		select * from board3 
+		<if test="area != null">
+			<where>
+				<foreach collection="area" item="area" separator="or" >
+					${area} LIKE #{searchKey}
+				</foreach>
+			</where>
+		</if>
+		order by b_id desc
+	</select>
+	<select id="detailBoard" parameterType="int" resultType="board">
+		select * from board3 where b_id = #{value}
+	</select>
+	
+	<update id="updateBoard" parameterType="board">
+		update board3 set b_title = #{b_title}, b_content = #{b_content}
+		where b_id = #{b_id}
+	</update>
+	<update id="updateHit" parameterType="int">
+		update board3 set b_hit = b_hit+1
+		where b_id = #{value}
+	</update>
+	<delete id="deleteBoard" parameterType="int">
+		delete from board3 where b_id = #{value}
+	</delete>
+	<select id="countBoard" parameterType="search" resultType="int">
+		select count(*) from board3
+		 <if test="area != null">
+			<where>
+				<foreach collection="area" item="area" separator="or">
+					${area} LIKE #{searchKey}
+				</foreach>
+			</where>
+		</if> 
+	</select>
+	<select id="selectReply" resultType="integer">
+		select max(r_id) from reply
+	</select>
+	
+	<insert id="insertReply" parameterType="reply">
+		insert into reply (r_id, r_name, r_content, b_id) values (#{r_id},#{r_name},#{r_content},#{b_id})
+	</insert>
+	<select id="replyList" parameterType="int" resultType="reply">
+		select * from reply where b_id = #{value}
+	</select> 
+	q_num, s_num, q_num, q_title, q_content, q_date,(select count(*) from answer q_num = q.q_num)
+	<select id="list" resultType="BoardVO" parameterType="SearchCriteria">
+		select q_num as q_Num, q_title as q_Title, q_content as q_Content, q_date as q_Date, q_secret as q_Secret,
+		
+		(SELECT DISTINCT c.c_id 
+		from QUESTION q, CUSTOMER c 
+		where q.C_NUM = c.C_NUM 
+		and c.c_num = qu.c_num) as c_Id,
+		
+		(SELECT DISTINCT s_sname 
+		from ADSHOPPINGMALL a, SHOPPINGMALL s, QUESTION q 
+		where q.s_num = a.s_num 
+		and s.s_num = q.s_num 
+		and q.q_num = qu.q_num) as s_Name
+		from question qu
+		
+		
+		<include refid="search"></include>
+			
+			order by q_num desc
+	</select>
+	-->
+</mapper>
+
