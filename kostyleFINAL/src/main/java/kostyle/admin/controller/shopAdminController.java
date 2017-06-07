@@ -120,6 +120,7 @@ public class shopAdminController {
 		}
 		return entity;
 	}
+	
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	@RequestMapping(value="/deleteAdShop", method=RequestMethod.POST)
 	public String deleteAdShop(String[] s_num, RedirectAttributes rttr)throws Exception{
