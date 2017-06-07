@@ -47,6 +47,11 @@ public class ShopAdminDAOImpl implements ShopAdminDAO{
 	public List<AdShoppingMallAdmin> adShopList() throws Exception {
 		return session.selectList(namespace+".adShopList");
 	}
+
+	@Override
+	public void deleteAdShop(String s_num) throws Exception {
+		session.delete(namespace+".deleteAdShop");
+	}
 	
 
 }

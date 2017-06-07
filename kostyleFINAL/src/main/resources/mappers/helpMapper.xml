@@ -37,10 +37,18 @@
 		select s_num from shoppingmall where s_sname = #{value}
 	</select>
 	<select id="detail" resultType="BoardVO" parameterType="int">
-		select temp.*,(SELECT c.c_id from question q, customer c where q.c_num=c.c_num 
+		<!-- select temp.*,(SELECT c.c_id from question q, customer c where q.c_num=c.c_num 
               and q_num=#{value})as c_Id 
-			  from ((SELECT * FROM question)temp) where q_num=#{value}
+			  from ((SELECT * FROM question)temp) where q_num=#{value} -->
+			  
 		<!-- select * from question where q_num = #{value} -->
+		
+		select q_num as q_Num, q_title as q_Title, q_content as q_Content, q_date as q_Date, c_id as c_Id, s_sname as s_Name, q_secret as q_Secret 
+				from question q 
+                     INNER JOIN customer c ON q.c_num=c.c_num
+                     INNER JOIN adshoppingmall a ON q.s_num=a.s_num
+                     INNER JOIN shoppingmall s ON s.s_num=q.s_num
+                     where q_num=#{value}
 	</select>
 	<update id="update" parameterType="BoardVO">
 		update question set 
@@ -79,7 +87,7 @@
 		values ((select nvl(max(as_num)+1,1) from answer),#{q_Num}, #{as_Content}, #{c_Id}, sysdate)
 	</insert>
 	<select id="R_list" resultType="ReplyVO" parameterType="int">
-		select * from answer where q_num = #{q_num}
+		select * from answer where q_num = #{q_num} order by as_num desc
 	</select>
 	<update id="R_update">
 		update answer set 
@@ -90,7 +98,9 @@
 	<delete id="R_delete" parameterType="int">
 		delete * from answer where as_num=#{as_num}
 	</delete>
-	
+	<select id="R_detail" resultType="ReplyVO">
+		select * from answer where as_num=#{as_num}
+	</select>
 	<!-- 여기까지 Reply 관련부분임. -->
 	
 	

@@ -19,49 +19,65 @@
 	         <li class="replyLi" data-as_Num={{as_Num}}>
              <i class="fa fa-comments bg-blue"></i>
              <div class="timeline-item" >
-                <span class="time">
-                  <i class="fa fa-clock-o"></i>{{as_Date}}
-                </span>
+                <span class="time"> <i class="fa fa-clock-o"></i>{{prettifyDate as_Date}}</span>
                 <h3 class="timeline-header"><strong>{{as_Num}}</strong> -{{c_Id}}</h3>
                 <div class="timeline-body">{{as_Content}} </div>
-								<div class="timeline-footer">
-								{{#eqReplyer c_Id }}
-                  <a class="btn btn-primary btn-xs" 
-									data-toggle="modal" data-target="#modifyModal">Modify</a>
-								{{/eqReplyer}}
-							  </div>
-	            </div>			
-           </li>
+								<div class="timeline-footer"></div></div></li>
         {{/each}}
 </script> 
 <script type="text/javascript">
-/* $(function(){
-	$('.update').on('click',function(){
-		location.href = "updateForm.a?q_num=${board.q_Num}";
+function showModify(as_Num){
+	/* $('#modifyReply').show("slow"); */
+	alert(as_Num);
+	$.ajax({
+		type:"get",
+		url:"${path}/replies/detail/"+as_Num,
+		success:function(result){
+			$('#modifyReply').html(result);
+			$('#modifyReply').css("visibility","visible");
+		}
 	});
 	
 	
-} */
-/* function fn_update(){
-	location.href = "updateForm.a?q_num=${board.q_Num}";
 }
-function fn_delete(){
-	location.href = "deleteAction.a?q_num=${board.q_Num}";
-}
-function fn_list(){
-	location.href = "listAction2.a";
-} */
 
 $(document).ready(function(){
 	
 	
 	function getPage(pageInfo){
-		alert('getPage호출');
-		$.getJSON(pageInfo,function(data){
-			alert(data.list);
-			printData(data.list, $('#repliesDiv'), $('#template'));
-		});
+		alert(pageInfo);
+		
+			$.ajax({
+			type:'get',
+			url: pageInfo,
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"GET"
+			},
+			dataType:'json',
+			success : function(data){
+				alert(data);
+				alert("successHandler진입.");
+				var source = "";
+				$(data).each(function(){
+				alert(this.c_Id);
+ 				source += "<li class='replyLi' data-rno='"+this.ad_Num+"'>";
+ 				source += "<c:set var='data' value='val'/>"
+				source += "<c:if test='${val.c_Id eq login.c_id }'><button id='btnUpdateForm' type='button'>수정</button></c:if>"
+ 				source += "<c:if test='${val.c_Id == login.c_id }'><button id='btnRelpyDelete' type='button'>삭제</button></c:if>"
+ 				source += "<i class='fa fa-comments bg-blue'></i>";
+ 				source += "<div class='timeline-item' >";
+ 				source += "<span class='time'> <i class='fa fa-clock-o'></i>"+this.as_Date+"</span>";
+ 				source += "<h3 class='timeline-header'><strong>"+this.as_Num+"</strong> -"+this.c_Id+"</h3>";
+ 				source += "<div class='timeline-body'>"+this.as_Content+" </div>";
+ 				source += "<div class='timeline-footer'></div></div></li>";
+ 				
+				});
+				$('#repliesDiv').after(source);
+			}
+		}); 
 	}
+	
 	
 	var printData = function(replyArr, target, templateObject){
 		alert('printData');
@@ -85,6 +101,8 @@ $(document).ready(function(){
 		alert("remove");
 		location.href="/help/remove?q_Num=${board.q_Num}";
 	});
+	
+	/* 댓글 추가 */
 	$('#replyAddBtn').on('click', function(){
 		var replyer = $('#newReplyWriter').val();
 		var replytext = $('#newReplyText').val();
@@ -112,26 +130,73 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
+	/* 댓글 수정폼 소환 */
+	$('#btnUpdateForm').click(function(){
+		
+	});	
+	/* 댓글 수정 */
+	$('#btnReplyUpdate').click(function(){
+		$.ajax({
+			type:"put",
+			url:"${path}/reply/update/${reply.as_Num}",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			data:JSON.stringify({
+				as_Content : as_Content
+			}),
+			dataType:"text",
+			success: function(result){
+				if(result == "success"){
+					$("#modifyReply").hide();
+				}
+			}
+		});
+	});
+	/* 댓글 삭제 */
+	/* 댓글 보기 */
+	$('#repliesDiv').on('click',function(){
+		/* if($(".timeline li").size()>1){
+			return;
+		} */
+		getPage("/replies/${board.q_Num}");
+	});
 });
 
 </script>
+<style type="text/css">
+#modifyReply{
+	width: 350px;
+	height: 120px;
+	background-color: gray;
+	position: absolute;															/* 절대 좌표 */
+	top: 50%;
+	left: 50%;																	/* 가운데로 지정 */
+	margin-top: -50px;
+	margin-left: -150px;
+	padding: 10px;
+	z-index: 10;																/* 엘리먼트드 레벨? z-index가 클수록 화면 위로 보여진다. */
+	visibility: hidden;
+}
+</style>
 </head>
 <body>
 	<h2>글 상세보기</h2>
-			<table border="1">
+	<table border="1">
 		<tr height="30">
 			<td width="150">글번호</td>
 			<td width="150">${board.q_Num }</td>
-	
-		</tr>
-		<tr height="30">
-			<td width="150">작성자</td>
-			<td width="150">${board.c_Id }</td>
 			<td width="150">작성일</td>
 			<td width="150">
 				<fmt:formatDate value="${board.q_Date }" pattern="yyyy-MM-dd"/>
 			</td>
+		</tr>
+		<tr height="30">
+			<td width="150">작성자</td>
+			<td width="150">${board.c_Id }</td>
+			<td width="150">쇼핑몰</td>
+			<td width="150">${board.s_Name }</td>
+			
 		</tr>			
 		<%-- <tr height="30">
 			<td width="150">파일</td>
@@ -223,16 +288,20 @@ $(document).ready(function(){
 		    </span>
 		  </li>
 		</ul>
+		<div id="modifyReply">댓글 수정 화면 영역
+		
+		
+		</div>
 		   
-			<div class='text-center'>
+			<!-- <div class='text-center'>
 				<ul id="pagination" class="pagination pagination-sm no-margin ">
 
 				</ul>
 			</div>
-
+ -->
 		</div>
 		<!-- /.col -->
-	</div>
+	<!-- </div> -->
 
 
 </body>

@@ -45,6 +45,11 @@ public class ShopAdminServiceImpl implements ShopAdminService{
 	public List<AdShoppingMallAdmin> adShopList() throws Exception {
 		return dao.adShopList();
 	}
+
+	@Override
+	public void deleteAdShop(String s_num) throws Exception {
+		dao.deleteAdShop(s_num);
+	}
 	
 	
 

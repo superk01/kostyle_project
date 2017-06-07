@@ -38,8 +38,8 @@ public class LoginDAOImplTest {
 	@Test
 	public void testShopLogin() throws Exception {
 		LoginDTO dto = new LoginDTO();
-		dto.setAdshop_id(1234);
-		dto.setUser_pass("1234");
+		dto.setAdshop_id(444444);
+		dto.setUser_pass("4444");
 		
 		AdShopVO vo = dao.shopLogin(dto);
 		System.out.println("뽑아온 AdShopVO: "+vo);

@@ -30,6 +30,9 @@
 	select * from adshoppingmall order by s_num
 </select>
 
+<delete id="deleteAdShop">
+	delete from adshoppingmall where s_num = #{s_num}
+</delete>
 
 </mapper>  
 
