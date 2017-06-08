@@ -11,6 +11,14 @@
 			where s_num=#{s_num}
 	</update>
 
+	<select id="getNewSaleUrlList" resultType="String">
+		select s_newsaleurl from shoppingmall s, adshoppingmall a
+		where s.s_num = a.s_num
+	</select>
+	<select id="getDiscountUrlList" resultType="String">
+		select s_discounturl from shoppingmall s, adshoppingmall a
+		where s.s_num = a.s_num
+	</select>
 	
 	<!-- <select id="tabCloset" parameterType="String" resultType="Closet">
 		select * from closet where c_num = #{c_num} order by clo_num

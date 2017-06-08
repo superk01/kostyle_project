@@ -1,5 +1,7 @@
 package discount.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -19,11 +21,22 @@ public class DiscountDAOImplTest {
 	@Inject
 	private DiscountDAO dao;
 	
-	
 	private static Logger logger = LoggerFactory.getLogger(DiscountDAOImplTest.class);
-
 	
 	@Test
+	public void testGetUrlList(){
+		List<String> newSaleUrlList= dao.getNewSaleUrlList();
+		System.out.println("newSaleUrlList: "+newSaleUrlList);
+		
+		List<String> discountUrlList = dao.getDiscountUrlList();
+		System.out.println("discountUrlList: "+discountUrlList);
+		
+	}
+	
+	
+//----------------------------------------------------------------------------------------------	
+	//DB에서 부족한 세일관련한 부분만 update로 채워넣기. null허용
+/*	@Test
 	public void testAddSaleUrlInfoShop(){
 		TempShopVO vo = new TempShopVO();
 		
@@ -69,7 +82,7 @@ public class DiscountDAOImplTest {
 		dao.addSaleUrlInfoShop(vo);
 		
 		
-/*		vo.setS_num("s_08");
+		vo.setS_num("s_08");
 		vo.setS_discounturl("");
 		vo.setS_newsaleurl("");
 		
@@ -77,10 +90,18 @@ public class DiscountDAOImplTest {
 		vo.setS_discounturl("");
 		vo.setS_newsaleurl("");
 			 		
-			dao.addSaleUrlInfoShop(vo);*/
+			dao.addSaleUrlInfoShop(vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	*/
+	
+	
+	
+	
+	
+	
+	
 
 }//class

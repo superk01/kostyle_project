@@ -8,7 +8,8 @@ public interface DiscountDAO {
 	
 	public void addSaleUrlInfoShop(TempShopVO vo) throws Exception;
 	
-	
+	public List<String> getNewSaleUrlList();
+	public List<String> getDiscountUrlList();
 	
 	
 }//interface

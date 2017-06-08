@@ -111,6 +111,12 @@ public class ClosetDAOImpl implements ClosetDAO {
 		int re= session.insert(namespace +".insertClosetPrd", closetPrd );
 		return re;
 	}
+	//찜상품추가시 다른사람의 같은상품에대한 찜카운트연동함수
+	@Override
+	public void zzimIncreaseTransaction(String clo_prdUrl) {
+		clo_prdUrl = prdUrlRepair(clo_prdUrl);//http://가있으면 지우는함수.
+		session.update(namespace+".zzimIncreaseTransaction", clo_prdUrl);
+	}
 	
 	//해당상품의 중복여부 우선확인
 	@Override
@@ -155,7 +161,7 @@ public class ClosetDAOImpl implements ClosetDAO {
 		URL url =null;
 		BufferedReader br =null;
 		//String address="http://66girls.co.kr/product/detail.html?product_no=67185&cate_no=81&display_group=2";
-		String address="http://hotping.co.kr/product/detail.html?product_no=19218&cate_no=26&display_group=1";
+		//String address="http://hotping.co.kr/product/detail.html?product_no=19218&cate_no=26&display_group=1";
 		
 		/*String address2= "http://66girls.co.kr/product/search.html?banner_action=&keyword=%EA%B0%80%EB%94%94%EA%B1%B4";
 		address2 = URLDecoder.decode(address2);
@@ -344,10 +350,20 @@ public class ClosetDAOImpl implements ClosetDAO {
 		session.update(namespace+".moveClosetPrd",closetPrd);
 	}
 
+	
+	
+	
 	//상품 삭제
 	@Override
 	public void deleteClosetPrd(int clo_detail_num) {
 		session.delete(namespace+".deleteClosetPrd", clo_detail_num);
+		
+	}
+	
+	//삭제시 다른사람의 같은상품에대한 찜카운트연동함수
+	@Override
+	public void zzimDecreaseTransaction(int clo_detail_num) {
+		session.update(namespace+".zzimDecreaseTransaction", clo_detail_num);
 		
 	}
 	

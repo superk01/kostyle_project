@@ -27,16 +27,16 @@ public class SearchServiceImpl implements SearchService{
 	public List<SearchVO> doSearch(String keyword) {
 		List<String> url = searchDao.getSearchUrl();
 		List<JsoupThread> threads = new ArrayList<>();
-		for(int i=0; i<url.size()-1; i++){
+		for(int i=0; i<url.size(); i++){
 			threads.add(new JsoupThread(url.get(i)+keyword));
 			threads.get(i).start();
 		}
 		List<SearchVO> result = new ArrayList<>();
 		List<SearchVO> resultList = null;
-		for(int i=0; i<url.size()-1; i++){
+		for(int i=0; i<url.size(); i++){
 			int count=0;
 			while(count<url.size()){
-				if(threads.get(i).getState()==State.TERMINATED){
+				if(threads.get(i).getState()==State.TERMINATED){ //TERMINATED = 쓰레드의 작업이 종료된 상태
 					resultList=threads.get(i).getResult();
 					for(int j=0; j<resultList.size(); j++){
 						result.add(resultList.get(j));
