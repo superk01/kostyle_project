@@ -37,7 +37,7 @@ public class HelpBoardController {
 		
 		PageMaker maker = new PageMaker();									//페이징 처리를 위한 객체(책의 내용과 동일하다.)		
 		maker.setCri(cri);													//초기의 페이지 세팅.
-		maker.setTotalCount(service.totalCount());							//모들 글 개수를 카운팅하여 페이지를 계산한다.
+		maker.setTotalCount(service.totalCount(cri));							//모들 글 개수를 카운팅하여 페이지를 계산한다.
 		System.out.println("HelpController-PageMaker:"+maker);
 		System.out.println("HelpController-Criteria:"+cri);
 		mav.addObject("pageMaker", maker);									//데이터 전달.

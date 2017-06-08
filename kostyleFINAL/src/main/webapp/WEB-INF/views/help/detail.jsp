@@ -54,26 +54,12 @@ $(document).ready(function(){
 				"Content-Type":"application/json",
 				"X-HTTP-Method-Override":"GET"
 			},
-			dataType:'json',
+			dataType:'text',
 			success : function(data){
-				alert(data);
+				/* alert(data); */
 				alert("successHandler진입.");
-				var source = "";
-				$(data).each(function(){
-				alert(this.c_Id);
- 				source += "<li class='replyLi' data-rno='"+this.ad_Num+"'>";
- 				source += "<c:set var='data' value='val'/>"
-				source += "<c:if test='${val.c_Id eq login.c_id }'><button id='btnUpdateForm' type='button'>수정</button></c:if>"
- 				source += "<c:if test='${val.c_Id == login.c_id }'><button id='btnRelpyDelete' type='button'>삭제</button></c:if>"
- 				source += "<i class='fa fa-comments bg-blue'></i>";
- 				source += "<div class='timeline-item' >";
- 				source += "<span class='time'> <i class='fa fa-clock-o'></i>"+this.as_Date+"</span>";
- 				source += "<h3 class='timeline-header'><strong>"+this.as_Num+"</strong> -"+this.c_Id+"</h3>";
- 				source += "<div class='timeline-body'>"+this.as_Content+" </div>";
- 				source += "<div class='timeline-footer'></div></div></li>";
- 				
-				});
-				$('#repliesDiv').after(source);
+				
+				$('#repliesDiv').after(data);
 			}
 		}); 
 	}
@@ -130,10 +116,24 @@ $(document).ready(function(){
 			}
 		});
 	});
-	/* 댓글 수정폼 소환 */
-	$('#btnUpdateForm').click(function(){
-		
-	});	
+ 	/* 댓글 수정폼 소환 */
+/*	$('#btnUpdateForm').click(function(){
+		alert('클릭확인!!!');
+		var as_Num = $(this).parent().attr('data-rno');
+		alert(as_Num);
+		$.ajax({
+			url:"${path}/replies/"+as_Num,
+			type : 'post',
+			headers:{
+				"Content-Type":"application/json"
+			},
+			dataType:"text",
+			success: function(result){
+				$(this).parent().slideDown(result);
+			}
+			
+		})
+	}); */	
 	/* 댓글 수정 */
 	$('#btnReplyUpdate').click(function(){
 		$.ajax({
@@ -153,12 +153,90 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	/* 댓글 보기 */
+	
 	/* 댓글 삭제 */
+	$('.timeline').on('click', '.replyLi #btnRelpyDelete', function(){
+		alert('삭제버튼');
+		var as_Num = $(this).parent().attr('data-rno');
+		alert(as_Num);
+		$.ajax({
+			url:"${path}/replies/"+as_Num,
+			type : 'delete',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"DELETE"
+			},
+			dataType:"text",
+			success: function(result){
+				/* alert("success:"+result);
+				$('#repliesDiv').after(data); */
+				if(result=="delete"){
+					getPage("${path}/replies/${board.q_Num}");
+				}
+			}
+			
+		});
+	});
+	/* 댓글 수정 폼 */
+	$('.timeline').on('click', '.replyLi #btnUpdateForm', function(){
+		alert('수정폼 소환 버튼');
+		var $replyLi = $(this).parent();
+		var as_Num = $(this).parent().attr('data-rno');
+		alert(as_Num);
+		$.ajax({
+			url:"${path}/replies/"+as_Num,
+			type : 'post',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"POST" 
+			},
+			dataType:"text",
+			success: function(result){
+				console.log("success핸들러:"+result);
+				var reply = result;
+				console.log(reply);
+				var source = "<div class='updateform'><textarea row='3' cols='50' name='as_Content' id='as_Content'></textarea>";
+				source += "<input type='button' id='updateReply' value='수정'>";
+				source += "<input type='button' id='updateCancel' value='취소'>";
+				$replyLi.find('.timeline-footer').append(source);
+			}
+			
+		});
+	});
+	/* 댓글 수정 작업. */
+	$('.timeline').on('click', '.replyLi #updateReply', function(){
+		alert('수정 작업 ㄱ');
+		var as_Num = $(this).closest('.replyLi').attr('data-rno');
+		var as_Content = $(this).closest('.updateform').find('textarea[name=as_Content]').val();
+		alert(as_Content);
+		alert(as_Num);
+		$.ajax({
+			url:"${path}/replies/"+as_Num,
+			type: "put",
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"PUT" 
+			},
+			dataType:"text",
+			data : JSON.stringify({
+				as_Content : as_Content
+			}),
+			success: function(result){
+				if(result=='success'){
+					getPage("${path}/replies/${board.q_Num}");
+				}
+			}
+		});
+	});
 	/* 댓글 보기 */
 	$('#repliesDiv').on('click',function(){
-		/* if($(".timeline li").size()>1){
+		alert('#repliesDiv');
+		if($('li.replyLi').length>1){
+			console.log($('li.replyLi').length);
 			return;
-		} */
+		} 
 		getPage("/replies/${board.q_Num}");
 	});
 });

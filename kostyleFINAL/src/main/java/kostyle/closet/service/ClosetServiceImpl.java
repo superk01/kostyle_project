@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kostyle.closet.domain.Closet;
 import kostyle.closet.domain.ClosetPrd;
@@ -317,9 +318,22 @@ public class ClosetServiceImpl implements ClosetService {
 		
 	
 //-------------------------------------------------------------------------
-	// 찜상품추가
+	// 찜상품추가(추가하면서 다른사람의 같은상품 찜카운트도 변동시켜야함. 트랜잭션연동.)
+	@Transactional
 	@Override
 	public int insertPrd(HttpServletRequest request, Map<Object,Object> param) {
+		ClosetPrd closetPrd = this.insertPrdSub(request, param);
+		String clo_prdUrl = (String)param.get("prdUrl");
+		System.out.println("service transaction의 clo_prdUrl: "+clo_prdUrl);
+
+		int re = dao.insertClosetPrd(closetPrd);
+		dao.zzimIncreaseTransaction(clo_prdUrl); //http:붙여서보내도 알아서 떼고 검색함.
+		return re;
+	}
+	
+	//찜상품추가시 실제적으로 일하는 함수
+	@Override
+	public ClosetPrd insertPrdSub(HttpServletRequest request, Map<Object, Object> param) {
 		ClosetPrd closetPrd = new ClosetPrd();
 		HttpSession session = request.getSession();
 		List<ClosetPrd> cloList = new ArrayList<ClosetPrd>();
@@ -384,9 +398,8 @@ public class ClosetServiceImpl implements ClosetService {
 		//이걸 다 해야!!! 추가할 수 있음!!
 		
 		System.out.println("현재까지 완성된 clostPrd: "+closetPrd);
-		int re = dao.insertClosetPrd(closetPrd);
 		
-		return re;
+		return closetPrd;
 	}
 
 		
@@ -452,6 +465,7 @@ public class ClosetServiceImpl implements ClosetService {
 
 
 	//상품삭제 void-ok
+	@Transactional
 	@Override
 	public void deleteClosetPrd(HttpServletRequest request, Map<Object,Object> param){
 		//var param = "clo_detail_nums="+clo_detail_nums+"&clo_num="+clo_num;
@@ -466,12 +480,18 @@ public class ClosetServiceImpl implements ClosetService {
 		String[] clo_detail_numArray = clo_detail_nums.split(",");
 
 		for(int i=0; i<clo_detail_numArray.length; i++){
-			System.out.println("clo_detail_numArray쪼개기: "+clo_detail_numArray[i]);
-			dao.deleteClosetPrd(Integer.parseInt(clo_detail_numArray[i]));
+			int clo_detail_num = Integer.parseInt(clo_detail_numArray[i]);
+			System.out.println("clo_detail_numArray쪼개기: "+clo_detail_num);
+			dao.deleteClosetPrd(clo_detail_num);
+			dao.zzimDecreaseTransaction(clo_detail_num);
 			
 		}
-
+		
 	}
+
+
+
+
 
 
 	

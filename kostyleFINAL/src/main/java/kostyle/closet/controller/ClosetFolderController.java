@@ -70,8 +70,10 @@ public class ClosetFolderController {
 	public void SaveCloset(@RequestBody Map<Object,Object> param, HttpServletRequest request){
 		ResponseEntity<String> entity = null;
 		
+		System.out.println("");
 		System.out.println("saveCloset컨트롤러 진입");
 		try{
+			service.saveCloset(request, param);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 			
 		}catch (Exception e) {

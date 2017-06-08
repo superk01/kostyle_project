@@ -39,15 +39,14 @@ public class ClosetController {
 		return "/closet/closet";
 	}
 	
-	@RequestMapping(value="/closetfolder")
+/*	@RequestMapping(value="/closetfolder")
 	public String basicClosetFilder(){
 		return "/closet/myClosetManager";
-	}
+	}*/
 	
 	//옷장폴더선택시, 해당폴더의 상품들 나오는.
 	@RequestMapping(value="/closetbasic" , method=RequestMethod.POST)
 	public String closet(@RequestBody Map<Object,Object> param, HttpServletRequest request) throws Exception{
-		System.out.println("/closet의 param(map): "+param);
 		System.out.println("/closet의 param(map): "+param);
 		
 		ResponseEntity<String> entity = null;

@@ -112,7 +112,7 @@ code, kbd, pre, samp {
 button, input, optgroup, select, textarea {
 	margin: 0;
 	font: inherit;
-	color: inherit
+	color: inherit;
 }
 
 button {
@@ -177,7 +177,8 @@ legend {
 }
 
 textarea {
-	overflow: auto
+	overflow: auto;
+	resize: none;
 }
 
 optgroup {
@@ -1111,8 +1112,9 @@ input, button, select, textarea {
 }
 
 a {
-	color: #428bca;
-	text-decoration: none
+	color: black;
+	text-decoration: none;
+	font-size: 18px;
 }
 
 a:hover, a:focus {
@@ -1131,7 +1133,7 @@ figure {
 }
 
 img {
-	vertical-align: middle
+	vertical-align: middle;
 }
 
 .img-responsive, .thumbnail>img, .thumbnail a>img, .carousel-inner>.item>img,
@@ -4690,7 +4692,7 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 	padding: 6px 12px;
 	margin-left: -1px;
 	line-height: 1.42857143;
-	color: #428bca;
+	color: #ad82ab;
 	text-decoration: none;
 	background-color: #fff;
 	border: 1px solid #ddd
@@ -4709,7 +4711,7 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus,
 	.pagination>li>span:focus {
-	color: #2a6496;
+	color: #ad82ab;
 	background-color: #eee;
 	border-color: #ddd
 }
@@ -4720,8 +4722,8 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 	z-index: 2;
 	color: #fff;
 	cursor: default;
-	background-color: #428bca;
-	border-color: #428bca
+	background-color: #ad82ab;
+	border-color: #ad82ab
 }
 
 .pagination>.disabled>span, .pagination>.disabled>span:hover,

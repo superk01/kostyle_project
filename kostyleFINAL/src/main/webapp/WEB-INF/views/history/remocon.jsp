@@ -139,12 +139,12 @@
 		
 		<div id = "windRecnetPrdList" class="wing_prd_list">			<!-- 상품리스트 전체 -->
 		
-			<ul id = "1234" style="" class = "wingRecentPrd">
+			<ul id = "1234" style="" class = "wingRecentPrd" >
 		
 									<!-- 1번리스트 그룹 -->
-					<c:forEach var="remocon" items="${list }" varStatus="status">
+					<c:forEach var="remocon" items="${list }" varStatus="status" >
 					
-					<li id = "1-${(status.index)%3+1 }" class="wing_prd" >						<!-- 1번그룹의 첫번째 상품 -->
+					<li id = "${Math.floor((status.index)/3)+1 }-${(status.index)%3+1 }" class="wing_prd" >						<!-- 1번그룹의 첫번째 상품 -->
 						<a href="${remocon.h_Prdurl }" target="_blank">					<!-- 해당상품의 상세페이지 주소 -->
 							<span class="wing_prd_img">
 								<img alt="" src="${remocon.h_Imgurl }">
@@ -156,7 +156,7 @@
 						<button class="wing_btn_delete" value="${remocon.h_Num }">상품제거 버튼</button>
 					</li>
 					<c:if test="${(status.index%3)+1==3 }" >
-						</ul><ul id="2345" style="display:none" class="wingRecentPrd"> 
+						</ul><ul style="display:none" class="wingRecentPrd" id="${Math.floor((status.index)+1/3) }"> 
 					</c:if>
 					</c:forEach>
 						
