@@ -2,23 +2,30 @@ package kostyle.category.bo;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.Thread.State;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+
 import kostyle.category.domain.Product_category;
+import kostyle.category.domain.Product_list;
 import sun.security.util.Length;
 
 public class MainActionThread extends Thread{
 	private String frontURL;
 	private String shopurl;
+	private String keyword;
 	private List<Product_category> main_product_list = new ArrayList<Product_category>();
+	private List<SubActionThread> subthread = new ArrayList<SubActionThread>(); //상품 상세 데이터 가져올 스레드
 	private int pagecount = 0;
 
-	public MainActionThread(String frontURL, String shopurl) {
+	public MainActionThread(String frontURL, String shopurl, String keyword) {
 		super();
 		this.frontURL = frontURL;
 		this.shopurl = shopurl;
+		this.keyword = keyword;
 	}
 
 	public List<Product_category> getMain_product_list() {
@@ -45,7 +52,8 @@ public class MainActionThread extends Thread{
 		   List<String> product_LinkList = new ArrayList<String>();
 		   List<String> product_ImgLinkList = new ArrayList<String>();
 		   List<String> list = new ArrayList<String>();   //페이지row 저장
-		   		
+		   	
+		   
 		   try {
 		         URL url = new URL(frontURL);
 		         System.out.println("연결중....url = " + frontURL);
@@ -103,7 +111,7 @@ public class MainActionThread extends Thread{
 	       if(startLiRowNum.size() == 0 && endLiRowNum.size() == 0 ){
 	    	   System.out.println("-------검색끝 " + (pagecount-1) + " 개 페이지 검색-------");
 	    	   return;
-	       }else if(pagecount == 10){ //느려서 최대9페이지까지만 받아옴
+	       }else if(pagecount == 2){ //느려서 최대9페이지까지만 받아옴
 	    	   System.out.println("페이지 초과");
 	    	   return;
 	       }
@@ -196,10 +204,36 @@ public class MainActionThread extends Thread{
 	       }
 	       
 	       for(int i=0; i<saveSize; i++){
-	      	Product_category pro  = new Product_category(shopurl, product_LinkList.get(i), product_NameList.get(i), product_PriceList.get(i), product_ImgLinkList.get(i));
+	      	Product_category pro  = new Product_category(shopurl, product_LinkList.get(i), product_NameList.get(i), product_PriceList.get(i), product_ImgLinkList.get(i), keyword);
 	      	main_product_list.add(pro);	     
 	       }
 	       
+	       //물품 색상 추출
+	       int threadcount = 0;
+	    	for(int i = 0; i<main_product_list.size(); i++){
+	    		subthread.add(new SubActionThread());
+				subthread.get(threadcount).setProductURL(main_product_list.get(i).getProduct_link());
+				subthread.get(threadcount).start();
+				threadcount ++;
+	    	}
+	    	
+	    	
+			while(  subthread.size() != 0){
+				for(int i=0; i<subthread.size(); i++){
+					if(subthread.get(i).getState() == State.TERMINATED){	
+						
+						for(int s=0; s<main_product_list.size(); s++){
+							if( main_product_list.get(s).getProduct_link().equals(subthread.get(i).getProductURL())){
+								main_product_list.get(s).setProduct_color(subthread.get(i).getProduct_color());
+								System.out.println(i + "번째 색상 스레드 완료 삭제 총 갯수 : " + threadcount);
+								subthread.remove(i);
+								break;
+							}
+						}
+					}
+				}
+			}
+			
 	       run();
 	   }
 	
@@ -283,4 +317,5 @@ public class MainActionThread extends Thread{
 	       saveList = defaultList;
 	       return saveList;
     }
+
 }

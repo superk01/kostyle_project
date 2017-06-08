@@ -33,6 +33,7 @@
 	<context:component-scan base-package="kostyle.stats.controller" />
 	 <context:component-scan base-package="kostyle.home.controller" /> 
 	 <context:component-scan base-package="kostyle.admin.controller" /> 
+	 <context:component-scan base-package="kostyle.discount.controller" /> 
 	
 		<!-- 인터셉터 -->
 <beans:bean id="loginInterceptor" class="kostyle.login.interceptor.LoginInterceptor"></beans:bean>
@@ -56,6 +57,9 @@
  		<interceptor>
 			<mapping path="/logintest/testpage2" />
 			<mapping path="/closet/" />
+			<mapping path="/favorite/favoriteList"/>
+			<mapping path="/favorite/comentModify"/>
+			<mapping path="/favorite/comentRead"/>
 			<beans:ref bean="checkLoginInterceptor"/>
 		</interceptor>
 		
@@ -64,6 +68,7 @@
 			<mapping path="/logintest/testpage2" />
 			<beans:ref bean="shopCheckLoginInterceptor"/>
 		</interceptor>
+		
 		
 		
 </interceptors>

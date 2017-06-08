@@ -29,9 +29,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		//CheckLoginInterceptor없이 바로 로그인으로 왔을경우에는 dest가 없음.
 		if(dest == null){	
 			if(who.equals("C")){
-				dest = "/home/";
+				dest = "/";
 			}else if(who.equals("A")){
-				dest = "/home/";
+				dest = "/";
 			}
 		}
 		return (String) dest;
@@ -86,17 +86,17 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 						if(((CustomerVO) userVO).getP_powernum() == 2){
 							System.out.println("개인고객 분기 진입");
 							dest =setDest(request, "C");
-						//	dest =( dest != null) ? (String)dest:"/home/";
+						//	dest =( dest != null) ? (String)dest:"/";
 						}else if(((CustomerVO) userVO).getP_powernum() == 0){
 							System.out.println("관리자 분기 진입");
 							dest = setDest(request,"A");
-						//	dest = (dest != null) ? (String)dest:"/home/";
+						//	dest = (dest != null) ? (String)dest:"/";
 						}
 							
 				}
 
-				response.sendRedirect((String)dest);
-				return;
+				response.sendRedirect(dest);
+				
 		}else{ //로그인실패
 			request.getSession().setAttribute("msg", "회원 아이디 또는 비밀번호가 일치하지 않습니다.(5회 이상 로그인 오류시 본인확인 후 로그인 가능합니다.)");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/cuslogin/login");

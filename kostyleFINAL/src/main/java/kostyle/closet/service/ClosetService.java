@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import kostyle.closet.domain.Closet;
+import kostyle.closet.domain.ClosetPrd;
 
 public interface ClosetService {
 
@@ -37,6 +38,8 @@ public interface ClosetService {
 //---------------------------------------
 	// 찜상품추가
 	public int insertPrd(HttpServletRequest request, Map<Object,Object> param);
+	//상품추가시 실제적인 일하는 함수
+	public ClosetPrd insertPrdSub(HttpServletRequest request, Map<Object,Object> param);
 	
 	//찜추가시 중복체크
 	public int duplicationCheckClosetPrd(HttpServletRequest request, String prdUrl);
@@ -48,7 +51,7 @@ public interface ClosetService {
 
 	//상품삭제
 	public void deleteClosetPrd(HttpServletRequest request, Map<Object, Object> param);
-	
+
 
 	
 }

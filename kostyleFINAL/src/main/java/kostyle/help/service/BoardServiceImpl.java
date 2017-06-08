@@ -129,9 +129,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int totalCount() throws Exception {
+	public int totalCount(SearchCriteria cri) throws Exception {
 		
-		return dao.totalCount();
+		return dao.totalCount(cri);
 	}
 	
 	

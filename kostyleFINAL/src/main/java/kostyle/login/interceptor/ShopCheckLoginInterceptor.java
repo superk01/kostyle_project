@@ -23,7 +23,7 @@ public class ShopCheckLoginInterceptor extends HandlerInterceptorAdapter {
 	LoginService service;
 	
 	private static final String SHOPLOGIN = "shoplogin";
-	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(ShopCheckLoginInterceptor.class);
 	
 
 	private void saveDest(HttpServletRequest request){
@@ -87,9 +87,11 @@ public class ShopCheckLoginInterceptor extends HandlerInterceptorAdapter {
 			response.sendRedirect("/shoplogin/login");
 			return false;
 		}//endcookie
-	}
-		
+	}else{
+		System.out.println("ShopCheckLoginInterceptor: 처음부터 로그인되어있음(session있음)");
 		return true;//애초에 처음부터 로그인 되어있는 상태.
+	}
+		return true;
 
 
 	}//preHandle

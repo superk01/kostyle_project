@@ -1,5 +1,13 @@
 package kostyle.help.domain;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import com.sun.media.jfxmedia.track.Track.Encoding;
+
 public class PageMaker {
 
 	private int totalCount;
@@ -86,6 +94,26 @@ public class PageMaker {
 		//원래 책에는
 		/*next = endPage*cri.getPerPageNum() >= totalCount ? false: true;*/
 	}
+	public String makeSearch(int page) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
+									  .queryParam("perPageNum", cri.getPerPageNum())
+									  .queryParam("searchType", ((SearchCriteria)cri).getSearchType())
+									  .queryParam("keyWord", encoding(((SearchCriteria)cri).getKeyWord())).build();
+		return uriComponents.toString();
+		
+	}
+	public String encoding(String keyword){
+		if(keyword==null||keyword.trim().length()==0){
+			return "";
+		}
+		try {
+			return URLEncoder.encode(keyword, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			return "";
+		}
+		
+	}
+	
 
 	@Override
 	public String toString() {

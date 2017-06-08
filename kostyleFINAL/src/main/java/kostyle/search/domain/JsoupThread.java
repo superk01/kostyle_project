@@ -161,6 +161,18 @@ public class JsoupThread extends Thread{
 			}
 			System.out.println(result);
 			
+			//상품 검색을 두 페이지 이상 검색했을때...
+			//일단 예시로 스타일 난다.
+			List<String> list31 = new ArrayList<>();
+			Elements nextPageEl = doc.select("div.xans-search-paging a.other");
+			System.out.println("선택자 잘 잡았습니까?"+nextPageEl);
+			for(int i=0; i<nextPageEl.size(); i++){
+				list31.add(nextPageEl.get(i).attr("href"));
+			}
+			if(list31 != null){
+				
+			}
+			System.out.println("페이징 잘 뽑힙니까?"+list31);
 			Thread.sleep(1000);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -168,8 +180,9 @@ public class JsoupThread extends Thread{
 		
 	}
 	
-/*	public static void main(String[] args){
-		JsoupThread thread = new JsoupThread();
+/*public static void main(String[] args){
+		String path = "http://www.stylenanda.com/product/search.html?banner_action=&keyword=%EB%B0%94%EC%A7%80&page=2";
+		JsoupThread thread = new JsoupThread(path);
 		thread.start();
 	}*/
 	
