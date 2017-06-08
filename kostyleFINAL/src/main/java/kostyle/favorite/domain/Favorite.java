@@ -6,15 +6,15 @@ import java.util.Date;
 
 public class Favorite implements Serializable{
 	
+	private Timestamp f_date;
 	private String f_num;
 	private String f_coment;
-	private Timestamp f_date;
-	private String s_num;
-	private String c_num;
-	
 	private String s_image;
 	private String s_sname;
 	private String s_shopurl;
+	
+	private String s_num;
+	private String c_num;
 	
 	
 	public Favorite(){}
