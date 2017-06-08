@@ -1,0 +1,93 @@
+@CHARSET "UTF-8";
+
+body{
+	margin: 0% 3%;
+	height: 1000px;
+	border: solid 1px;
+	background-color: #e8e7e0;
+}
+
+
+h1{
+	font-family: 맑은 고딕;
+	font-size:45px;
+	text-align: center;	
+}
+
+
+h1 img{
+	width: 40px;
+}
+
+
+h3{
+	font-family: 맑은 고딕;
+	font-size:30px;
+	margin-left: 300px;
+}
+
+h3 img{
+	width: 30px;
+}
+
+
+.updateTable{
+	table-layout: fixed;
+	word-break:break-all;
+	margin-left:auto;
+	margin-right:auto;
+	background: white;
+	border-left: solid 7px;
+	border-left-color: #3f98d4;
+	border-right: solid 7px;
+	border-right-color: #3f98d4;
+	border-top: solid 1px;
+	width: 800px;
+	text-align: center;
+}
+
+.favoriteNum td:nth-child(1){
+	width: 300px;
+	font-weight: bold;
+}
+
+.favoriteNum td:nth-child(2){
+	width: 400px;
+}
+
+.favoriteDate td:nth-child(1){
+	width: 300px;
+	font-weight: bold;
+}
+
+.favoriteDate td:nth-child(2){
+	width: 400px;
+}
+
+#f_coment{
+	width: 750px;
+	height: 200px;
+	resize: none;
+	font-size: 20px;
+	font-family: 맑은 고딕;
+	
+}
+
+td{
+	font-family: 맑은 고딕;
+	font-size:20px;
+	height: 65px;
+	border: solid 1px;
+}
+
+.favoriteBt input{
+	width: 100px;
+	height: 50px;
+	text-align:center;
+	font-family: 맑은 고딕;
+	font-size: 20px;
+}
+
+
+
+
