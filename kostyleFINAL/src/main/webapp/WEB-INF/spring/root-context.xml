@@ -20,13 +20,12 @@
 		<property name="username" value="kostylemall"/>
 		<property name="password" value="1270"></property>
 	</bean>
-	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
 		<property name="mapperLocations" value="classpath:mappers/*.xml"/>
 	</bean>
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
@@ -52,4 +51,15 @@
 	<context:component-scan base-package="kostyle.stats.service"/>
 	<context:component-scan base-package="kostyle.admin.persistence"/>
 	<context:component-scan base-package="kostyle.admin.service"/>
+	<context:component-scan base-package="kostyle.discount.persistence"/>
+	<context:component-scan base-package="kostyle.discount.service"/>
+	
+	
+	      <!-- 트랜잭션적용 -->
+      <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+         <property name="dataSource" ref="dataSource"/>
+      </bean>
+      <tx:annotation-driven/>
+      
+      
 </beans>

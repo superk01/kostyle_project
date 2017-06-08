@@ -106,7 +106,7 @@ public class shopAdminController {
 		}
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
-		return "redirect:/admin/adShopList";
+		return "redirect:/admin/shopList";
 	}
 	
 	//모달창에서 adshoppingmall 등록하기
