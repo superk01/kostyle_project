@@ -180,10 +180,10 @@ public class JsoupThread extends Thread{
 		
 	}
 	
-public static void main(String[] args){
-		String path = "http://www.stylenanda.com/product/search.html?banner_action=&keyword=바지";
+/*public static void main(String[] args){
+		String path = "http://www.stylenanda.com/product/search.html?banner_action=&keyword=%EB%B0%94%EC%A7%80&page=2";
 		JsoupThread thread = new JsoupThread(path);
 		thread.start();
-	}
+	}*/
 	
 }

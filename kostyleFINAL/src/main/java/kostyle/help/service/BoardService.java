@@ -23,5 +23,5 @@ public interface BoardService {
 	
 	public List<AdShoppingMallHelp> adShoppingMallList()throws Exception; 
 	
-	public int totalCount()throws Exception;
+	public int totalCount(SearchCriteria cri)throws Exception;
 }

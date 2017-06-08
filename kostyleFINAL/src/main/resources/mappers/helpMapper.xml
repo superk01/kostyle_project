@@ -118,6 +118,11 @@
 	<select id="totalCount" resultType="int">
 		select count(q_num) from
 		question
+		<if test="searchType != null">
+			<where>
+				${searchType} LIKE '%'||'${keyWord}'||'%'
+			</where>
+		</if>
 	</select>
 
 	<!-- 검색관련 include -->
