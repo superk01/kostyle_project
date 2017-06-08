@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kostyle.admin.domain.AdShoppingMallAdmin;
+import kostyle.admin.domain.CriteriaAdmin;
+import kostyle.admin.domain.SearchCriteriaAdmin;
 import kostyle.admin.domain.ShoppingMallAdmin;
 import kostyle.admin.persistence.ShopAdminDAO;
 
@@ -22,13 +24,18 @@ public class ShopAdminServiceImpl implements ShopAdminService{
 	}
 
 	@Override
-	public int countShoppingMall() throws Exception {
-		return dao.countShoppingMall();
+	public int countShoppingMall(CriteriaAdmin cri) throws Exception {
+		return dao.countShoppingMall(cri);
 	}
 
 	@Override
-	public List<ShoppingMallAdmin> shopList() throws Exception {
-		return dao.shopList();
+	public int countSearchShop(SearchCriteriaAdmin cri) throws Exception {
+		return dao.countSearchShop(cri);
+	}
+
+	@Override
+	public List<ShoppingMallAdmin> shopList(CriteriaAdmin cri) throws Exception {
+		return dao.shopList(cri);
 	}
 
 	@Override

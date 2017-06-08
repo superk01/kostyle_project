@@ -49,6 +49,8 @@
 <c:if test="${empty sessionScope.login && empty sessionScope.shoplogin}">
 	<a href="/cuslogin/login">고객로그인</a>
 	<a href="/shoplogin/login">쇼핑몰로그인</a>
+	<a href="/find/id">아이디 찾기</a>
+	<a href="/find/password">비밀번호 찾기</a>
 </c:if>
 
 <c:choose>

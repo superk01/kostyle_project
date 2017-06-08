@@ -18,20 +18,20 @@ public class FavoriteServiceImpl implements FavoriteService {
 	@Override
 	public List<Favorite> listFavorite_S() throws Exception {
 		
-		System.out.println("service###############");
 		return dao.listFavorite();
 	}
 	
 	
 	@Override
-	public List<Favorite> listFavoriteCriteria(FavoriteCriteria cri) throws Exception {
-		return dao.listFavoriteCriteria(cri);
+	public List<Favorite> listFavoriteCriteria(String c_num, FavoriteCriteria cri) throws Exception {
+		System.out.println("service###############"); 
+		return dao.listFavoriteCriteria(c_num, cri);
 	}
 
 	
 	@Override
-	public int listCountCriteria(FavoriteCriteria cri) throws Exception {
-		return dao.countPaging(cri);
+	public int listCountCriteria(String c_num, FavoriteCriteria cri) throws Exception {
+		return dao.countPaging(c_num, cri);
 	}
 
 
@@ -48,8 +48,8 @@ public class FavoriteServiceImpl implements FavoriteService {
 
 
 	@Override
-	public void deleteFavorite(String f_num) throws Exception {
-		dao.deleteFavorite(f_num);
+	public void deleteFavorite(String c_num, String f_num) throws Exception {
+		dao.deleteFavorite(c_num, f_num);
 	}
 	
 	
