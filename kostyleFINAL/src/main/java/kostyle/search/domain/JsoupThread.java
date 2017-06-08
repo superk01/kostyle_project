@@ -156,7 +156,8 @@ public class JsoupThread extends Thread{
 					prdPrice.add(list.get(i).substring(0,arr[i]));
 				}*/
 			}else{
-				prdPriceEl = doc.select("li.xans-record-:eq(0)>span");
+				prdPriceEl = doc.select("ul.xans-element- span");
+				System.out.println("prdPriceEl:"+prdPriceEl);
 				for(int i=0; i<prdPriceEl.size(); i++){
 					if(!(prdPriceEl.get(i).html().equals(""))){
 						prdPrice.add(prdPriceEl.get(i).html());
@@ -166,11 +167,14 @@ public class JsoupThread extends Thread{
 				}
 			}
 			
-			System.out.println("검색된 가격 숫자:"+prdPrice.size());
+			/*System.out.println("검색된 가격 숫자:"+prdPrice.size());*/
+			
 			/*System.out.println("검색된 가격 정보:"+prdPrice);*/
-			for(int i=0; i<prdPrice.size(); i++){
+			
+			/*for(int i=0; i<prdPrice.size(); i++){
 				System.out.println(i+"번째 가격:"+prdPrice.get(i));
-			}
+			}*/
+			
 			/*System.out.println(prdPrice);*/		
 			/*System.out.println("prdPrice:"+prdPrice.size());	*/	
 			
@@ -183,24 +187,25 @@ public class JsoupThread extends Thread{
 			
 			//상품 검색을 두 페이지 이상 검색했을때...
 			//일단 예시로 스타일 난다.
+		/*	if(result.size()!=0){
 			List<String> list31 = new ArrayList<String>();
 			Elements nextPageEl = doc.select("div.xans-search-paging a.other");
-			System.out.println("선택자 잘 잡았습니까?"+nextPageEl);
+			System.out.println("선택자 확인:"+nextPageEl);
 			for(int i=0; i<nextPageEl.size(); i++){
 				list31.add(nextPageEl.get(i).attr("href"));
 			}
 			String str1= null;
 			String str2= null;
 			if(list31 != null){
-				/*System.out.println("페이징 잘 뽑힙니까?"+list31);*/
-				/*if(path.indexOf(".com/")>0){
+				System.out.println("페이징 잘 뽑힙니까?"+list31);
+				if(path.indexOf(".com/")>0){
 					index = path.indexOf(".com/");
 				}else{
 					index = path.indexOf("o.kr/");
 				}
 				
 				str1 = path.substring(0, index+4);				//쇼핑몰 url: 예)http://www.stylenanda.com
-				System.out.println(str1);*/
+				System.out.println(str1);
 				int index1 = path.indexOf(".html?");			//	
 				System.out.println(index1);
 				str2 = path.substring(0, index1+5);
@@ -213,14 +218,18 @@ public class JsoupThread extends Thread{
 				String str12 = list31.get(0).substring(0, index2+4);
 				
 				for(int i=0; i<list31.size(); i++){
-					nextPages.add(str2+str12+"바지&page="+(i+2));}
+					nextPages.add(str2+str12+"=바지&page="+(i+2));}
 			}
+			}*/
+			
+			
+			/*---------------------------------------------------------------------------*/
 			/*for(int i=0; i<list31.size(); i++){
 				System.out.println("최종 다음 검색 주소:"+str1+str2+list31.get(i));
 				nextPages.add(str1+str2+list31.get(i));
 			}*/
 			/*System.out.println("최종 다음 검색 주소:"+nextPages);*/
-			Thread.sleep(1000);
+			Thread.interrupted();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -230,7 +239,7 @@ public class JsoupThread extends Thread{
 	//테스트 하는 곳!!!
 public static void main(String[] args){
 		/*String path = "http://hotping.co.kr/product/search.html?banner_action=&order_by=favor&keyword=바지";*/
-		String path = " http://www.stylenanda.com/product/search.html?banner_action=&keyword=바지";
+		String path = "http://66girls.co.kr/product/search.html?view_type=&supplier_code=&category_no=306&keyword=&product_price1=&product_price2=&order_by=&x=108&y=22";
 		JsoupThread thread = new JsoupThread(path);
 		thread.start();
 	}
