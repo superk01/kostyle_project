@@ -1,5 +1,5 @@
 package kostyle.mypage.domain;
 
-public class VO {
+public class MyCustomerVO {
 
 }
