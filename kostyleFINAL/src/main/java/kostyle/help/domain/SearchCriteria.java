@@ -1,5 +1,8 @@
 package kostyle.help.domain;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class SearchCriteria extends Criteria {
 	private String searchType;
 	private String keyWord;

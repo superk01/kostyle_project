@@ -25,7 +25,7 @@
 	 });
 	 });  */
 	 $(document).ready(function(){
-		 	alert(${login.c_id});
+		 	/* alert(${login.c_id}); */
 			
 		 	/* alert(${pageMaker.prev}); */
 		 	$('#fn_write').on('click', function(){
@@ -91,18 +91,18 @@
 	<div class="text-center">
 		<ul class="pagination">
 			<c:if test="${pageMaker.prev }">
-				<li><a href="list?page=${pageMaker.startPage - 1 }">[이전]</a></li>
+				<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">[이전]</a></li>
 			</c:if>
 			<!-- 페이지 목록 -->
 			<c:forEach var="pageNo" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
 				<li>
 					<%-- <c:out value="pageMaker.cri.page==pageNo?"></c:out> --%>
-					<a  href="list?page=${pageNo }">${pageNo }</a>
+					<a  href="list${pageMaker.makeSearch(pageNo) }">${pageNo }</a>
 				</li>
 			</c:forEach>
 			<!-- 이후 -->
 			<c:if test="${pageMaker.endPage>0&&pageMaker.next }">
-				<li><a href="list?page=${pageMaker.endPage + 1 }">[이후]</a></li>
+				<li><a href="list?page=${pageMaker.makeSearch(pageMaker.endPage + 1) }">[이후]</a></li>
 			</c:if>
 		</ul>
 	</div>
@@ -142,7 +142,7 @@
 
 <!-- 검색 입력 부분 -->
 	<form action="listAction2.a" method="post" role="form">
-		<input type="hidden" name="searchType" value="temp"></input> 
+		<!-- <input type="hidden" name="searchType"></input>  -->
 		<select id="searchCat" name="searchType">
 			<option value="q_title">제목</option>
 			<option value="c_Id">작성자</option>
