@@ -7,15 +7,23 @@
 
 <insert id="insertShoppingMall" parameterType="ShoppingMallAdmin">
 	insert into ShoppingMall (s_num, s_manager, s_shopurl, s_searchurl, s_shopreg, s_sname, s_email, s_age, s_phonenumber, s_image)
-		values(#{s_num}, #{s_manager}, #{s_shopurl}, #{s_searchurl}, #{s_shopreg}, #{s_sname}, #{s_email}, #{s_age}, #{s_phonenumber}, #{s_image})
+		values('s_'||lpad(shoppingmall_snum_seq.nextval,2,0), #{s_manager}, #{s_shopurl}, #{s_searchurl}, #{s_shopreg}, #{s_sname}, #{s_email}, #{s_age}, #{s_phonenumber}, #{s_image})
 </insert>
   
 <select id="countShoppingMall" resultType="int">
 	select count(*) from ShoppingMall
 </select>
 
+<select id="countSearchShop" resultType="int" parameterType="SearchCriteriaAdmin">
+	select count(*) from shoppingmall
+	<include refid="saerchShop"></include>
+	order by s_num
+</select>
+
 <select id="shopList" resultType="ShoppingMallAdmin">
-	select * from shoppingMall order by s_num
+	select * from shoppingMall 
+	<include refid="saerchShop"></include>
+	order by s_num
 </select>
 
 <select id="getShoppingMall" resultType="ShoppingMallAdmin">
@@ -33,6 +41,30 @@
 <delete id="deleteAdShop">
 	delete from adshoppingmall where s_num = #{s_num}
 </delete>
+
+
+
+
+
+<sql id="saerchShop">
+	<if test="searchType != null">
+		<if test="searchType == 'snum'.toString()">
+			where s_num like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'sname'.toString()">
+			where s_sname like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'sid'.toString()">
+			where s_email like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'surl'.toString()">
+			where s_shopurl like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'sreg'.toString()">
+			where s_shopreg like '%'||#{keyword}||'%'
+		</if>
+	</if>
+</sql>
 
 </mapper>  
 
