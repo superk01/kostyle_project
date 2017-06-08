@@ -3,7 +3,7 @@ package kostyle.login.domain;
 
 public class CustomerVO {
 	private String c_num;
-	private int c_birth;
+	private String c_birth;
 	private String c_phonenumber;
 	private String c_gender;
 	private String c_email;
@@ -25,11 +25,11 @@ public class CustomerVO {
 		this.c_num = c_num;
 	}
 
-	public int getC_birth() {
+	public String getC_birth() {
 		return c_birth;
 	}
 
-	public void setC_birth(int c_birth) {
+	public void setC_birth(String c_birth) {
 		this.c_birth = c_birth;
 	}
 

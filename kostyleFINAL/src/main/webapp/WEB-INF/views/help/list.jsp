@@ -25,7 +25,7 @@
 	 });
 	 });  */
 	 $(document).ready(function(){
-		 	alert(${login.c_id});
+		 	/* alert(${login.c_id}); */
 			
 		 	/* alert(${pageMaker.prev}); */
 		 	$('#fn_write').on('click', function(){
@@ -142,7 +142,7 @@
 
 <!-- 검색 입력 부분 -->
 	<form action="listAction2.a" method="post" role="form">
-		<input type="hidden" name="searchType" value="temp"></input> 
+		<!-- <input type="hidden" name="searchType"></input>  -->
 		<select id="searchCat" name="searchType">
 			<option value="q_title">제목</option>
 			<option value="c_Id">작성자</option>

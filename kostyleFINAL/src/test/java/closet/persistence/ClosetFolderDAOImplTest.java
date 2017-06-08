@@ -22,7 +22,7 @@ public class ClosetFolderDAOImplTest {
 	private ClosetDAO dao;
 	
 	
-	private static Logger logger = LoggerFactory.getLogger(LoginDAOImplTest.class);
+	private static Logger logger = LoggerFactory.getLogger(ClosetFolderDAOImplTest.class);
 	
 	@Test
 	public void testCusLogin() throws Exception {

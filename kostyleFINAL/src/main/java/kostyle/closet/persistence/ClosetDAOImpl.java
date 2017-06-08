@@ -1,4 +1,4 @@
-/*package kostyle.closet.persistence;
+package kostyle.closet.persistence;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,30 +28,30 @@ public class ClosetDAOImpl implements ClosetDAO {
 	@Inject
 	private SqlSession session;
 
-	private static String namespace="kostyle.login.mappers.loginMapper";
+	private static String namespace="kostyle.closet.mappers.closetMapper";
 
-	private static final Logger logger= LoggerFactory.getLogger(CusLoginController.class);
+	private static final Logger logger= LoggerFactory.getLogger(ClosetDAOImpl.class);
 
 		
 //-------------------------folder------------------------------
 	//조회해온 옷장상품의 clo_num으로 clo_name얻어오기
 	@Override
 	public String cloNumTocloName(Closet closet) {
-		logger.info("cloNumToCloName: "+session.selectOne(namespace+".cloNumTocloName", closet));
+		System.out.println("cloNumToCloName: "+session.selectOne(namespace+".cloNumTocloName", closet));
 		return session.selectOne(namespace+".cloNumTocloName", closet);
 	}
 	
 	//모든 '옷장'폴더를 리스트로 반환... navigation에 사용
 	@Override
 	public List<Closet> closetList(String c_num) {
-		logger.info("closetList: "+session.selectList(namespace+ ".tabCloset", c_num));
+		System.out.println("closetList: "+session.selectList(namespace+ ".tabCloset", c_num));
 		return session.selectList(namespace+ ".tabCloset", c_num) ;
 	}
 
 	//사용자의 모든 옷장에 들어있는 상품들을 전부 출력	
 	@Override
 	public List<ClosetPrd> fullCloset(ClosetPrd closetPrd) {
-		logger.info("fullCloset: "+session.selectList(namespace +".fullCloset", closetPrd));
+		System.out.println("fullCloset: "+session.selectList(namespace +".fullCloset", closetPrd));
 		return session.selectList(namespace +".fullCloset", closetPrd);
 	}
 	
@@ -59,7 +59,7 @@ public class ClosetDAOImpl implements ClosetDAO {
 	//사용자가 선택한 옷장의 상품들만 출력
 	@Override
 	public List<ClosetPrd> selectCloset(ClosetPrd closetPrd) {
-		logger.info("selectCloset: "+session.selectList(namespace+".selectCloset", closetPrd));
+		System.out.println("selectCloset: "+session.selectList(namespace+".selectCloset", closetPrd));
 
 		return session.selectList(namespace+".selectCloset", closetPrd);
 	}
@@ -74,7 +74,7 @@ public class ClosetDAOImpl implements ClosetDAO {
 	//가장 큰 옷장번호 구하기. 폴더추가시 max(clo_num)+1로
 	@Override
 	public int max_clo_num(String c_num) {
-		logger.info("max_clo_num: "+session.selectOne(namespace+".max_clo_num",c_num));
+		System.out.println("max_clo_num: "+session.selectOne(namespace+".max_clo_num",c_num));
 		return session.selectOne(namespace+".max_clo_num",c_num);
 	}
 	
@@ -107,28 +107,29 @@ public class ClosetDAOImpl implements ClosetDAO {
 	
 	//찜상품추가
 	@Override
-	public void insertClosetPrd(ClosetPrd closetPrd) {
-		session.insert(namespace +".insertClosetPrd", closetPrd );
+	public int insertClosetPrd(ClosetPrd closetPrd) {
+		int re= session.insert(namespace +".insertClosetPrd", closetPrd );
+		return re;
 	}
 	
 	//해당상품의 중복여부 우선확인
 	@Override
 	public int check_duplication(ClosetPrd closetPrd) {
-		logger.info("check_duplication중복여부: "+session.selectOne(namespace+".check_duplication",closetPrd));
+		System.out.println("check_duplication중복여부: "+session.selectOne(namespace+".check_duplication",closetPrd));
 		return session.selectOne(namespace+".check_duplication",closetPrd);
 	}
 
 	//가장 큰 clo_detail_num구하기. 찜상품추가시 +1해서 clo_detail_num으로사
 	@Override
 	public int max_detail_num() {
-		logger.info("가장 큰 detail_num: "+session.selectOne(namespace+".max_detail_num"));
+		System.out.println("가장 큰 detail_num: "+session.selectOne(namespace+".max_detail_num"));
 		return session.selectOne(namespace+".max_detail_num");
 	}
 
 	//해당상품zzim횟수 구하기 보완필요. 찜추가/삭제시 다른사람한테도 카운트반영되도록.
 	@Override
 	public int count_zzim(ClosetPrd closetPrd) {
-		logger.info("보완필요한count_zzim: "+session.selectOne(namespace+".count_zzim",closetPrd));
+		System.out.println("보완필요한count_zzim: "+session.selectOne(namespace+".count_zzim",closetPrd));
 		return session.selectOne(namespace+".count_zzim",closetPrd);
 	}
 
@@ -137,12 +138,12 @@ public class ClosetDAOImpl implements ClosetDAO {
 	public HashMap urlRepair(String prdUrl) {
 		//class="xans-element- xans-product xans-product-detail" 쪽이 상단 상품정보 위치임.
 		//가격: <string id="span_product_price_text" 이후 ',000원'이면 추출!
-		       String strResult = num; //출력할 결과를 저장할 변수
+		/*       String strResult = num; //출력할 결과를 저장할 변수
         Pattern p = Pattern.compile("(^[+-]?\\d+)(\\d{3})"); //정규표현식 
         Pattern p = Pattern.compile("(^[+-]?\\d+,)*(\\d{3})")원$; //정규표현식 
         Matcher regexMatcher = p.matcher(num); 
 [출처] [Java] 숫자에 쉼표(콤마;Comma) 넣기, 천(1000) 단위 구분 (정규표현식이용, replaceAll())|작성자 자바킹
-
+*/
 
 		//class="xans-element- xans-product xans-product-action " 이전까지 인덱스로 끊으면 상단상품 계산 위쪽까지 모아짐.
 		
@@ -156,9 +157,9 @@ public class ClosetDAOImpl implements ClosetDAO {
 		//String address="http://66girls.co.kr/product/detail.html?product_no=67185&cate_no=81&display_group=2";
 		String address="http://hotping.co.kr/product/detail.html?product_no=19218&cate_no=26&display_group=1";
 		
-		String address2= "http://66girls.co.kr/product/search.html?banner_action=&keyword=%EA%B0%80%EB%94%94%EA%B1%B4";
+		/*String address2= "http://66girls.co.kr/product/search.html?banner_action=&keyword=%EA%B0%80%EB%94%94%EA%B1%B4";
 		address2 = URLDecoder.decode(address2);
-		System.out.println("디코딩된 값: "+address2);
+		System.out.println("디코딩된 값: "+address2);*/
 		
 		String imgUrl ="";
 		String price="";
@@ -196,7 +197,7 @@ public class ClosetDAOImpl implements ClosetDAO {
 		hash.put("price", price);
 		hash.put("prdName", prdName);
 		
-		logger.info("HashMap urlRepair: "+hash);
+		System.out.println("HashMap urlRepair: "+hash);
 
 		return hash;
 	}
@@ -209,9 +210,9 @@ public class ClosetDAOImpl implements ClosetDAO {
 		   System.out.println("이미지url인덱스: "+index1);
 		   if(index1 != -1){
 			   source = source.substring(index1);
-			   int index2 = sb.indexOf("alt");
+			  /* int index2 = sb.indexOf("alt");
 			   
-			   code = code.substring(0, index2);
+			   code = code.substring(0, index2);*/
 	        //StringBuffer sb = new StringBuffer();
 	        //String regex ="(http|https|ftp)://[^\\s^\\.]+(\\.[^\\s^\\.^\"^\']+)*"; //공백문자,백슬러시,따옴표 등으로 시작하지 않는
 	
@@ -224,7 +225,7 @@ public class ClosetDAOImpl implements ClosetDAO {
 	        	System.out.println(imgUrl);
 	        }
 	    }	
-		   logger.info("getImgURL: "+imgUrl);
+		   System.out.println("getImgURL: "+imgUrl);
 		   return imgUrl;
 	}
 	
@@ -307,7 +308,7 @@ public class ClosetDAOImpl implements ClosetDAO {
 		  int index = prdUrl.indexOf("/product/");
 		  if(index != -1 ){
 			  shopUrl = prdUrl.substring(0, index);
-			  logger.info("얻은 shopUrl: "+shopUrl);
+			  System.out.println("얻은 shopUrl: "+shopUrl);
 		  }
 		  
 		  return shopUrl;
@@ -352,4 +353,4 @@ public class ClosetDAOImpl implements ClosetDAO {
 	
 	
 	
-}//class*/
+}//class

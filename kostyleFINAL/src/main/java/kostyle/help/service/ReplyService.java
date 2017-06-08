@@ -17,4 +17,6 @@ public interface ReplyService {
 	public void ReplyDelete(int as_Num);
 	
 	public ReplyVO ReplyDetail(int as_Num, int q_Num, HttpSession session);
+	
+	public ReplyVO ReplyDetail(int as_Num);
 }

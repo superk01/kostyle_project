@@ -11,6 +11,36 @@
 		select * from shoppingmall
 	</select>
 	
+	<select id="product_Search" resultType="kostyle.category.domain.Product_category" parameterType="String">
+		select * from product_list where product_name like '%' || #{keyword} || '%'
+	</select>
+	
+	<insert id="product_list_insert">
+		insert all 
+		<foreach collection="list" item="product" separator=" ">
+			into product_list(
+			product_link, 
+		  	product_name, 
+		  	product_price, 
+		  	product_ImageLink,
+			product_shopurl,
+			product_shopname, 
+			product_color,
+			product_keyword
+		)values(
+				#{product.product_link}, 
+			  	#{product.product_name}, 
+			  	#{product.product_price}, 
+			  	#{product.product_ImageLink},
+				#{product.product_shopurl},
+				#{product.product_shopname}, 
+				#{product.product_color},
+				#{product.product_keyword}
+			)
+		</foreach>
+		  select * from dual
+	</insert>
+	
 	<!-- 
 	<select id="categorysmallSelect" resultType="Category.model.Categorysmall" parameterType="String">
 		select * from categorysmall where cm_num = #{cm_num}

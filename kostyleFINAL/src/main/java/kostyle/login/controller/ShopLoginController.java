@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,7 +34,7 @@ public class ShopLoginController {
 	}
 	
 	@RequestMapping(value="/loginCheck", method=RequestMethod.POST)
-	public void loginPOST(LoginDTO dto, HttpServletRequest request ,Model model) throws Exception{
+	public void loginPOST(LoginDTO dto, HttpServletRequest request, Model model) throws Exception{
 		
 		System.out.println("샵로그인컨트롤러 보낸 LoginDTO: "+dto);
 
@@ -52,14 +53,14 @@ public class ShopLoginController {
 	}
 	
 
-	@RequestMapping(value="/logout", method=RequestMethod.GET)
-	public String logout(HttpSession session)throws Exception{
+	@RequestMapping(value="/logout/{currentPath}", method=RequestMethod.GET)
+	public String logout(@PathVariable String currentPath, HttpServletRequest  request)throws Exception{
+		System.out.println("shopLogout currentPath: "+currentPath);
+		request.getSession().removeAttribute("shoplogin");
 		
-		session.removeAttribute("login");
-		
-		String dest = (String)session.getAttribute("dest");
-		System.out.println("로그아웃후dest경로: "+dest);
-		return dest;
+		/*String dest = (String)session.getAttribute("dest");
+		System.out.println("로그아웃후dest경로: "+dest);*/
+		return currentPath;
 	}
 	
 }//class

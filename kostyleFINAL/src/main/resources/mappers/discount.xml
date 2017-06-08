@@ -2,10 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
-<mapper namespace="closet.mapper.ClosetMapper">
+<mapper namespace="kostyle.discount.mappers.discountMapper">
 	<cache />
-<!-- 	<select id="tabCloset" parameterType="String" resultType="Closet">
+	
+	<update id="addSaleUrlInfoShop" parameterType="TempShopVO">
+		update shoppingmall 
+			set s_newsaleurl = #{s_newsaleurl, jdbcType=VARCHAR}, s_discounturl=#{s_discounturl, jdbcType=VARCHAR} 
+			where s_num=#{s_num}
+	</update>
+
+	
+	<!-- <select id="tabCloset" parameterType="String" resultType="Closet">
 		select * from closet where c_num = #{c_num} order by clo_num
 	</select>
 	<select id="fullCloset" parameterType="ClosetPrd" resultType="ClosetPrd">

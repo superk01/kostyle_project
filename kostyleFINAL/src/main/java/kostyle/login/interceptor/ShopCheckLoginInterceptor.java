@@ -22,8 +22,8 @@ public class ShopCheckLoginInterceptor extends HandlerInterceptorAdapter {
 	@Inject
 	LoginService service;
 	
-	private static final String LOGIN = "login";
-	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
+	private static final String SHOPLOGIN = "shoplogin";
+	private static final Logger logger = LoggerFactory.getLogger(ShopCheckLoginInterceptor.class);
 	
 
 	private void saveDest(HttpServletRequest request){
@@ -52,28 +52,23 @@ public class ShopCheckLoginInterceptor extends HandlerInterceptorAdapter {
 		logger.info("ShopCheckLoginIntercepter   preHandle진입");
 		HttpSession session = request.getSession();
 		
-		System.out.println("session.login: "+session.getAttribute("login"));
+		System.out.println("session.login: "+session.getAttribute(SHOPLOGIN));
 	
 		
-		//어디에서 들어왔는지에 따라 shop로그인으로 갈분기와, cus로그인으로 갈 분기 나눌if-else문 나중에 맨밖에 하나 추가해야한다.
-		if(session.getAttribute("login") == null){
-			/*
-			System.out.println("preHandle session login is null.");
-			saveDest(request);
-			response.sendRedirect("/cuslogin/login");
-			
-			return false;*/
+		//어디에서 들어왔는지에 따라 shop로그인으로 갈분기와, cus로그인으로 갈 분기 나눌if-else문 나중에 맨밖에 하나 추가해야한다. ->제외. 아예 shop인터셉터 새로생성.
+		//세션에 샵로그인상태아님. + 쿠키가있으면 자동로그인 / 쿠키없으면 login폼으로 이동.
+		if(session.getAttribute(SHOPLOGIN) == null){
 			
 			logger.info("current user is lot logined");
 			saveDest(request);
-			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+			Cookie shopCookie = WebUtils.getCookie(request, "shopCookie");
 			
 			
 			//쿠키가 있으면 자동로그인~
-			if(loginCookie != null){
-				System.out.println("로그인쿠키.getName(): "+loginCookie.getName());
-				System.out.println("로그인쿠키.getValue(): "+loginCookie.getValue());
-				Object userVO = service.checkCusSessionKey(loginCookie.getValue());
+			if(shopCookie != null){
+				System.out.println("로그인쿠키.getName(): "+shopCookie.getName());
+				System.out.println("로그인쿠키.getValue(): "+shopCookie.getValue());
+				Object userVO = service.checkCusSessionKey(shopCookie.getValue());
 				logger.info("USERVO: "+userVO);
 				
 				//자동로그인성공, 세션기한늘리고 고객과 쇼핑몰분기.
@@ -81,33 +76,25 @@ public class ShopCheckLoginInterceptor extends HandlerInterceptorAdapter {
 					int oneweek = 60 * 60 * 24 * 7;
 					Date sessionLimit = new Date(System.currentTimeMillis()+(1000*oneweek)); //   1/1000초니까 *1000
 					
-					//고객,쇼핑몰 자동로그인분기점
-					if(userVO instanceof CustomerVO){
-						service.keepCusLoginLimit(((CustomerVO)userVO).getC_id(), session.getId(),sessionLimit);
-						session.setAttribute("login", (CustomerVO)userVO);
-					}else if(userVO instanceof AdShopVO){
-						service.keepShopLoginLimit(((AdShopVO)userVO).getAd_id(), session.getId(), sessionLimit);
-						session.setAttribute("login", (AdShopVO)userVO);
-					}
+					//쇼핑몰자동로그인
+					service.keepShopLoginLimit(((AdShopVO)userVO).getAd_id(), session.getId(), sessionLimit);
+					session.setAttribute(SHOPLOGIN, (AdShopVO)userVO);
 					return true;
 				}
-			}//logincookieIf
+			}else{
 			
 		//쿠키가없으면
-			response.sendRedirect("/cuslogin/login");
+			response.sendRedirect("/shoplogin/login");
 			return false;
-		}
-		//로그아웃시 이전경로저장. 제대로된 경로가되도록 자바스크립트로 구현 후 수정해야함.
-		String uri = request.getRequestURI();
-		if(uri.equals("/cuslogin/logout") || uri.equals("/shoplogin/logout")){
-			saveDest(request);
-		}
-		
-		return true;
+		}//endcookie
+	}else{
+		System.out.println("ShopCheckLoginInterceptor: 처음부터 로그인되어있음(session있음)");
+		return true;//애초에 처음부터 로그인 되어있는 상태.
 	}
+		return true;
 
 
-
+	}//preHandle
 	
 	
-}
+}//class

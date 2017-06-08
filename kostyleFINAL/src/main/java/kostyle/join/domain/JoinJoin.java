@@ -143,10 +143,4 @@ public class JoinJoin implements Serializable{
 				+ ", c_id=" + c_id + ", c_pass=" + c_pass + ", c_zipcode=" + c_zipcode + ", c_adress=" + c_adress
 				+ ", c_sms=" + c_sms + "]";
 	}
-
-	
-	
-	
-	
-
 }

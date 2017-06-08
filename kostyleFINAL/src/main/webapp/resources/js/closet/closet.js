@@ -6,7 +6,7 @@
 $(function(){
 	$('.tabClick').on('click',function(){
 		//var c_num = $('input[name=c_num]').val();
-		var clo_num = null;
+		var clo_num ="";
 		var clo_name= null;
 		
 		if($(this).attr("id") == "0"){
@@ -23,16 +23,25 @@ $(function(){
 		//alert("param값은?: "+param);
 		
 		$.ajax({
+			headers: { 
+		        'Accept': 'application/json',
+		        'Content-Type': 'application/json; charset=UTF-8'
+		    },
 			type: "post",
-			url:"../ClosetAction.closet",
-			data: param,
+			url:"/closet/closetbasic",
+			data : JSON.stringify({
+	            clo_num : clo_num,
+	            clo_name : clo_name,
+	         }),
 			success: function (data){
 				//alert("ajax결과: "+data);
-				//$('#closetBody').html(data);
-				$('#templateBody').html(data);
+				//console.log("ajax결과: "+data);
+				$('#closetBody').html(data);
+				//$('#templateBody').html(data);
 			}  ,
 			error : function(xhr, status, error) {
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert("ajax실패");
+				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 			}
 		}); 
@@ -70,12 +79,20 @@ opener는 부모를 지칭하는 객체(?)이고 opener.을 이용해서 부모�
 		//alert("세션CDAttri param값: "+param);
 		//alert("param타입: "+typeof(param));
 		$.ajax({
+			headers: { 
+		        'Accept': 'application/json',
+		        'Content-Type': 'application/json; charset=UTF-8'
+		    },
 		type: "post",
-		url:"../CDSessionAttributeAction.closet",
-		data: param,
+		url:"/closetfolder/cdSessionAttribute",
+		data : JSON.stringify({
+			attriName : attriName,
+			attriValue : attriValue,
+			attriCD : attriCD
+         }),
 		async: false,
 		success: function (data){
-		//alert("ajax결과: session: "+data);
+			alert("ajax결과: session: "+data);
 		}  ,
 		error : function(xhr, status, error) {
 		//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -84,7 +101,7 @@ opener는 부모를 지칭하는 객체(?)이고 opener.을 이용해서 부모�
 		//alert("attriName: "+attriName+"attriValue: "+attriValue+"attriCD: "+attriCD);
 
 		window.name="parentCloset"
-		window.open("../closet/myClosetManager.jsp","myClosetManager","height=350, width=550 top=200, left=200, location=0, resizable"); });
+		window.open("/closet/closetfolder","myClosetManager","height=350, width=550 top=200, left=200, location=0, resizable"); });
 });
 
 
@@ -152,9 +169,16 @@ $(function(){
 		});  
 		//alert("param값은?: "+param);
 		$.ajax({
+			headers: { 
+		        'Accept': 'application/json',
+		        'Content-Type': 'application/json; charset=UTF-8'
+		    },
 			type:"post",
-			url:"../DeleteClosetPrdAction.closet",
-			data: param,
+			url:"/closet/deleteClosetPrd",
+			data : JSON.stringify({
+				 clo_detail_nums : clo_detail_nums,
+				clo_num : clo_num
+	         }),
 			success: function(data){
 				//alert("딜리트 에이작스 결과: "+data);
 				//alert(request.getAttribute("msg"));
@@ -162,7 +186,7 @@ $(function(){
 				alert("삭제 완료");
 			},
 			error : function(xhr, status, error) {
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			//	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 			}
 		});
@@ -214,9 +238,17 @@ $(function(){
 			
 			
 			$.ajax({
+				headers: { 
+			        'Accept': 'application/json',
+			        'Content-Type': 'application/json; charset=UTF-8'
+			    },
 				type:"post",
-				url:"../MoveClosetPrdAction.closet",
-				data: param,
+				url:"/closet/moveClosetPrd",
+				data : JSON.stringify({
+					clo_detail_nums : clo_detail_nums,
+					move_clo_num : move_clo_num,
+					clo_num : clo_num
+		         }),
 				async: false,
 				success: function(data){
 					//alert("딜리트 에이작스 결과: "+data);
@@ -225,7 +257,7 @@ $(function(){
 					 
 				},
 				error : function(xhr, status, error) {
-					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				//	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 				}
 			});
@@ -254,179 +286,3 @@ $(function(){
 
 
 
-
-
-
-
-/*})
-$(function(){
-	$('#deleteBtn').on('click', function(){
-		var clo_detail_nums = deleteBtn_click();
-		alert("밸류값:"+clo_detail_nums);
-		
-		$.ajax({
-			type:"post",
-			url:"../DeleteClosetPrdAction.closet",
-			data: clo_detail_nums,
-			success: function(data){
-				alert("딜리트 에이작스 결과: "+data);
-				alert(request.getAttribute("msg"));
-				$('#closetBody').html(data);
-			}
-		});
-	});
-	
-});
-function deleteBtn_click() {  
-	var array = [];  
-	$("input:checkbox:checked").each(function (index) {  
-		array.push( $(this).val());  
-	});  
-	return array;  
-}  
-*/
-
-
-/*		data: {c_num: c_num,
-			clo_num : clo_num },
- */
-
-
-
-/*
-
-//옷장폴더 이름수정+폴더추가 '저장'
-$('#folderSaveBtn').on('click',function(){
-	var folder_clo_nums	= folderSaveBtn_click('.folder_clo_num');
-	var closet_titles = folderSaveeBtn_click('.closetTitle');
-	
-	var clo_num = $(opener.document,'#navi li[class=selectTab]').attr("id");
-	if(clo_num == undefined){ //select_clo_num이없으면 전체폴더 0 으로.
-		clo_num = "0";
-	}else{
-		clo_num = $(opener.document,'.selectTab').attr('id');
-	}
-	
-	var param =  "folder_clo_nums="+folder_clo_nums+
-	"&closet_titles="+closet_titles+
-	"&clo_num="+clo_num;
-	
-	alert("보내는 param: "+param);
-	$.ajax({
-		type:"get",
-		url:"../UpdateClosetAction.closet",
-		data: param,
-		success: function(data){
-			$('#closetBody').html(data);
-			alert("옷장폴더수정 완료");
-		},
-		error : function(xhr, status, error) {
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-		}
-	});
-});
-function folderSaveBtn_click(object) {
-	var str = "";
-	if(object == '.folder_clo_num'){//체크박스가아닌 기본폴더는 value가 1인데 jsp상에 값이 없으니까..
-		str += "1"; //따옴표 붙이지 않아도 밑에서 1+공백+따옴표 자동으로 붙는다
-	}    
-	$(object).each(function(index){
-		str += $(this).val()+",";
-	})
-	return str;  
-} */
-/*
-//옷장폴더삭제
-$(function(){
-	$('#folderDeleteBtn').on('click', function(){
-		var clo_nums = folderDeleteBtn_click();
-		alert("clo_nums값:"+clo_nums);
-		var clo_num = $('#navi li[class=selectTab]').attr("id");
-		if(clo_nums != ""){
-			if(clo_num == undefined){ //select_clo_num이없으면 전체폴더 0 으로.
-				clo_num = "0";
-			}else{
-				clo_num = $('.selectTab').attr('id');
-			}
-			var param = "clo_nums="+clo_nums+
-			"&clo_num="+clo_num;
-			alert("보내는 param: "+param);
-			$.ajax({
-				type:"post",
-				url:"../DeleteClosetAction.closet",
-				data: param,
-				success: function(data){
-					//alert("딜리트 에이작스 결과: "+data);
-					//alert(request.getAttribute("msg"));
-					$('#closetBody').html(data);
-					alert("옷장폴더삭제 완료");
-				},
-				error : function(xhr, status, error) {
-					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-				}
-			});
-		}else{
-			alert("삭제할 폴더를 선택해주세요.");
-		}
-	});
-	
-});
-function folderDeleteBtn_click() {  
-	var str = "";  
-	$("#closetManagerSection input:checkbox:checked").each(function (index) {
-		if($(this).attr('id') != 'allcheckCloset'){
-			str += $(this).val()+",";  
-		}
-	});  
-	return str;  
-} 
- */
-
-//폴더관리 접었다폈다
-/*$(function(){
-	
-	$('#manage').on('click',function(){
-		$('#closetManagerSection').toggle('slow',function(){
-			if($('#manageImg').attr("src")==("../resources/images/closetImg/btn_after_open.gif")){
-				$('#manageImg').attr("src","../resources/images/closetImg/btn_after_close.gif");
-				//$('.section-container4').css('height','1000px');
-			}else{
-				$('#manageImg').attr("src","../resources/images/closetImg/btn_after_open.gif");
-				//$('.section-container4').css('height','300px');
-			}
-		});
-	});
-	
-});*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 		
-//제이쿼리 함수이기때문에 제이쿼리 객체가 필요하다.
-//each를 전역함수로    $.함수이름
-//index는 배열의 인덱스, item은 배열요소 하나하나를 받아올 변수
-$.each(arr,function(index, item){
-var output = '';
-output += '<a href="'+ this.link +'">';
-output += '<span>'+ item.name +'</span>';
-output += '</a><br>';
-$('body').append(output);
-}); */

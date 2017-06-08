@@ -20,7 +20,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	private static final String LOGIN = "login";
 	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 	
-	
 
 	//로그인시 고객,쇼핑몰,관리자에따라 첫페이지가 달라야한다. + 다른페이지에서 인터셉터를 타고왔으면 이전경로가 있으므로 그페이지로 돌아가도록..
 	public String setDest(HttpServletRequest request, String who){
@@ -30,12 +29,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		//CheckLoginInterceptor없이 바로 로그인으로 왔을경우에는 dest가 없음.
 		if(dest == null){	
 			if(who.equals("C")){
-				dest = "/home/";
+				dest = "/";
 			}else if(who.equals("A")){
-				dest = "/home/";
-			}else if(who.equals("S")){
-				dest = "/home/";
-				
+				dest = "/";
 			}
 		}
 		return (String) dest;
@@ -54,11 +50,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		Object userVO = modelMap.get("userVO");
 		logger.info("메소드타입: "+request.getMethod());
 		logger.info("userVO: "+userVO);
-		Object dest=session.getAttribute("dest"); //CheckLoginInterceptor를 거쳐왔다면 dest가있음.
-		
+//		Object dest=session.getAttribute("dest"); //CheckLoginInterceptor를 거쳐왔다면 dest가있음.
+		String dest=(String)session.getAttribute("dest"); //CheckLoginInterceptor를 거쳐왔다면 dest가있음.
+		String dest1 ="";
 		if(userVO != null){ //로그인성공
 			System.out.println("로그인성공: new login success");
-			logger.info("new login suㄴccess");
+			logger.info("new login success");
 			
 			System.out.println("LoginInterceptor의 destURL: "+dest);
 			
@@ -78,45 +75,38 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 						Cookie loginPowerCookie = new Cookie("CusPowerCookie", ((CustomerVO) userVO).getP_powernum()+"");
 						loginCookie.setPath("/");
 						loginCookie.setMaxAge(60 * 60 * 24 * 7); //로그인은 1주일간유지.
+						loginPowerCookie.setPath("/");
+						loginPowerCookie.setMaxAge(60 * 60 * 24 * 7); //로그인은 1주일간유지.
 						response.addCookie(loginCookie);
+						response.addCookie(loginPowerCookie);
 						
 					}
 					
 					System.out.println("userVO의 p_powernum: "+((CustomerVO) userVO).getP_powernum());
 						if(((CustomerVO) userVO).getP_powernum() == 2){
 							System.out.println("개인고객 분기 진입");
-							dest =setDest(request, "C");
-						//	dest =( dest != null) ? (String)dest:"/home/";
+							dest1 =setDest(request, "C");
+						//	dest =( dest != null) ? (String)dest:"/";
 						}else if(((CustomerVO) userVO).getP_powernum() == 0){
 							System.out.println("관리자 분기 진입");
-							dest = setDest(request,"A");
-						//	dest = (dest != null) ? (String)dest:"/home/";
+							dest1 = setDest(request,"A");
+						//	dest = (dest != null) ? (String)dest:"/";
 						}
 							
 				}
-				else if(userVO instanceof AdShopVO){ //로그인성공
-					System.out.println("userVO의타입: AdShopVO진입");
-					session.setAttribute(LOGIN, (AdShopVO)userVO);
-					System.out.println("세션값확인: "+session.getAttribute("login"));
-					dest = setDest(request,"S");
-					//System.out.println("판별 후의 URL: "+(dest != null ? (String)dest:"/home/"));
-				}
-				
+
+/*				response.sendRedirect((String)dest);*/
+				response.sendRedirect("/");
+				return;
 		}else{ //로그인실패
 			request.getSession().setAttribute("msg", "회원 아이디 또는 비밀번호가 일치하지 않습니다.(5회 이상 로그인 오류시 본인확인 후 로그인 가능합니다.)");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/cuslogin/login");
 			 dispatcher.forward(request, response);
-/*				if(dest ==null){
-					System.out.println("dest값은 null이다.");
-					dest="login";
-				}
-*/		}
+	}
 		System.out.println("최종 dest값: "+dest);
 		 //RequestDispatcher dispatcher = request.getRequestDispatcher((String) dest);
         // dispatcher.forward(request, response);
-	     response.sendRedirect((String)dest);
 		//response.sendRedirect((String)dest);
-		return;
 		
 		
 		//System.out.println("실행되면안되는 dispatcher, response다음구문.");

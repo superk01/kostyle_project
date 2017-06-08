@@ -36,5 +36,13 @@ function CategoryFilterClick(){
 		location = "/category/categoryResult/hotproduct";
 	});
 	
+	$('#CateogyrFilterColor').click(function(){
+		location = "/category/categoryResult/color/";
+	});
+	
+	$('#CategoryFilterdefault').click(function(){
+		location = "/category/categoryResult/default"
+	});
+	
 }
 
