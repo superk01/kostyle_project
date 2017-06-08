@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="CategoryBody">
+<div id="CategoryBody">
 		<div id="CategoryResult_top"></div>
 		<div id="CategoryFilter">
 			<div id="CategoryFilterBox">
@@ -23,11 +23,11 @@
 					<a href="#" class="filteraclass">색상</a>
 				</div>
 		
-				<div class="CategoryFilterList"><a href="#" id="CategoryFilterrandom" class="filteraclass">무작위로 보기</a></div>
-				<div class="CategoryFilterList"><a href="#" id="CategoryFilterhotproduct" class="filteraclass">인기상품 보기</a></div>
-				<div class="CategoryFilterList"><a href="#" id="CategoryFilterminprice" class="filteraclass">낮은 가격 순</a></div>
-				<div class="CategoryFilterList"><a href="#" id="CategoryFilterdefault" class="filteraclass">필터 초기화</a></div>
-				<div class="CategoryFilterListEnd"><a href="#" id="CategoryFiltermaxprice" class="filteraclass">높은 가격 순</a></div>
+				<div class="CategoryFilterList"><a href="#" id="CategoryFilterrandom" class="filteraclass" data-f="random" data-k="${keyword}">무작위로 보기</a></div>
+				<div class="CategoryFilterList"><a href="#" id="CategoryFilterhotproduct" class="filteraclass" data-f="hit" data-k="${keyword}">인기상품 보기</a></div>
+				<div class="CategoryFilterList"><a href="#" id="CategoryFilterminprice" class="filteraclass" data-f="min" data-k="${keyword}">낮은 가격 순</a></div>
+				<div class="CategoryFilterList"><a href="#" id="CategoryFilterdefault" class="filteraclass" data-f="reset" data-k="${keyword}">필터 초기화</a></div>
+				<div class="CategoryFilterListEnd"><a href="#" id="CategoryFiltermaxprice" class="filteraclass" data-f="max" data-k="${keyword}">높은 가격 순</a></div>
 												
 			</div>
 		</div>
