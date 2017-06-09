@@ -30,8 +30,12 @@
 	select * from shoppingMall where s_num = #{s_num}
 </select>
 
-<insert id="insertAdShoppingMall" parameterType="ShoppingMallAdmin">
-	insert into adshoppingmall (s_num, ad_id, ad_pass, p_powernum) values(#{s_num}, #{s_email}, '1111', 2)
+<select id="getAdShoppingMall" resultType="AdShoppingMallAdmin">
+	select * from adshoppingMall where s_num = #{s_num}
+</select>
+
+<insert id="insertAdShoppingMall" parameterType="AdShoppingMallAdmin">
+	insert into adshoppingmall (s_num, ad_id, ad_pass, p_powernum, s_grade) values(#{s_num}, #{ad_id}, '1111', 2, #{s_grade})
 </insert>
 
 <select id="adShopList" resultType="AdShoppingMallAdmin">
@@ -42,20 +46,37 @@
 	delete from adshoppingmall where s_num = #{s_num}
 </delete>
 
+<update id="updateAdShopInfo" parameterType="AdShoppingMallAdmin">
+	update adshoppingmall set s_grade=#{s_grade} where s_num=#{s_num}
+</update>
+
+<update id="updateShopInfo" parameterType="ShoppingMallAdmin">
+	update shoppingmall 
+	set s_manager=#{s_manager}, s_shopurl=#{s_shopurl}, s_searchurl=#{s_searchurl}, s_sname=#{s_sname}, s_email=#{s_email},
+	 s_age=#{s_age}, s_phonenumber=#{s_phonenumber}, s_image=#{s_image}
+	where s_num=#{s_num}
+</update>
+
 
 
 
 
 <sql id="saerchShop">
 	<if test="searchType != null">
+		<if test="searchType == 'none'.toString()">
+			where s_shopreg like '%'||#{keyword}||'%'
+			OR
+			s_num like '%'||#{keyword}||'%'
+			OR
+			s_sname like '%'||#{keyword}||'%'
+			OR
+			s_shopurl like '%'||#{keyword}||'%'
+		</if>
 		<if test="searchType == 'snum'.toString()">
 			where s_num like '%'||#{keyword}||'%'
 		</if>
 		<if test="searchType == 'sname'.toString()">
 			where s_sname like '%'||#{keyword}||'%'
-		</if>
-		<if test="searchType == 'sid'.toString()">
-			where s_email like '%'||#{keyword}||'%'
 		</if>
 		<if test="searchType == 'surl'.toString()">
 			where s_shopurl like '%'||#{keyword}||'%'

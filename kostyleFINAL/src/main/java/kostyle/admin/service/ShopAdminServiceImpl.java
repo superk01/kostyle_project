@@ -44,8 +44,13 @@ public class ShopAdminServiceImpl implements ShopAdminService{
 	}
 
 	@Override
-	public void insertAdShoppingMall(ShoppingMallAdmin shop) throws Exception {
-		dao.insertAdShoppingMall(shop);
+	public AdShoppingMallAdmin getAdShoppingMall(String s_num) throws Exception {
+		return dao.getAdShoppingMall(s_num);
+	}
+
+	@Override
+	public void insertAdShoppingMall(AdShoppingMallAdmin adShop) throws Exception {
+		dao.insertAdShoppingMall(adShop);
 	}
 
 	@Override
@@ -56,6 +61,16 @@ public class ShopAdminServiceImpl implements ShopAdminService{
 	@Override
 	public void deleteAdShop(String s_num) throws Exception {
 		dao.deleteAdShop(s_num);
+	}
+
+	@Override
+	public void updateAdShopInfo(AdShoppingMallAdmin adShop) throws Exception {
+		dao.updateAdShopInfo(adShop);
+	}
+
+	@Override
+	public void updateShopInfo(ShoppingMallAdmin shop) throws Exception {
+		dao.updateShopInfo(shop);
 	}
 	
 	

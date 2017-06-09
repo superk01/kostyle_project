@@ -1,8 +1,8 @@
 package kostyle.category.domain;
 
 public class FilterVO {
-	private String keyword;
-	private String filter;
+	private String keyword = "";
+	private String filter = "";
 	
 	public String getKeyword() {
 		return keyword;

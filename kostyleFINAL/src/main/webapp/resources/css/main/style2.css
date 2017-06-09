@@ -1,0 +1,147 @@
+.floatleft { float: left }
+.floatright { float: right }
+.alignleft {
+    float: left;
+    margin-right: 15px;
+}
+.alignright {
+    float: right;
+    margin-left: 15px;
+}
+.aligncenter {
+    display: block;
+    margin: 0 auto 15px;
+}
+a:focus { outline: 0px solid }
+img {
+    max-width: 100%;
+    height: auto;
+}
+.fix { overflow: hidden }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    margin: 0 0 15px;
+}
+body { font-family: 'Titillium Web', sans-serif; }
+
+
+
+.header-area {
+    background: none repeat scroll 0 0 #f4f4f4;
+}
+.header-area a {
+    color: #888;
+}
+
+.user-menu h5 {
+    margin-top: 15px;
+    margin-left: 300px;
+    text-align: center;
+}
+.header-right ul.list-inline {
+    margin: 0;
+    text-align: right;
+}
+.header-right ul.list-inline li a {
+    display: block;
+    padding: 9px;
+}
+.header-right ul.list-inline li ul a {
+    padding: 5px 15px;
+}
+.header-right ul.list-inline li ul {
+    border: medium none;
+    border-radius: 0;
+    left: 50%;
+    margin-left: -50px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.mainmenu-area {background: none repeat scroll 0 0 #ad82ab;
+font-family: "Roboto Condensed",sans-serif;
+text-transform: uppercase;
+width: 100%;
+z-index: 999;}
+
+
+
+.logo{
+    color: white;
+    float: left;
+    margin-left: -100px;
+    margin-right: 100px;
+    margin-top: 15px;
+}
+.logo:hover {text-decoration: none;opacity: .7}
+.logo{
+    color: white;
+}
+
+
+
+.mainmenu-area ul.navbar-nav li a {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 20px 50px;
+    margin-top: -12px;
+}
+
+.mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {background: #222}
+.mainmenu-area .nav > li > a:focus {color: #000}
+
+
+.readmore {
+    background: none repeat scroll 0 0 #ad82ab;
+    color: #fff;
+    border: 1px solid #ad82ab;
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 15px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+}
+
+
+.readmore:hover {background: #222;text-decoration: none;color: #fff;border: 1px solid #fff}
+
+
+/* 검색창 */
+
+.site-branding-area{
+	height: 120px;
+}
+
+	.header_search{
+		width: 450px;
+		height: 35px;
+		position: absolute;
+		top: 60px;
+		left: 410px; 
+	}
+	 .clear{
+		width:400px;
+		height: 30px;
+	}
+	.search1{
+		border: solid 10px #ad82ab;
+		width: 660px;
+		height: 85px;
+		font-family: 맑은 고딕;
+		font-size: 30px;
+		outline: none;
+	}
+	.search2{
+		border: solid 10px #ad82ab;
+		height: 85px;
+		position: absolute;
+		top: 0px;
+		left: 650px;
+	} 
+	

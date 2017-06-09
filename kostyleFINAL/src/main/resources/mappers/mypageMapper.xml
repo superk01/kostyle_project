@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kostyle.mypage.mappers.mypageMapper">
+	
+	
+	<select id="login_check"
+			resultType="String">
+			select c_name
+			from customer
+			where c_id=#{c_id} and c_pass=#{c_pass}		
+	</select>
+	
+	<select id="viewMember"
+	resultType="MyCustomerVO">
+	
+			select * 
+			from customer
+			where c_id=#{c_id} and c_pass=#{c_pass}
+			
+	</select>	
+	
+	<select id="pass_check"
+			resultType="String">
+			select c_name
+			from customer
+			where c_id=#{c_id} and c_pass=#{c_pass}
+	</select>
+	
+	<select id="view" resultType="MyCustomerVO">
+	 		select * 
+	 		from customer 
+	 		where c_id = #{c_id}
+	 </select>
+
+
+</mapper>  
+
