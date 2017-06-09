@@ -32,7 +32,11 @@ public class SearchController {
 		System.out.println("doSearch호출");
 		String keyword=(String)request.getParameter("search");					//검색어 받음
 		List<SearchVO> list = new ArrayList<SearchVO>(); 
+		System.out.println("SearchController에서 리스트를 만들었습니다.");
 		list = service.doSearch(keyword);
+		System.out.println("searchController에서 데이터를 수집하여 리스트에 담았습니다.");
+		System.out.println(list);
+		System.out.println("이제 그 리스트를 가지고 view로 이동합니다.");
 		return new ModelAndView("search/result", "list", list);
 	}
 }
