@@ -17,7 +17,7 @@
 	</div>
 	
 	<div class="search_field">
-	<form action="searchAction.search" method="get">
+	<form action="" method="get">
 		<div class="search_box">
 			<dl class="clear_float">
 				<dt><input type="text" name="search"></dt>

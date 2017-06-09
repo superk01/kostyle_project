@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -26,30 +27,27 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
     <!-- jQuery sticky menu -->
-    <script src="../resources/js/main/owl.carousel.min.js"></script>
-    <script src="../resources/js/main/jquery.sticky.js"></script>
-    
-    <!-- jQuery easing -->
-    <script src="../resources/js/main/jquery.easing.1.3.min.js"></script>
+    <script src="../../../resources/js/main/owl.carousel.min.js"></script>
+    <script src="../../../resources/js/main/jquery.sticky.js"></script>
     
     <!-- Main Script -->
-    <script src="../resources/js/main/main.js"></script>
+    <script src="../../../resources/js/main/main.js"></script>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/main/owl.carousel.css" />
-    <link rel="stylesheet" type="text/css" href="../resources/css/main/responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../resources/css/main/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/style.css" />
 
    
   </head>
   <body>
-   
-    <div class="header-area">
+
+		<div class="header-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="user-menu">
-                            <h5><i class="fa fa-heart"></i> 홍길동님 환영합니다.<i class="fa fa-heart"></i></h5>
+                    <div class="user">
+                            <h5><i class="fa fa-heart"></i> ${sessionScope.login.c_name} 님 환영합니다.<i class="fa fa-heart"></i></h5>
                     </div>
                 </div>
                 
@@ -58,18 +56,21 @@
                         <ul class="list-unstyled list-inline">
                             <li><a href="#"><i class="fa fa-user"></i> My Page</a></li>
                             <li><a href="../join/join"><i class="fa fa-pencil"></i> 회원가입</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href="../cuslogin/login"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div> <!-- End header area -->
+   
+   
+    
     
     <div class="site-branding-area">
         <div class="container">
             <div class="row">
-                        <a href="header"><img class="logoimg" src="../resources/images/mainImg/kostyle.png"></a>
+            <a href="/"><img class="logoimg" src="../../../resources/images/mainImg/kostyle.png"></a>
             </div>
         </div>
     </div> <!-- End site branding area -->
@@ -87,14 +88,11 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Single product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">RANKING</a></li>
+                        <li><a href="#">DISCOUNT RANKING</a></li>
+                        <li><a href="../favorite/favoriteList">FAVORITE</a></li>
+                        <li><a href="#">ZZIM</a></li>
+                        <li><a href="#">SERVICE CENTER</a></li>
                     </ul>
                 </div>  
             </div>
