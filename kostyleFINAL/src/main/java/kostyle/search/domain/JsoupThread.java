@@ -5,6 +5,8 @@ import java.lang.Thread.State;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -83,31 +85,34 @@ public class JsoupThread extends Thread{
 			/*System.out.println("thumbnail:"+thumbnail);*/
 			/*System.out.println("thumbnail:"+thumbnail.size());*/
 			/*System.out.println(doc);*/
-			System.out.println("썸네일 이미지 추출 완료");
+			/*System.out.println("썸네일 이미지 추출 완료");*/
 			//제품명 추출
 			Elements prdNameEl = doc.select("p.name span:eq(0)");
 			/*System.out.println(prdNameEl);*/
 			String prePrdName = "";
 			for(int i=0; i<prdNameEl.size(); i++){
 				prePrdName=prdNameEl.get(i).html();
-				int index=0;
-				if(prePrdName.indexOf("<br>") != -1){
-					index=prdName.get(i).indexOf("<br>");
-					System.out.println("이전 prePrdName:"+prePrdName);
-					prePrdName=prePrdName.substring(index, prePrdName.length());
-					System.out.println("이후 prePrdName:"+prePrdName);
-					prdName.add(prePrdName);
+				System.out.println("이전 prePrdName:"+prePrdName);
+				
+				if(prePrdName.indexOf("<") != -1){
+					System.out.println("if문 진입");
+					int index=prePrdName.indexOf("<");
+					String postPrdName=prePrdName.substring(0, index);
+					System.out.println("이후 prePrdName:"+postPrdName);
+					prdName.add(postPrdName);
 					
 				}else if(prePrdName.indexOf("(") != -1){
-					System.out.println("이전 prePrdName:"+prePrdName);
-					index=prdName.get(i).indexOf("(");
-					prePrdName=prePrdName.substring(index, prePrdName.length());
-					System.out.println("이후 prePrdName:"+prePrdName);
-					prdName.add(prePrdName);
+					System.out.println("else if문 진입");
+					int index=prePrdName.indexOf("(");
+					String postPrdName=prePrdName.substring(0, index);
+					System.out.println("이후 prePrdName:"+postPrdName);
+					prdName.add(postPrdName);
 				}else{
 					prdName.add(prePrdName);
 				}
 			}
+			
+			
 			/*System.out.println("제품명:"+prdName);*/
 			
 			System.out.println("잡스러운거 날리고 다시 제품명 출력:"+prdName);
@@ -157,54 +162,55 @@ public class JsoupThread extends Thread{
 				getColorThread.add(new GetColorThread(prdUrl.get(i)));
 				getColorThread.get(i).run();
 			}
-			int count=0;
-				for(int i=0; i<prdUrl.size(); i++){
-					while(count<prdUrl.size()){
-					System.out.println("********"+i+"번째 스레드 실행중.");
-					if(getColorThread.get(i).getState()==State.TERMINATED){
-						System.out.println("******"+i+"번째 스레드 종료*********");
-						colorList=getColorThread.get(i).getColorList();
-						for(int j=0; j<colorList.size(); j++){						//반환값안에 상품객체들이 여러개 있는데...
-							colorResult+=colorList.get(j);							//각 객체들을 다른 리스트안에 순차적으로 넣음.
-						}
-						colorResult1.add(colorResult);
-						colorResult="";
-					}
-					
-					getColorThread.get(i).interrupt();									//스레드 종료....
-					getColorThread.remove(i);
-					count++;													//count변수 1증가
-					break;
-				}
-
-			}
-*/			
-			//제품의 색상 추출
 			
-			
+*/		
 			//제품 가격 추출
 			
 			
-			
+			List<String> innerList = new ArrayList<>();											//한 상품의 가격을 저장하는 list
+			List<List<String>> outerList = new ArrayList<>();									//각 상품의 가격을 담는 list
+			List<String> finalPriceList = new ArrayList<>();
 			
 			Elements prdPriceEl = null;
 			int arr[] = null;
-			List<String> priceList = new ArrayList<String>();
+			List<Elements> priceList = new ArrayList<>();
+			List<String> priceListResult = new ArrayList<String>();
 			if(path.indexOf("stylenanda")>0){
-				prdPriceEl = doc.select("p.price");
+				prdPriceEl = doc.select("li.xans-record- p.price");
+				System.out.println("prdPriceEl의 사이즈:"+prdPriceEl.size());
+				System.out.println("prdPriceEl:"+prdPriceEl);
+		
 				for(int i=0; i<prdPriceEl.size(); i++){
-					priceList.add(prdPriceEl.get(i).html());
+					priceListResult.add(prdPriceEl.get(i).html());
 				}
+				System.out.println("priceListResult:"+priceListResult);
+				for(int i=0; i<priceListResult.size(); i++){
+					String priceStr = priceListResult.get(i).replaceAll("<[^>]*>", "");
+					System.out.println("priceStr:"+priceStr);
+					String regPrice = "(\\d{1,3})(,\\d{3})";
+					Pattern pattern = Pattern.compile(regPrice);										//가격을 뽑기위해 Pattern클래스 사용.
+				
+					Matcher matcher = pattern.matcher(priceStr);											//가격을 뽑기위해 Matcher클래스 사용
+				
+					List<String> perPriceList = new ArrayList<>();										//각 제품의 가격을 받는 list
+					while(matcher.find()){																//위에서 지정한 가격을 뽑는 정규표현식과 매칭되는 것이 있다면?
+						System.out.println("가격이 나오는지?: "+matcher.group());								//표현이 매칭되는 문자열을 출력하고,
+						perPriceList.add(matcher.group());												//list에 추가
+				}
+					System.out.println("perPriceList:"+perPriceList);
+				}
+				
+				/*System.out.println("저러면 뭐가 나오나?"+priceList);*/
 			
 				/*System.out.println(list);*/
-				for(int i=0; i<priceList.size();i++){
-					/*System.out.println("for문"+i+"번째");*/
+				/*for(int i=0; i<priceList.size();i++){
+					System.out.println("for문"+i+"번째");
 					arr = new int[priceList.size()];
 					arr[i]=priceList.get(i).indexOf("<span");
-				/*	System.out.println(arr[i]);
-					System.out.println(list.get(i).substring(0,arr[i]));*/
+					System.out.println(arr[i]);
+					System.out.println(list.get(i).substring(0,arr[i]));
 					prdPrice.add(priceList.get(i).substring(0,arr[i])+"원");
-				}
+				}*/
 			}else if(path.indexOf("imvely")>0){
 				prdPriceEl = doc.select("strong.grid");
 				for(int i=0; i<prdPriceEl.size(); i++){
@@ -221,16 +227,47 @@ public class JsoupThread extends Thread{
 					prdPrice.add(list.get(i).substring(0,arr[i]));
 				}*/
 			}else{
-				prdPriceEl = doc.select("ul.xans-element- span");
+				prdPriceEl = doc.select("li.xans-record-:eq(0)>span");
 				/*System.out.println("prdPriceEl:"+prdPriceEl);*/
 				for(int i=0; i<prdPriceEl.size(); i++){
 					if(!(prdPriceEl.get(i).html().equals(""))){
 						prdPrice.add(prdPriceEl.get(i).html());
-						/*System.out.println(i+"번째 가격정보: "+prdPriceEl.get(i).html());*/
+						System.out.println(i+"번째 가격정보: "+prdPriceEl.get(i).html());
 						
 					}
 				}
 			}
+			if(path.indexOf("hotping")!=-1){
+				for(int i=0; i<outerList.size(); i++){
+					int num=outerList.get(i).size();
+					outerList.get(i).remove(num-1);
+				}
+			}
+			
+			System.out.println("바깥리스트:"+outerList);											//결과를 출력하면?[[18,000], [12,000], [16,900], [18,000], [19,900], [12,000], [16,000], [14,000, 9,800]]
+			/*}*/																				//path=http://66girls.co.kr/product/search.html?banner_action=&keyword=바지&page=2
+			int num=9999999;
+			int num1 = 0;
+			for(int i=0; i<outerList.size(); i++){
+				System.out.println("각 리스트의 사이즈:"+outerList.get(i).size());
+				if(outerList.get(i).size()>1){
+					/*for(int j=0; j<outerList.get(i).size(); j++){
+						System.out.println("innerfor문 진입.");
+						num1 = Integer.parseInt(outerList.get(i).get(j)); 
+						System.out.println("num1출력:"+num1);
+						if(num>num1){
+							num=num1;
+							System.out.println("현재 num값 출력:"+num);
+						}
+					}*/
+					finalPriceList.add(outerList.get(i).get(1)+"원");
+				
+				}else{
+					finalPriceList.add(outerList.get(i).get(0)+"원");
+				}
+				
+			}
+			System.out.println("최종 가격:"+finalPriceList);
 			
 			//색상 추출 하기
 			
@@ -278,7 +315,7 @@ public class JsoupThread extends Thread{
 				
 				/*생성자 5개*/
 				/*System.out.println(thumbnail.get(i)+","+prdUrl.get(i)+","+prdPrice.get(i)+","+prdName.get(i)+","+colorList.get(i));*/
-				result.add(new SearchVO(thumbnail.get(i), prdUrl.get(i), prdPrice.get(i), prdName.get(i), colorList.get(i)));
+				result.add(new SearchVO(thumbnail.get(i), prdUrl.get(i), finalPriceList.get(i), prdName.get(i), colorList.get(i)));
 			}
 			/*System.out.println(result);*/
 			
@@ -333,14 +370,38 @@ public class JsoupThread extends Thread{
 		
 	}
 	
+	public String getPrice(String element){
+		String reg = "[ㄱ-ㅎ가-힣]";															//한글 삭제를 위한 정규표현식.
+																							/*String regPrice = "((\\d{1,3})(,\\d{3})|(\\d{1,2}0)+원)";*/
+		String regPrice = "(\\d{1,3})(,\\d{3})";											//가격을 뽑기위한 정규표현식.
+	
+		
+		String regEx=element.replaceAll(reg, "");											//한글을 삭제
+		Pattern pattern = Pattern.compile(regPrice);										//가격을 뽑기위해 Pattern클래스 사용.
+		Matcher matcher = pattern.matcher(regEx);											//가격을 뽑기위해 Matcher클래스 사용
+		
+		String result = "";
+		while(matcher.find()){																//위에서 지정한 가격을 뽑는 정규표현식과 매칭되는 것이 있다면?
+			System.out.println("가격이 나오는지?: "+matcher.group());								//표현이 매칭되는 문자열을 출력하고,
+			result=matcher.group();												//list에 추가
+		}
+		return result;
+	}
+	
 	//테스트 하는 곳!!!
-/*public static void main(String[] args){
-		String path = "http://hotping.co.kr/product/search.html?banner_action=&order_by=favor&keyword=바지";
-		String path = "http://66girls.co.kr/product/search.html?view_type=&supplier_code=&category_no=306&keyword=&product_price1=&product_price2=&order_by=&x=108&y=22";
-		String path = "http://66girls.co.kr/product/search.html?banner_action=&keyword=바지&page=2";
+public static void main(String[] args){
+		/*String[] path = {"http://hotping.co.kr/product/search.html?banner_action=&order_by=favor&keyword=바지",
+						"http://loveloveme.com/product/search.html?banner_action=&keyword=바지",
+						"http://www.dejou.co.kr/product/search.html?banner_action=&keyword=바지"};
+		for(int i=0; i<path.length; i++){
+			JsoupThread thread = new JsoupThread(path[i]);
+			thread.start();}*/
+		/*String path = "http://66girls.co.kr/product/search.html?view_type=&supplier_code=&category_no=306&keyword=&product_price1=&product_price2=&order_by=&x=108&y=22";
+		String path = "http://66girls.co.kr/product/search.html?banner_abction=&keyword=바지&";*/
+		String path = "http://www.stylenanda.com/product/search.html?banner_action=&keyword=바지";
 		JsoupThread thread = new JsoupThread(path);
 		thread.start();
-	}*/
+	}
 	
 	/*public static void main(String[] args) {
 		String[] path={ "http://66girls.co.kr/product/search.html?banner_action=&keyword=바지",
@@ -373,4 +434,6 @@ public class JsoupThread extends Thread{
 		}
 		System.out.println("최종값:"+resultList);
 	}*/
+
+
 }
