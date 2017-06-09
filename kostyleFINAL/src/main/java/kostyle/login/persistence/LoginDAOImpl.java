@@ -63,7 +63,7 @@ public class LoginDAOImpl implements LoginDAO{
 		return vo;
 	}
 	@Override
-	public void keepShopLoginLimit(int adshop_id, String sessionId,Date next) {
+	public void keepShopLoginLimit(String adshop_id, String sessionId,Date next) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("adshop_id", adshop_id);
 		paramMap.put("sessionId",  sessionId);

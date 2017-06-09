@@ -34,6 +34,7 @@ public class SearchServiceImpl implements SearchService{
 		}
 		List<SearchVO> result = new ArrayList<>();
 		List<SearchVO> resultList = null;
+		
 		for(int i=0; i<url.size(); i++){
 			int count=0;
 			while(count<url.size()){

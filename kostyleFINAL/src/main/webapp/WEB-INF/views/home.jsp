@@ -14,7 +14,6 @@
 		
 		
  		$('#cuslogout a').on('click',function(){
-// 			$.post("/cuslogin/logout", { returnPath: returnPath1+"" });
  			$.post("/cuslogin/logout", { returnPath: "${path}/logintest/testpage1" },function(result){
  				if(result == "SUCCESS"){
 	 				console.log("logout ajax 성공");
@@ -28,9 +27,13 @@
 		});
 		
 		$('#shoplogout ').on('click', function(){
-//			location.href = $(this).attr("href");
-			//location.href = "/shoplogin/logout/"+currentPath1;
-			console.log("shoplogout event+ path: "+"/shoplogin/logout/"+currentPath1);
+ 			$.post("/shoplogin/logout", { returnPath: "${path}/logintest/testpage1" },function(result){
+ 				if(result == "SUCCESS"){
+	 				console.log("shop logout ajax 성공");
+ 					location.href=returnPath1;
+ 					
+ 				}
+ 			});
 			return false;
 		}); 
 		

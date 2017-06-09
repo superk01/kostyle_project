@@ -14,15 +14,14 @@ public class DiscountVO implements Serializable {
 	public DiscountVO(){}
 
 	public DiscountVO(String sale_prdUrl, String sale_imgUrl, String sale_beforeDiscountprice,
-			String sale_afterDiscountprice, String sale_name, String s_sname, int clo_zzim) {
+			String sale_afterDiscountprice, String sale_name) {
 		super();
 		this.sale_prdUrl = sale_prdUrl;
 		this.sale_imgUrl = sale_imgUrl;
 		this.sale_beforeDiscountprice = sale_beforeDiscountprice;
 		this.sale_afterDiscountprice = sale_afterDiscountprice;
 		this.sale_name = sale_name;
-		this.s_sname = s_sname;
-		this.clo_zzim = clo_zzim;
+
 	}
 
 	public String getSale_prdUrl() {

@@ -18,6 +18,7 @@ public interface DiscountService {
 	
 	public int discountRateCal(String sale_beforeDiscountprice, String sale_afterDiscountprice);
 	
+	public String urlFix(String url);
 	
 	
 	

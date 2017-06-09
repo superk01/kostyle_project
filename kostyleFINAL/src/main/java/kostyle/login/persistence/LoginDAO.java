@@ -15,6 +15,6 @@ public interface LoginDAO {
 	public void keepCusLoginLimit(String cus_id, String sessionId, Date next);
 	public CustomerVO checkCusSessionKey(String cookieVal);
 	
-	public void keepShopLoginLimit(int adshop_id, String sessionId, Date next);
+	public void keepShopLoginLimit(String adshop_id, String sessionId, Date next);
 	public AdShopVO checkShopSessionKey(String cookieVal);
 }

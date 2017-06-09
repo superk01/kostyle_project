@@ -71,9 +71,9 @@ $(document).ready(function(){
       <div id="TotalCategoryResult_Box">
 			<c:forEach var="product" items="${list}">
 				<div class="CategoryResult_oneItemBox">
-					<div class="CategoryResult_oneItemBox_child_Img"><a href="${product.sale_prdUrl}" class="countShoppingmall"><img src="${product.sale_imgUrl}" class="CategoryResultImgSize"></a></div>
-					<div class="CategoryResult_oneItemBox_child_Name"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_name}</a></div>
-					<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">가격있던자리</a></div>
+					<div class="CategoryResult_oneItemBox_child_Img"><a href="${product.product_link}" class="countShoppingmall"><img src="${product.product_ImageLink}" class="CategoryResultImgSize"></a></div>
+					<div class="CategoryResult_oneItemBox_child_Name"><a href="${product.product_link}" class="countShoppingmall">${product.product_name}</a></div>
+					<div class="CategoryResult_oneItemBox_child_price"><a href="${product.product_link}" class="countShoppingmall">${product.product_price}</a></div>
 				</div>
 			</c:forEach>
 		</div>

@@ -66,7 +66,9 @@ public class CusLoginController {
 		if(vo == null){ // null이라면 회원이 아님.
 			//request.setAttribute("msg", "회원 아이디 또는 비밀번호가 일치하지 않습니다.(5회 이상 로그인 오류시 본인확인 후 로그인 가능합니다.)");
 			//postHandle에서 sednRedirect로보내서 전달안됨.
-			return null;
+			return "/login/tempLoginCustomer";
+			/*		return "/login/loginCustomer";
+			*/
 		}
 		
 		if(dto.isUseCookie()){ //로그인성공_자동로그인체크되어있으면

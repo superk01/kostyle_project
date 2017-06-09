@@ -83,12 +83,14 @@ public class ShopLoginInterceptor extends HandlerInterceptorAdapter {
 		
 		
 		HttpSession session = request.getSession();
-		System.out.println("로그인인터셉트-preHandle");
+		System.out.println("shop로그인인터셉트-preHandle");
 		//세션의 "login"이 null이아니면 세션삭제.
 		if(session.getAttribute(SHOPLOGIN) != null){
 			logger.info("clear login data before");
+			System.out.println("clear login data before");
 			session.removeAttribute(SHOPLOGIN);
 		}
+		System.out.println("end prehandle");
 		return true;
 		
 	}
