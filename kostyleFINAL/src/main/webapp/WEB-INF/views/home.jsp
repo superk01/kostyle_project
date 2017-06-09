@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="main/kostyleHeader.jsp" %>
+
 <html>
 <head>
 <script src="../../../resources/jquery/jquery-3.2.1.js"></script>
@@ -38,7 +40,10 @@
 </script>
 	<title>Home</title>
 </head>
+
+
 <body>
+
 <h1>
 	Hello world!  
 </h1>
@@ -74,7 +79,6 @@
 		<div id="shoplogout"><a href="/shoplogin/logout/${currentPath }">쇼핑몰로그아웃</a></div>
 		
 	</c:when> --%>
-
 </c:choose>
 <div>
 <div>${login.getC_name() }님 환영합니다.</div>
@@ -91,6 +95,8 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 <P>  "${path }" </P>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
 	<div class="search_field">
 	<form action="${path }/search/do" method="get">
 		<div class="search_box">
@@ -101,6 +107,5 @@
 		</div>
 	</form>
 	</div>
-
 </body>
 </html>
