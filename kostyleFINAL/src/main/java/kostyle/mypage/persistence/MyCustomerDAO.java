@@ -1,5 +1,13 @@
 package kostyle.mypage.persistence;
 
-public interface MyCustomerDAO {
 
+
+import kostyle.mypage.domain.MyCustomerVO;
+
+public interface MyCustomerDAO {
+	public boolean loginCheck(MyCustomerVO vo);
+	public MyCustomerVO viewMember(MyCustomerVO vo);
+	public boolean passCheck(
+			MyCustomerVO vo);
+	public MyCustomerVO read(String c_id);
 }

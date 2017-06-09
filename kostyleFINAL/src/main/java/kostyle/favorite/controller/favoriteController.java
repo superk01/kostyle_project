@@ -37,6 +37,7 @@ public class favoriteController {
 		   }*/
 	
 	
+	
 		   @RequestMapping(value = "/favoriteList", method = RequestMethod.GET)
 		   public void favoriteList(@ModelAttribute("Cri")FavoriteCriteria cri, Model model) throws Exception {
 			
