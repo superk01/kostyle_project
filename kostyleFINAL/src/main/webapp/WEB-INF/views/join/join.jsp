@@ -294,7 +294,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputPassword" type="password" required=""
+					<input class="form-control" id="inputPassword" type="password" required="" 
 					 onkeyup="pass_validation();" name="c_pass" placeholder="비밀번호">
 					<span id="m_pass" class="error"></span>
 					<p class="help-block">영문/숫자/특수문자 조합, 4~16자</p>

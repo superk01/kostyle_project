@@ -12,7 +12,12 @@
 	</select>
 	
 	<select id="product_Search" resultType="kostyle.category.domain.Product_category" parameterType="String">
-		select * from product_list where product_name like '%' || #{keyword} || '%'
+		select * from product_list where product_keyword = #{keyword}
+	</select>
+	
+	<select id="product_Filter_color" resultType="kostyle.category.domain.Product_category">
+		select * from product_list where product_color like '%' || #{filter} || '%'
+		and product_keyword like '%' || #{keyword} || '%'
 	</select>
 	
 	<insert id="product_list_insert">

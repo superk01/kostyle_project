@@ -1,47 +1,50 @@
 package kostyle.category.domain;
 
 public class Weather {
-	private String resultweather = "";
-	private String resulttime = "";
-	private String resultC = "";
-	private String navstr = "";
-	private String resultweatherimg ="";
-	public String getResultweather() {
-		return resultweather;
-	}
-	public void setResultweather(String resultweather) {
-		this.resultweather = resultweather;
-	}
-	public String getResulttime() {
-		return resulttime;
-	}
-	public void setResulttime(String resulttime) {
-		this.resulttime = resulttime;
-	}
-	public String getResultC() {
-		return resultC;
-	}
-	public void setResultC(String resultC) {
-		this.resultC = resultC;
-	}
-	public String getNavstr() {
-		return navstr;
-	}
-	public void setNavstr(String navstr) {
-		this.navstr = navstr;
-	}
+	private double temp;
+	private double wind_ms;
+	private double vher;
+	private double rainper;
+	private String weather;
 	
-	public String getResultweatherimg(){
-		return resultweatherimg;
+	public double getTemp() {
+		return temp;
 	}
-	
-	public Weather(String resultweather, String resulttime, String resultC, String navstr,String resultweatherimg) {
+	public void setTemp(double temp) {
+		this.temp = temp;
+	}
+	public double getWind_ms() {
+		return wind_ms;
+	}
+	public void setWind_ms(double wind_ms) {
+		this.wind_ms = wind_ms;
+	}
+	public double getVher() {
+		return vher;
+	}
+	public void setVher(double vher) {
+		this.vher = vher;
+	}
+	public double getRainper() {
+		return rainper;
+	}
+	public void setRainper(double rainper) {
+		this.rainper = rainper;
+	}
+	public Weather(double temp, double wind_ms, double vher, double rainper, String weather) {
 		super();
-		this.resultweather = resultweather;
-		this.resulttime = resulttime;
-		this.resultC = resultC;
-		this.navstr = navstr;
-		this.resultweatherimg = resultweatherimg;
+		this.temp = temp;
+		this.wind_ms = wind_ms;
+		this.vher = vher;
+		this.rainper = rainper;
+		this.weather = weather;
 	}
-	  
+	@Override
+	public String toString() {
+		return "Weather [temp=" + temp + ", wind_ms=" + wind_ms + ", vher=" + vher + ", rainper=" + rainper
+				+ ", weather=" + weather + "]";
+	}
+	
+	
+	
 }

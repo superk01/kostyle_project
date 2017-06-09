@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Signin Template for Bootstrap</title>
     
-    <link href="../../../resources/css/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="../../../resources/css/admin/shopJoin.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="../../../resources/css/admin/shopJoin.css" rel="stylesheet">
     
   </head>
 
@@ -18,39 +18,39 @@
     <div class="container">
 
       <form class="form-signin" method="post">
-        <h2 class="form-signin-heading">¿‘¡° Ω≈√ª</h2>
+        <h2 class="form-signin-heading">ÏûÖÏ†ê Ïã†Ï≤≠</h2>
         <label for="inputShopName" class="sr-only">ShoppingMall Name</label>
-        <input type="text" id="inputShopName" class="form-control" name="s_sname" placeholder="ºÓ«Œ∏Ù∏Ì" required autofocus>
+        <input type="text" id="inputShopName" class="form-control" name="s_sname" placeholder="ÏáºÌïëÎ™∞Î™Ö" required autofocus>
         
         <label for="inputShopURL" class="sr-only">ShoppingMall URL</label>
-        <input type="text" id="inputShopURL" class="form-control" name="s_shopurl" placeholder="ºÓ«Œ∏Ù URL" required>
+        <input type="text" id="inputShopURL" class="form-control" name="s_shopurl" placeholder="ÏáºÌïëÎ™∞ URL" required>
         
         <label for="inputShopSearchURL" class="sr-only">ShoppingMall SearchURL</label>
-        <input type="text" id="inputShopSearchURL" class="form-control" name="s_searchurl" placeholder="∞Àªˆ URL" required>
+        <input type="text" id="inputShopSearchURL" class="form-control" name="s_searchurl" placeholder="Í≤ÄÏÉâ URL" required>
         
         <label for="inputShopReg" class="sr-only">ShoppingMall Reg</label>
-        <input type="text" id="inputShopReg" class="form-control" name="s_shopreg" placeholder="ªÁæ˜¿⁄µÓ∑œπ¯»£" required>
+        <input type="text" id="inputShopReg" class="form-control" name="s_shopreg" placeholder="ÏÇ¨ÏóÖÏûêÎì±Î°ùÎ≤àÌò∏" required>
         
         <label for="inputImage" class="sr-only">ShoppingMall Image</label>
         <input type="file" id="inputImage" class="form-control" name="s_image" required>
         
         <label for="inputAge" class="sr-only">ShoppingMall Age</label>
         <select class="form-control" id="inputAge" name="s_age">
-        	<option value="0">ø¨∑…¥Î</option>
-        	<option value="10">10¥Î</option>
-        	<option value="20">20¥Î</option>
-        	<option value="30">30¥Î</option>
-        	<option value="40">40¥Î</option>
+        	<option value="0">Ïó∞Î†πÎåÄ</option>
+        	<option value="10">10ÎåÄ</option>
+        	<option value="20">20ÎåÄ</option>
+        	<option value="30">30ÎåÄ</option>
+        	<option value="40">40ÎåÄ</option>
         </select>
         
         <label for="inputManager" class="sr-only">ShoppingMall Manager</label>
-        <input type="text" id="inputManager" class="form-control" name="s_manager" placeholder="¥„¥Á¿⁄ ¿Ã∏ß" required>
+        <input type="text" id="inputManager" class="form-control" name="s_manager" placeholder="Îã¥ÎãπÏûê Ïù¥Î¶Ñ" required>
         
         <label for="inputEmail" class="sr-only">ShoppingMall Email</label>
-        <input type="text" id="inputEmail" class="form-control" name="s_email" placeholder="¿Ã∏ﬁ¿œ" required>
+        <input type="text" id="inputEmail" class="form-control" name="s_email" placeholder="Ïù¥Î©îÏùº" required>
         
         <label for="inputPhoneNumber" class="sr-only">ShoppingMall Phone</label>
-        <input type="text" id="inputPhoneNumber" class="form-control" name="s_phonenumber" placeholder="ø¨∂Ù√≥" required>
+        <input type="text" id="inputPhoneNumber" class="form-control" name="s_phonenumber" placeholder="Ïó∞ÎùΩÏ≤ò" required>
         
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

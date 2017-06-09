@@ -19,7 +19,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
-
+<%-- <%@ include file="../main/kostyleHeader.jsp" %> --%>
 <div class="page-header">
 			<h1>
 				즐겨찾기

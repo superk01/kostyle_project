@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kostyle.admin.domain.AdShoppingMallAdmin;
+import kostyle.admin.domain.CriteriaAdmin;
+import kostyle.admin.domain.SearchCriteriaAdmin;
 import kostyle.admin.domain.ShoppingMallAdmin;
 import kostyle.admin.persistence.ShopAdminDAO;
 
@@ -22,13 +24,18 @@ public class ShopAdminServiceImpl implements ShopAdminService{
 	}
 
 	@Override
-	public int countShoppingMall() throws Exception {
-		return dao.countShoppingMall();
+	public int countShoppingMall(CriteriaAdmin cri) throws Exception {
+		return dao.countShoppingMall(cri);
 	}
 
 	@Override
-	public List<ShoppingMallAdmin> shopList() throws Exception {
-		return dao.shopList();
+	public int countSearchShop(SearchCriteriaAdmin cri) throws Exception {
+		return dao.countSearchShop(cri);
+	}
+
+	@Override
+	public List<ShoppingMallAdmin> shopList(CriteriaAdmin cri) throws Exception {
+		return dao.shopList(cri);
 	}
 
 	@Override
@@ -37,8 +44,13 @@ public class ShopAdminServiceImpl implements ShopAdminService{
 	}
 
 	@Override
-	public void insertAdShoppingMall(ShoppingMallAdmin shop) throws Exception {
-		dao.insertAdShoppingMall(shop);
+	public AdShoppingMallAdmin getAdShoppingMall(String s_num) throws Exception {
+		return dao.getAdShoppingMall(s_num);
+	}
+
+	@Override
+	public void insertAdShoppingMall(AdShoppingMallAdmin adShop) throws Exception {
+		dao.insertAdShoppingMall(adShop);
 	}
 
 	@Override
@@ -49,6 +61,16 @@ public class ShopAdminServiceImpl implements ShopAdminService{
 	@Override
 	public void deleteAdShop(String s_num) throws Exception {
 		dao.deleteAdShop(s_num);
+	}
+
+	@Override
+	public void updateAdShopInfo(AdShoppingMallAdmin adShop) throws Exception {
+		dao.updateAdShopInfo(adShop);
+	}
+
+	@Override
+	public void updateShopInfo(ShoppingMallAdmin shop) throws Exception {
+		dao.updateShopInfo(shop);
 	}
 	
 	
