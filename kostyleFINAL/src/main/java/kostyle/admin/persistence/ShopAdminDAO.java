@@ -13,7 +13,10 @@ public interface ShopAdminDAO {
 	public int countSearchShop(SearchCriteriaAdmin cri)throws Exception;
 	public List<ShoppingMallAdmin> shopList(CriteriaAdmin cri)throws Exception;
 	public ShoppingMallAdmin getShoppingMall(String s_num)throws Exception;
-	public void insertAdShoppingMall(ShoppingMallAdmin shop)throws Exception;
+	public AdShoppingMallAdmin getAdShoppingMall(String s_num)throws Exception;
+	public void insertAdShoppingMall(AdShoppingMallAdmin adShop)throws Exception;
 	public List<AdShoppingMallAdmin> adShopList()throws Exception;
 	public void deleteAdShop(String s_num)throws Exception;
+	public void updateAdShopInfo(AdShoppingMallAdmin adShop)throws Exception;
+	public void updateShopInfo(ShoppingMallAdmin shop)throws Exception;
 }
