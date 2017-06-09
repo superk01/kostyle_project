@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,12 @@ public class joinController {
 	   public String registPOST(JoinJoin join) throws Exception {
 		
 		System.out.println("join post ...........");
-		System.out.println(join.toString());
+		System.out.println("암호화 전 : " + join.toString());
+		
+		
+		String hashPassword = BCrypt.hashpw(join.getC_pass(), BCrypt.gensalt());
+		join.setC_pass(hashPassword);
+		System.out.println("암호화 후 : " + join.toString());
 	      
 	    service.insertJoin_S(join);
 	      

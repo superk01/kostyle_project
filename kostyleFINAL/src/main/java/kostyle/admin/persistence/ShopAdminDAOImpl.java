@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kostyle.admin.domain.AdShoppingMallAdmin;
+import kostyle.admin.domain.CriteriaAdmin;
+import kostyle.admin.domain.SearchCriteriaAdmin;
 import kostyle.admin.domain.ShoppingMallAdmin;
 
 @Repository
@@ -24,13 +27,18 @@ public class ShopAdminDAOImpl implements ShopAdminDAO{
 	}
 
 	@Override
-	public int countShoppingMall() throws Exception {
-		return session.selectOne(namespace+".countShoppingMall");
+	public int countShoppingMall(CriteriaAdmin cri) throws Exception {
+		return session.selectOne(namespace+".countShoppingMall", cri);
 	}
 
 	@Override
-	public List<ShoppingMallAdmin> shopList() throws Exception {
-		return session.selectList(namespace+".shopList");
+	public int countSearchShop(SearchCriteriaAdmin cri) throws Exception {
+		return session.selectOne(namespace+".countSearchShop", cri);
+	}
+
+	@Override
+	public List<ShoppingMallAdmin> shopList(CriteriaAdmin cri) throws Exception {
+		return session.selectList(namespace+".shopList", cri, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 
 	@Override
@@ -50,7 +58,7 @@ public class ShopAdminDAOImpl implements ShopAdminDAO{
 
 	@Override
 	public void deleteAdShop(String s_num) throws Exception {
-		session.delete(namespace+".deleteAdShop");
+		session.delete(namespace+".deleteAdShop", s_num);
 	}
 	
 
