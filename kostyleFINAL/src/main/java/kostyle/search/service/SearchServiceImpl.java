@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import kostyle.search.domain.GetColorThread;
 import kostyle.search.domain.JsoupThread;
 import kostyle.search.domain.SearchVO;
 import kostyle.search.persistence.SearchDAO;
@@ -27,14 +28,14 @@ public class SearchServiceImpl implements SearchService{
 	public List<SearchVO> doSearch(String keyword) {
 		List<String> url = searchDao.getSearchUrl();
 		List<JsoupThread> threads = new ArrayList<>();
-		List<JsoupThread> subThreads = new ArrayList<>();
+		/*List<JsoupThread> subThreads = new ArrayList<>();*/
 		/*for(int i=0; i<url.size(); i++){
-			System.out.println("url"+i+"번지 주소 확인:"+url.get(i));*/
-			threads.add(new JsoupThread(url.get(0)+keyword));
+			System.out.println("url"+i+"번지 주소 확인:"+url.get(i));
+			threads.add(new JsoupThread(url.get(i)+keyword));
 			threads.get(0).start();
-		/*}*/
-		List<SearchVO> result = new ArrayList<>();
-		List<SearchVO> resultList = null;
+		}*/
+		
+		/*List<SearchVO> resultList = null;*/
 		List<String> nextPages = new ArrayList<>();
 	
 		/*for(int i=url.size(); i<0; i--){
@@ -71,12 +72,26 @@ public class SearchServiceImpl implements SearchService{
 			}
 
 		}*/
-		while(threads.size()!=0){
+		/*while(threads.size()!=0){
+			for(int i=0; i<threads.size(); i++){
+				System.out.println("스레드 삭제 확인1111:"+threads.size());
+				if(threads.get(i).getState()==State.TERMINATED){
+					resultList=threads.get(i).getResult();
+					for(int j=0; j<resultList.size();j++){
+						result.add(resultList.get(j));
+					}
+					threads.remove(i);
+					System.out.println("스레드 삭제 확인1111:"+threads.size());
+							
+				}
+			}
+		}*/
+	/*	while(threads.size()!=0){
 			for (int i=0 ; i<threads.size(); i++){
 				if(threads.get(i).getState()==State.TERMINATED){
 					System.out.println("******"+i+"번째 스레드 종료*********");
 					resultList=threads.get(i).getResult();					 	//리스트에 스레드가 반환하는 리스트를 받음
-					/*nextPages = threads.get(i).getNextPages();*/
+					nextPages = threads.get(i).getNextPages();
 					for(int j=0; j<resultList.size(); j++){						//반환값안에 상품객체들이 여러개 있는데...
 						result.add(resultList.get(j));							//각 객체들을 다른 리스트안에 순차적으로 넣음.
 					}
@@ -86,14 +101,14 @@ public class SearchServiceImpl implements SearchService{
 					if(nextPages != null){
 						for(int in=0; in<nextPages.size(); in++){
 							subThreads.add(new JsoupThread(nextPages.get(in)));
-							subThreads.get(in).run();
+							subThreads.get(in).start();
 						}
 						while(subThreads.size()!=0){
 							for (int in=0 ; in<subThreads.size(); in++){
 								if(subThreads.get(in).getState()==State.TERMINATED){
 									System.out.println("******"+in+"번째 스레드 종료*********");
 									resultList=subThreads.get(in).getResult();					 	//리스트에 스레드가 반환하는 리스트를 받음
-									/*nextPages = threads.get(i).getNextPages();*/
+									nextPages = threads.get(i).getNextPages();
 									for(int j=0; j<resultList.size(); j++){						//반환값안에 상품객체들이 여러개 있는데...
 										result.add(resultList.get(j));							//각 객체들을 다른 리스트안에 순차적으로 넣음.
 									}
@@ -108,10 +123,58 @@ public class SearchServiceImpl implements SearchService{
 					break;
 				}
 			}
+		}*/
+		/*List<GetColorThread> getColorListThread = new ArrayList<>();
+		List<String> colorList = new ArrayList<>();
+		for(int i=0; i<result.size(); i++){
+			getColorListThread.add(new GetColorThread(result.get(i).getProduct_link()));
+			getColorListThread.get(i).start();
 		}
+		while(getColorListThread.size() !=0){
+			for(int i=0; i<getColorListThread.size(); i++){
+				if(getColorListThread.get(i).getState()==State.TERMINATED){
+					colorList.add(getColorListThread.get(i).getColorList());
+				}
+				getColorListThread.get(i).interrupt();
+				getColorListThread.remove(i);
+				break;
+			}
+		}
+		for(int i=0; i<colorList.size(); i++){
+			result.get(i).setProduct_color(colorList.get(i));
+		}*/
+		/*for(int i=0; i<url.size(); i++){
+			System.out.println("url"+i+"번지 주소 확인:"+url.get(i));
+			threads.add(new JsoupThread(url.get(i)+keyword));
+			threads.get(0).start();
+		}*/
+		List<JsoupThread> threadList = new ArrayList<>();
+		for(int i=0; i<url.size(); i++){
+			threadList.add(new JsoupThread(url.get(i)+keyword));
+			threadList.get(i).start();
+		}
+		List<SearchVO> resultList = new ArrayList<>();
+		List<SearchVO> result = new ArrayList<>();
+		while(threadList.size() !=0){
+			for(int i=0; i<threadList.size(); i++){
+				/*System.out.println(threadList.get(i).getState());*/
+				if(threadList.get(i).getState()==State.TERMINATED){
+					/*System.out.println("333333어디서 에러남3333333?");*/
+					/*System.out.println("색상 추출하는 "+i+"번째 스레드 종료!!!");*/
+					resultList=threadList.get(i).getResult();
+					/*System.out.println("resultList확인:"+resultList);*/
+					
+					for(int j=0; j<resultList.size(); j++){
+						result.add(resultList.get(j));
+					}
+					/*System.out.println("4444444어디서 에러남4444444?");*/
+					threadList.remove(i);
+					break;
+				}
+			}
 		
-		
+	}
+		System.out.println("최종결과:"+result);
 		return result;
 	}
-
 }
