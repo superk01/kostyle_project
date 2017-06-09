@@ -27,12 +27,14 @@ public class FavoriteDAOTest{
 		   cri.setPage(1);
 		   cri.setPerPageNum(2);
 		   
-		   List<Favorite> list = dao.listFavoriteCriteria(cri);
+//		   //List<Favorite> list = dao.listFavoriteCriteria(cri);
 		   
-		   for(Favorite favorite : list){
-			   logger.info(favorite.getF_num() + ":" + favorite.getS_sname());
-		   }
-	   }
+		   //for(Favorite favorite : list){
+			  // logger.info(favorite.getF_num() + ":" + favorite.getS_sname());
+		   //}
+	  
+	 
+	 }
 	
 	
 }

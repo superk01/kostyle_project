@@ -20,6 +20,7 @@ function CategoryItemClick(){
 }
 
 function CategoryFilterClick(){
+	
 	$('.filteraclass').click(function(){
 		var form = {
 			keyword : $(this).attr("data-k"),
@@ -29,8 +30,20 @@ function CategoryFilterClick(){
                type : 'POST', 
                url : '/category/categoryResult/filter',              
                contentType: "application/json", 
-               data: JSON.stringify(form)           
-      });
-	});	
+               data: JSON.stringify(form),
+               dataType : 'text',
+               success : function(data){
+            	   location = "/category/categoryResult";
+               } 
+      });		
+	});
+	
+	$('#CateogyrFilterColor').click(function(){
+		var check = $('.categoryOff').css("display");
+		
+		if( check == 'none') $('.categoryOff').css({"display" : "block"});
+		else $('.categoryOff').css({"display" : "none"});
+	});
+	
 }
 

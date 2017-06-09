@@ -9,7 +9,7 @@
 		From shoppingmall s, adshoppingmall ad, favorite f
 		where f.s_num = ad.s_num
 		and ad.s_num = s.s_num
-		and f.c_num = 3
+		and f.c_num = #{c_num}
 		]]> 
 	<![CDATA[     
         order by f.f_date desc
@@ -21,7 +21,7 @@
    	<![CDATA[
       select count(*)	From favorite f, customer c
 		where f.c_num = c.c_num
-		And c.c_num = 3    
+		And c.c_num = #{c_num}
       ]]>      
    </select>
     
@@ -33,13 +33,13 @@
     
     <update id="comentModify" parameterType="Favorite">
 		update favorite set f_coment=#{f_coment} 
-		where c_num = 3 and f_num = #{f_num}
+		where f_num = #{f_num}
 	</update>
     
     
     <delete id="deleteFavorite" parameterType="Favorite">
 		delete from favorite
-		where c_num = 3 and f_num = #{f_num}
+		where c_num = #{c_num} and f_num = #{f_num}
 	</delete>
     
     

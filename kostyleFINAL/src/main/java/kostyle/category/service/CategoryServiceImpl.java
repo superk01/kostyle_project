@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import kostyle.category.domain.Adshoppingmall_category;
+import kostyle.category.domain.FilterVO;
 import kostyle.category.domain.Product_category;
 import kostyle.category.persistence.CategoryDAO;
 
@@ -30,6 +31,11 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void product_list_insert(Map<String, Object> map) throws Exception {
 		dao.product_list_insert(map);
+	}
+
+	@Override
+	public List<Product_category> product_Filter_color(FilterVO filterVO) throws Exception {
+		return dao.product_Filter_color(filterVO);
 	}
 
 }

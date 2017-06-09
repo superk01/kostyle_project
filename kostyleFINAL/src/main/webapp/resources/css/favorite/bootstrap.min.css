@@ -9,7 +9,7 @@ html {
 	-ms-text-size-adjust: 100%
 }
 
-body {
+.body {
 	margin: 0 5%;
 }
 
@@ -2355,9 +2355,8 @@ th {
 
 .table>thead>tr>th {
 	vertical-align: middle;
-	border-bottom: 2px solid #ddd;
-	background: #ad82ab;
-	color: white;
+	border-bottom: 5px solid #ad82ab;
+	color: black;
 }
 
 .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>th,
@@ -2368,7 +2367,7 @@ th {
 }
 
 .table>tbody+tbody {
-	border-top: 2px solid #ddd
+	border-top: 2px solid #ad82ab
 }
 
 .table .table {

@@ -1,5 +1,6 @@
 package kostyle.favorite.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -21,14 +22,17 @@ public class FavoriteDAOImpl implements FavoriteDAO {
 	
 	@Override
 	public List<Favorite> listFavorite() throws Exception {
-		System.out.println("dao###############");
 		return session.selectList(namespace+".listFavorite");
 	}
 	
 	
 	@Override
-	public List<Favorite> listFavoriteCriteria(FavoriteCriteria cri) throws Exception {
-		 return session.selectList(namespace+".listFavorite", cri, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+	public List<Favorite> listFavoriteCriteria(String c_num, FavoriteCriteria cri) throws Exception {
+		System.out.println("dao###############"); 
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("c_num", c_num);
+		map.put("cri", cri);
+		return session.selectList(namespace+".listFavorite", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 
 
@@ -44,8 +48,11 @@ public class FavoriteDAOImpl implements FavoriteDAO {
 
 	
 	@Override
-	public int countPaging(FavoriteCriteria cri) throws Exception {
-		return session.selectOne(namespace+".countPaging", cri);
+	public int countPaging(String c_num, FavoriteCriteria cri) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("c_num", c_num);
+		map.put("cri", cri);
+		return session.selectOne(namespace+".countPaging", map);
 	}
 
 
@@ -62,8 +69,11 @@ public class FavoriteDAOImpl implements FavoriteDAO {
 
 
 	@Override
-	public void deleteFavorite(String f_num) throws Exception {
-		session.delete(namespace+".deleteFavorite", f_num);
+	public void deleteFavorite(String c_num, String f_num) throws Exception {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("c_num", c_num);
+		map.put("f_num", f_num);
+		session.delete(namespace+".deleteFavorite", map);
 	}
 
 	
