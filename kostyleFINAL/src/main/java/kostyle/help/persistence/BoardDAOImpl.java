@@ -70,9 +70,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int totalCount() throws Exception {
+	public int totalCount(SearchCriteria cri) throws Exception {
 		
-		return session.selectOne(namespace+".totalCount");
+		return session.selectOne(namespace+".totalCount", cri);
 	}
 	
 	

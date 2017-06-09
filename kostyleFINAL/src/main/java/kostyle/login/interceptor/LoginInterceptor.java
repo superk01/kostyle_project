@@ -52,7 +52,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		logger.info("userVO: "+userVO);
 //		Object dest=session.getAttribute("dest"); //CheckLoginInterceptor를 거쳐왔다면 dest가있음.
 		String dest=(String)session.getAttribute("dest"); //CheckLoginInterceptor를 거쳐왔다면 dest가있음.
-		String dest1 ="";
+		
 		if(userVO != null){ //로그인성공
 			System.out.println("로그인성공: new login success");
 			logger.info("new login success");
@@ -85,19 +85,18 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 					System.out.println("userVO의 p_powernum: "+((CustomerVO) userVO).getP_powernum());
 						if(((CustomerVO) userVO).getP_powernum() == 2){
 							System.out.println("개인고객 분기 진입");
-							dest1 =setDest(request, "C");
+							dest =setDest(request, "C");
 						//	dest =( dest != null) ? (String)dest:"/";
 						}else if(((CustomerVO) userVO).getP_powernum() == 0){
 							System.out.println("관리자 분기 진입");
-							dest1 = setDest(request,"A");
+							dest = setDest(request,"A");
 						//	dest = (dest != null) ? (String)dest:"/";
 						}
 							
 				}
 
-/*				response.sendRedirect((String)dest);*/
-				response.sendRedirect("/");
-				return;
+				response.sendRedirect(dest);
+				
 		}else{ //로그인실패
 			request.getSession().setAttribute("msg", "회원 아이디 또는 비밀번호가 일치하지 않습니다.(5회 이상 로그인 오류시 본인확인 후 로그인 가능합니다.)");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/cuslogin/login");

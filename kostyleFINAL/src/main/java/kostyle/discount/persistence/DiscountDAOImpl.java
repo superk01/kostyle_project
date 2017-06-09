@@ -34,6 +34,18 @@ public class DiscountDAOImpl implements DiscountDAO {
 		
 	}
 
+	@Override
+	public List<String> getNewSaleUrlList() {
+		return session.selectList(namespace+".getNewSaleUrlList");
+	}
+	@Override
+	public List<String> getDiscountUrlList() {
+		return session.selectList(namespace+".getDiscountUrlList");
+	}
+
+	
+	
+	
 	
 	
 	

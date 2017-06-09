@@ -20,29 +20,17 @@ function CategoryItemClick(){
 }
 
 function CategoryFilterClick(){
-	$('#CategoryFilterrandom').click(function(){
-		location = "/category/categoryResult/random";
-	});
-	
-	$('#CategoryFiltermaxprice').click(function(){
-		location = "/category/categoryResult/maxprice";
-	});
-	
-	$('#CategoryFilterminprice').click(function(){
-		location = "/category/categoryResult/minprice";
-	});
-	
-	$('#CategoryFilterhotproduct').click(function(){
-		location = "/category/categoryResult/hotproduct";
-	});
-	
-	$('#CateogyrFilterColor').click(function(){
-		location = "/category/categoryResult/color/";
-	});
-	
-	$('#CategoryFilterdefault').click(function(){
-		location = "/category/categoryResult/default"
-	});
-	
+	$('.filteraclass').click(function(){
+		var form = {
+			keyword : $(this).attr("data-k"),
+			filter : $(this).attr("data-f")
+		};		
+		   $.ajax({
+               type : 'POST', 
+               url : '/category/categoryResult/filter',              
+               contentType: "application/json", 
+               data: JSON.stringify(form)           
+      });
+	});	
 }
 

@@ -53,4 +53,13 @@
 	<context:component-scan base-package="kostyle.admin.service"/>
 	<context:component-scan base-package="kostyle.discount.persistence"/>
 	<context:component-scan base-package="kostyle.discount.service"/>
+	
+	
+	      <!-- 트랜잭션적용 -->
+      <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+         <property name="dataSource" ref="dataSource"/>
+      </bean>
+      <tx:annotation-driven/>
+      
+      
 </beans>

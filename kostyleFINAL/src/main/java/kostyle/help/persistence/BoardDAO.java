@@ -23,6 +23,6 @@ public interface BoardDAO {
 	
 	public String getS_Num(BoardVO boardVO)throws Exception;								//문의 글을 db에 넣을때 데이터 베이스 컬럼값에 쇼핑몰의 이름만 있는 관계로, 쇼핑몰의 이름을 가지고 쇼핑몰의 번호를 구하는 메소드
 																							//서비스에서 insert에 쓰임.
-	public int totalCount()throws Exception;												//페이징 처리를 위해 PageMaker객체에 totalCount를 구하기 위하여 사용함.
+	public int totalCount(SearchCriteria cri)throws Exception;												//페이징 처리를 위해 PageMaker객체에 totalCount를 구하기 위하여 사용함.
 																							//서비스의 list메소드에서 호출함.
 }
