@@ -70,7 +70,7 @@ public class GetColorThread extends Thread {
 			}
 		
 			List<String> list2 = new ArrayList<String>(new LinkedHashSet<String>(list1));
-			/*System.out.println("중복제거 list:"+list2);*/
+			System.out.println("중복제거 list:"+list2);
 			for(int i=0; i<list2.size(); i++){
 				colorList += list2.get(i);
 			}
@@ -82,11 +82,11 @@ public class GetColorThread extends Thread {
 	
 /*--------------------------------------메인 메소드-------------------------------------------------*/	
 	
-/*	public static void main(String[] args) {
-		String path = "http://hotping.co.kr/product/detail.html?product_no=15930&cate_no=29&display_group=1";
+public static void main(String[] args) {
+		String path = "hotping.co.kr/product/detail.html?product_no=15930&cate_no=29&display_group=1";
 		GetColorThread thread = new GetColorThread(path);
 		thread.run();
-	}*/
+	}
 	
 	
 }

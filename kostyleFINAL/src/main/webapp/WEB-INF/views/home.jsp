@@ -98,7 +98,7 @@
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 	<div class="search_field">
-	<form action="${path }/search/do" method="get">
+	<form action="search/do" method="post">
 		<div class="search_box">
 			<dl class="clear_float">
 				<dt><input type="text" name="search"></dt>

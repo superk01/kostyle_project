@@ -10,5 +10,22 @@
 		select s_searchurl from shoppingmall s, adshoppingmall a
 		where s.s_num = a.s_num
 	</select>
+	<select id="searchproduct" parameterType="String" resultType="SearchVO">
+		select  
+		product_name, product_price, product_imagelink as product_ImageLink, product_shopurl, product_shopname, product_color, product_link, product_keyword
+		from product_list where product_keyword = #{product_keyword}
+	</select>
+	<insert id="insertproduct" parameterType="SearchVO">
+		insert into product_list (product_name, product_price, product_imagelink, product_shopurl, product_shopname, product_color, product_link, product_keyword) 
+		values(
+		#{product_name},
+		#{product_price},
+		#{product_ImageLink},
+		#{product_shopurl},
+		(select s_sname from shoppingmall where s_shopurl = #{product_shopurl}),
+		#{product_color},
+		#{product_link},
+		#{product_keyword})
+	</insert>
 </mapper>
 

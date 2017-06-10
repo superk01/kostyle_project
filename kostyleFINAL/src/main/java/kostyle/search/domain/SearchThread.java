@@ -88,7 +88,7 @@ public class SearchThread extends Thread {
 			
 			List<Elements> list= new ArrayList<>();												//엘레먼트를 담을 list
 			for(int i=0; i<perPageProduct.size(); i++){
-				list.add(perPageProduct.get(i).select("li.xans-record- span"));			//한 상품에 해당하는 태그들(Element) 중에서 ul태그의 클래스명이  "xans-element-"이면서 그 자손태그들 중에 첫 번째 span태그를 가져옴.
+				list.add(perPageProduct.get(i).select("li.xans-record- span"));					//한 상품에 해당하는 태그들(Element) 중에서 ul태그의 클래스명이  "xans-element-"이면서 그 자손태그들 중에 첫 번째 span태그를 가져옴.
 				/*System.out.println("list:"+list.get(i));*/
 			}
 			for(int i=0; i<list.size(); i++){													//위에서 뽑아온 span태그들을 반복문 돌림.
@@ -152,9 +152,9 @@ public class SearchThread extends Thread {
 		}
 	}
 	
-public static void main(String[] args) {
-		/*span:eq(0)*/
-			/*String[] path = {"http://66girls.co.kr/product/search.html?banner_action=&keyword=바지", 
+/*public static void main(String[] args) {
+		span:eq(0)
+			String[] path = {"http://66girls.co.kr/product/search.html?banner_action=&keyword=바지", 
 				"http://www.stylenanda.com/product/search.html?banner_action=&keyword=바지",
 				"http://ggsing.com/product/search.html?banner_action=&keyword=바지",
 				"http://loveloveme.com/product/search.html?banner_action=&keyword=바지",
@@ -164,12 +164,12 @@ public static void main(String[] args) {
 			for(int i=0; i<path.length; i++){
 				SearchThread thread = new SearchThread(path[i]);
 				thread.run();
-			}*/
+			}
 		String path = "http://hotping.co.kr/product/search.html?banner_action=&order_by=favor&keyword=바지";
-		/*String path[] = "http://imvely.com/product/search.html?view_type=&supplier_code=&category_no=&search_type=product_name&keyword=바지";*/
+		String path[] = "http://imvely.com/product/search.html?view_type=&supplier_code=&category_no=&search_type=product_name&keyword=바지";
 		SearchThread thread = new SearchThread(path);
 		thread.run();
-	}
+	}*/
 	
 	
 }
