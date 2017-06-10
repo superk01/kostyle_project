@@ -1,4 +1,5 @@
 package kostyle.discount.domain;
+/*package kostyle.discount.domain;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,16 +7,16 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class MywayThread extends Thread {
+import kostyle.category.domain.Product_category;
+
+public class DiscountThread extends Thread {
 	private String crollUrl;
 	private String shopUrl;
 	private int pagecount = 0;
 	private List<DiscountVO> resultVOList;
 	
-	public MywayThread(String crollUrl, String shopurl){
+	public DiscountThread(String crollUrl, String shopurl){
 		this.crollUrl = crollUrl;
 		this.shopUrl = shopurl;
 		resultVOList = new ArrayList<DiscountVO>();
@@ -45,7 +46,7 @@ public class MywayThread extends Thread {
 		   List<Integer> endLiRowNum = new ArrayList<Integer>(); // 물품 끝 box 줄 모음
 		   List<String> product_NameList = new ArrayList<String>(); //최종 물품이름목록
 		   List<String> product_PriceList = new ArrayList<String>();//최종 물품가격목록
- //	   List<String> product_BeforeSalePriceList = new ArrayList<String>();//최종 물품가격목록
+		   List<String> product_BeforeSalePriceList = new ArrayList<String>();//최종 물품가격목록
 //		   List<String> product_AfterSalePriceList = new ArrayList<String>();//최종 물품가격목록
 		   List<String> product_LinkList = new ArrayList<String>();//최종 물품링크목록
 		   List<String> product_ImgLinkList = new ArrayList<String>(); //최종 물품이름목록
@@ -115,68 +116,15 @@ public class MywayThread extends Thread {
 		    	   System.out.println("페이지 초과");
 		    	   return;
 		       }
-//----------------------------------------  myWay --body --------------------------
-		       List<StringBuffer> sbList = new ArrayList<StringBuffer>(); //상품하나 ==하나의 stirngBuffer(string하나처럼 한문장으로 뭉치기.)
-		    	
 		       
-		       //상품하나하나를 각각의 스트링버퍼에 담기. //rowList에 전체코드 들어있음. 인덱스를 기준으로 한상품씩 스트링버퍼로 합칠것.
+		       
 		       for (int i = 0; i < startLiRowNum.size(); i++) {
 			          int startrow = startLiRowNum.get(i);
 			          int endrow = endLiRowNum.get(i);      
-			          StringBuffer sb = new StringBuffer();
-			         
-			          
-			          for(int j=startrow; j<=endrow; j++){
-			        	  sb.append(rowList.get(j));
-			        	  //System.out.println("rowList.get("+j+"):  "+rowList.get(j));
-			        	  //System.out.println("sb("+j+"):  "+sb);
-			        	  
-			        	  if(j == endrow){//마지막에 한번만 sbList(상품하나가 하나의 sb인목록)에 추가
-			        		  sbList.add(sb);
-			        		//  System.out.println(j+"번째 sbList에 추가된 sb내용: "+sb);
-			        	  }
-			          }
-			          //System.out.println("sbList의 ("+i+")번째 sb:  "+sbList.get(i));
-		       }        
-			          
-		      //한 상품마다 원하는 값 추출.
-		       //뽑을값:  상품url, 이미지url, 상품할인전가격. 할인후가격, 이름
-		       // DiscountVO vo  = new DiscountVO(product_LinkList.get(i), product_ImgLinkList.get(i), product_BeforeSalePriceList.get(i), "2원", product_NameList.get(i));          
-			  for(int i=0; i<sbList.size(); i++){
-				  String prdUrl = "";
-				  String imgUrl = "";
-				  List<String> priceList = new ArrayList<String>();
-				  String prdName="";
-				  StringBuffer sb = sbList.get(i);
-				  
-				  //상품Url찾기
-				  prdUrl = findPrdUrl(sb);
-				  
-				  //이미지Url찾기
-				 // imgUrl = findImgUrl(sb, prdUrl);
-				  
-				  //가격찾기 (할인전/ 할인후)
-				  //priceList = findPrice(sb);
-				  
-				  //상품명 추출
-				  prdName = findprdName(sb, prdUrl);
-				  
-
-	  
-				  
-				  
-				  
-				  
-			  }
-		       
-		       
-		       
-			          
-			          
-			          
-			       /*   List<String> oneBoxProduct_price = new ArrayList<String>();
+		    
+			          List<String> oneBoxProduct_price = new ArrayList<String>();
 			          List<String> oneBoxProduct_price_reset = new ArrayList<String>();
-		       		
+		       
 			          //상품Box에서 데이터뽑기
 			          for(int j=startrow; j<endrow; j++){
 			        	  String row = rowList.get(i);
@@ -238,10 +186,12 @@ public class MywayThread extends Thread {
 			                if(oneBoxProduct_price.get(0).length() > 6){
 			                   oneBoxProduct_price.set(0,oneBoxProduct_price.get(0).substring(0, 7));
 			                }             
-			                product_PriceList.add(oneBoxProduct_price.get(0)+"원");     
+			         //       product_PriceList.add(oneBoxProduct_price.get(0)+"원");     
+			                product_BeforeSalePriceList.add(oneBoxProduct_price.get(0)+"원");     
 			                oneBoxProduct_price = oneBoxProduct_price_reset;
 			             }else if(oneBoxProduct_price.size() == 0){
-			                product_PriceList.add("");
+			               // product_PriceList.add("");
+			            	 product_BeforeSalePriceList.add("");
 			             }
 		       		}//리스트 하나(상품하나)에대한 맨바깥for  
 		       
@@ -262,7 +212,7 @@ public class MywayThread extends Thread {
 		          }   
 			      
 		          
-		          System.out.println("값 넣기 직전"+pagecount);
+		          System.out.println("VO값 넣기 직전"+pagecount);
 			     //실제로 VO객체에 값넣기
 		          for(int i=0; i<saveSize; i++){
 		        	//public Product_category(String product_shopurl, String product_link, String product_name, String product_price, String product_ImageLink, String keyword) {
@@ -273,120 +223,16 @@ public class MywayThread extends Thread {
             			main_product_list.add(pro);        
 		        	   
 		        	  
-		        	  DiscountVO vo  = new DiscountVO(product_LinkList.get(i), product_ImgLinkList.get(i), "1원", "2원", product_NameList.get(i));
+//		        	  DiscountVO vo  = new DiscountVO(product_LinkList.get(i), product_ImgLinkList.get(i), "1원", "2원", product_NameList.get(i));
+		        	  DiscountVO vo  = new DiscountVO(product_LinkList.get(i), product_ImgLinkList.get(i), product_BeforeSalePriceList.get(i), "2원", product_NameList.get(i));
 				      	System.out.println("결과 DiscountVO: "+ vo);
-		          }*/
+		          }
 		        
 		          run(); //재귀함수로 다음페이지도 돌아가도록.
 	//	}while
 	}//function
-	
-	public String findPrdUrl(StringBuffer sb){
-		  String prdUrl = "";
-	//상품url뽑기
-		  String pattern ="a href=\"/product/detail[^\"]*|a href=\"/shop/view[^\"]*";
-		//  System.out.println("indexof로 정규표현식이 뽑히나? : "+sb.indexOf(pattern));
-		  
-		  Pattern p = Pattern.compile(pattern); 
-		  Matcher matcher = p.matcher(sb);
-
-       //while(matcher.find()){//여러개다뽑으면 while+스트링버퍼. 리턴도 스트링버퍼로.
-       if(matcher.find()){//첫번째 것만 뽑을거니 if에 String하나로.
-           prdUrl = matcher.group() ; //어우헷갈... 여기서 그룹1은  ([^>\"']+) 이다.  그룹(0)은 매칭된 전체.)
-       }
-       //System.out.println("찾은 상품 prdUrl: "+prdUrl);
-       
-       return prdUrl;
-	}
-	
-	/*
-파라미터 sb: <li id="anchorBoxId_30137" class="item xans-record-">                <div class="box">                    <span class="chk"><input type="checkbox" class="ProductCompareClass xECPCNO_30137 displaynone"/></span>                    <a href="/product/detail.html?product_no=30137&cate_no=345&display_group=1" name="anchorBoxName_30137"><img src="//ggsing.com/web/product/medium/201601/30137_shop1_335264.jpg" alt="" class="thumb"/></a>                    <p class="name">                        <a href="/product/detail.html?product_no=30137&cate_no=345&display_group=1"><span style="font-size:12px;color:#000000;font-weight:bold;"><b>코팅 기모스키니</b></span></a><br/>                           </p>                    <ul class="xans-element- xans-product xans-product-listitem"><li class=" xans-record-"><strong class="title displaynone review_판매가"><span style="font-size:12px;color:#000000;font-weight:bold;">판매가</span> :</strong> <span style="font-size:12px;color:#000000;font-weight:bold;">8,800원</span><span id="span_product_tax_type_text" style=""> </span></li></ul><div class="crema-product-reviews-count" data-product-id="30137" data-format="리뷰 : {{{count}}}"></div>                    <p class="button">                        <span class="bag"><img src="http://img.echosting.cafe24.com/design/skin/default/product/btn_list_cart.gif" alt="장바구니넣기" onclick="" class="displaynone"/></span>                        <span class="option"><img src="http://img.echosting.cafe24.com/design/skin/default/product/btn_list_option.gif" alt="옵션보기" onclick="" onmouseout="" class="displaynone" id="btn_preview_listmain30137"/></span>                    </p>                </div>            </li>
-파라미터 prdUrla href="/product/detail.html?product_no=30137&cate_no=345&display_group=1
-	 * 
-	 */
-	public String findImgUrl(StringBuffer sb, String prdUrl){
-		String imgUrl = "";
-		int prdIndex = sb.indexOf(prdUrl);
-		int endIndex = sb.indexOf("</a>");
-		String subString = sb.substring(prdIndex, endIndex);
-		System.out.println("파라미터 prdUrl: " +prdUrl);
-		System.out.println("자른문자열: "+subString);
-		
-//		 String pattern ="<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>";
-		 String pattern ="<img[^>]*src=[\"']?([^>\"']+)[.jpg|.gif|.png]{1}";
-		  Pattern p = Pattern.compile(pattern); 
-		  Matcher matcher = p.matcher(subString);
-
-     //while(matcher.find()){//여러개다뽑으면 while+스트링버퍼. 리턴도 스트링버퍼로.
-     if(matcher.find()){//첫번째 것만 뽑을거니 if에 String하나로.
-         imgUrl = matcher.group() ; //어우헷갈... 여기서 그룹1은  ([^>\"']+) 이다.  그룹(0)은 매칭된 전체.)
-         int colonIndex = imgUrl.indexOf("\"");
-         imgUrl = imgUrl.substring(colonIndex+1);
-     }
-     System.out.println("찾은 상품 imgUrl: "+imgUrl);
-     
-		return imgUrl;
-	}	
-		
-	
-	//가격추출(할인전, 할인후)
-	public List<String> findPrice(StringBuffer sb){
-		List<String> priceList = new ArrayList<String>();
-		List <String> tempList = new ArrayList<String>();
-		String beforePrice = "";
-		String afterPrice="";
-		
-		String nanda = "stylenanda"; //스타일난다는 클래스이름 price인 p태그
-		//String spanRegex = "(<span )[^<]*(</span>)";
-		//String spanRegex = "(<span )(.)*+[^<]";
-		String spanRegex = "(<span )[^<]*(</span>)";
-		String priceRegex = "((\\d{1,3})(,\\d{2})0|(\\d{1,2}0))";
-//		String removeRegex = "<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>";
-		String removeRegex = "<[^>]*>"; 
-		
-		Pattern spanP = Pattern.compile(spanRegex); 
-		Matcher spanM = spanP.matcher(sb);
-		String span ="";
-	     //while(matcher.find()){//여러개다뽑으면 while+스트링버퍼. 리턴도 스트링버퍼로.
-		while(spanM.find()){
-			String tempStr = spanM.group();
-			tempStr = tempStr.trim();
-			System.out.println("뽑은 span: "+tempStr);
-			tempStr.replaceAll(removeRegex, "");
-			tempList.add(tempStr);
-			System.out.println("<>제거한 값: "+tempStr);
-	     }
-		System.out.println("span 전부 뽑은 결과: "+tempList);
-		
-		return priceList;
-	}
-	
-
-	//상품명추출1
-	public String findprdName(StringBuffer sb, String prdUrl){
-		System.out.println("파라미터sb : "+sb);
-		String prdName = "";
-		int prdIndex = sb.indexOf(prdUrl, 2);
-		System.out.println("sb.indexOf(prdUrl): "+sb.indexOf(prdUrl));
-		System.out.println("sb.indexOf(prdUrl,2): "+sb.indexOf(prdUrl,2));
-		int endIndex = sb.indexOf("</a>",2);
-		System.out.println("sb.indexOf('</a>', ): "+ sb.indexOf("</a>"));
-		System.out.println("sb.indexOf('</a>',2 ): "+ sb.indexOf("</a>",2));
-		String subString = sb.substring(prdIndex, endIndex);
-		System.out.println("파라미터 prdUrl: " +prdUrl);
-		System.out.println("자른문자열: "+subString);
-		
-		return prdName;
-	}
-	
-	
-	
-
-	
-	//-----------------------------------------------myway
 	   //물품 바로가기 링크 페이지 인식하면 이미지링크 추출메소드
-    public String searchImgLink(String row, String shopurl){     
-    	
+    public String searchImgLink(String row, String shopurl){        
        String pattern[] = {".gif\"",".jpg\"",".png\""};
        
         int productImgLinkRow = row.indexOf("<img src");        //물품 바로가기에서 옷 이미지 링크 줄번호 가져오기
@@ -467,12 +313,12 @@ public class MywayThread extends Thread {
     }
 
 public static void main(String[] args) {
-		//MywayThread thread = new MywayThread("http://66girls.co.kr/product/list.html?cate_no=306", "66girls.co.kr/");
-		//MywayThread thread = new MywayThread("http://www.stylenanda.com/product/list03.html?cate_no=613", "www.stylenanda.com/"); 
-		MywayThread thread = new MywayThread("http://ggsing.com/product/list.html?cate_no=345", "ggsing.com/");
-		//MywayThread thread = new MywayThread("http://loveloveme.com/product/list.html?cate_no=884", "loveloveme.com/");
-		//MywayThread thread = new MywayThread("http://hotping.co.kr/product/list.html?cate_no=42", "hotping.co.kr/");
-	//MywayThread thread = new MywayThread("http://www.dejou.co.kr/product/list.html?cate_no=34", "www.dejou.co.kr/"); 
+		//DiscountCrollingThread thread = new DiscountCrollingThread("http://66girls.co.kr/product/list.html?cate_no=306", "66girls.co.kr/");
+		//DiscountCrollingThread thread = new DiscountCrollingThread("http://www.stylenanda.com/product/list03.html?cate_no=57", "www.stylenanda.com/");
+		//DiscountCrollingThread thread = new DiscountCrollingThread("http://ggsing.com/product/list.html?cate_no=345", "ggsing.com/");
+		//DiscountCrollingThread thread = new DiscountCrollingThread("http://loveloveme.com/product/list.html?cate_no=884", "loveloveme.com/");
+		DiscountCrollingThread thread = new DiscountCrollingThread("http://hotping.co.kr/product/list.html?cate_no=42", "hotping.co.kr/");
+	//	DiscountCrollingThread thread = new DiscountCrollingThread("http://www.dejou.co.kr/product/list.html?cate_no=34", "www.dejou.co.kr/");
 		thread.start();
 		
 		
@@ -480,3 +326,4 @@ public static void main(String[] args) {
 	
 	
 }//class
+*/

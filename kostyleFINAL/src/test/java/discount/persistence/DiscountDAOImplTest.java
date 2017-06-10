@@ -1,4 +1,4 @@
-/*package discount.persistence;
+package discount.persistence;
 
 import java.util.List;
 
@@ -26,6 +26,13 @@ public class DiscountDAOImplTest {
 	private static Logger logger = LoggerFactory.getLogger(DiscountDAOImplTest.class);
 	
 	@Test
+	public void testGetShopVOList(){
+		List<ShopDiscountVO> shopVOList = dao.getShopDiscountVOList();
+		System.out.println("shopVOList: "+shopVOList);
+	}
+	
+	
+/*	@Test
 	public void testGetUrlList(){
 		List<String> newSaleUrlList= dao.getNewSaleUrlList();
 		System.out.println("newSaleUrlList: "+newSaleUrlList);
@@ -42,10 +49,10 @@ public class DiscountDAOImplTest {
 			System.out.println(voList.get(i));
 		}
 	}
-	
+*/	
 //----------------------------------------------------------------------------------------------	
 	//DB에서 부족한 세일관련한 부분만 update로 채워넣기. null허용
-	@Test
+/*	@Test
 	public void testAddSaleUrlInfoShop(){
 		TempShopVO vo = new TempShopVO();
 		
@@ -104,7 +111,7 @@ public class DiscountDAOImplTest {
 			e.printStackTrace();
 		}
 	}
-	
+	*/
 	
 	
 	
@@ -113,4 +120,3 @@ public class DiscountDAOImplTest {
 	
 }//class
 		
-*/

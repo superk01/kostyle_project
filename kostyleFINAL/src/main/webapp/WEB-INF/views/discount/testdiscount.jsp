@@ -73,7 +73,12 @@ $(document).ready(function(){
 				<div class="CategoryResult_oneItemBox">
 					<div class="CategoryResult_oneItemBox_child_Img"><a href="${product.sale_prdUrl}" class="countShoppingmall"><img src="${product.sale_imgUrl}" class="CategoryResultImgSize"></a></div>
 					<div class="CategoryResult_oneItemBox_child_Name"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_name}</a></div>
-					<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">가격있던자리</a></div>
+					<div class="CategoryResult_oneItemBox_child_Name"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.s_sname}</a></div>
+					<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_beforeDiscountprice }</a></div>
+					<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_afterDiscountprice }</a></div>
+					<c:if test="${product.sale_discountRate !=0}">
+						<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_discountRate }%</a></div>
+					</c:if>
 				</div>
 			</c:forEach>
 		</div>

@@ -24,11 +24,15 @@ public class DiscountDAOImpl implements DiscountDAO {
 	
 
 	public List<ShopDiscountVO> getShopDiscountVOList(){
+		System.out.println("DaoImpl getShopDiscountVOList()진입");
+		System.out.println(namespace+".getShopDiscountVOList");
 		return session.selectList(namespace+".getShopDiscountVOList");
 	}
 
 	@Override
 	public List<String> getNewSaleUrlList() {
+		System.out.println("DaoImpl getNewSaleUrlList진입");
+		System.out.println(namespace+".getNewSaleUrlList");
 		return session.selectList(namespace+".getNewSaleUrlList");
 	}
 	@Override
@@ -53,5 +57,7 @@ public class DiscountDAOImpl implements DiscountDAO {
 			e.printStackTrace();
 		}
 	}
+	
+
 	
 }//class
