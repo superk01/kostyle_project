@@ -15,4 +15,6 @@ public interface ReplyDAO {
 	public void ReplyDelete(int as_Num);
 	
 	public ReplyVO ReplyDetail(int as_Num);
+	
+	public int ReplyCount(int q_Num);
 }

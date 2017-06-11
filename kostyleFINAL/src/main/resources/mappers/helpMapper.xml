@@ -10,24 +10,23 @@
 	<!-- 여기부터 게시판 관련 -->
 	<!-- 고객문의 게시판 글 목록 보기(전체) -->
 	<!-- 스프링에서 조인으로 짠 셀렉트문 -->
-	<!-- <select id="list" resultType="BoardVO" parameterType="SearchCriteria">
-		 <![CDATA[ select q_num as q_Num, q_title as q_Title, q_content as q_Content,
+	<select id="list" resultType="BoardVO" parameterType="SearchCriteria">
+	    select q_num as q_Num, q_title as q_Title, q_content as q_Content,
 		q_date as q_Date, c_id as c_Id, s_sname as s_Name, q_secret as q_Secret
 		from question q
 		INNER JOIN customer c ON q.c_num=c.c_num
 		INNER JOIN adshoppingmall a ON q.s_num=a.s_num
-		INNER JOIN shoppingmall s ON s.s_num=q.s_num ]]>
+		INNER JOIN shoppingmall s ON s.s_num=q.s_num
 		<if test="searchType != null">
 			<where>
 				${searchType} LIKE '%'||#{keyWord}||'%'
 			</where>
 		</if>
-		<![CDATA[   
-		order by q_num desc   ]]>
-	</select> -->
-
+		   
+		order by q_num desc
+	</select> 
 	<!-- 또 다른 셀렉트문 -->
-	<select id="list" resultType="BoardVO" parameterType="SearchCriteria">
+<!-- 	<select id="list" resultType="BoardVO" parameterType="SearchCriteria">
 		select q_num as q_Num, q_title as q_Title,
 		q_content as q_Content, q_date as q_Date, 
 		c_id as c_Id, s_sname as s_Name, q_secret as q_Secret 
@@ -44,7 +43,7 @@
 			</if>
 		</if>
 		order by q_num desc
-	</select>
+	</select> -->
 	<!-- 웹에서 서브쿼리 분으로 짠 셀렉트문 -->
 	<!-- <select id="list" resultType="BoardVO" parameterType="Searchcriteria">
 		select q_num as q_Num, q_title as q_Title, q_content as q_Content,
@@ -59,8 +58,7 @@
 		s_Name
 		from question qu
 		<if test="searchType != null">
-			<where> ${searchType} LIKE
-				'%'||'${keyWord}'||'%' </where>
+			<where> ${searchType} LIKE '%'||'${keyWord}'||'%' </where>
 		</if>
 		order by q_num desc
 	</select> -->
@@ -117,10 +115,11 @@
 	</delete>
 	<select id="totalCount" resultType="int">
 		select count(q_num) from
-		question
+		question q
+		INNER JOIN customer c ON q.c_num=c.c_num
 		<if test="searchType != null">
 			<where>
-				${searchType} LIKE '%'||'${keyWord}'||'%'
+				${searchType} LIKE '%'||#{keyWord}||'%'
 			</where>
 		</if>
 	</select>
@@ -130,7 +129,7 @@
 		<if test="searchType != null">
 			<where>
 				<!-- <foreach collection="searchType" item="searchType"> -->
-				${searchType} LIKE '%'||'${keyWord}'||'%'
+				${searchType} LIKE '%'||#{keyWord}||'%'
 				<!-- </foreach> -->
 			</where>
 		</if>
@@ -164,6 +163,9 @@
 	<select id="R_detail" resultType="ReplyVO">
 		select * from answer where
 		as_num=#{as_num}
+	</select>
+	<select id="R_count" parameterType="int" resultType="int">
+		select count(*) from answer where q_num = #{value}
 	</select>
 	<!-- 여기까지 Reply 관련부분임. -->
 
