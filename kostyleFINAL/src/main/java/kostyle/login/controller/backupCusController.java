@@ -1,4 +1,4 @@
-package kostyle.login.controller;
+/*package kostyle.login.controller;
 
 import java.util.Date;
 
@@ -27,7 +27,7 @@ import kostyle.login.service.LoginService;
 
 @Controller
 @RequestMapping("/cuslogin")
-public class CusLoginController {
+public class backupCusController {
 	
 	@Inject
 	private LoginService service;
@@ -52,8 +52,8 @@ public class CusLoginController {
 	public String login(@ModelAttribute("dto") LoginDTO dto, Model model){
 		model.addAttribute("dto", dto);
 		return "/login/tempLoginCustomer";
-/*		return "/login/loginCustomer";
-*/
+		return "/login/loginCustomer";
+
 	}
 	
 	@RequestMapping(value="/loginCheck", method=RequestMethod.POST)
@@ -61,43 +61,34 @@ public class CusLoginController {
 		
 		System.out.println("cus로그인컨트롤러 보낸 LoginDTO: "+dto);
 		System.out.println("cus로그인 암호화이전 비밀번호"+ dto.getUser_pass());
-	//	System.out.println("cus로그인 암호화이후 비밀번호"+BCrypt.hashpw(dto.getUser_pass(), BCrypt.gensalt()));
-		
-		//CustomerVO vo = service.cusLogin(dto);
-		CustomerVO vo =service.cusGetId(dto.getCus_id());
-		System.out.println("컨트롤러 보낸 cus_id: "+dto.getCus_id());
+		System.out.println("cus로그인 암호화이후 비밀번호"+BCrypt.hashpw(dto.getUser_pass(), BCrypt.gensalt()));
+		dto.setUser_pass(BCrypt.hashpw(dto.getUser_pass(), BCrypt.gensalt()));
+		//
+		CustomerVO vo = service.cusLogin(dto);
 		System.out.println("cus로그인컨트롤러 받은 CustomerVO: "+vo);
 		
 		if(vo == null){ // null이라면 회원이 아님.
 			//request.setAttribute("msg", "회원 아이디 또는 비밀번호가 일치하지 않습니다.(5회 이상 로그인 오류시 본인확인 후 로그인 가능합니다.)");
 			//postHandle에서 sednRedirect로보내서 전달안됨.
 			return "/login/tempLoginCustomer";
-			/*		return "/login/loginCustomer";
-			*/
+					return "/login/loginCustomer";
+			
 		}else{//vo!=null
-			
-			// parameter로 받은 평문과 DB에 저장된 암호화값 비교
-			if(BCrypt.checkpw(dto.getUser_pass(), vo.getC_pass())){
-//			if(BCrypt.checkpw(vo.getC_pass(),dto.getUser_pass())){
-				if(dto.isUseCookie()){ //로그인성공_자동로그인체크되어있으면
-					System.out.println("로그인성공.컨트롤러>");
-					int oneweek = 60 * 60 * 24 * 7;
-					Date sessionLimit = new Date(System.currentTimeMillis()+(1000*oneweek)); //   1/1000초니까 *1000
-					System.out.println("keepCuLoginLimit에 보내는값- vo.getC_id():  "+vo.getC_id()+"   /  session.getId(): "+session.getId());
-					service.keepCusLoginLimit(vo.getC_id(), session.getId(),sessionLimit);
-				}
-				
-				model.addAttribute("dto",dto);
-				model.addAttribute("userVO", vo);
-				
-				System.out.println("loginCheck인데 설마 postHandle다 뜬다음에 또 뜨는거 아니죠?");
-				return "/login/loginCheck";
-				
-			}
-			return "/login/tempLoginCustomer";
+			if(dto.isUseCookie()){ //로그인성공_자동로그인체크되어있으면
+				System.out.println("로그인성공.컨트롤러>");
+				int oneweek = 60 * 60 * 24 * 7;
+				Date sessionLimit = new Date(System.currentTimeMillis()+(1000*oneweek)); //   1/1000초니까 *1000
+				System.out.println("keepCuLoginLimit에 보내는값- vo.getC_id():  "+vo.getC_id()+"   /  session.getId(): "+session.getId());
+				service.keepCusLoginLimit(vo.getC_id(), session.getId(),sessionLimit);
 			}
 			
+			model.addAttribute("dto",dto);
+			model.addAttribute("userVO", vo);
 			
+			System.out.println("loginCheck인데 설마 postHandle다 뜬다음에 또 뜨는거 아니죠?");
+			return "/login/loginCheck";
+			
+		}
 		
 	}
 	
@@ -119,7 +110,7 @@ public class CusLoginController {
 		returnPath = returnPath.trim();
 		String path = "redirect:" + returnPath;
 		System.out.println("로그아웃최종경로: "+path);
-		/*ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 
 		RedirectView redirectView = new RedirectView(); // redirect url 설정
 		redirectView.setUrl(path);
@@ -128,7 +119,7 @@ public class CusLoginController {
 		mav.setView(redirectView);
 
 		return mav;
-*/
+
 		return "SUCCESS";
 //		return path;
 //		return (ModelAndView)new ModelAndView("redirect:/" + Path.REDIRECT_PATH );
@@ -140,17 +131,18 @@ public class CusLoginController {
 	
 	
 	
-		/*String path = request.getHeader("referer");
+		String path = request.getHeader("referer");
 		System.out.println("referer값: "+request.getHeader("referer"));
 		if(request.getHeader("referer") == null){
 			path = "redirect:/home/"; //이전url이 없을시, 메인으로 가도록.			
 			path = "redirect:/"; //이전url이 없을시, 메인으로 가도록.
 			System.out.println("referer == null진입 + referer값: "+request.getHeader("referer"));
 			//path = "redirect:/";
-		}*/
+		}
 	}
 
 
 
 	
 }//class
+*/
