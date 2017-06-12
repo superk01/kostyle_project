@@ -92,7 +92,7 @@
                         <li><a href="#">DISCOUNT RANKING</a></li>
                         <li><a href="../favorite/favoriteList">FAVORITE</a></li>
                         <li><a href="#">ZZIM</a></li>
-                        <li><a href="#">SERVICE CENTER</a></li>
+                        <li><a href="/help/list">SERVICE CENTER</a></li>
                     </ul>
                 </div>  
             </div>

@@ -48,4 +48,10 @@ public  class ReplyDAOImpl implements ReplyDAO {
 		return session.selectOne(namespace+".R_detail", as_Num);
 	}
 
+	@Override
+	public int ReplyCount(int q_Num) {
+		
+		return session.selectOne(namespace+".R_count", q_Num);
+	}
+
 }

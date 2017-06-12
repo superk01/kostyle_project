@@ -73,7 +73,7 @@ public class JsoupThread extends Thread{
 			//썸네일 이미지 추출
 			Elements thumbnailEl = doc.select("img.thumb");
 			for(int i=0; i<thumbnailEl.size(); i++){
-				thumbnail.add(thumbnailEl.get(i).attr("src"));
+				thumbnail.add(thumbnailEl.get(i).attr("src").substring(2));
 			}
 			System.out.println("썸네일 이미지 주소:"+thumbnail);
 			
@@ -82,7 +82,6 @@ public class JsoupThread extends Thread{
 			String prePrdName = "";
 			for(int i=0; i<prdNameEl.size(); i++){
 				prePrdName=prdNameEl.get(i).html();
-				/*System.out.println("이전 prePrdName:"+prePrdName);*/
 				
 				if(prePrdName.indexOf("<") != -1){
 					/*System.out.println("if문 진입");*/
@@ -92,9 +91,11 @@ public class JsoupThread extends Thread{
 					prdName.add(postPrdName);
 					
 				}else if(prePrdName.indexOf("(") != -1){
+					System.out.println("이전 prePrdName:"+prePrdName);
 					/*System.out.println("else if문 진입");*/
-					int index=prePrdName.indexOf("(");
-					String postPrdName=prePrdName.substring(0, index);
+					/*int index=prePrdName.indexOf("(");*/
+					/*String postPrdName=prePrdName.substring(0, index);*/
+					String postPrdName=prePrdName.replaceAll("([^)]*)", "");
 					System.out.println("이후 prePrdName:"+postPrdName);
 					prdName.add(postPrdName);
 				}else{
@@ -140,15 +141,15 @@ public class JsoupThread extends Thread{
 			for(int i=0; i<shoppingmallStrList.size(); i++){
 				outerList.add(getPrice(shoppingmallStrList.get(i)));
 			}
-			
-			for(int i=0; i<outerList.size(); i++){
-				int num=outerList.get(i).size();
-				outerList.get(i).remove(num-1);
-				if(outerList.size()>3){
-					outerList.get(i).remove(0);
+			if(path.indexOf("hotping")>0){
+				for(int i=0; i<outerList.size(); i++){
+					int num=outerList.get(i).size();
+					outerList.get(i).remove(num-1);
+					if(outerList.size()>3){
+						outerList.get(i).remove(0);
+					}
 				}
 			}
-			
 			
 			/*System.out.println("바깥리스트:"+outerList);*/											//결과를 출력하면?[[18,000], [12,000], [16,900], [18,000], [19,900], [12,000], [16,000], [14,000, 9,800]]
 																								//path=http://66girls.co.kr/product/search.html?banner_action=&keyword=바지&page=2
@@ -264,16 +265,16 @@ public class JsoupThread extends Thread{
 	}
 	
 	//테스트 하는 곳!!!
-public static void main(String[] args){
-		/*String[] path = {"http://hotping.co.kr/product/search.html?banner_action=&order_by=favor&keyword=바지",
+/*public static void main(String[] args){
+		String[] path = {"http://hotping.co.kr/product/search.html?banner_action=&order_by=favor&keyword=바지",
 						"http://loveloveme.com/product/search.html?banner_action=&keyword=바지",
 						"http://www.dejou.co.kr/product/search.html?banner_action=&keyword=바지"};
 		String path = "http://66girls.co.kr/product/search.html?view_type=&supplier_code=&category_no=306&keyword=&product_price1=&product_price2=&order_by=&x=108&y=22";
 		String path = "http://66girls.co.kr/product/search.html?banner_abction=&keyword=바지&";
-		String path = "http://imvely.com/product/list.html?cate_no=72";*/
-		JsoupThread thread = new JsoupThread("http://hotping.co.kr/product/search.html?banner_action=&order_by=favor&keyword=","바지");
+		String path = "http://imvely.com/product/list.html?cate_no=72";
+		JsoupThread thread = new JsoupThread("http://www.dejou.co.kr/product/search.html?banner_action=&keyword=","바지");
 		thread.start();
-	}
+	}*/
 	
 	/*public static void main(String[] args) {
 		String[] path={ "http://66girls.co.kr/product/search.html?banner_action=&keyword=바지",
