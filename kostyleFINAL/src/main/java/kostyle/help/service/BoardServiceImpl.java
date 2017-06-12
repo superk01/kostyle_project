@@ -31,6 +31,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> list(SearchCriteria cri, HttpSession session)throws Exception {
 		/*System.out.println("서비스에서 cri객체 확인:"+cri);*/
+		//검색을 안 하고 있는 경우 페이지를 바꿨을때 keyWord값과 searchType값이 공백으로 들어가 공백인 경우 null로 바꿔주는 코드
 		if(cri.getKeyWord()==""){
 			cri.setKeyWord(null);
 		}
@@ -38,7 +39,6 @@ public class BoardServiceImpl implements BoardService {
 			cri.setSearchType(null);
 		}
 		/*System.out.println("서비스에서 cri객체 다시 확인:"+cri);*/
-		List<BoardVO> list = boardDAO.list(cri);
 		/*System.out.println("BoardServiceImpl-list:"+list);*/
 		Object userVO = session.getAttribute("login");
 		/*cri.setKeyWord("%"+cri.getKeyWord()+"%");*/
@@ -46,23 +46,35 @@ public class BoardServiceImpl implements BoardService {
 		if(userVO instanceof CustomerVO){
 			customerVO = (CustomerVO)userVO;
 		}
-		
-		for(BoardVO vo:list){
+		if(userVO != null){
+			cri.setC_Id(customerVO.getC_id());
+		}
+		List<BoardVO> list = boardDAO.list(cri);
+		for(int i=0; i<list.size(); i++){
 			/*System.out.println("BoardServiceImpl-c_id:"+vo.getC_Id());
 			System.out.println("BoardServiceImpl-q_secret:"+vo.getQ_Secret());*/
-			String writer = vo.getC_Id();
-			String q_Secret = vo.getQ_Secret();
-			if(q_Secret== null){
-				q_Secret = "n";
-			}
-			if(q_Secret.equals("y")){
-				if(userVO==null){
-					vo.setQ_Title("비밀 글입니다.");
-				}else if(userVO != null && !(customerVO.getC_id().equals(writer))){
-					vo.setQ_Title("비밀 글입니다.");
+			String writer = list.get(i).getC_Id();
+			String q_Secret = list.get(i).getQ_Secret();
+			
+			if(cri.getSearchType() ==null){													//검색어가 없는 경우..
+				if(q_Secret.equals("y")){													//비밀글인 경우에...
+					if(userVO==null){														//로그인 상태가 아니면?
+						list.get(i).setQ_Title("비밀 글입니다.");								//그 글의 제목을 "비밀 글입니다."로 표시
+					}else if(userVO != null && !(customerVO.getC_id().equals(writer))){		//로그인을 했는데 글 작성자와 로그인한 사용자가 다른 경우->즉 글쓴이가 로그인 한 경우가 아님.
+						list.get(i).setQ_Title("비밀 글입니다.");								//역시, 글 제목을 "비밀 글입니다."로 표시									
+					}
 				}
-			}
+			}/*else{
+				if(q_Secret.equals("y")){													//검색을 통하여 list를 뽑은 경우.
+					if(userVO==null){													    //로그인 상태를 확인.
+						list.remove(i);														//로그인 한 상태가 아니면 해당 boardVO객체를 list에서 삭제
+					}else if(userVO != null && !(customerVO.getC_id().equals(writer))){		//로그인을 했는데 글 작성자와 로그인한 사용자가 다른 경우->즉 글쓴이가 로그인 한 경우가 아님.
+						list.remove(i);														//로그인 한 상태가 아니면 해당 boardVO객체를 list에서 삭제									
+					}
+				}
+			}*/
 		}
+		System.out.println("서비스에서 list확인:"+list);
 		return list;
 	}
 

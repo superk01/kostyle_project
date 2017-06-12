@@ -108,7 +108,8 @@
 	</form>
 	</div>
 <div>
-	<a href="history/list/${login.c_num}">히스토리로 이동</a>
+	<a href="history/list/${login.c_num}">히스토리로 이동</a><br>
+	<a href="remocon/list/${login.c_num}">리모콘 보기</a>
 </div>
 </body>
 </html>

@@ -6,7 +6,7 @@
 
 <mapper namespace="kostyle.help.mappers.helpMapper">
 	<cache />
-
+	
 	<!-- 여기부터 게시판 관련 -->
 	<!-- 고객문의 게시판 글 목록 보기(전체) -->
 	<!-- 스프링에서 조인으로 짠 셀렉트문 -->
@@ -20,9 +20,14 @@
 		<if test="searchType != null">
 			<where>
 				${searchType} LIKE '%'||#{keyWord}||'%'
+				and q_Secret = 'n'
 			</where>
 		</if>
-		   
+		<!-- <if test="q_secret !=null ">
+			and a_secret = 'y'
+			and c_id = #{c_Id}
+		</if> -->
+		
 		order by q_num desc
 	</select> 
 	<!-- 또 다른 셀렉트문 -->
