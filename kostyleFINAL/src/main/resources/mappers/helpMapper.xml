@@ -31,7 +31,6 @@
 					or c_id = #{c_Id}
 				</where>
 			</when>
-		
 		</choose>
 		
 		<!-- <if test="searchType != null">
