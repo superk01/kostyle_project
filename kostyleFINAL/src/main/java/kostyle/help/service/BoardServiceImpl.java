@@ -16,18 +16,30 @@ import kostyle.help.domain.BoardVO;
 import kostyle.help.domain.Criteria;
 import kostyle.help.domain.SearchCriteria;
 import kostyle.help.persistence.BoardDAO;
+import kostyle.help.persistence.ReplyDAO;
 import kostyle.login.domain.CustomerVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 
 	@Inject
-	private BoardDAO dao;
+	private BoardDAO boardDAO;
+	
+	@Inject
+	private ReplyDAO replyDAO;
 	
 	@Override
 	public List<BoardVO> list(SearchCriteria cri, HttpSession session)throws Exception {
-		List<BoardVO> list = dao.list(cri);
-		System.out.println("BoardServiceImpl-list:"+list);
+		/*System.out.println("서비스에서 cri객체 확인:"+cri);*/
+		if(cri.getKeyWord()==""){
+			cri.setKeyWord(null);
+		}
+		if(cri.getSearchType()==""){
+			cri.setSearchType(null);
+		}
+		/*System.out.println("서비스에서 cri객체 다시 확인:"+cri);*/
+		List<BoardVO> list = boardDAO.list(cri);
+		/*System.out.println("BoardServiceImpl-list:"+list);*/
 		Object userVO = session.getAttribute("login");
 		/*cri.setKeyWord("%"+cri.getKeyWord()+"%");*/
 		CustomerVO customerVO = null;
@@ -36,8 +48,8 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		for(BoardVO vo:list){
-			System.out.println("BoardServiceImpl-c_id:"+vo.getC_Id());
-			System.out.println("BoardServiceImpl-q_secret:"+vo.getQ_Secret());
+			/*System.out.println("BoardServiceImpl-c_id:"+vo.getC_Id());
+			System.out.println("BoardServiceImpl-q_secret:"+vo.getQ_Secret());*/
 			String writer = vo.getC_Id();
 			String q_Secret = vo.getQ_Secret();
 			if(q_Secret== null){
@@ -56,43 +68,45 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void insert(BoardVO boardVO, HttpSession session)throws Exception {
-		boardVO.setS_Num(dao.getS_Num(boardVO));									//폼에서 쇼핑몰 이름을 받아 쇼핑몰의 s_Num값을 가져옴.
+		boardVO.setS_Num(boardDAO.getS_Num(boardVO));									//폼에서 쇼핑몰 이름을 받아 쇼핑몰의 s_Num값을 가져옴.
 		
 		Object userVO = session.getAttribute("login");
 		CustomerVO customerVO = null;
 		if(userVO instanceof CustomerVO){
 			customerVO = (CustomerVO)userVO;
 		}																			//세션에서 로그인 정보를 가져옴.
-		System.out.println("BoardServiceImpl-세션정보확인:"+customerVO);
+		/*System.out.println("BoardServiceImpl-세션정보확인:"+customerVO);*/
 		
 		boardVO.setC_Num(customerVO.getC_num());
-		System.out.println("BoardServiceImpl:"+boardVO);
+		/*System.out.println("BoardServiceImpl:"+boardVO);*/
 		if(boardVO.getQ_Secret()==null){
 			boardVO.setQ_Secret("n");
 		}else{
 			boardVO.setQ_Secret("y");
 		}
-		dao.insert(boardVO);
+		boardDAO.insert(boardVO);
 		
 
 	}
 
 	@Override
 	public void delete(int q_Num)throws Exception {
-		dao.delete(q_Num);
+		boardDAO.delete(q_Num);
 
 	}
 
 	@Override
 	public void update(BoardVO boardVO)throws Exception {
-		dao.update(boardVO);
+		boardDAO.update(boardVO);
 
 	}
 
 	@Override
 	public BoardVO detail(int q_Num, HttpSession session)throws Exception {
-		/*System.out.println("BoardServiceImpl:"+dao.detail());*/
-		BoardVO boardVO = dao.detail(q_Num);																				//클릭한 게시판 하나를 받아옴.
+		/*System.out.println("BoardServiceImpl:"+boardDAO.detail());*/
+		BoardVO boardVO = boardDAO.detail(q_Num);																			//클릭한 게시판 하나를 받아옴
+		int replyCount = replyDAO.ReplyCount(q_Num);
+		boardVO.setAnswerNum(replyCount);
 		Object userVO = session.getAttribute("login");																		//세션에서 로그인 정보를 받아옴.
 		CustomerVO customerVO=null;
 		if(userVO instanceof CustomerVO){
@@ -125,13 +139,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<AdShoppingMallHelp> adShoppingMallList() throws Exception{
 		
-		return dao.adShoppingMallList();
+		return boardDAO.adShoppingMallList();
 	}
 
 	@Override
 	public int totalCount(SearchCriteria cri) throws Exception {
 		
-		return dao.totalCount(cri);
+		return boardDAO.totalCount(cri);
 	}
 	
 	

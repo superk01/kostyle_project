@@ -63,6 +63,12 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 
+	@Override
+	public CustomerVO cusGetId(String cus_id) {
+		return dao.cusGetId(cus_id);
+	}
+
+
 
 	
 }

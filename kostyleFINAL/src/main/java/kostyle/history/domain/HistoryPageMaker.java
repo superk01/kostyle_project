@@ -1,4 +1,4 @@
-package kostyle.help.domain;
+package kostyle.history.domain;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -8,7 +8,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.sun.media.jfxmedia.track.Track.Encoding;
 
-public class PageMaker {
+public class HistoryPageMaker {
 
 	private int totalCount;
 	private int startPage;
@@ -17,9 +17,9 @@ public class PageMaker {
 	private boolean prev;
 	private boolean next;
 	
-	private int displayPageNum = 3;
+	private int displayPageNum = 5;
 	
-	private Criteria cri;
+	private HistoryCriteria cri;
 
 	public int getTotalCount() {
 		return totalCount;
@@ -71,11 +71,11 @@ public class PageMaker {
 		this.displayPageNum = displayPageNum;
 	}
 
-	public Criteria getCri() {
+	public HistoryCriteria getCri() {
 		return cri;
 	}
 
-	public void setCri(Criteria cri) {
+	public void setCri(HistoryCriteria cri) {
 		this.cri = cri;
 	}
 	
@@ -96,21 +96,8 @@ public class PageMaker {
 	}
 	public String makeSearch(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
-									  .queryParam("perPageNum", cri.getPerPageNum())
-									  .queryParam("searchType", ((SearchCriteria) cri).getSearchType())
-									  .queryParam("keyWord", ((SearchCriteria) cri).getKeyWord()).build();
+									  .queryParam("perPageNum", cri.getPerPageNum()).build();
 		return uriComponents.toUriString();
-		
-	}
-	public String encoding(String keyWord){
-		if(keyWord==null||keyWord.trim().length()==0){
-			return "";
-		}
-		try {
-			return URLEncoder.encode(keyWord, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			return "";
-		}
 		
 	}
 	

@@ -25,5 +25,7 @@ public interface LoginService {
 	
 	public void keepShopLoginLimit(String adshop_id, String sessionId, Date next);
 	public AdShopVO checkShopSessionKey(String cookieVal);
-	
+
+	//비밀번호 암호화시에는 아이디 먼저 가져와야한다.
+	public CustomerVO cusGetId(String cus_id);
 }
