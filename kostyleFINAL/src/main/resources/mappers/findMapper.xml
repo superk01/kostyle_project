@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kostyle.find.mappers.findMapper">
+
+	<!-- 입력한 이름과 이메일에 일치한 아이디 출력 -->
+	<select id="idFind" parameterType="FindInfo" resultType="String"> 
+      select c_id from customer where c_name=#{c_name} and c_email=#{c_email}
+    </select>
+
+
+	<!-- 입력한 이름과 이메일과 아이디와 일치한 비밀번호 출력 => 추후에 일치하는 회원의 비밀번호는 임시비밀번호로 바뀌어야하고, 이메일로 보내져야함-->
+	<select id="pwFind" parameterType="FindInfo" resultType="String"> 
+      select c_pass from customer where c_name=#{c_name} and c_email=#{c_email} and c_id=#{c_id}
+    </select>
+    
+</mapper>  
+
+
+
+
+
+
+
+
+

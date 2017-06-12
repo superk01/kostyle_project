@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -14,14 +15,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
 <!-- Custom style -->
 <link rel="stylesheet" href="../../../resources/css/join/style.css"	media="screen" title="no title" charset="utf-8">
-<link rel="stylesheet" href="../../../resources/css/find/idstyle.css"	media="screen" title="no title" charset="utf-8">
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<style type="text/css">
 
+#findID{
+	color: red;
+}
+
+</style>
 
 
 </head>
@@ -35,44 +41,50 @@
 		<div class="page-header">
 			<h1><i class="fa fa-info-circle"></i> 아이디 찾기 <small>KOStyle</small></h1>
 		</div>
-		<form class="form-horizontal" action="idFindResult" method="post">
 		
-		<p id="idfind"><i class="glyphicon glyphicon-hand-right"></i> 본인확인 이메일 주소와 가입시 입력한 이메일 주소가 같아야, 아이디를 찾을 수 있습니다.</p>
-		
-
 		<div id="memberJoin">
-			<div class="form-group">
-			<br><br>
-				<label class="col-sm-3 control-label" for="inputName">이름</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="inputName" type="text" name="c_name" required=""
-					 placeholder="이름을 입력해 주세요" autocomplete="off">
-				</div>
-			</div>
-			<br>
-			<div class="form-group">
-				<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
-				<div class="col-sm-6">
-					<input class="form-control" id="inputEmail" type="email" name="c_email"	required=""
-					 placeholder="ex) gildong@kostyle.com" autocomplete="off">
-				</div>
-			</div>
 			
-			<br><br>
-			<div class="form-group">
-				<div class="col-sm-12 text-center">
-					<button id="btn-join" class="btn btn-default btn-lg" type="submit" class="submit">
-						아이디찾기 <i class="fa fa-info-circle"></i>
+			<c:choose>
+				<c:when test="${not empty find.c_pass}">
+					<h3> 회원님의 비밀번호를 </h3>
+					<h3>${find.c_email}로</h3>
+					<h3> 전송했습니다. </h3>
+					
+					<div class="form-group">
+					<div class="col-sm-12 text-center">
+					<button id="btn-cancle" class="btn btn-default btn-lg"  onclick="location.href='/'">
+						코스타일몰 홈 <i class="glyphicon glyphicon-home"></i>
+					</button>
+					<br><br>
+					</div>
+					</div>
+				</c:when>
+
+
+
+				<c:when test="${empty find.c_pass}">
+					<h3> 입력한 정보와 일치하는 정보가 없습니다. </h3>
+					
+					<br><br>
+					<div class="form-group">
+					<div class="col-sm-12 text-center">
+					<button id="btn-join" class="btn btn-default btn-lg" onclick="location.href='/find/password'">
+						비밀번호찾기 <i class="fa fa-lock"></i>
 					</button>
 					<button id="btn-cancle" class="btn btn-default btn-lg" onclick="location.href='/'">
 						코스타일몰 홈 <i class="glyphicon glyphicon-home"></i>
 					</button>
-					<br>
-
-				</div>
-			</div>
+					</div>
+					</div>
+				</c:when>
+				</c:choose>
+			
+			
+			
+			<br><br>
+			
+			
 		</div>	
-		</form>
 	</div>
 	</article>
 

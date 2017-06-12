@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+   
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
     
@@ -72,9 +72,9 @@
     				<div class="col-md-4">
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
-                				<li><a href="../join/join"><i class="fa fa-pencil"></i> 회원가입 </a></li>
-                				<li><a href="#"><i class="fa fa-user"></i> My Page </a></li>
-                				<li><a href="../cuslogin/login"><i class="fa fa-user"></i> Login </a></li>
+                				<li><a href="../join/join"><i class="fa fa-list-ul"></i> 회원가입 </a></li>
+                				<li><a href="#"><i class="fa fa-id-badge"></i> My Page </a></li>
+                				<li><a href="../cuslogin/login"><i class="fa fa-user-o"></i> Login </a></li>
             				</ul>
         				</div>
     				</div>
@@ -91,7 +91,7 @@
     				<div class="col-md-4">
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
-            					<li><a href="#"><i class="fa fa-user"></i> My Page</a></li>
+            					<li><a href="#"><i class="fa fa-id-badge"></i> My Page</a></li>
                  				<li><a id="cuslogout" href="../cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
             				</ul>
         				</div>
