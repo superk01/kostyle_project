@@ -2,8 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <%@ include file="../main/kostyleHeader.jsp" %> 
-<c:set var="currentPath" value="${requestScope.currentPath }"></c:set>
-<c:set var="loginSession" value="${sessionScope.login }"></c:set>
 
 <c:if test="${empty sessionScope.login && empty sessionScope.shoplogin}">
 	<a href="/cuslogin/login">고객로그인</a>
@@ -58,7 +56,7 @@
 		
 
 <div class="box">
-				 ${sessionScope.login} 님 환영합니다.
+				 ${login.c_num} 님 환영합니다.
 				<div class="box-body">
 					<table class="table table-hover">
 					<thead>
@@ -80,7 +78,7 @@
 								<td><a href='/favorite/comentRead${pageMaker.makeQuery(pageMaker.cri.page)}&f_num=${Favorite.f_num }'>
 								<img src="../../../resources/image/favoriteImg/comment.png" title="코멘트"></a></td>
 								<td><a href="http://${Favorite.s_shopurl }"><img src="../../../resources/image/favoriteImg/home.png" title="쇼핑몰 이동"></a></td>
-								<td><a href="/favorite/deleteFavorite?f_num=${Favorite.f_num }"><img src="../../../resources/image/favoriteImg/delete2.png" title="즐겨찾기 삭제"></a></td> 
+								<td><a href="/favorite/deleteFavorite?f_num=${Favorite.f_num }&c_num=${Favorite.c_num}"><img src="../../../resources/image/favoriteImg/delete2.png" title="즐겨찾기 삭제"></a></td> 
 							</tr>
 
 							</c:forEach>

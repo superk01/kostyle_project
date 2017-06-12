@@ -296,7 +296,7 @@ public class DiscountCrollingThread extends Thread {
 			  priceMap.put("beforePrice", tempList.get(0)+"원");
 			  priceMap.put("afterPrice", "");
 			  priceMap.put("discountRate", 0);
-		  }else if(tempList.size() == 3){ //이러면 세번째값이 얼마할인인지에대해 나오는 값인데 필요없음.
+		  }else if(tempList.size() == 3){ //이러면 세번째값이 얼마할인인지(두금액의 차)에대해 나오는 값인데 필요없음.
 			  tempList.remove(2);
 			  priceMap = makePriceMap(tempList);
 			  

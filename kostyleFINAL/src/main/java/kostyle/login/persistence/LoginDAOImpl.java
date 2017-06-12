@@ -72,6 +72,11 @@ public class LoginDAOImpl implements LoginDAO{
 		session.update(namespace+".keepShopLogin",paramMap);
 		
 	}
+
+	@Override
+	public CustomerVO cusGetId(String cus_id) {
+		return session.selectOne(namespace+".cusGetId",cus_id);
+	}
 	
 	//TO_CHAR(sysdate, 'YYYY-MM-DD HH24:MI:SS')
 /*  	

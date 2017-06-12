@@ -49,22 +49,24 @@ public class ShopLoginController {
 			System.out.println("로그인실패");
 			//request.setAttribute("msg", "회원 아이디 또는 비밀번호가 일치하지 않습니다.(5회 이상 로그인 오류시 본인확인 후 로그인 가능합니다.)");
 			return "/login/tempLoginShop";
-		}
-		
-		//----------
-		if(dto.isUseCookie()){ //로그인성공_자동로그인체크되어있으면
-			System.out.println("로그인성공.컨트롤러>");
-			int oneweek = 60 * 60 * 24 * 7;
-			Date sessionLimit = new Date(System.currentTimeMillis()+(1000*oneweek)); //   1/1000초니까 *1000
-			System.out.println("keepCuLoginLimit에 보내는값- vo.getAd_id():  "+vo.getAd_id()+"   /  session.getId(): "+session.getId());
-			service.keepShopLoginLimit(vo.getAd_id(), session.getId(),sessionLimit);
-		}
-		
-		model.addAttribute("dto",dto);
-		model.addAttribute("userVO", vo);
+		}else{ //vo!=null
 
-		System.out.println("loginCheck인데 설마 postHandle다 뜬다음에 또 뜨는거 아니죠?");
-		return "/login/loginCheck";
+			//----------
+			if(dto.isUseCookie()){ //로그인성공_자동로그인체크되어있으면
+				System.out.println("로그인성공.컨트롤러>");
+				int oneweek = 60 * 60 * 24 * 7;
+				Date sessionLimit = new Date(System.currentTimeMillis()+(1000*oneweek)); //   1/1000초니까 *1000
+				System.out.println("keepCuLoginLimit에 보내는값- vo.getAd_id():  "+vo.getAd_id()+"   /  session.getId(): "+session.getId());
+				service.keepShopLoginLimit(vo.getAd_id(), session.getId(),sessionLimit);
+			}
+			
+			model.addAttribute("dto",dto);
+			model.addAttribute("userVO", vo);
+			
+			System.out.println("loginCheck인데 설마 postHandle다 뜬다음에 또 뜨는거 아니죠?");
+			return "/login/loginCheck";
+		}
+		
 		
 	}
 	
