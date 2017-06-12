@@ -15,7 +15,7 @@ public class JoinServiceImpl implements JoinService {
 
 	@Override
 	public void insertJoin_S(JoinJoin join) throws Exception {
-		
+		System.out.println("회원가입 service");
 		String num1 = dao.autoNum();//String 0
 		System.out.println("num1 : " + num1);
 		

@@ -4,15 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>eElectronics - HTML eCommerce Template</title>
-    
-    <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+    <title>KOStyle mall</title>
     
     <!-- Bootstrap -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -32,11 +27,33 @@
     
     <!-- Main Script -->
     <script src="../../../resources/js/main/main.js"></script>
-    
+       
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/owl.carousel.css" />
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/kostyleHeader.css" />
+ 
+<script type="text/javascript">
+	 $(document).ready(function(){ 
+		var returnPath1 = jQuery(location).attr('pathname')+"";
+		var returnPath2 = location.pathname+"";
+		console.log("returnPath= "+returnPath1);
+		
+		
+ 		$('#cuslogout').on('click',function(){
+ 			$.post("../cuslogin/logout", { returnPath: "/${path}/logintest/testpage1" },function(result){
+ 				if(result == "SUCCESS"){
+	 				console.log("logout ajax 성공");
+ 					location.href=returnPath1;
+ 					
+ 				}
+ 			});
+			return false;
+		});
+
+	});
+</script>
+
 
    
   </head>
@@ -45,32 +62,67 @@
 		<div class="header-area">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="user">
-                            <h5><i class="fa fa-heart"></i> ${sessionScope.login.c_name} 님 환영합니다.<i class="fa fa-heart"></i></h5>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                            <li><a href="#"><i class="fa fa-user"></i> My Page</a></li>
-                            <li><a href="../join/join"><i class="fa fa-pencil"></i> 회원가입</a></li>
-                            <li><a href="../cuslogin/login"><i class="fa fa-user"></i> Login</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <c:choose>
+				<c:when test="${empty sessionScope.login}">
+				<div class="row">
+					<div class="col-md-8">
+    					<div class="user">
+       				 </div>
+   				 </div>
+    				<div class="col-md-4">
+    					<div class="header-right">
+         					<ul class="list-unstyled list-inline">
+                				<li><a href="../join/join"><i class="fa fa-pencil"></i> 회원가입 </a></li>
+                				<li><a href="#"><i class="fa fa-user"></i> My Page </a></li>
+                				<li><a href="../cuslogin/login"><i class="fa fa-user"></i> Login </a></li>
+            				</ul>
+        				</div>
+    				</div>
+				</div>
+				</c:when>
+
+				<c:when test="${not empty sessionScope.login}">
+				<div class="row">
+					<div class="col-md-8">
+    					<div class="user">
+        					<h5><i class="fa fa-heart"></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
+        				</div>
+    				</div>
+    				<div class="col-md-4">
+    					<div class="header-right">
+         					<ul class="list-unstyled list-inline">
+            					<li><a href="#"><i class="fa fa-user"></i> My Page</a></li>
+                 				<li><a id="cuslogout" href="../cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
+            				</ul>
+        				</div>
+    					</div>
+				</div>
+				</c:when>
+				</c:choose>
             </div>
-        </div>
-    </div> <!-- End header area -->
+		</div>
+		</div> <!-- End header area -->
    
    
     
     
     <div class="site-branding-area">
         <div class="container">
-            <div class="row">
+            <div class="search-row">
+            
             <a href="/"><img class="logoimg" src="../../../resources/images/mainImg/kostyle.png"></a>
+            
+            <div class="header_search">
+				<form class="search-form" action="search/do" method="post">
+					<div class="search-box">
+						<dl class="clear">
+						<dt class="search1"><input id="search-text" type="text" name="search"></dt>
+						<dd class="search2"><input id="search-icon" type="image" src="../../../resources/images/mainImg/kostylesearch.png" alt="검색" title="검색"></dd>
+						</dl>
+					</div>
+				</form>
+            </div>
+            
             </div>
         </div>
     </div> <!-- End site branding area -->
