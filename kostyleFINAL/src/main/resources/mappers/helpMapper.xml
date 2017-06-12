@@ -18,11 +18,27 @@
 		INNER JOIN adshoppingmall a ON q.s_num=a.s_num
 		INNER JOIN shoppingmall s ON s.s_num=q.s_num
 		<if test="searchType != null">
-			<where>
+			<if test="c_Id !=null ">
+				<where>
 				${searchType} LIKE '%'||#{keyWord}||'%'
 				and q_Secret = 'n'
-			</where>
+				or c_id = #{c_Id}
+				<!-- and q_secret= 'y' -->
+				</where>
+			</if>
+			<if test="c_Id == null">
+				<where>
+					${searchType} LIKE '%'||#{keyWord}||'%'
+					and q_Secret = 'n'
+				</where>
+			</if>
 		</if>
+			
+			<!-- <if test="q_secret !=null ">
+				and a_secret = 'y'
+				and c_id = #{c_Id}
+			</if> -->
+		
 		<!-- <if test="q_secret !=null ">
 			and a_secret = 'y'
 			and c_id = #{c_Id}

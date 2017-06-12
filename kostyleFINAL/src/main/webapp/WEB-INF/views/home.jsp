@@ -102,7 +102,7 @@
 		<div class="search_box">
 			<dl class="clear_float">
 				<dt><input type="text" name="search"></dt>
-				<dd><input type="image" src="../resources/images/mainImg/mainsearch.png" alt="검색" title="검색"></dd>
+				<dd><input type="image" src="../resources/images/mainImg/kostylesearch.png" alt="검색" title="검색"></dd>
 			</dl>
 		</div>
 	</form>
