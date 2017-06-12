@@ -1,5 +1,5 @@
-<%-- <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%> --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -10,8 +10,12 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
 <title>Insert title here</title>
 <style type="text/css">
+.table{
+	width: 80%;
+}
 .prdurl {
 	height: 100px;
 	width: 100px;
@@ -44,7 +48,7 @@
 	padding: 7px;
 }
 </style>
-<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
+<script src="/resources/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#chkAll').click(function() {
@@ -133,9 +137,9 @@ $(document).ready(function() {
 </head>
 <body>
 
-	<div>
-		<!-- 최근본 상품정보 컨터이너 -->
 		<div id="CategoryResult_top"></div>
+	<div class="container">
+		<!-- 최근본 상품정보 컨터이너 -->
 		<table border="1px solid" class="table">
 			<!-- 최근 본 상품정보 테이블 -->
 			<caption>최근 본 상품 정보</caption>
@@ -148,16 +152,16 @@ $(document).ready(function() {
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="first" scope="col" abbr="상품선택 체크박스">
+					<th class="first col-md-1" scope="col" abbr="상품선택 체크박스">
 						<div class="th_checkall">
 							<label for="chkAll"> <input id="chkAll" name="chkAll"
 								type="checkbox"> <!-- 온클릭 이벤트(체크박스 전부 체크되는 거)있음 -->
 							</label>
-						</div> 상품명
+						</div>
 					</th>
-					<th scope="col">이미지</th>
-					<th scope="col">상품이름</th>
-					<th scope="col">날짜</th>
+					<th scope="col" class="col-md-3">이미지</th>
+					<th scope="col" class="col-md-4">상품이름</th>
+					<th scope="col" class="col-md-4">날짜</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -186,18 +190,18 @@ $(document).ready(function() {
 		<ul class="pagination">
 
 			<c:if test="${pageMaker.prev}">
-				<li><a href="${pageMaker.startPage - 1}">&laquo;</a></li>
+				<li><a href="/history/list/${login.c_num }?page=${pageMaker.startPage - 1}">&laquo;</a></li>
 			</c:if>
 
 			<c:forEach begin="${pageMaker.startPage }"
 				end="${pageMaker.endPage }" var="idx">
 				<li <c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-					<a href="${idx}">${idx}</a>
+					<a href="/history/list/${login.c_num }?page=${idx}">${idx}</a>
 				</li>
 			</c:forEach>
 
 			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li><a href="${pageMaker.endPage +1}">&raquo;</a></li>
+				<li><a href="/history/list/${login.c_num }?page=${pageMaker.endPage +1}">&raquo;</a></li>
 			</c:if>
 
 		</ul>

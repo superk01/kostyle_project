@@ -35,12 +35,18 @@ public class HelpBoardController {
 		HttpSession session = request.getSession();											//비밀글 사용시 사용자를 확인하기 위해 세션을 사용.
 		List<BoardVO> list = new ArrayList<>();
 		list = service.list(cri, session);
+		System.out.println("컨트롤러에 list숫자 확인:"+list.size());
 		System.out.println("컨트롤러에서 리스트 출력:"+list);
-		mav.addObject("list", service.list(cri,session));									//세션을 전달하면 리스트를 받아올 때 비밀글들을 구분할 수 있음.
+		mav.addObject("list", list);														//세션을 전달하면 리스트를 받아올 때 비밀글들을 구분할 수 있음.
 		
 		PageMaker maker = new PageMaker();													//페이징 처리를 위한 객체(책의 내용과 동일하다.)		
 		maker.setCri(cri);																	//초기의 페이지 세팅.
-		maker.setTotalCount(service.totalCount(cri));										//모들 글 개수를 카운팅하여 페이지를 계산한다.
+		
+		/*if(cri.getSearchType()!=null||cri.getSearchType()!=""){								//검색어를 입력하여 list를 뽑아오는 경우.
+			maker.setTotalCount(list.size());												//mapper에서 sql문으로 count한 값과 list의 값이 불일치 하기 때문에 pageMaker객체에 totalCount값을 직접 입력해준다.
+		}else{		*/								
+			maker.setTotalCount(service.totalCount(cri));									//모들 글 개수를 카운팅하여 페이지를 계산한다.
+		/*}*/
 		System.out.println("HelpController-PageMaker:"+maker);	
 		/*System.out.println("HelpController-Criteria:"+cri);*/
 		mav.addObject("pageMaker", maker);													//데이터 전달.

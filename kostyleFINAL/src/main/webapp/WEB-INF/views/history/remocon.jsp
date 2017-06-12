@@ -1,15 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%-- <%@ include file="../main/kostyleHeader.jsp" %> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>리모콘</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
 <script src="../../../resources/jquery/jquery-3.2.1.js"></script>
-<link rel="stylesheet" type="text/css" href="../history/remocon.css">
 <script type="text/javascript">
 
 /* function fn_deleteHistory(){
@@ -17,30 +18,48 @@
 }
  */
  $(document).ready(function(){
-		var ind=0;
+	 
+	 	/* if(${not empty login}){
+	 		self.location ="/remocon/list/${login.c_num}"; 
+	 		$.ajax({
+	 			url : "/remocon/list/${login.c_num}",
+	 			type: 'get',
+	 			headers: {
+	 				"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"GET"
+	 			},
+	 			dataType:'text',
+	 			success: function(data){
+	 				if(data=="success"){
+	 					alert("컨트롤러 로직 처리 완료!!!");
+	 				}
+	 			}
+	 		})
+	 	} */
+ 
+		/* 리모콘에서 히스토리 상품삭제. */
+	 	var ind=0;
 	 	$('ul').each(function(index){
 	 		ind=index+1;
-	 	})
+	 	})//이건 뭐하는 건지?
 	 	console.log(ind);
 		 $('button.wing_btn_delete').on('click',function(){
-			 
-		 		 var h_num=$(this).val();
-				 $.ajax({
-						url : "${path}/history/delete?h_num="+h_num,
-						type : 'get',
-						headers:{
-							"Content-Type":"application/json",
-							"X-HTTP-Method-Override":"GET"
-						},
-						dataType:'text',
-						success : function(){
-							/* alert('success'); */
-							location.href="${path}/remocon/list/"+${login.c_num};
-						}					
-					});
-					return false;
-					
-					}); 
+			 var h_num=$(this).val();
+			 $.ajax({
+				url : "${path}/history/delete?h_num="+h_num,
+				type : 'get',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"GET"
+				},
+				dataType:'text',
+				success : function(){
+					/* alert('success'); */
+					location.href="${path}/remocon/list/"+${login.c_num};
+				}					
+			});
+			return false;
+		}); 
 		 /* $('.wing_btn_next').on('click', function(){
 			 alert($('#wingRecentPrd').size);
 			 var index=0;
@@ -73,12 +92,7 @@
 					 console.log('index'+index);
 					 break;
 				};
-				/* console.log(index); */
-			};
-			/* console.log(index);
-			 if(index>ind){
-				 index=0;
-			 } */
+			 };
 			 $('.wingRecentPrd').eq(index).attr('style',"display:none");
 			 $('.wingRecentPrd').eq(index+1).attr('style',"");
 			
@@ -101,12 +115,13 @@
 </script>
 </head>
 <body>
+<c:if test="${not empty login }">
 <div id = "windBanner" class = "wing_banner"> <!-- 리모콘 전제 -->
 	<!-- //최근 본 상품 -->
 	<div id = "wingRecentWrap" class = "wing_prd_wrap" style = ""> <!-- 리모콘 외부 -->
 		<div class="hwrap">											<!-- 히스토리로 이동 -->
 			<strong class = "tit">
-				<a id = "wingRecentCount" href = "${path}/history/list/${c_num }">				
+				<a id = "wingRecentCount" href = "/history/list/${c_num }">				
 					<span class = "tx">최근 본상품</span>
 					<span class="count">${history_Num }</span>				<!-- 최대상품은 15개까지. -->
 					<span class = "ico"></span>	
@@ -142,7 +157,7 @@
 			<ul id = "1234" style="" class = "wingRecentPrd" >
 		
 									<!-- 1번리스트 그룹 -->
-					<c:forEach var="remocon" items="${list }" varStatus="status" >
+					<c:forEach var="remocon" items="${remoconList }" varStatus="status" >
 					
 					<li id = "${Math.floor((status.index)/3)+1 }-${(status.index)%3+1 }" class="wing_prd" >						<!-- 1번그룹의 첫번째 상품 -->
 						<a href="${remocon.h_Prdurl }" target="_blank">					<!-- 해당상품의 상세페이지 주소 -->
@@ -183,8 +198,9 @@
 	</div>
 	<div class = "btn_top">
 		<a href="#">
-			<img alt="페이지 상단으로 이동" src="images/img_top.gif">
+			<img alt="페이지 상단으로 이동" src="/resources/images/historyImg/img_top.gif">
 		</a>
 	</div>
+</c:if>
 </body>
 </html>

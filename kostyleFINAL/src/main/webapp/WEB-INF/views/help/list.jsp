@@ -4,215 +4,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="../main/kostyleHeader.jsp" %> 
+<%-- <%@ include file="../history/remocon.jsp" %> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>고객문의 게시판</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/help/list.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> -->
 <style type="text/css">
-.board-foot{
-	width:100%;
-	margin: 10px 0;
-	text-align: center;
-	height: 39px;
-	position: relative;
-}
-html,body{
-	font-size: 12px;
-	font-weight: normal;
-	line-height: 1.4285;
-}
-.board-foot-search{
-	display: inline-block;
-}
-input{
-	background-color: #fff;
-}
-button,input,optgroup,select,textarea{
-	margin: 0;
-	font: inherit;
-	color: inherit;
-	border: 0;
-	border-radius: 0;
-}
-.board-foot-search .select{
-	padding:7px 5px 6px 10px;
-	border:1px solid rgba(0, 0, 0, 0.15);
-	border-radius:0px;
-	border-right:0;
-	height:32px;
-	width:87px;
-	-webkit-appearance:none;
-	-moz-appearance:none;
-	float:left;
-}
-.bootstrap-select{
-	display:inline-block;
-	position:relative;
-}
-.bootstrap-select .btn{
-	background-color:transparent !important;
-	box-shadow:none !important;
-	border:none;
-	color:#666;
-	padding:0;
-}
-.dropdown-toggle:focus{
-outline:0;
-}
-.btn{
-font-size:12px;
-}
-button{
-margin:0;
-line-height:1.3;
-}
-button, html input[type='button']{
--webkit-appearance:button;
-cursor:pointer;
-}
-button, select{
-text-transform:none;
-}
-button, input, optgroup, select, textarea{
-font:inherit;
-border-radius:0;
-}
-.pull-left{
-float: left;
-}
-.bootstrap-select .btn{
-color:#666;
-}
-.bootstrap-select .btn .bs-caret{
-display:none;
-}
-.bootstrap-select .dropdown-menu.open{
-border:none;
-}
-.dropdown-menu{
-position:absolute;
-top:100%;
-left:0px;
-z-index:9997;
-display:none;
-float:left;
-min-width:98px;
-padding:0;
-text-align:left;
-background-color:#fff;
--webkit-background-clip:padding-box;
-background-clip:padding-box;
--webkit-box-shadow:0 6px 12px rgba(0, 0, 0, 0.5);
-box-shadow:0px 6px 12px rgba(0,0,0,0.5);
-}
-.bootstrap-select .dropdown-menu.open > .dropdown-menu{
-max-width:270px;
-}
-.open > .dropdown-menu{
-display:block;
-}
-ul, ol{
-list-style:none;
-margin:0;
-}
-.dropdown-menu > li{
-border-bottom:1px dotted #ccc;
-}
-.bootstrap-select .dropdown-menu a{
-cursor:pointer;
-outline:none !important;
-text-overflow:ellipsis
-}
-.dropdown-menu > li > a{
-display:block;
-padding:5px 10px;
-clear:both;
-font-weight:normal;
-color:#666;
-white-space:nowrap;
-line-height:20px;
-overflow:hidden;
-}
-.bootstrap-select .dropdown-menu a .glyphicon{
-display:none !important;
-}
-.dropdown-menu > li:last-child{
-border-bottom:none !important;
-}
-.board-foot-search .select{
-padding:7px 5px 6px 10px;
-border:1px solid rgba(0, 0, 0, 0.15);
-border-radius:0px;
-border-right:0;
-height:32px;
-width:87px;
--webkit-appearance:none;
--moz-appearance:none;
-float:left;
-}
-/* .bootstrap-select select{
-display:none;
-} */
-*{
--webkit-box-sizing:border-box;
--moz-box-sizing:border-box;
--webkit-text-size-adjust:none;
-box-sizing:border-box;
-}
-.board-foot-search .search-input{
-padding:6px 5px 6px 10px;
-border-radius:0px;
-height:32px;
-float:left;
-width:207px;
-border-right:0;
-}
-input:-ms-input-placeholder{
-color:#bfbfbf;
-}
-input[type='text'], input[type='password'], input[type='tel'], input[type='email'], input[type='url']{
-border:1px solid rgba(0, 0, 0, 0.15);
-outline:none;
--webkit-appearance:none;
-}
-.board-foot-search .button-search{
-border:1px solid rgba(0, 0, 0, 0.15);
-height:32px;
-width:32px;
-float:left;
-border-left:0;
-background-color:transparent;
-color:#111;
-}
-.button-md{
-padding:9px 10px;
-line-height:1;
-}
-.button-xl, .button-lg, .button-md, .button-sm{
-display:inline-block;
-margin-bottom:0px;
-vertical-align:middel;
-white-space:nowrap;
-}
-.fa{
-position:relative;
-display:inline-block;
-font:normal normal normal 14px/1 FontAwesome;
-font-size:inherit;
-text-rendering:auto;
--webkit-font-smoothing:antialiased;
--moz-osx-font-smoothing:grayscale;
-}
-#select{
-	position: relative;
-	left: -11px;
-	top: -8px;
-}
+
 </style>
 <script type="text/javascript">
 	/* $(function(){
@@ -248,6 +52,10 @@ text-rendering:auto;
 				formObj.attr("method","get");
 				formObj.submit();
 			});
+			
+			$('#write').on('click',function(){
+				location.href="/help/insert";
+			});
 	 });
 	
 </script>
@@ -255,10 +63,8 @@ text-rendering:auto;
 <body>
 <div class="box">
 	<div class="box-header with-border">
-	<h3 class="box-title">고객센터</h3>
+		<h3 class="box-title">고객센터</h3>
 	</div>
-<!-- 	<button>자무 묻는 질문</button>
-	<button>문의 게시판</button> -->
 	<div class="box-body">
 	<table class="table table-bordered">
 		<thead>
@@ -288,6 +94,7 @@ text-rendering:auto;
 			</tbody>
 		</c:forEach>
 	</table>
+	<button id="write">글쓰기</button>
 	</div>
 
 	<div class="text-center">
@@ -308,41 +115,6 @@ text-rendering:auto;
 			</c:if>
 		</ul>
 	</div>
-</div>
-
-
-<!-- 검색 입력 부분 -->
-<%-- 	<div class='box-body'>
-			<select name="searchType">
-						<option value="n"
-							<c:out value="${cri.searchType == null?'selected':''}"/>>
-							---</option>
-						<option value="t"
-							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
-							Title</option>
-						<option value="c"
-							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
-							Content</option>
-						<option value="w"
-							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
-							Writer</option>
-						<option value="tc"
-							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-							Title OR Content</option>
-						<option value="cw"
-							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
-							Content OR Writer</option>
-						<option value="tcw"
-							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
-							Title OR Content OR Writer</option>
-					</select> <input type="text" name='keyword' id="keywordInput"
-						>
-					<button id='searchBtn'>Search</button>
-					<button id='newBtn'>New Board</button>
-
-				</div> --%>
-
-<!-- 검색 입력 부분 -->
 	  <div class="board-foot">
 		<div class="board-foot-search" data-role="view-search">
 			<input id="viewSearchBoardCd" type="hidden" value="community">
@@ -383,6 +155,81 @@ text-rendering:auto;
 			</form>
 		</div>
 	</div>
+</div>
+
+
+<!-- 검색 입력 부분 -->
+<%-- 	<div class='box-body'>
+			<select name="searchType">
+						<option value="n"
+							<c:out value="${cri.searchType == null?'selected':''}"/>>
+							---</option>
+						<option value="t"
+							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+							Title</option>
+						<option value="c"
+							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+							Content</option>
+						<option value="w"
+							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+							Writer</option>
+						<option value="tc"
+							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+							Title OR Content</option>
+						<option value="cw"
+							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
+							Content OR Writer</option>
+						<option value="tcw"
+							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
+							Title OR Content OR Writer</option>
+					</select> <input type="text" name='keyword' id="keywordInput"
+						>
+					<button id='searchBtn'>Search</button>
+					<button id='newBtn'>New Board</button>
+
+				</div> --%>
+
+<!-- 검색 입력 부분 -->
+	<!--   <div class="board-foot">
+		<div class="board-foot-search" data-role="view-search">
+			<input id="viewSearchBoardCd" type="hidden" value="community">
+			
+			<div class="btn-group bootstrap-select select">
+				<button title="통합검색" class="btn dropdown-toggle btn-default"
+					aria-expanded="false" type="button" data-toggle="dropdown">
+					<span class="filter-option pull-left">통합검색</span>&nbsp;<span
+						class="bs-caret"><span class="caret"></span></span>
+				</button>
+				<div class="dropdown-menu open">
+					<ul class="dropdown-menu inner" role="menu">
+						<li class="selected" data-original-index="0"><a tabindex="0"
+							data-tokens="null"><span class="text">통합검색</span><span
+								class="glyphicon glyphicon-ok check-mark"></span></a></li>
+						<li data-original-index="1"><a tabindex="0"
+							data-tokens="null"><span class="text">작성자</span><span
+								class="glyphicon glyphicon-ok check-mark"></span></a></li>
+						<li data-original-index="2"><a tabindex="0"
+							data-tokens="null"><span class="text">댓글작성자</span><span
+								class="glyphicon glyphicon-ok check-mark"></span></a></li>
+					</ul>
+				</div>
+				
+		 	<form action="/help/list" method="get" role="form">
+					<select tabindex="-98" class="select"
+						data-role="total-select-filter" id="select" name="searchType">
+						<option value="q_title">제목</option>
+						<option value="c_Id">작성자</option>
+					</select>
+				</div>
+				<input title="검색" class="search-input" type="text"
+					placeholder="검색어를 입력하세요." data-role="total-input-keyword" name="keyWord">
+				<button class="button-md button-search" type="button"
+					data-role="total-submit">
+					<span class="fa fa-search"></span>
+				</button>
+			</form>
+		</div>
+	</div> -->
 		<!-- <div class="board-foot-search" data-role="view-search">
 			<div class="btn-group bootstrap-select select">
 				<select tabindex="-98" class="select" data-role="total-select-filter">
