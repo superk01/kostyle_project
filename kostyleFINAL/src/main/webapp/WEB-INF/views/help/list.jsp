@@ -156,4 +156,3 @@
 	</div>
 </body>
 </html>
-<%@ include file="../history/remocon.jsp" %>
