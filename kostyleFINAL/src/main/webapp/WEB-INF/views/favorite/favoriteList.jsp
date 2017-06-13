@@ -119,4 +119,4 @@
 	</div>
 
 </body>
-
+<%@ include file="../history/remocon.jsp" %>

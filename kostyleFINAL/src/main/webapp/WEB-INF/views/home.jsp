@@ -7,7 +7,7 @@
 
 <html>
 <head>
-<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
+<script src="/resources/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 	 $(document).ready(function(){ 
 		var returnPath1 = jQuery(location).attr('pathname')+"";

@@ -116,7 +116,7 @@
 </head>
 <body>
 
-	<div id="wingBanner" class="wing_banner wing_fixed">
+	<div id="wingBanner" class="wing_fixed">
 		<c:if test="${not empty login }">
 		<div id = "windBanner" class = "wing_banner"> <!-- 리모콘 전제 -->
 			<!-- //최근 본 상품 -->
