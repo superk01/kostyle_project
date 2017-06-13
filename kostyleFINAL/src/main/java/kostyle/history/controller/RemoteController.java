@@ -43,7 +43,8 @@ public class RemoteController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("history/remocon");
 		List<HistoryVO> list = service.listHistory(c_num);
-		mav.addObject( "list", list);
+		System.out.println("remocon컨트롤러에서 list찍어보기:"+list);
+		mav.addObject( "remoconList", list);
 		mav.addObject("history_Num", service.countHistory(c_num));
 		mav.addObject("c_num", c_num);
 		return mav;

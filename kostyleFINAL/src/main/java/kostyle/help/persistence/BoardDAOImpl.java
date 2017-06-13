@@ -25,6 +25,7 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardVO> list(SearchCriteria cri) {
 		List<BoardVO> list = session.selectList(namespace+".list",cri, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+		System.out.println("dao에서 list 찍어보기"+list);
 		return list;
 	}
 
