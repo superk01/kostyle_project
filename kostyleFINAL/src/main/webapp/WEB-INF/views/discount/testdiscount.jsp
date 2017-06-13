@@ -76,9 +76,24 @@ $(document).ready(function(){
 					<div class="CategoryResult_oneItemBox_child_Name"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.s_sname}</a></div>
 					<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_beforeDiscountprice }</a></div>
 					<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_afterDiscountprice }</a></div>
-					<c:if test="${product.sale_discountRate !=0}">
+					<c:choose>
+					<c:when test="${product.sale_discountRate !=0}">
 						<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_discountRate }%</a></div>
-					</c:if>
+					</c:when>
+					<c:otherwise>
+						<p></p>
+					</c:otherwise>
+					</c:choose>
+					
+					
+					<c:choose>
+					<c:when test="${product.sale_onePlusOne != null}">
+						<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_onePlusOne }</a></div>
+					</c:when>
+					<c:otherwise>
+						<p></p>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</c:forEach>
 		</div>

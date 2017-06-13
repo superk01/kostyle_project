@@ -17,6 +17,7 @@ public class DiscountCrollingThread extends Thread {
 	//키워드
 	public static String DISURL ="DISURL";
 	public static String NEWURL = "NEWURL";
+	public static String ONEPLUS = "1+1";
 	private String crollUrl;
 	private String shopUrl;
 	private String s_sname;
@@ -64,6 +65,7 @@ public class DiscountCrollingThread extends Thread {
 		   List<String> product_BeforeSalePriceList = new ArrayList<String>();//최종 물품가격목록
  	   	   List<String> product_AfterSalePriceList = new ArrayList<String>();//최종 물품가격목록
  	   	   List<Integer> product_discountRateList = new ArrayList<Integer>(); //할인율
+ 	   	   List<String> product_onePlusOneList = new ArrayList<String>(); // 1+1할인인지
 		   List<String> product_LinkList = new ArrayList<String>();//최종 물품링크목록
 		   List<String> product_ImgLinkList = new ArrayList<String>(); //최종 물품이름목록
 		   List<String> rowList = new ArrayList<String>();   //페이지row 저장
@@ -166,6 +168,7 @@ public class DiscountCrollingThread extends Thread {
 				  String beforePrice ="";
 				  String afterPrice="";
 				  int discountRate=0;
+				  String onePlusOne="";
 				  String prdName="";
 				  StringBuffer sb = sbList.get(i);
 				  
@@ -182,13 +185,17 @@ public class DiscountCrollingThread extends Thread {
 
 				  
 				  //가격찾기 (할인전/ 할인후/할인율) // beforePrice  afterPrice discountRate
-				  priceMap = findPrice(sb);
+				  priceMap = findPrice(sb, shopUrl);
 				  beforePrice = (String)priceMap.get("beforePrice");
 				  afterPrice = (String)priceMap.get("afterPrice");
+				  
 				  System.out.println("discountRate: "+priceMap.get("discountRate"));
 				  if(priceMap.get("discountRate") != null){
 					  discountRate = (Integer)priceMap.get("discountRate");
-				  }else{}
+				  }
+				  if(priceMap.get("onePlusOne") != ""){
+					  onePlusOne = (String)priceMap.get("onePlusOne");
+				  }
 
 				  
 				  
@@ -196,7 +203,7 @@ public class DiscountCrollingThread extends Thread {
 	//public DiscountVO(String sale_prdUrl, String sale_imgUrl, String sale_beforeDiscountprice,
 					//String sale_afterDiscountprice, int sale_discountRate, String sale_name,String s_sname)			  
 		  //리스트<VO객체>에 넣기!
-				  resultVOList.add(new DiscountVO(prdUrl, imgUrl, beforePrice, afterPrice, discountRate, prdName, s_sname));
+				  resultVOList.add(new DiscountVO(prdUrl, imgUrl, beforePrice, afterPrice, discountRate,onePlusOne, prdName, s_sname));
 			  }
 			  //System.out.println("");
 			  //System.out.println("");
@@ -264,8 +271,8 @@ public class DiscountCrollingThread extends Thread {
 	     return url;
 	}
 	
-	//가격추출(할인전, 할인후, 할인율)  세가지 / beforePrice  afterPrice discountRate
-	public Map<String,Object> findPrice(StringBuffer sb){
+	//가격추출(할인전, 할인후, 할인율)  +( 1+1할인여부) 4가지 / beforePrice  afterPrice discountRate onePlusOne
+	public Map<String,Object> findPrice(StringBuffer sb, String shopUrl){
 		Map<String,Object> priceMap = new HashMap<String, Object>(); 		// beforePrice  afterPrice discountRate
 		List <String> tempList = new ArrayList<String>();
 
@@ -286,16 +293,21 @@ public class DiscountCrollingThread extends Thread {
 			  //System.out.println(matcher.group());
 		  }
 		  
-		// calDiscountRate함수에 tempList를넣고 Map을반환 (key: ) beforePrice  afterPrice discountRate 
+		// calDiscountRate함수에 tempList를넣고 Map을반환 (key: ) beforePrice  afterPrice discountRate  onePlusOne
 		  if(tempList.size() ==2){
 			  //System.out.println("tempList.size() == 2");
 			  priceMap = makePriceMap(tempList);
 			  
 		  }else if(tempList.size() == 1){ //priceMap직접초기화(index를맞추기위해 빈곳에는 공백을 추가.)
 			  //System.out.println("tempList.size() == 1");
-			  priceMap.put("beforePrice", tempList.get(0)+"원");
-			  priceMap.put("afterPrice", "");
+			  priceMap.put("beforePrice","");
+			  priceMap.put("afterPrice", tempList.get(0)+"원");
 			  priceMap.put("discountRate", 0);
+			  if(shopUrl.indexOf("hotping") != -1){
+				  priceMap.put("onePlusOne", ONEPLUS);
+			  }else{
+				  priceMap.put("onePlusOne", "");
+			  }
 		  }else if(tempList.size() == 3){ //이러면 세번째값이 얼마할인인지(두금액의 차)에대해 나오는 값인데 필요없음.
 			  tempList.remove(2);
 			  priceMap = makePriceMap(tempList);
@@ -353,6 +365,7 @@ public class DiscountCrollingThread extends Thread {
 		}
 	}
 	
+	//일반할인이아닌 1+1할인여부(핫핑, String sale+onePlusOne)
 	
 	
 	//상품명추출

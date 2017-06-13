@@ -32,7 +32,7 @@
         <label>
           <input type="checkbox" name="useCookie"> 자동로그인
         </label>
-      <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+      <button type="submit" class="class="btn btn-lg btn-default btn-block">Sign In</button>
 </form>
 </body>
 </html>
