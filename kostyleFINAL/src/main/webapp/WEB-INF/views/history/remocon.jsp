@@ -1,8 +1,10 @@
+<%@page import="kostyle.login.domain.CustomerVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,41 +14,41 @@
 <script src="/resources/jquery/jquery-3.2.1.js"></script>
 
 <script type="text/javascript">
-
-/* function fn_deleteHistory(){
-	location.href = "deleteAction.history?h_num=${remocon.h_Num}&c_num=${c_Num}"
-}
- */
+<%Object userVO = session.getAttribute("login"); %>
+<%CustomerVO customerVO = null; %>
+<%String c_num = null; %>
+<%if(userVO instanceof CustomerVO){ 
+	customerVO = (CustomerVO)userVO; 
+	c_num = customerVO.getC_num();
+  }%>
+  <%if(userVO != null){%>
+	$(document).ready(function(){
+		$.ajax({
+			url:'/remocon/list/'+<%=c_num%>,
+			type: 'get',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"GET"
+			},
+			dataType:'text',
+			success : function(data) {
+				if(data='success'){
+					alert('설마 한 번에 성공?');
+				}
+			}
+		});
+	});
+<%}%>
  $(document).ready(function(){
-	 
-	 	/* if(${not empty login}){
-	 		self.location ="/remocon/list/${login.c_num}"; 
-	 		$.ajax({
-	 			url : "/remocon/list/${login.c_num}",
-	 			type: 'get',
-	 			headers: {
-	 				"Content-Type":"application/json",
-					"X-HTTP-Method-Override":"GET"
-	 			},
-	 			dataType:'text',
-	 			success: function(data){
-	 				if(data=="success"){
-	 					alert("컨트롤러 로직 처리 완료!!!");
-	 				}
-	 			}
-	 		})
-	 	} */
- 
-		/* 리모콘에서 히스토리 상품삭제. */
 	 	var ind=0;
 	 	$('ul').each(function(index){
 	 		ind=index+1;
 	 	})//이건 뭐하는 건지?
-	 	console.log(ind);
+		/* 리모콘에서 히스토리 상품삭제. */
 		 $('button.wing_btn_delete').on('click',function(){
 			 var h_num=$(this).val();
 			 $.ajax({
-				url : "${path}/history/delete?h_num="+h_num,
+				url : "/history/delete?h_num="+h_num,
 				type : 'get',
 				headers:{
 					"Content-Type":"application/json",
@@ -54,37 +56,15 @@
 				},
 				dataType:'text',
 				success : function(){
-					/* alert('success'); */
 					location.href="/remocon/list/"+${login.c_num};
 				}					
 			});
 			return false;
 		}); 
-		 /* $('.wing_btn_next').on('click', function(){
-			 alert($('#wingRecentPrd').size);
-			 var index=0;
-			 for(int i=0; i<$('#wingRecentPrd').size; i++){
-				 alert("for문");
-				 if($('#wingRecentPrd').eq(i).attr('class')!=disable){
-					 alert("if문");
-					 index=i;
-					 alert(index);
-				 }
-				
-			 }
-			 $('#wingRecentPrd').eq(index).setAttribute('class', disable);
-			 $('#wingRecentPrd').eq(index+1).setAttribute('class', "");
-			 
-			 
-		 }); */
-		 
+		
+		 /* 클릭이벤트로 페이지(?)넘기는 코드 */
 		 $('button.wing_btn_next').on('click',function(){
-			 /* alert("1111"); */
-			 /* if(int i=0; i<5; i++){
-			 console.log($('.wingRecentPrd').eq(i).attr('id'));
-			  alert($('#wingRecentPrd').eq(1).attr('class')); 
-			 } */
-			 /* alert($('.wingRecentPrd').eq(1).attr('style')); */
+			
 			 var index = 0;
 			 for(var i=-1; i<ind; i++){
 				if($('.wingRecentPrd').eq(i).attr('style')!='display:none'){
@@ -116,8 +96,8 @@
 </head>
 <body>
 
-	<div id="wingBanner" class="wing_fixed">
-		<c:if test="${not empty login }">
+<div id="wingBanner" class="wing_fixed">
+	<c:if test="${not empty login }">
 		<div id = "windBanner" class = "wing_banner"> <!-- 리모콘 전제 -->
 			<!-- //최근 본 상품 -->
 			<div id = "wingRecentWrap" class = "wing_prd_wrap" style = ""> <!-- 리모콘 외부 -->
@@ -176,6 +156,6 @@
 			</div>
 		</c:if>
 	</div>
-	</div>
+</div>
 </body>
 </html>
