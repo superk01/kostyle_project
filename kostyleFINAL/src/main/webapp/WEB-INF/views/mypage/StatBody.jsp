@@ -19,7 +19,7 @@
 <body>
 <c:if test="${message == 'success' }">
 <h2>
-		${sessionScope.c_name}(${sessionScope.c_id})님 
+		${sessionScope.login.c_name}(${sessionScope.login.c_id})님 
 		환영합니다.
 </h2>
 </c:if>

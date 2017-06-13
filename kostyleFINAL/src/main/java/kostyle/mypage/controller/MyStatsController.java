@@ -89,9 +89,13 @@ public class MyStatsController {
 			@ModelAttribute MyCustomerVO vo, Model model) {
 		System.out.println("되냐?");
 		boolean result = service.passCheck(vo);
+
 		ModelAndView mav = new ModelAndView();
-		System.out.println(c_id);
+
 		if(result == true) {
+			System.out.println("아");
+			System.out.println(c_id);
+
 		mav.setViewName("/mypage/ModifyMyInfoIn");
 		mav.addObject("dto",service.read(c_id));
 		}else {
@@ -104,13 +108,14 @@ public class MyStatsController {
 	@RequestMapping(value="with_pass_check", method=RequestMethod.POST)
 	public String Withdrawal(@RequestParam String c_id,
 			@RequestParam String c_pass, @ModelAttribute MyCustomerVO vo,
-			Model model) throws Exception {
+			Model model, HttpSession session) throws Exception {
 			System.out.println("회원탈퇴");
 				boolean result = service.passCheck(vo);
 				if(result){
 					//삭제 처리
 					service.DeleteMember(c_id);
 					//메인으로 이동
+					session.invalidate();
 					return "redirect:/";
 				}else {
 					//비번이 틀렷을 때
