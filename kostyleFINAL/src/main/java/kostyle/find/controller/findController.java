@@ -82,7 +82,7 @@ public class findController {
 	            message.setText("메일본문입니다.");
 	            message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse("lees5351@hanmail.net"));
 	            
-	            System.out.println("메일 : "+message.toString());
+	            System.out.println("메일 : " +  message);
 	            mailSender.send(message);
 	            System.out.println("성공");
 	        } catch (MessagingException e) {

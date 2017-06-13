@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-이메일보내기
+	이메일 보내기
 </body>
 </html>
