@@ -7,6 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
+<script src="/resources/js/jquery.js"></script>
 <script type="text/javascript">
 		$(function(){
 			var html;
@@ -22,7 +25,7 @@
 </script>
 </head>
 <body>
-	<div> </div>
+	<div id=""> </div>
 	<form action="/shoplogin/loginCheck" method="post">
     <input type="text" name="adshop_id" value="${dto.adshop_id }" class="form-control" placeholder="SHOP ID"/>
     <input type="password" name="user_pass" class="form-control" placeholder="Password"/>

@@ -7,6 +7,9 @@ public class DiscountVO implements Serializable {
 	private String sale_imgUrl;
 	private String sale_beforeDiscountprice;
 	private String sale_afterDiscountprice;
+	private int sale_discountRate;
+
+
 	private String sale_name;
 	private String s_sname;
 	private int clo_zzim;
@@ -14,15 +17,16 @@ public class DiscountVO implements Serializable {
 	public DiscountVO(){}
 
 	public DiscountVO(String sale_prdUrl, String sale_imgUrl, String sale_beforeDiscountprice,
-			String sale_afterDiscountprice, String sale_name, String s_sname, int clo_zzim) {
+			String sale_afterDiscountprice, int sale_discountRate, String sale_name, String s_sname) {
 		super();
 		this.sale_prdUrl = sale_prdUrl;
 		this.sale_imgUrl = sale_imgUrl;
 		this.sale_beforeDiscountprice = sale_beforeDiscountprice;
 		this.sale_afterDiscountprice = sale_afterDiscountprice;
+		this.sale_discountRate =sale_discountRate;
 		this.sale_name = sale_name;
 		this.s_sname = s_sname;
-		this.clo_zzim = clo_zzim;
+
 	}
 
 	public String getSale_prdUrl() {
@@ -57,6 +61,14 @@ public class DiscountVO implements Serializable {
 		this.sale_afterDiscountprice = sale_afterDiscountprice;
 	}
 
+	public int getSale_discountRate() {
+		return sale_discountRate;
+	}
+
+	public void setSale_discountRate(int sale_discountRate) {
+		this.sale_discountRate = sale_discountRate;
+	}
+
 	public String getSale_name() {
 		return sale_name;
 	}
@@ -84,9 +96,12 @@ public class DiscountVO implements Serializable {
 	@Override
 	public String toString() {
 		return "DiscountVO [sale_prdUrl=" + sale_prdUrl + ", sale_imgUrl=" + sale_imgUrl + ", sale_beforeDiscountprice="
-				+ sale_beforeDiscountprice + ", sale_afterDiscountprice=" + sale_afterDiscountprice + ", sale_name="
-				+ sale_name + ", s_sname=" + s_sname + ", clo_zzim=" + clo_zzim + "]";
+				+ sale_beforeDiscountprice + ", sale_afterDiscountprice=" + sale_afterDiscountprice
+				+ ", sale_discountRate=" + sale_discountRate + ", sale_name=" + sale_name + ", s_sname=" + s_sname
+				+ ", clo_zzim=" + clo_zzim + "]";
 	}
+
+
 
 	
 	

@@ -15,6 +15,10 @@ public interface LoginDAO {
 	public void keepCusLoginLimit(String cus_id, String sessionId, Date next);
 	public CustomerVO checkCusSessionKey(String cookieVal);
 	
-	public void keepShopLoginLimit(int adshop_id, String sessionId, Date next);
+	public void keepShopLoginLimit(String adshop_id, String sessionId, Date next);
 	public AdShopVO checkShopSessionKey(String cookieVal);
+	
+	//로그인시 비밀번호 암호화 비교를 위해 아이디만가지고 Customer객체를 미리 가져옴
+	public CustomerVO cusGetId(String cus_id);
+	
 }

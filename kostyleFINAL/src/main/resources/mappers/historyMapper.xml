@@ -7,7 +7,7 @@
 <mapper namespace="kostyle.history.mappers.HistoryMapper">
 	<cache />
 	<select id="listHistory" resultType="HistoryVO">
-		select * from history where c_num = #{value}
+		select * from history where c_num = #{value} order by h_num desc
 	</select>
 	<select id="countHistory" resultType="int">
 		select count(*) from history where c_num = #{value}

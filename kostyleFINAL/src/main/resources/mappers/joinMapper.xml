@@ -17,9 +17,7 @@
 	</insert>
 	 
 	<select id = "autoNum" resultType="String"> <!-- 회원번호 c_num 자동부여 -->
-		SELECT c_num FROM 
- 		(SELECT * FROM customer ORDER BY ROWNUM DESC) 
-		WHERE ROWNUM = 1
+		select max(c_num+0) from customer
 	</select>
 	
 	

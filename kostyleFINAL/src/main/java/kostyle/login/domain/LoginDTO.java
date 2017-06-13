@@ -2,7 +2,7 @@ package kostyle.login.domain;
 
 public class LoginDTO {
 	private String cus_id = "";
-	private int adshop_id =0;
+	private String adshop_id ="";
 	private String user_pass;
 	private boolean useCookie; //자동로그인쿠키
 
@@ -18,12 +18,12 @@ public class LoginDTO {
 	}
 
 
-	public int getAdshop_id() {
+	public String getAdshop_id() {
 		return adshop_id;
 	}
 
 
-	public void setAdshop_id(int adshop_id) {
+	public void setAdshop_id(String adshop_id) {
 		this.adshop_id = adshop_id;
 	}
 

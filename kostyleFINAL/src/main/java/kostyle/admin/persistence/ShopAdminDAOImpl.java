@@ -47,8 +47,13 @@ public class ShopAdminDAOImpl implements ShopAdminDAO{
 	}
 
 	@Override
-	public void insertAdShoppingMall(ShoppingMallAdmin shop) throws Exception {
-		session.insert(namespace+".insertAdShoppingMall", shop);
+	public AdShoppingMallAdmin getAdShoppingMall(String s_num) throws Exception {
+		return session.selectOne(namespace+".getAdShoppingMall", s_num);
+	}
+
+	@Override
+	public void insertAdShoppingMall(AdShoppingMallAdmin adShop) throws Exception {
+		session.insert(namespace+".insertAdShoppingMall", adShop);
 	}
 
 	@Override
@@ -59,6 +64,16 @@ public class ShopAdminDAOImpl implements ShopAdminDAO{
 	@Override
 	public void deleteAdShop(String s_num) throws Exception {
 		session.delete(namespace+".deleteAdShop", s_num);
+	}
+
+	@Override
+	public void updateAdShopInfo(AdShoppingMallAdmin adShop) throws Exception {
+		session.update(namespace+".updateAdShopInfo", adShop);
+	}
+
+	@Override
+	public void updateShopInfo(ShoppingMallAdmin shop) throws Exception {
+		session.update(namespace+".updateShopInfo", shop);
 	}
 	
 

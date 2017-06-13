@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class AdShopVO implements Serializable {
 	private String s_num;
-	private int ad_id;
+	private String ad_id;
 	private String ad_pass;
 	private int p_powernum;
 	private String s_sname;
@@ -12,7 +12,7 @@ public class AdShopVO implements Serializable {
 	private int s_grade;
 */
 	public AdShopVO(){}
-	public AdShopVO(String s_num, int ad_id, String ad_pass, int p_powernum, String s_sname) {
+	public AdShopVO(String s_num, String ad_id, String ad_pass, int p_powernum, String s_sname) {
 		super();
 		this.s_num = s_num;
 		this.ad_id = ad_id;
@@ -26,10 +26,10 @@ public class AdShopVO implements Serializable {
 	public void setS_num(String s_num) {
 		this.s_num = s_num;
 	}
-	public int getAd_id() {
+	public String getAd_id() {
 		return ad_id;
 	}
-	public void setAd_id(int ad_id) {
+	public void setAd_id(String ad_id) {
 		this.ad_id = ad_id;
 	}
 	public String getAd_pass() {

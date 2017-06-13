@@ -16,8 +16,7 @@ public interface DiscountService {
 	public List<DiscountVO> discountUrlCrolling();
 	public List<DiscountVO> newSaleUrlCrolling();
 	
-	public int discountRateCal(String sale_beforeDiscountprice, String sale_afterDiscountprice);
-	
+	public String urlFix(String url);
 	
 	
 	

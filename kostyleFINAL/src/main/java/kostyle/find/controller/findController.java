@@ -1,13 +1,16 @@
 package kostyle.find.controller;
 
-import javax.inject.Inject;
 
+import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import kostyle.find.domain.FindInfo;
+import kostyle.find.service.FindService;
 
 
 @Controller
@@ -16,23 +19,47 @@ public class findController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(findController.class);
 	
-	//@Inject
-	//private JoinService service;
+	@Inject
+	private FindService service;
 
 	//아이디 찾기
 	@RequestMapping(value = "/id", method = RequestMethod.GET)
-	   public void findID(Model model) throws Exception {
-		
-		System.out.println("find ID get ..........");
+	   public void findID() throws Exception {
+		System.out.println("아이디 찾기 정보 입력 (컨트롤러)");
+		System.out.println("");
 	   }
 	
-	//비밀번호 찾기
+	
+	//찾은 아이디 출력
+	@RequestMapping(value = "/idFindResult", method = RequestMethod.POST)
+	   public void idFindResult(FindInfo find, Model model) throws Exception{
+		System.out.println("입력 정보 일치 여부에 따라 아이디 알려주기 (컨트롤러-POST)");
+		
+		find.setC_id(service.idFind(find));
+		model.addAttribute("find", find);
+		System.out.println(find.toString());
+		System.out.println("");
+	   }
+	
+	
+	
+		//비밀번호 찾기
 		@RequestMapping(value = "/password", method = RequestMethod.GET)
-		   public void findPW(Model model) throws Exception {
-			
-			System.out.println("find PW get ..........");
+		   public void findPW() throws Exception {
+			System.out.println("비밀번호 찾기 정보 입력 (컨트롤러)");
 		   }
 	
-
+		
+		//찾은 비밀번호 출력
+		@RequestMapping(value = "/pwFindResult", method = RequestMethod.POST)
+		   public void pwFindResult(FindInfo find, Model model) throws Exception{
+			System.out.println("입력 정보 일치 여부에 따라 비밀번호 알려주기 (컨트롤러-POST)");
+			
+			find.setC_pass(service.pwFind(find));
+			model.addAttribute("find", find);
+			System.out.println(find.toString());
+			System.out.println("");
+		   }
+		
 	
 }

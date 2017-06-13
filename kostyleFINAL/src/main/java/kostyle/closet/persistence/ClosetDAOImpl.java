@@ -289,17 +289,26 @@ public class ClosetDAOImpl implements ClosetDAO {
 		  return prdName;
 	}
 
-	//url에서 http://떼기
+	//url에서 http://, https://떼기
 	@Override
 	public String prdUrlRepair(String prdUrl) {
-		 int index = -1;
-		  index = prdUrl.indexOf("http://");
+		 int index1 = -1;
+		 int index2 = -1; 
+		 
+		 index1 = prdUrl.indexOf("http://");
+		 index1 = prdUrl.indexOf("https://");
 		  
-		  if(index != -1){
-			  index = index +7;
-			  prdUrl = prdUrl.substring(index);
+		  
+		  if(index1 != -1){
+			  index1 = index1 +7;
+			  prdUrl = prdUrl.substring(index1);
+			  System.out.println("http://뗀 prdUrl: "+prdUrl);
+		  }else if(index2 != -1){
+			  index2 = index1 +8;
+			  prdUrl = prdUrl.substring(index2);
 			  System.out.println("http://뗀 prdUrl: "+prdUrl);
 		  }
+		  
 		  return prdUrl;
 	  }
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+import kostyle.history.domain.HistoryCriteria;
 import kostyle.history.domain.HistoryVO;
 import kostyle.history.persistence.HistoyDAO;
 import kostyle.login.domain.CustomerVO;
@@ -18,9 +19,9 @@ public class HistoryServiceImpl implements HistoryService{
 	private HistoyDAO dao;
 	
 	@Override
-	public List<HistoryVO> listHistory(int c_Num) {
+	public List<HistoryVO> listHistory(int c_Num, HistoryCriteria cri) {
 		
-		return dao.listHistory(c_Num);
+		return dao.listHistory(c_Num, cri);
 	}
 
 	@Override
@@ -46,6 +47,12 @@ public class HistoryServiceImpl implements HistoryService{
 	@Override
 	public int countHistory(int c_num) {
 		return dao.countHistory(c_num);
+	}
+
+	@Override
+	public List<HistoryVO> listHistory(int c_Num) {
+		
+		return dao.listHistory(c_Num);
 	}
 
 }

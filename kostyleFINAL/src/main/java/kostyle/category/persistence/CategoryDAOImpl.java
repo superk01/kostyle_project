@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kostyle.category.domain.Adshoppingmall_category;
+import kostyle.category.domain.FilterVO;
 import kostyle.category.domain.Product_category;
 
 @Repository
@@ -32,5 +33,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Override
 	public void product_list_insert(Map<String, Object> map) throws Exception {
 		session.insert(namespace + ".product_list_insert", map);		
+	}
+
+	@Override
+	public List<Product_category> product_Filter_color(FilterVO filterVO) throws Exception {
+		return session.selectList(namespace + ".product_Filter_color", filterVO);
 	}
 }
