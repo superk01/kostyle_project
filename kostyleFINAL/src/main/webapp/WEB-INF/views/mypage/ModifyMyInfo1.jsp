@@ -1,3 +1,4 @@
+<%@page import="kostyle.login.domain.CustomerVO"%>
 <%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,7 +8,7 @@
 <script type="text/javascript" src="../../../resources/js/mypage/modify.js"></script>      -->
 <%@ taglib prefix="c" 
 uri="http://java.sun.com/jsp/jstl/core" %>
-<% String c_id = (String)session.getAttribute("c_id"); %> 
+<% CustomerVO login = (CustomerVO)session.getAttribute("login"); %>
 <c:set var="path" 
 value="${pageContext.request.contextPath}"/>
 
@@ -46,13 +47,14 @@ $(document).ready(function(){
 
 
 <%
-	String birth = (String)session.getAttribute("c_birth");
-	int p_powernum = (Integer)session.getAttribute("p_powernum");
+	String birth = login.getC_birth();
+	int p_powernum = login.getP_powernum();
  	String year = birth.substring(0,4);
 	String month = birth.substring(5,7);
 	String day = birth.substring(8,10);  
-	String check = (String)session.getAttribute("c_sms");
-%>
+	int check1 = login.getC_sms();
+	String check = check1 + "";
+	%>
 
 <form name="form1" method="post">
 <style type="text/css">
@@ -149,7 +151,7 @@ $(document).ready(function(){
 												<p>생년월일</p>
 											</label>
 										</th>
-										<td>d
+										<td>
 											 <%=year %>년 <%=month %>월 <%=day %>일
 											<span id="birthMsg" style="display: block; color:red"></span>	
 										</td>
@@ -221,7 +223,7 @@ $(document).ready(function(){
 						</div>
 						<div class="btn_mySite">
 							
-							<input type="hidden" name="c_id" id="c_id" value="<%=c_id %>"/>
+							<input type="hidden" name="c_id" id="c_id" value="<%=login.getC_id() %>"/>
 							<button type="button" id="completecng">변경완료오</button>
 							
 							

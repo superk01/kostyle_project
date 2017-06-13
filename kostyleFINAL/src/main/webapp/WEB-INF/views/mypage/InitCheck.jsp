@@ -1,7 +1,8 @@
 
+<%@page import="kostyle.login.domain.CustomerVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<% CustomerVO login = (CustomerVO)session.getAttribute("login"); %>
 
 		<div id="contents">
 			<div id="cont_area">
@@ -21,7 +22,7 @@
 									<!-- <img src="img" alt="아이디"> -->
 									<span>아이디</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<!-- <input type="id" name="c_id"> -->
-									<%=session.getAttribute("c_id") %>
+									<%=login.getC_id() %>
 									
 								</p>
 								<p>
