@@ -20,9 +20,14 @@ public class FindDAOImpl implements FindDAO {
 	}
 
 	@Override
-	public String pwFind(FindInfo find) throws Exception {
+	public int pwFind(FindInfo find) throws Exception {
 		System.out.println("비밀번호 찾기 DAO : "+find);
 		return session.selectOne(namespace+".pwFind", find);
+	}
+
+	@Override
+	public void randomPassword(FindInfo find) throws Exception {
+		session.update(namespace+".randomPassword", find);
 	}
 
 	

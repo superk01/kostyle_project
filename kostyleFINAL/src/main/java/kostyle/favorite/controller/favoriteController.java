@@ -81,7 +81,7 @@ public class favoriteController {
 		   @RequestMapping(value = "/comentModify", method = RequestMethod.POST)
 		   public String modifyPOST(Favorite favorite, FavoriteCriteria cri, RedirectAttributes rttr)throws Exception{
 			   service.comentModify(favorite);
-			   
+			   System.out.println("컨트롤러 : " + favorite.toString());
 			   rttr.addFlashAttribute("page", cri.getPage());
 			   rttr.addFlashAttribute("perPageNum", cri.getPerPageNum());
 			   rttr.addFlashAttribute("msg", "SUCCESS");

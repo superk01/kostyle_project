@@ -66,6 +66,7 @@ public class FavoriteDAOImpl implements FavoriteDAO {
 
 	@Override
 	public void comentModify(Favorite favorite) throws Exception {
+		System.out.println("DAO : " +favorite.toString());
 		session.update(namespace+".comentModify", favorite);
 	}
 
