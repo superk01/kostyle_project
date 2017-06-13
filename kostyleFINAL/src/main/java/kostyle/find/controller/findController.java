@@ -2,6 +2,7 @@ package kostyle.find.controller;
 
 
 import javax.inject.Inject;
+import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -79,8 +80,9 @@ public class findController {
 	        MimeMessage message = mailSender.createMimeMessage();
 	        try {
 	            message.setSubject("스프링으로 메일보내기");
-	            message.setText("메일본문입니다.");
-	            message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse("lees5351@hanmail.net"));
+	            message.setText("메일본문입니다.", "utf-8", "html");
+	            message.setFrom(new InternetAddress("lees5351@gmail.com"));  
+	            message.addRecipient(RecipientType.TO, new InternetAddress("lees5351@naver.com"));
 	            
 	            System.out.println("메일 : " +  message);
 	            mailSender.send(message);
