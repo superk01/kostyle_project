@@ -70,7 +70,7 @@
       <property name="host" value="smtp.gmail.com" />
       <property name="port" value="587" />
       <property name="username" value="lees5351@gmail.com" />
-      <property name="password" value="@tmddus1829" />
+      <property name="password" value="uqzcfmmalvvzyngd" />
       <property name="javaMailProperties">
          <props>
                <prop key="mail.transport.protocol">smtp</prop>
@@ -78,8 +78,7 @@
                <prop key="mail.smtp.starttls.enable">true</prop>
                <prop key="mail.debug">true</prop>
          </props>
-      </property>
- 
+      	</property>
 </bean>
 
 
