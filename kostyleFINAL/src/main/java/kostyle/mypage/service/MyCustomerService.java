@@ -15,5 +15,7 @@ public interface MyCustomerService {
 	public boolean passCheck(
 			MyCustomerVO vo);
 	public MyCustomerVO read(String c_id);
+	public void DeleteMember(String c_id);
+	public void UpdateMember(MyCustomerVO vo);
 	
 }

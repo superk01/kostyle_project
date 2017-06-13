@@ -21,7 +21,7 @@ $(document).ready(function(){
 			return;
 		}		/* <a href = "${path}/board/view.do?bno=${row.bno}"> */
 		document.form1.action=
-			"${path}/mypage/pass_check";
+			"${path}/mypage/modi_pass_check";
 		document.form1.submit();
 	});
 });
@@ -65,6 +65,7 @@ $(document).ready(function(){
 										<span>비밀번호</span>&nbsp;&nbsp;&nbsp;
 									</label>
 									<input type="password" name="c_pass" id="c_pass" title="비밀번호" class="Ty04" value="">
+									<div style="color:red">${message }</div>
 								</p>
 							</div>
 						</div>
