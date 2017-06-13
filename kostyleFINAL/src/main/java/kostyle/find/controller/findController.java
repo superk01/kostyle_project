@@ -2,8 +2,14 @@ package kostyle.find.controller;
 
 
 import javax.inject.Inject;
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +27,9 @@ public class findController {
 	
 	@Inject
 	private FindService service;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 
 	//아이디 찾기
 	@RequestMapping(value = "/id", method = RequestMethod.GET)
@@ -61,5 +70,26 @@ public class findController {
 			System.out.println("");
 		   }
 		
+		
+		//메일보내기
+		@RequestMapping(value="/mail", method = RequestMethod.GET)
+	    public String sendMail()throws Exception{
+	        System.out.println("메일보내기");
+			
+	        MimeMessage message = mailSender.createMimeMessage();
+	        try {
+	            message.setSubject("스프링으로 메일보내기");
+	            message.setText("메일본문입니다.");
+	            message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse("lees5351@hanmail.net"));
+	            
+	            System.out.println("메일 : "+message.toString());
+	            mailSender.send(message);
+	            System.out.println("성공");
+	        } catch (MessagingException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return "mailSuccess";
+	    }
 	
 }
