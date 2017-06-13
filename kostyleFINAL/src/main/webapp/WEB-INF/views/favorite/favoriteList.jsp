@@ -71,8 +71,7 @@
 								<td><a href="http://${Favorite.s_shopurl }"><img
 										src="/resources/image/favoriteImg/home.png"
 										title="쇼핑몰 이동"></a></td>
-								<td><a
-									href="/favorite/deleteFavorite?f_num=${Favorite.f_num }&c_num=${Favorite.c_num}"><img
+								<td><a href="/favorite/deleteFavorite?f_num=${Favorite.f_num }&c_num=${Favorite.c_num}"><img
 										src="/resources/image/favoriteImg/delete2.png"
 										title="즐겨찾기 삭제"></a></td>
 							</tr>

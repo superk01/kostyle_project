@@ -91,12 +91,12 @@ public class favoriteController {
 		  // @PathVariable("bno") Integer bno
 		   
 		   @RequestMapping(value="/deleteFavorite", method=RequestMethod.GET)
-		   public String deleteFavorite(@RequestParam("c_num") String c_num, @RequestParam("f_num") String f_num, FavoriteCriteria cri, 
-				   RedirectAttributes rttr) throws Exception{
+		   public String deleteFavorite(@RequestParam("f_num") String f_num, FavoriteCriteria cri, 
+				   HttpSession session, RedirectAttributes rttr) throws Exception{
 			   
-			  /* CustomerVO login = (CustomerVO) session.getAttribute("login");
+			   CustomerVO login = (CustomerVO) session.getAttribute("login");
 			   System.out.println(login.getC_num());
-			   String c_num = login.getC_num();*/
+			   String c_num = login.getC_num();
 			   
 			   service.deleteFavorite(c_num, f_num);
 			   rttr.addFlashAttribute("page", cri.getPage());
