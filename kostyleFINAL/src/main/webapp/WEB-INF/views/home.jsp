@@ -96,7 +96,7 @@
 <P>  The time on the server is ${serverTime}. </P>
 <P>  "${path }" </P>
 
-<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
 	<div class="search_field">
 	<form action="search/do" method="post">
 		<div class="search_box">

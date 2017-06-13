@@ -40,6 +40,18 @@ public class MyCustomerDAOImpl implements MyCustomerDAO{
 	public MyCustomerVO read(String c_id) {
 		return session.selectOne(namespace + ".view", c_id);
 	}
+
+	@Override
+	public void deleteMember(String c_id) {
+		session.delete(namespace + ".deleteMember", c_id);
+		
+	}
+
+	@Override
+	public void updateMember(MyCustomerVO vo) {
+		session.update(namespace + ".updateMember", vo);
+		
+	}
 	
 	
 }

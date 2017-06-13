@@ -1,5 +1,8 @@
 package kostyle.favorite.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kostyle.favorite.domain.Favorite;
@@ -20,6 +24,7 @@ import kostyle.favorite.domain.FavoriteCriteria;
 import kostyle.favorite.domain.FavoritePageMaker;
 import kostyle.favorite.service.FavoriteService;
 import kostyle.help.domain.Criteria;
+import kostyle.history.domain.HistoryVO;
 import kostyle.login.domain.CustomerVO;
 import kostyle.login.domain.LoginDTO;
 
@@ -64,7 +69,7 @@ public class favoriteController {
 			}
 			   
 		   }
-		
+	
 		   
 		   @RequestMapping(value="/comentRead", method=RequestMethod.GET)
 		   public void comentRead(@RequestParam("f_num") String f_num, @ModelAttribute("cri")FavoriteCriteria cri,

@@ -2,6 +2,8 @@ package kostyle.favorite.persistence;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.RowBounds;
@@ -49,7 +51,7 @@ public class FavoriteDAOImpl implements FavoriteDAO {
 	
 	@Override
 	public int countPaging(String c_num, FavoriteCriteria cri) throws Exception {
-		HashMap<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("c_num", c_num);
 		map.put("cri", cri);
 		return session.selectOne(namespace+".countPaging", map);

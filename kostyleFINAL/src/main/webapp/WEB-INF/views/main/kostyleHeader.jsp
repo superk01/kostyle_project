@@ -73,7 +73,7 @@
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
                 				<li><a href="../join/join"><i class="fa fa-list-ul"></i> 회원가입 </a></li>
-                				<li><a href="#"><i class="fa fa-id-badge"></i> My Page </a></li>
+                				<!-- <li><a href="../mypage/login/"><i class="fa fa-id-badge"></i> My Page </a></li> -->
                 				<li><a href="../cuslogin/login"><i class="fa fa-user-o"></i> Login </a></li>
             				</ul>
         				</div>
@@ -91,7 +91,7 @@
     				<div class="col-md-4">
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
-            					<li><a href="#"><i class="fa fa-id-badge"></i> My Page</a></li>
+            					<li><a href="../mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
                  				<li><a id="cuslogout" href="../cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
             				</ul>
         				</div>

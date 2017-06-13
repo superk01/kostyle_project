@@ -1,8 +1,9 @@
+<%@page import="kostyle.login.domain.CustomerVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" 
 uri="http://java.sun.com/jsp/jstl/core" %>
-<% String c_id = (String)session.getAttribute("c_id"); %> 
+<% CustomerVO login = (CustomerVO)session.getAttribute("login"); %>
 <c:set var="path" 
 value="${pageContext.request.contextPath}"/>
 
@@ -21,12 +22,14 @@ $(document).ready(function(){
 			return;
 		}		/* <a href = "${path}/board/view.do?bno=${row.bno}"> */
 		document.form1.action=
-			"${path}/mypage/pass_check";
+			"${path}/mypage/modi_pass_check";
 		document.form1.submit();
 	});
 });
 
 </script>
+
+
 
 
 		<div id="contents">
@@ -49,11 +52,11 @@ $(document).ready(function(){
 									<span>아이디</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<!-- <input type="id" name="c_id"> -->
 									
-									<%=c_id %>
 									
+									<%=login.getC_id()%>
+
 									
 									<%
-									
 									
 									//out.print("세션으로값받음");
 									//session.getAttribute(arg0)
@@ -65,13 +68,14 @@ $(document).ready(function(){
 										<span>비밀번호</span>&nbsp;&nbsp;&nbsp;
 									</label>
 									<input type="password" name="c_pass" id="c_pass" title="비밀번호" class="Ty04" value="">
+									<div style="color:red">${message }</div>
 								</p>
 							</div>
 						</div>
 						<div class="findBtn">
 							<%-- <input name="c_id" type="hidden" value="${sessionScope.c_id}"/> --%>
 							<!-- <input id="btncom" type="submit" value="확인"> -->
-							<input name="c_id" id="c_id" type="hidden" value="<%=c_id %>" />
+							<input name="c_id" id="c_id" type="hidden" value="<%=login.getC_id() %>" />
 							<button type="button" id="btncom">확인</button>
 						</div>
 						</form>
