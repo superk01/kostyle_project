@@ -10,4 +10,7 @@ public interface MyCustomerDAO {
 	public boolean passCheck(
 			MyCustomerVO vo);
 	public MyCustomerVO read(String c_id);
+	public void deleteMember(String c_id);
+	public void updateMember(MyCustomerVO vWo);
+	
 }
