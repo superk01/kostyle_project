@@ -34,22 +34,6 @@
 	}
 </script>
 
-<script> 
-
-$(document).ready(function() {
-
-	$('').on('click',function(e){
-		e.preventDefault();
-		var url = document.getElementById("shopViewIframe").src;
-		alert(url);
-		
-		self.location = "/favorite/addFavorite?s_shopurl="+url;
-		
-	});
-});
-
-</script>
-
 
 </head>
 
@@ -65,7 +49,6 @@ $(document).ready(function() {
 <div id="favoriteBodyTop"></div>
 <br><br>
 
-<button class="ifrm" value="버튼"></button>
 		<div class="box">
 			<div class="box-body">
 				<table class="table table-hover">

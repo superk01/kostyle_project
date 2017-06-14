@@ -90,10 +90,14 @@
 /* 즐겨찾기 추가 버튼 */
 	   $('.favorite_btn').on('click',function(e){
 	      e.preventDefault();
-	      var url = document.getElementById("shopViewIframe").src;
-	      alert(url);
+	      var url1 = document.getElementById("CategorysearchIframe").src;
 	      
-	      self.location = "/favorite/addFavorite?s_shopurl="+url;
+	      var url2 = url1.substring(7,21);
+	      var url3 = url2.split('/');
+	      var url4 = url3[0]+"/";
+	      alert(url4);
+	      
+	      self.location = "/favorite/addFavorite?s_shopurl="+url4;
 	      
 	   });
 });

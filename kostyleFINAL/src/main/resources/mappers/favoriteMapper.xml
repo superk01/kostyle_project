@@ -8,7 +8,7 @@
 	</select>
 	
 	
-	<select id="iframeS_num" resultType="String"><!-- 2. 즐겨찾기 버튼 클릭 시 들어오는 쇼핑몰url의 s_num 출력  -->
+	<select id="iframeS_num" resultType="String" parameterType="String"><!-- 2. 즐겨찾기 버튼 클릭 시 들어오는 쇼핑몰url의 s_num 출력  -->
 		select s_num from shoppingmall where s_shopurl=#{s_shopurl}
 	</select>
 	
@@ -18,7 +18,7 @@
 	</select>
 	
 	
-	<insert id="addFavorite" parameterType="Favorite"><!-- 4. 즐겨찾기 버튼 클릭 시 db에 추가 -->
+	<insert id="addFavorite" parameterType="FavoriteAdd"><!-- 4. 즐겨찾기 버튼 클릭 시 db에 추가 -->
 		insert into favorite(f_num, s_num, c_num, f_coment, f_date)
 		values(#{f_num}, #{s_num}, #{c_num}, null, sysdate)
 	</insert>
