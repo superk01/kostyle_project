@@ -252,35 +252,14 @@ public class shopAdminController {
 	
 
 	
-//	@RequestMapping(value="/test", method=RequestMethod.GET)
-//	public void test(Model model)throws Exception{
-//		logger.info("ddd");
-//	}
-//	
-//	@RequestMapping(value="/test", method=RequestMethod.POST)
-//	public Map<String, Object> testPOST(@RequestBody Map<String, Object> params)throws Exception{
-//		
-//		 Map<String, Object> resultMap = new HashMap<String,Object>();
-//		 try{
-//		 Map<String, Object> shopMap = new HashMap<String,Object>();
-//		 Map<String, Object> adShopMap = new HashMap<String,Object>();
-//		 
-//		 ObjectMapper mapper = new ObjectMapper();
-//		 String json = (String) params.get("shop");
-//		 String adjson = (String) params.get("adshop");
-//		 
-//		 shopMap = mapper.readValue(json, new TypeReference<Map<String, String>>(){});
-//		 adShopMap = mapper.readValue(adjson, new TypeReference<Map<String, String>>(){});
-//		 		System.out.println(shopMap);
-//		 		System.out.println(shopMap.get("name"));
-//	            System.out.println(adShopMap);
-//	            System.out.println(adShopMap.get("water"));
-//	        }catch(Exception e){
-//	            resultMap.put("message",e.getMessage());
-//	            return resultMap;
-//	        }        
-//	        resultMap.put("message", "회원 정보가 정상적으로 변경되었습니다");
-//	        return resultMap;
-//	}
+	@RequestMapping(value="/test", method=RequestMethod.GET)
+	public void test(Model model)throws Exception{
+		logger.info("ddd");
+	}
+	
+	@RequestMapping(value="/admintest", method=RequestMethod.POST)
+	public void testPOST(String search)throws Exception{
+		System.out.println("admin: "+search);
+	}
 	
 }

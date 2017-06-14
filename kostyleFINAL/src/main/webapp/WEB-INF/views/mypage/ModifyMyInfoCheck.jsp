@@ -1,8 +1,9 @@
+<%@page import="kostyle.login.domain.CustomerVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" 
 uri="http://java.sun.com/jsp/jstl/core" %>
-<% String c_id = (String)session.getAttribute("c_id"); %> 
+<% CustomerVO login = (CustomerVO)session.getAttribute("login"); %>
 <c:set var="path" 
 value="${pageContext.request.contextPath}"/>
 
@@ -29,6 +30,8 @@ $(document).ready(function(){
 </script>
 
 
+
+
 		<div id="contents">
 			<div id="cont_area">
 				<h3>
@@ -49,11 +52,11 @@ $(document).ready(function(){
 									<span>아이디</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<!-- <input type="id" name="c_id"> -->
 									
-									<%=c_id %>
 									
+									<%=login.getC_id()%>
+
 									
 									<%
-									
 									
 									//out.print("세션으로값받음");
 									//session.getAttribute(arg0)
@@ -72,7 +75,7 @@ $(document).ready(function(){
 						<div class="findBtn">
 							<%-- <input name="c_id" type="hidden" value="${sessionScope.c_id}"/> --%>
 							<!-- <input id="btncom" type="submit" value="확인"> -->
-							<input name="c_id" id="c_id" type="hidden" value="<%=c_id %>" />
+							<input name="c_id" id="c_id" type="hidden" value="<%=login.getC_id() %>" />
 							<button type="button" id="btncom">확인</button>
 						</div>
 						</form>

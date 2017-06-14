@@ -9,10 +9,18 @@
     </select>
 
 
-	<!-- 입력한 이름과 이메일과 아이디와 일치한 비밀번호 출력 => 추후에 일치하는 회원의 비밀번호는 임시비밀번호로 바뀌어야하고, 이메일로 보내져야함-->
-	<select id="pwFind" parameterType="FindInfo" resultType="String"> 
-      select c_pass from customer where c_name=#{c_name} and c_email=#{c_email} and c_id=#{c_id}
+	<!-- 입력한 이름과 이메일과 아이디와 일치하는 정보가 있으면 1 없으면 0 
+	=> 이메일이 보내질 때, 비밀번호는 무작위로 바뀌어서 DB에 들어가져야함-->
+	<select id="pwFind" parameterType="FindInfo" resultType="int"> 
+      select count(c_pass) from customer where c_name=#{c_name} and c_email=#{c_email} and c_id=#{c_id}
     </select>
+    
+    
+    <!-- 임시 비밀번호로 db업데이트 => 메일은 암호화 전의 비밀번호가 보내져야하고, db에는 암호화 된 비밀번호가 들어가야함 -->
+    <update id="randomPassword" parameterType="FindInfo">
+		update customer set c_pass=#{c_pass} 
+		where c_name=#{c_name} and c_email=#{c_email} and c_id=#{c_id}
+	</update>
     
 </mapper>  
 

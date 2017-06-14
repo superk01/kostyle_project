@@ -44,25 +44,7 @@
 		
 		<div id="memberJoin">
 			
-			<c:choose>
-				<c:when test="${not empty find.c_pass}">
-					<h3> 회원님의 비밀번호를 </h3>
-					<h3>${find.c_email}로</h3>
-					<h3> 전송했습니다. </h3>
-					
-					<div class="form-group">
-					<div class="col-sm-12 text-center">
-					<button id="btn-cancle" class="btn btn-default btn-lg"  onclick="location.href='/'">
-						코스타일몰 홈 <i class="glyphicon glyphicon-home"></i>
-					</button>
-					<br><br>
-					</div>
-					</div>
-				</c:when>
-
-
-
-				<c:when test="${empty find.c_pass}">
+			
 					<h3> 입력한 정보와 일치하는 정보가 없습니다. </h3>
 					
 					<br><br>
@@ -76,10 +58,6 @@
 					</button>
 					</div>
 					</div>
-				</c:when>
-				</c:choose>
-			
-			
 			
 			<br><br>
 			

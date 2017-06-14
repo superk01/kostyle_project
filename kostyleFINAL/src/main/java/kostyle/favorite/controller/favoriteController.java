@@ -1,7 +1,7 @@
 package kostyle.favorite.controller;
 
+
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +20,6 @@ import kostyle.favorite.domain.FavoritePageMaker;
 import kostyle.favorite.service.FavoriteService;
 import kostyle.help.domain.Criteria;
 import kostyle.login.domain.CustomerVO;
-import kostyle.login.domain.LoginDTO;
 
 @Controller
 @RequestMapping("/favorite/*")
@@ -64,7 +62,7 @@ public class favoriteController {
 			}
 			   
 		   }
-		
+	
 		   
 		   @RequestMapping(value="/comentRead", method=RequestMethod.GET)
 		   public void comentRead(@RequestParam("f_num") String f_num, @ModelAttribute("cri")FavoriteCriteria cri,
@@ -83,7 +81,7 @@ public class favoriteController {
 		   @RequestMapping(value = "/comentModify", method = RequestMethod.POST)
 		   public String modifyPOST(Favorite favorite, FavoriteCriteria cri, RedirectAttributes rttr)throws Exception{
 			   service.comentModify(favorite);
-			   
+			   System.out.println("컨트롤러 : " + favorite.toString());
 			   rttr.addFlashAttribute("page", cri.getPage());
 			   rttr.addFlashAttribute("perPageNum", cri.getPerPageNum());
 			   rttr.addFlashAttribute("msg", "SUCCESS");
@@ -93,12 +91,12 @@ public class favoriteController {
 		  // @PathVariable("bno") Integer bno
 		   
 		   @RequestMapping(value="/deleteFavorite", method=RequestMethod.GET)
-		   public String deleteFavorite(@RequestParam("c_num") String c_num, @RequestParam("f_num") String f_num, FavoriteCriteria cri, 
-				   RedirectAttributes rttr) throws Exception{
+		   public String deleteFavorite(@RequestParam("f_num") String f_num, FavoriteCriteria cri, 
+				   HttpSession session, RedirectAttributes rttr) throws Exception{
 			   
-			  /* CustomerVO login = (CustomerVO) session.getAttribute("login");
+			   CustomerVO login = (CustomerVO) session.getAttribute("login");
 			   System.out.println(login.getC_num());
-			   String c_num = login.getC_num();*/
+			   String c_num = login.getC_num();
 			   
 			   service.deleteFavorite(c_num, f_num);
 			   rttr.addFlashAttribute("page", cri.getPage());
