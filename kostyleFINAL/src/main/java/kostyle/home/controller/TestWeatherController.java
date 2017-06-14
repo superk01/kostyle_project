@@ -27,19 +27,25 @@ public class TestWeatherController {
 	
 	@Inject
 	CategoryService service;
-	
+	//
 	MS949_CategoryWeatherGet getWeather = new MS949_CategoryWeatherGet();
 	
 	@RequestMapping(value = "/showweather", method=RequestMethod.GET	)
-	public void getWeatherGET(){}
+	public void getWeatherGET(Model model){
+		Weather weather = getWeather.start();
+		Weather_pick_keyword wpk = new Weather_pick_keyword();
+		model.addAttribute("level",wpk.getWeather_pick_Data(weather, "none")[1]);
+		model.addAttribute("user_bo",wpk.getWeather_pick_Data(weather, "none")[2]);
+	
+	}
 	
 	@RequestMapping(value = "/showweather")
 	public ResponseEntity<List<Product_category>> getWeatherPOST(@RequestParam(value="value", required = false) String value, Model model) throws Exception{
 		Weather_pick_keyword wpk = new Weather_pick_keyword();
 		Weather weather = getWeather.start();	
-		String keyword = wpk.getWeather_pick_Data(weather, value);
-		List<Product_category> list = service.product_Search(keyword);
-		System.out.println(list.size());
+		int level = wpk.getWeather_pick_Data(weather, value)[0];
+		List<Product_category> list = service.weather_search(level);
+		System.out.println(list.size()+ "level : " + level);
 		ResponseEntity<List<Product_category>> ent = new ResponseEntity<List<Product_category>>(list, HttpStatus.ACCEPTED);
 		return ent;
 	}

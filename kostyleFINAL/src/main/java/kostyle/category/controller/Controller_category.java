@@ -71,8 +71,6 @@ public class Controller_category {
 			System.out.println(filterVO.toString());
 			session.setAttribute("product_list", service.product_Filter_color(filterVO));
 		};
-		//null 보내는 이유는 Ajax 에서 결과값 suceess 로 받고 리다이렉트 시키기 위해서
-		//여기서 redierct 시키기 불가
 		ResponseEntity<String> ent = null;		
 		return ent;
 	}
