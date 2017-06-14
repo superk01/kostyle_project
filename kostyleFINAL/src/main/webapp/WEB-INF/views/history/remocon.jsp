@@ -92,7 +92,7 @@
 	      e.preventDefault();
 	      var url1 = document.getElementById("CategorysearchIframe").src;
 	      
-	      var url2 = url1.substring(7,21);
+	      var url2 = url1.substring(7);
 	      var url3 = url2.split('/');
 	      var url4 = url3[0]+"/";
 	      alert(url4);
