@@ -19,6 +19,7 @@
 <!-- Custom style -->
 <link rel="stylesheet" href="/resources/css/favorite/favoriteList.css" media="screen" title="no title" charset="utf-8">
 
+<script type="text/javascript" src="/resources/js/favorite/favoriteIframe.js"></script>
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -33,17 +34,38 @@
 	}
 </script>
 
+<script> 
+
+$(document).ready(function() {
+
+	$('').on('click',function(e){
+		e.preventDefault();
+		var url = document.getElementById("shopViewIframe").src;
+		alert(url);
+		
+		self.location = "/favorite/addFavorite?s_shopurl="+url;
+		
+	});
+});
+
+</script>
+
+
 </head>
 
 <body>
 
-	<div class="body">
+<div class="body">
 
 		<div class="page-header">
 			<h1>즐겨찾기</h1>
 		</div>
+		
+<div id="favoritebackground">
+<div id="favoriteBodyTop"></div>
+<br><br>
 
-
+<button class="ifrm" value="버튼"></button>
 		<div class="box">
 			<div class="box-body">
 				<table class="table table-hover">
@@ -62,15 +84,14 @@
 
 							<tr>
 								<td><img id="s_image" src="${Favorite.s_image}"></td>
-								<td><a href="http://${Favorite.s_shopurl }">${Favorite.s_sname}</a></td>
+								<td><a class="shoplink" href="http://${Favorite.s_shopurl }">${Favorite.s_sname}</a></td>
 								<td><a
 									href='/favorite/comentRead${pageMaker.makeQuery(pageMaker.cri.page)}&f_num=${Favorite.f_num }'>
 										<img src="/resources/image/favoriteImg/comment.png"
 										title="코멘트">
 								</a></td>
-								<td><a href="http://${Favorite.s_shopurl }"><img
-										src="/resources/image/favoriteImg/home.png"
-										title="쇼핑몰 이동"></a></td>
+								<td><a class="shoplink" href="http://${Favorite.s_shopurl }">
+								<img src="/resources/image/favoriteImg/home.png" title="쇼핑몰 이동"></a></td>
 								<td><a href="/favorite/deleteFavorite?f_num=${Favorite.f_num }&c_num=${Favorite.c_num}"><img
 										src="/resources/image/favoriteImg/delete2.png"
 										title="즐겨찾기 삭제"></a></td>
@@ -114,8 +135,9 @@
 
 			</form>
 		</div>
+</div>
 
-	</div>
+</div>
 
 </body>
 

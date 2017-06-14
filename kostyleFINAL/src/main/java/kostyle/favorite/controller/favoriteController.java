@@ -62,6 +62,19 @@ public class favoriteController {
 			}
 			   
 		   }
+		   
+		   
+		   @RequestMapping(value="/addFavorite/{s_shopurl}", method=RequestMethod.POST)
+		   public void addFavorite(Favorite favorite, HttpSession session)throws Exception{
+			   
+			   CustomerVO login = (CustomerVO) session.getAttribute("login");
+			   System.out.println(login.getC_num());
+			   String c_num = login.getC_num();
+			   favorite.setC_num(c_num);
+			   
+			   service.addFavorite(favorite);
+			   
+		   }
 	
 		   
 		   @RequestMapping(value="/comentRead", method=RequestMethod.GET)

@@ -47,6 +47,38 @@ public class FavoriteDAOImpl implements FavoriteDAO {
 		
 		return session.selectList(namespace+".listFavorite",page);
 	}
+	
+
+	//1
+	@Override
+	public String autoF_num() throws Exception {
+		if(session.selectOne(namespace+".autoF_num") == null){
+			return "0";
+		}else{
+			return session.selectOne(namespace+".autoF_num");
+		}
+	}
+	
+	
+	//2
+	@Override
+	public String iframeS_num() throws Exception {
+		return session.selectOne(namespace+".iframeS_num");
+	}
+	
+	
+	//3
+	@Override
+	public int overlapFavorite() throws Exception {
+		return session.selectOne(namespace+".overlapFavorite");
+	}
+		
+
+	//4
+	@Override
+	public void addFavorite(Favorite favorite) throws Exception {
+		session.insert(namespace+".addFavorite", favorite);
+	}
 
 	
 	@Override
@@ -78,7 +110,6 @@ public class FavoriteDAOImpl implements FavoriteDAO {
 		map.put("f_num", f_num);
 		session.delete(namespace+".deleteFavorite", map);
 	}
-
 	
 	
 }
