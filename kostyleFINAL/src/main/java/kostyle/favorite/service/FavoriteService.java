@@ -11,6 +11,8 @@ public interface FavoriteService {
 	
 	public List<Favorite> listFavoriteCriteria(String c_num, FavoriteCriteria cri)throws Exception;
 	
+	public void addFavorite(Favorite favorite)throws Exception;
+	
 	public int listCountCriteria(String c_num, FavoriteCriteria cri)throws Exception;
 	
 	public Favorite comentRead(String f_num)throws Exception;

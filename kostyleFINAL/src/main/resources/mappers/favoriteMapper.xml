@@ -3,6 +3,28 @@
   
 <mapper namespace="kostyle.favorite.mappers.favoriteMapper">
 
+	<select id="autoF_num" resultType="String"><!-- 1. 즐겨찾기 버튼 클릭시 자동으로 f_num 부여 -->
+		select max(f_num+0) from favorite
+	</select>
+	
+	
+	<select id="iframeS_num" resultType="String"><!-- 2. 즐겨찾기 버튼 클릭 시 들어오는 쇼핑몰url의 s_num 출력  -->
+		select s_num from shoppingmall where s_shopurl=#{s_shopurl}
+	</select>
+	
+	
+	<select id="overlapFavorite" resultType="int"><!-- 3. 즐겨찾기 버튼 클릭 시 동일 고객에게 쇼핑몰이 중복되면 1, 안되면 0 -->
+		select count(*) from favorite where s_num=#{s_num} and c_num=#{c_num}
+	</select>
+	
+	
+	<insert id="addFavorite" parameterType="Favorite"><!-- 4. 즐겨찾기 버튼 클릭 시 db에 추가 -->
+		insert into favorite(f_num, s_num, c_num, f_coment, f_date)
+		values(#{f_num}, #{s_num}, #{c_num}, null, sysdate)
+	</insert>
+	
+	
+
 	<select id="listFavorite" resultType="Favorite">
 	<![CDATA[
 		select f_date, f_num, f_coment, s_image, s_sname, s_shopurl

@@ -13,6 +13,14 @@ public interface FavoriteDAO {
 	
 	public List<Favorite> listFavoritePage(int page)throws Exception;
 	
+	public String autoF_num()throws Exception;//1
+	
+	public String iframeS_num()throws Exception;//2
+	
+	public int overlapFavorite()throws Exception;//3
+	
+	public void addFavorite(Favorite favorite)throws Exception;//4
+	
 	public int countPaging(String c_num, FavoriteCriteria cri)throws Exception;
 	
 	public Favorite comentRead(String f_num)throws Exception;
