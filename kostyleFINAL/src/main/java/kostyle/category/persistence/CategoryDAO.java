@@ -12,4 +12,5 @@ public interface CategoryDAO {
 	public List<Product_category> product_Search(String keyword) throws Exception;
 	public void product_list_insert(Map<String, Object> map) throws Exception;
 	public List<Product_category> product_Filter_color(FilterVO filterVO) throws Exception;
+	public List<Product_category> weather_search(int level) throws Exception;
 }
