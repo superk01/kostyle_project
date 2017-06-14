@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kostyle.favorite.domain.Favorite;
+import kostyle.favorite.domain.FavoriteAdd;
 import kostyle.favorite.domain.FavoriteCriteria;
 import kostyle.favorite.domain.FavoritePageMaker;
 import kostyle.favorite.service.FavoriteService;
@@ -60,6 +61,57 @@ public class favoriteController {
 			} catch (Exception e) {
 				return "redirect:/cuslogin/login";
 			}
+			   
+		   }
+		   
+		   
+		   @RequestMapping(value="/addFavorite", method=RequestMethod.GET)
+		   public String addFavorite(@RequestParam("s_shopurl") String s_shopurl, FavoriteAdd favoriteAdd, HttpSession session)throws Exception{
+			   
+			   System.out.println("즐겨찾기 추가 컨트롤러");
+			   
+			   //1. f_num 자동으로 insert
+				String num1 = service.autoF_num();
+				System.out.println("즐겨찾기 f_num1 : " + num1);
+				
+				int num2 = Integer.parseInt(num1);
+				System.out.println("즐겨찾기 f_num2 : " + num2);
+				
+				int num3 = num2 + 1;
+				System.out.println("즐겨찾기 f_num3 : " + num3);
+				
+				String num4 = num3 + "";
+				System.out.println("즐겨찾기 f_num4 : " + num4);
+				
+				favoriteAdd.setF_num(num4);
+				System.out.println("1 : " + favoriteAdd.toString());
+			   
+			   //2. s_num (iframe의 s_shopurl에 따른 s_num)
+			   String s_num = service.iframeS_num(s_shopurl);
+			   System.out.println("즐겨찾기 s_num : " + s_num);
+				
+			   favoriteAdd.setS_num(s_num);
+			   System.out.println("2 : " + favoriteAdd.toString());
+				
+			   //3. c_num 
+			   CustomerVO login = (CustomerVO) session.getAttribute("login");
+			   System.out.println(login.getC_num());
+			   String c_num = login.getC_num();
+			   favoriteAdd.setC_num(c_num);
+			   
+			   System.out.println("즐겨찾기 추가 : " + favoriteAdd.toString());
+			   System.out.println("중복 : " + service.overlapFavorite(s_num, c_num));
+			   if(service.overlapFavorite(s_num, c_num) == 0){
+				  
+				   System.out.println("#########즐겨찾기 추가 완료전#########");
+				   service.addFavorite(favoriteAdd);
+				   //즐겨찾기에 추가되었다는 알림이 떠야함
+				   System.out.println("#########즐겨찾기 추가 완료#########");
+			   }else{
+				   System.out.println("#########즐겨찾기 이미 추가#########");
+			   }
+			   
+			   return "redirect:/favorite/favoriteList";
 			   
 		   }
 	
