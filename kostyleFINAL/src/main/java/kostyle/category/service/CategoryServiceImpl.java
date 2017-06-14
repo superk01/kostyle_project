@@ -17,7 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	@Inject
 	private CategoryDAO dao;
-	
+	//
 	@Override
 	public List<Adshoppingmall_category> adsList() throws Exception {
 		return dao.adsList();
@@ -36,6 +36,11 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<Product_category> product_Filter_color(FilterVO filterVO) throws Exception {
 		return dao.product_Filter_color(filterVO);
+	}
+
+	@Override
+	public List<Product_category> weather_search(int level) throws Exception {
+		return dao.weather_search(level);
 	}
 
 }

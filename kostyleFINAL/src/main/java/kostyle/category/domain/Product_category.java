@@ -15,6 +15,17 @@ public class Product_category implements Serializable{
     private String product_keyword ="";
     
     
+	public Product_category(String product_link, String product_name, String product_price, String product_ImageLink,
+			String product_shopurl, String product_shopname, String product_color) {
+		super();
+		this.product_link = product_link;
+		this.product_name = product_name;
+		this.product_price = product_price;
+		this.product_ImageLink = product_ImageLink;
+		this.product_shopurl = product_shopurl;
+		this.product_shopname = product_shopname;
+		this.product_color = product_color;
+	}
 	public String getProduct_color() {
 		return product_color;
 	}

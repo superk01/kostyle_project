@@ -9,14 +9,28 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/CategoryResult/CategoryResult.css" />
 <script src="../../../resources/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript">
+var mydata = "null";
+
 $(function(){
+	if(mydata == "null"){
+		getProductList();
+	}
+	
 	$('.test').click(function(){
-		var value = "value=" + $('#check_type option:selected').val();		
+		getProductList();
+	});
+	
+	
+});	
+
+function getProductList(){
+	  var value = "value=" + $('#check_type option:selected').val();		
 		$.ajax({
 			url : "/weather/showweather",
 			type : 'POST',
 			data : value,
 			success : function(data){
+				$('.CategoryResult_oneItemBox').remove();
 				var text = "";
 				for(var i=0; i<data.length; i++){
 					var product_link = data[i].product_link;
@@ -31,12 +45,18 @@ $(function(){
 				$('#TotalCategoryResult_Box').append(text);	
 			}
 		});
-	});
-});	
+}
 </script>
 </head>
 <body>
-	
+	<div>
+		<div>
+			체감 온도 : ${level}
+		</div>
+		<div>
+			불쾌 지수 : ${user_bo}
+		</div>
+	</div>
 	<div>
 		<select id="check_type">
 			<option value="보통" class="test">보통</option>

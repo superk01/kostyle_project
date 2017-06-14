@@ -39,4 +39,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public List<Product_category> product_Filter_color(FilterVO filterVO) throws Exception {
 		return session.selectList(namespace + ".product_Filter_color", filterVO);
 	}
+
+	@Override
+	public List<Product_category> weather_search(int level) throws Exception {
+		return session.selectList(namespace + ".weather_search", level);
+	}
 }
