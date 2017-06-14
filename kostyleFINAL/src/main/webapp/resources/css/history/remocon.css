@@ -1,9 +1,17 @@
+.wing_fixed{
+	position: fixed;
+	right: 10%;
+	}
+
+.wing_relative{
+	position: relative;
+}
 .wing_banner {
 	position: absolute;
 	top:250px;
 	left:50%;
 	z-index:10000;
-	margin-left:1833px;
+	/* margin-left:1833px; */
 } 
 /* div.wing_banner.wing_fixed{
 	position:fixed
@@ -40,7 +48,7 @@
 .wing_banner .wing_prd .wing_prd_img{display:block;width:60px;height:60px;text-align:center;}
 .wing_banner .wing_prd img {max-width:60px;height:60px;*width:60px;*max-width:auto;vertical-align:middle;}
 .wing_banner .wing_prd .wing_prd_info{ display:none;}
-.wing_banner .wing_prd a:hover .wing_prd_info{display:block; position:absolute; top:0;right:0;z-index:20;width:140px;height:58px;padding-right:59px;font-family:'占쏙옙占쏙옙',dotum,'AppleSDGothicNeo',Tahoma,sans-serif;font-size:11px;line-height:14px;border:1px solid #111111;}
+.wing_banner .wing_prd a:hover .wing_prd_info{display:block; position:absolute; top:0;right:0;left:20;width:140px;height:58px;padding-right:59px;font-family:'占쏙옙占쏙옙',dotum,'AppleSDGothicNeo',Tahoma,sans-serif;font-size:11px;line-height:14px;border:1px solid #111111;}
 .wing_banner .wing_prd a:hover .wing_prd_info .p_name{display:block;overflow:hidden;height:30px;padding:8px 20px 0 15px;line-height:15px;color:#111;background:#fff;}
 .wing_banner .wing_prd a:hover .wing_prd_info .p_price{display:block;height:14px;padding:0 20px 6px 15px;color:#f43142;background:#fff;}
 .wing_banner .wing_prd a:hover .wing_prd_info .p_price strong{font-family:tahoma, san-serif;}
@@ -119,7 +127,7 @@
 .wing_banner .wing_prd_layer li:first-child .wing_btn_delete {top:0;}
 .wing_banner .wing_prd_layer.on {display:block;}
 .wing_banner .wing_vis_area {margin-bottom:5px;}
-.wing_banner .btn_top{width:70px;height:27px;background:url(/resources/images/historyImg/img_top.gif) no-repeat left top;}
+.wing_banner .btn_top{width:70px;height:27px;margin-top:-3px;background:url(/resources/images/historyImg/img_top.gif) no-repeat left top;}
 .wing_banner .btn_top a {display:block;width:100%;height:27px;font-size:0;line-height:0;color:transparent;}
 /* //2017-02-17 cyn add wing_banner */
 
@@ -133,4 +141,35 @@
 .wing_btn_next{
 	display: inline;
 }
-
+#closet_btn{
+	width: 69px;
+}
+#favorite_btn{
+	width: 69px;
+	font-size: 12px;
+	height: 27px;
+}
+.closet_btn{
+	height: 27px;	
+}
+.favorite_btn{
+	height: 27px;
+	margin-top:-3px;	
+}
+.btns{
+	height: 54px;
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

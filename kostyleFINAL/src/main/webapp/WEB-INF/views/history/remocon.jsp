@@ -31,10 +31,8 @@
 				"X-HTTP-Method-Override":"GET"
 			},
 			dataType:'text',
-			success : function(data) {
-				if(data='success'){
-					alert('설마 한 번에 성공?');
-				}
+			success : function() {
+				
 			}
 		});
 	});
@@ -56,7 +54,7 @@
 				},
 				dataType:'text',
 				success : function(){
-					location.href="/remocon/list/"+${login.c_num};
+					/* location.href="/remocon/list/"+${login.c_num}; */
 				}					
 			});
 			return false;
@@ -89,72 +87,87 @@
 			 $('.wingRecentPrd').eq(index-1).attr('style',"");
 		 });
 		 
-		});
+/* 즐겨찾기 추가 버튼 */
+	   $('.favorite_btn').on('click',function(e){
+	      e.preventDefault();
+	      var url = document.getElementById("shopViewIframe").src;
+	      alert(url);
+	      
+	      self.location = "/favorite/addFavorite?s_shopurl="+url;
+	      
+	   });
+});
+		 
+		
 
+ 
 
 </script>
 </head>
 <body>
-
-<div id="wingBanner" class="wing_fixed">
-	<c:if test="${not empty login }">
-		<div id = "windBanner" class = "wing_banner"> <!-- 리모콘 전제 -->
-			<!-- //최근 본 상품 -->
-			<div id = "wingRecentWrap" class = "wing_prd_wrap" style = ""> <!-- 리모콘 외부 -->
-				<div class="hwrap">											<!-- 히스토리로 이동 -->
-					<strong class = "tit">
-						<a id = "wingRecentCount" href = "/history/list/${c_num }">				
-							<span class = "tx">최근 본상품</span>
-							<span class="count">${history_Num }</span>				<!-- 최대상품은 15개까지. -->
-							<span class = "ico"></span>	
-						</a>
-					</strong>
-				</div>
-				<div id = "windRecnetPrdList" class="wing_prd_list">			<!-- 상품리스트 전체 -->
-					<ul id = "1234" style="" class = "wingRecentPrd" >
-						<c:forEach var="remocon" items="${remoconList }" varStatus="status" >	<!-- 1번리스트 그룹 -->
-							<li id = "${Math.floor((status.index)/3)+1 }-${(status.index)%3+1 }" class="wing_prd" >						<!-- 1번그룹의 첫번째 상품 -->
-								<a href="${remocon.h_Prdurl }" target="_blank">					<!-- 해당상품의 상세페이지 주소 -->
-									<span class="wing_prd_img">
-										<img alt="" src="${remocon.h_Imgurl }">
-									</span>
-									<span class="wing_prd_info">					<!-- 상품의 정보 -->
-										<span class="p_name">${remocon.h_Name }</span>	<!-- 상품의 이름? -->
-									</span>
-								</a>				
-								<button class="wing_btn_delete" value="${remocon.h_Num }">상품제거 버튼</button>
-							</li>
-							<c:if test="${(status.index%3)+1==3 }" >
-								</ul><ul style="display:none" class="wingRecentPrd" id="${Math.floor((status.index)+1/3) }"> 
-							</c:if>
-						</c:forEach>
-					</ul>
-				</div>
-				<div class="wing_paging">
-					<div class="wing_btn">
-						<button id = "wb_btn_recentPrd_prev" class="wing_btn_prev" type="button">이전 상품 목록</button>
-						<button id = "wb_btn_recentPrd_next" class="wing_btn_next" type="button">다음 상품 목록</button>
+<div class="wing_fixed">
+	<div id="wingBanner" class="wing_relative">
+		<c:if test="${not empty login }">
+			<div id = "windBanner" class = "wing_banner"> <!-- 리모콘 전제 -->
+				<!-- //최근 본 상품 -->
+				<div id = "wingRecentWrap" class = "wing_prd_wrap" style = ""> <!-- 리모콘 외부 -->
+					<div class="hwrap">											<!-- 히스토리로 이동 -->
+						<strong class = "tit">
+							<a id = "wingRecentCount" href = "/history/list/${c_num }">				
+								<span class = "tx">최근 본상품</span>
+								<span class="count">${history_Num }</span>				<!-- 최대상품은 15개까지. -->
+								<span class = "ico"></span>	
+							</a>
+						</strong>
+					</div>
+					<div id = "windRecnetPrdList" class="wing_prd_list">			<!-- 상품리스트 전체 -->
+						<ul id = "1234" style="" class = "wingRecentPrd" >
+							<c:forEach var="remocon" items="${remoconList }" varStatus="status" >	<!-- 1번리스트 그룹 -->
+								<li id = "${Math.floor((status.index)/3)+1 }-${(status.index)%3+1 }" class="wing_prd" >						<!-- 1번그룹의 첫번째 상품 -->
+									<a href="${remocon.h_Prdurl }" target="_blank">					<!-- 해당상품의 상세페이지 주소 -->
+										<span class="wing_prd_img">
+											<img alt="" src="${remocon.h_Imgurl }">
+										</span>
+										<span class="wing_prd_info">					<!-- 상품의 정보 -->
+											<span class="p_name">${remocon.h_Name }</span>	<!-- 상품의 이름? -->
+										</span>
+									</a>				
+									<button class="wing_btn_delete" value="${remocon.h_Num }">상품제거 버튼</button>
+								</li>
+								<c:if test="${(status.index%3)+1==3 }" >
+									</ul><ul style="display:none" class="wingRecentPrd" id="${Math.floor((status.index)+1/3) }"> 
+								</c:if>
+							</c:forEach>
+						</ul>
+					</div>
+					<div class="wing_paging">
+						<div class="wing_btn">
+							<button id = "wb_btn_recentPrd_prev" class="wing_btn_prev" type="button">이전 상품 목록</button>
+							<button id = "wb_btn_recentPrd_next" class="wing_btn_next" type="button">다음 상품 목록</button>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div>
-				<div>
-				<button id="closet_btn">
-					찜하기
-				</button>
+				<div class="buttons">
+					<div class="btns">
+						<div class="closet_btn">
+							<button id="closet_btn">
+								찜하기
+							</button>
+						</div>
+						<div class="favorite_btn">
+							<button id="favorite_btn">
+								즐겨찾기
+							</button>
+						</div>
+					</div>
+					<div class = "btn_top">
+						<a href="#">
+							<img alt="페이지 상단으로 이동" src="/resources/images/historyImg/img_top.gif">
+						</a>
+					</div>
 				</div>
-				<div>
-				<button >
-					즐겨찾기
-				</button>
-				</div>
-			</div>
-			<div class = "btn_top">
-				<a href="#">
-					<img alt="페이지 상단으로 이동" src="/resources/images/historyImg/img_top.gif">
-				</a>
-			</div>
-		</c:if>
+			</c:if>
+		</div>
 	</div>
 </div>
 </body>

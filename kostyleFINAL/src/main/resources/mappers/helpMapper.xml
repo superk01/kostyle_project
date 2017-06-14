@@ -33,16 +33,12 @@
 
 	<insert id="insert" parameterType="BoardVO">
 		insert into question
-		(q_num,
-		q_title, q_content, q_date, c_num, s_num, q_secret)
+		(q_num, q_title, q_content, q_date, c_num, s_num, q_secret)
 		VALUES
-		((select
-		nvl(max(q_num+1),1) from
-		question),#{q_Title},#{q_Content},sysdate,#{c_Num},#{s_Num},#{q_Secret})
+		((select nvl(max(q_num+1),1) from question),#{q_Title},#{q_Content},sysdate,#{c_Num},#{s_Num},#{q_Secret})
 	</insert>
 	<select id="getS_Num" parameterType="String" resultType="String">
-		select
-		s_num from shoppingmall where s_sname = #{value}
+		select s_num from shoppingmall where s_sname = #{value}
 	</select>
 	<select id="detail" resultType="BoardVO" parameterType="int">
 		select q_num as q_Num, q_title as q_Title, q_content as q_Content,
