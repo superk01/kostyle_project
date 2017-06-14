@@ -1,3 +1,6 @@
+<%@page import="kostyle.history.persistence.HistoyDAO"%>
+<%@page import="kostyle.history.persistence.HistoryDAOImpl"%>
+<%@page import="kostyle.help.persistence.BoardDAOImpl"%>
 <%@page import="kostyle.login.domain.CustomerVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -41,8 +44,10 @@
 	 	var ind=0;
 	 	$('ul').each(function(index){
 	 		ind=index+1;
-	 	})//이건 뭐하는 건지?
+	 	});
+	 	//이건 뭐하는 건지?
 		/* 리모콘에서 히스토리 상품삭제. */
+		/* 헤더에 include하고 삭제 버튼을 눌렀을때 컨트롤러가 호출되면 페이지가 리프레시 되는 문제가 있음. */
 		 $('button.wing_btn_delete').on('click',function(){
 			 var h_num=$(this).val();
 			 $.ajax({
@@ -54,12 +59,22 @@
 				},
 				dataType:'text',
 				success : function(){
-					/* location.href="/remocon/list/"+${login.c_num}; */
+					 location.href="/remocon/list/"+${login.c_num}; 
 				}					
 			});
 			return false;
-		}); 
+		});  
 		
+		/* 그래서 일단 스크립틀릿을 이용해보기로... */
+		
+		<%-- $('button.wing_btn_delete').on('click',function(){
+			var h_num = $(this).val();
+			<%HistoryDAOImpl dao = new HistoryDAOImpl();%>
+			
+			
+			
+					
+		}); --%>
 		 /* 클릭이벤트로 페이지(?)넘기는 코드 */
 		 $('button.wing_btn_next').on('click',function(){
 			
@@ -83,8 +98,8 @@
 					 break;
 				};
 			};
-			 $('.wingRecentPrd').eq(index).attr('style',"display:none");
-			 $('.wingRecentPrd').eq(index-1).attr('style',"");
+			$('.wingRecentPrd').eq(index).attr('style',"display:none");
+			$('.wingRecentPrd').eq(index-1).attr('style',"");
 		 });
 		 
 /* 즐겨찾기 추가 버튼 */
