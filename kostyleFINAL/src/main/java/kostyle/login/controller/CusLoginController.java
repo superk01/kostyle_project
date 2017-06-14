@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -59,29 +60,45 @@ public class CusLoginController {
 	public String loginCheck(@ModelAttribute LoginDTO dto,  HttpSession session, Model model) throws Exception{
 		
 		System.out.println("cus로그인컨트롤러 보낸 LoginDTO: "+dto);
-
-		CustomerVO vo = service.cusLogin(dto);
+		System.out.println("cus로그인 암호화이전 비밀번호"+ dto.getUser_pass());
+	//	System.out.println("cus로그인 암호화이후 비밀번호"+BCrypt.hashpw(dto.getUser_pass(), BCrypt.gensalt()));
+		
+		//CustomerVO vo = service.cusLogin(dto);
+		CustomerVO vo =service.cusGetId(dto.getCus_id());
+		System.out.println("컨트롤러 보낸 cus_id: "+dto.getCus_id());
 		System.out.println("cus로그인컨트롤러 받은 CustomerVO: "+vo);
 		
 		if(vo == null){ // null이라면 회원이 아님.
 			//request.setAttribute("msg", "회원 아이디 또는 비밀번호가 일치하지 않습니다.(5회 이상 로그인 오류시 본인확인 후 로그인 가능합니다.)");
 			//postHandle에서 sednRedirect로보내서 전달안됨.
-			return null;
-		}
+			return "/login/tempLoginCustomer";
+			/*		return "/login/loginCustomer";
+			*/
+		}else{//vo!=null
+			
+			// parameter로 받은 평문과 DB에 저장된 암호화값 비교
+			if(BCrypt.checkpw(dto.getUser_pass(), vo.getC_pass())){
+//			if(BCrypt.checkpw(vo.getC_pass(),dto.getUser_pass())){
+				if(dto.isUseCookie()){ //로그인성공_자동로그인체크되어있으면
+					System.out.println("로그인성공.컨트롤러>");
+					int oneweek = 60 * 60 * 24 * 7;
+					Date sessionLimit = new Date(System.currentTimeMillis()+(1000*oneweek)); //   1/1000초니까 *1000
+					System.out.println("keepCuLoginLimit에 보내는값- vo.getC_id():  "+vo.getC_id()+"   /  session.getId(): "+session.getId());
+					service.keepCusLoginLimit(vo.getC_id(), session.getId(),sessionLimit);
+				}
+				
+				model.addAttribute("dto",dto);
+				model.addAttribute("userVO", vo);
+				
+				System.out.println("loginCheck인데 설마 postHandle다 뜬다음에 또 뜨는거 아니죠?");
+				return "/login/loginCheck";
+				
+			}
+			return "/login/tempLoginCustomer";
+			}
+			
+			
 		
-		if(dto.isUseCookie()){ //로그인성공_자동로그인체크되어있으면
-			System.out.println("로그인성공.컨트롤러>");
-			int oneweek = 60 * 60 * 24 * 7;
-			Date sessionLimit = new Date(System.currentTimeMillis()+(1000*oneweek)); //   1/1000초니까 *1000
-			System.out.println("keepCuLoginLimit에 보내는값- vo.getC_id():  "+vo.getC_id()+"   /  session.getId(): "+session.getId());
-			service.keepCusLoginLimit(vo.getC_id(), session.getId(),sessionLimit);
-		}
-		
-		model.addAttribute("dto",dto);
-		model.addAttribute("userVO", vo);
-		
-		System.out.println("loginCheck인데 설마 postHandle다 뜬다음에 또 뜨는거 아니죠?");
-		return "/login/loginCheck";
 	}
 	
 	

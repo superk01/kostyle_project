@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import kostyle.discount.domain.DiscountVO;
+import kostyle.discount.domain.ShopDiscountVO;
 import kostyle.discount.domain.TempShopVO;
 import kostyle.discount.persistence.DiscountDAO;
 
@@ -24,6 +26,13 @@ public class DiscountDAOImplTest {
 	private static Logger logger = LoggerFactory.getLogger(DiscountDAOImplTest.class);
 	
 	@Test
+	public void testGetShopVOList(){
+		List<ShopDiscountVO> shopVOList = dao.getShopDiscountVOList();
+		System.out.println("shopVOList: "+shopVOList);
+	}
+	
+	
+/*	@Test
 	public void testGetUrlList(){
 		List<String> newSaleUrlList= dao.getNewSaleUrlList();
 		System.out.println("newSaleUrlList: "+newSaleUrlList);
@@ -33,7 +42,14 @@ public class DiscountDAOImplTest {
 		
 	}
 	
-	
+	@Test
+	public void testStartObject(){
+		List<ShopDiscountVO> voList = dao.getShopDiscountVOList();
+		for(int i=0; i<voList.size(); i++){
+			System.out.println(voList.get(i));
+		}
+	}
+*/	
 //----------------------------------------------------------------------------------------------	
 	//DB에서 부족한 세일관련한 부분만 update로 채워넣기. null허용
 /*	@Test
@@ -53,7 +69,7 @@ public class DiscountDAOImplTest {
 		dao.addSaleUrlInfoShop(vo);
 	//고고싱
 		vo.setS_num("s_03");
-		vo.setS_discounturl("http://ggsing.com/product/list.html?cate_no=345&page=1");
+		vo.setS_discounturl("http://ggsing.com/product/list.html?cate_no=345");
 		vo.setS_newsaleurl("http://ggsing.com/product/list_sale.html?cate_no=254");
 		dao.addSaleUrlInfoShop(vo);
 		
@@ -75,7 +91,7 @@ public class DiscountDAOImplTest {
 		vo.setS_newsaleurl(""); //없음
 		dao.addSaleUrlInfoShop(vo);
 		
-		//임블리
+		//임블리"http://www.stylenanda.com/product/list03.html?cate_no=57"
 		vo.setS_num("s_07");
 		vo.setS_discounturl(""); //없음
 		vo.setS_newsaleurl("http://imvely.com/product/list.html?cate_no=72");
@@ -102,6 +118,5 @@ public class DiscountDAOImplTest {
 	
 	
 	
-	
-
 }//class
+		

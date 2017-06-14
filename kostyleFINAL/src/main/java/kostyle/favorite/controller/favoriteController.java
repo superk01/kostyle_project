@@ -1,7 +1,7 @@
 package kostyle.favorite.controller;
 
+
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -20,7 +20,6 @@ import kostyle.favorite.domain.FavoritePageMaker;
 import kostyle.favorite.service.FavoriteService;
 import kostyle.help.domain.Criteria;
 import kostyle.login.domain.CustomerVO;
-import kostyle.login.domain.LoginDTO;
 
 @Controller
 @RequestMapping("/favorite/*")
@@ -42,25 +41,28 @@ public class favoriteController {
 	
 	
 		   @RequestMapping(value = "/favoriteList", method = RequestMethod.GET)
-		   public void favoriteList(@ModelAttribute("Cri")FavoriteCriteria cri, Model model,
-				   HttpServletRequest request) throws Exception {
+		   public String favoriteList(@ModelAttribute("Cri")FavoriteCriteria cri,
+				   Model model, HttpSession session) throws Exception {
 			   System.out.println("controller###############"); 
+			   try {
+				   CustomerVO login = (CustomerVO) session.getAttribute("login");
+				   System.out.println(login.getC_num());
+				   String c_num = login.getC_num();
+				   model.addAttribute("list", service.listFavoriteCriteria(c_num, cri));
+				   
+				   FavoritePageMaker pageMaker = new FavoritePageMaker();
+				   pageMaker.setCri(cri);
+				      
+				   pageMaker.setTotalCount(service.listCountCriteria(c_num, cri));
+				      
+	        	   model.addAttribute("pageMaker", pageMaker);
+	        	   return null;
+			} catch (Exception e) {
+				return "redirect:/cuslogin/login";
+			}
 			   
-			   
-			   HttpSession session = request.getSession();
-			   CustomerVO login = (CustomerVO) session.getAttribute("login");
-			   System.out.println(login.getC_num());
-			   String c_num = login.getC_num();
-			   model.addAttribute("list", service.listFavoriteCriteria(c_num, cri));
-			   
-			   FavoritePageMaker pageMaker = new FavoritePageMaker();
-			   pageMaker.setCri(cri);
-			      
-			   pageMaker.setTotalCount(service.listCountCriteria(c_num, cri));
-			      
-        	   model.addAttribute("pageMaker", pageMaker);
 		   }
-		
+	
 		   
 		   @RequestMapping(value="/comentRead", method=RequestMethod.GET)
 		   public void comentRead(@RequestParam("f_num") String f_num, @ModelAttribute("cri")FavoriteCriteria cri,
@@ -79,20 +81,19 @@ public class favoriteController {
 		   @RequestMapping(value = "/comentModify", method = RequestMethod.POST)
 		   public String modifyPOST(Favorite favorite, FavoriteCriteria cri, RedirectAttributes rttr)throws Exception{
 			   service.comentModify(favorite);
-			   
+			   System.out.println("컨트롤러 : " + favorite.toString());
 			   rttr.addFlashAttribute("page", cri.getPage());
 			   rttr.addFlashAttribute("perPageNum", cri.getPerPageNum());
 			   rttr.addFlashAttribute("msg", "SUCCESS");
 			   
 			   return "redirect:/favorite/favoriteList";
 		   }
-		
+		  // @PathVariable("bno") Integer bno
 		   
 		   @RequestMapping(value="/deleteFavorite", method=RequestMethod.GET)
 		   public String deleteFavorite(@RequestParam("f_num") String f_num, FavoriteCriteria cri, 
-				   RedirectAttributes rttr, HttpServletRequest request) throws Exception{
+				   HttpSession session, RedirectAttributes rttr) throws Exception{
 			   
-			   HttpSession session = request.getSession();
 			   CustomerVO login = (CustomerVO) session.getAttribute("login");
 			   System.out.println(login.getC_num());
 			   String c_num = login.getC_num();

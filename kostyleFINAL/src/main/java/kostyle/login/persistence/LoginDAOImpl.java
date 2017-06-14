@@ -63,7 +63,7 @@ public class LoginDAOImpl implements LoginDAO{
 		return vo;
 	}
 	@Override
-	public void keepShopLoginLimit(int adshop_id, String sessionId,Date next) {
+	public void keepShopLoginLimit(String adshop_id, String sessionId,Date next) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("adshop_id", adshop_id);
 		paramMap.put("sessionId",  sessionId);
@@ -71,6 +71,11 @@ public class LoginDAOImpl implements LoginDAO{
 		
 		session.update(namespace+".keepShopLogin",paramMap);
 		
+	}
+
+	@Override
+	public CustomerVO cusGetId(String cus_id) {
+		return session.selectOne(namespace+".cusGetId",cus_id);
 	}
 	
 	//TO_CHAR(sysdate, 'YYYY-MM-DD HH24:MI:SS')

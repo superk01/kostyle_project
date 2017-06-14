@@ -44,6 +44,9 @@ public class FavoriteServiceImpl implements FavoriteService {
 	@Override
 	public void comentModify(Favorite favorite) throws Exception {
 		dao.comentModify(favorite);
+		System.out.println("서비스1 : " + favorite.toString());
+		favorite.setF_coment("11111");
+		System.out.println("서비스 2 : " + favorite.toString());
 	}
 
 

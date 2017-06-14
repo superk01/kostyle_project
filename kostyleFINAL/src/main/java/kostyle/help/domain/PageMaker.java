@@ -97,17 +97,17 @@ public class PageMaker {
 	public String makeSearch(int page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
 									  .queryParam("perPageNum", cri.getPerPageNum())
-									  .queryParam("searchType", ((SearchCriteria)cri).getSearchType())
-									  .queryParam("keyWord", encoding(((SearchCriteria)cri).getKeyWord())).build();
-		return uriComponents.toString();
+									  .queryParam("searchType", ((SearchCriteria) cri).getSearchType())
+									  .queryParam("keyWord", ((SearchCriteria) cri).getKeyWord()).build();
+		return uriComponents.toUriString();
 		
 	}
-	public String encoding(String keyword){
-		if(keyword==null||keyword.trim().length()==0){
+	public String encoding(String keyWord){
+		if(keyWord==null||keyWord.trim().length()==0){
 			return "";
 		}
 		try {
-			return URLEncoder.encode(keyword, "utf-8");
+			return URLEncoder.encode(keyWord, "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			return "";
 		}
@@ -120,5 +120,16 @@ public class PageMaker {
 		return "PageMaker [totalCount=" + totalCount + ", startPage=" + startPage + ", endPage=" + endPage + ", prev="
 				+ prev + ", next=" + next + ", displayPageNum=" + displayPageNum + ", cri=" + cri + "]";
 	}
+	
+	/*public static void main(String[] args) {
+		PageMaker maker = new PageMaker();
+		
+		SearchCriteria cri = new SearchCriteria();
+		cri.setKeyWord("한글");
+		maker.setCri(cri);
+		
+		String str = maker.makeSearch(2);
+		System.out.println(str);
+	}*/
 	
 }

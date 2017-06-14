@@ -52,6 +52,17 @@ public class MyCustomerServiceImpl implements MyCustomerService{
 	public MyCustomerVO read(String c_id) {
 		return myCustomerDao.read(c_id);
 	}
+
+	@Override
+	public void DeleteMember(String c_id) {
+		myCustomerDao.deleteMember(c_id);		
+	}
+
+	@Override
+	public void UpdateMember(MyCustomerVO vo) {
+		myCustomerDao.updateMember(vo);
+		
+	}
 	
 	
 

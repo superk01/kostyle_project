@@ -49,7 +49,7 @@ public class joinController {
 	    service.insertJoin_S(join);
 	      
 	    System.out.println("###########회원가입성공###########");
-	    return "/join/test";
+	    return "redirect:/";
 	   }
 	
 	
@@ -77,8 +77,5 @@ public class joinController {
 		
 		return map;
 	}
-	
-
-
 	
 }

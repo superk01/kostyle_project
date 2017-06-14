@@ -28,17 +28,18 @@
 
 </head>
 <body>
+검색 라디오
+<br>
+신청날짜, 엑셀 다운로드, 메일등록/미등록 모달에서 셀렉트, 모달 연령대 select.
 
-신청날짜, 엑셀 다운로드, 수정, 메일
 <br><br><br>
 
 <div id="searchShop">
 	<span id="searchSelect" class="searchEl">
 		<select name="searchType">
-			<option value="none" <c:out value="${cri.searchType == null?'selected':'' }"/>>선택</option>
+			<option value="none" <c:out value="${cri.searchType == null?'selected':'' }"/>>전체</option>
 			<option value="snum" <c:out value="${cri.searchType eq 'snum'?'selected':''}"/>>쇼핑몰번호</option>
 			<option value="sname" <c:out value="${cri.searchType eq 'sname'?'selected':''}"/>>쇼핑몰명</option>
-			<option value="sid" <c:out value="${cri.searchType eq 'sid'?'selected':''}"/>>쇼핑몰ID</option>
 			<option value="surl" <c:out value="${cri.searchType eq 'surl'?'selected':''}"/>>쇼핑몰 URL</option>
 			<option value="sreg" <c:out value="${cri.searchType eq 'sreg'?'selected':''}"/>>사업자등록번호</option>
 		</select>
@@ -79,11 +80,13 @@
  		<span>쇼핑몰 URL</span>
  		<span>사업자등록번호</span>
  		<span>등록여부</span>
+ 		<span>방문자수</span>
+ 		<span>심사점수</span>
  		<span>수정</span>
  	</div>
  	
  	<c:forEach items="${list }" var="ShopStateAdmin">
- 		<div>
+ 		<div class="shopInfotr">
  			<span>
  				<input type="checkbox" name="s_num" id="check" value="${ShopStateAdmin.shop.s_num }">
  			</span>
@@ -96,16 +99,16 @@
  				<a href="${ShopStateAdmin.shop.s_shopurl }"> ${ShopStateAdmin.shop.s_shopurl }</a>
  			</span>
  			<span class="shopInfo" id="s_shopreg" >${ShopStateAdmin.shop.s_shopreg }</span>
-			<span class="shopInfo" id="shopstate">${ShopStateAdmin.shopState }</span>
+			<span class="shopInfo ${ShopStateAdmin.shopState }" id="shopstate"></span>
+ 			<span class="shopInfo" id="ad_hitcount">${ShopStateAdmin.adShop.ad_hitcount }</span>
+ 			<span class="shopInfo" id="s_grade">${ShopStateAdmin.adShop.s_grade }</span>
  			<span style="display: none;" class="shopInfo" id="s_image" >${ShopStateAdmin.shop.s_image }</span>
  			<span style="display: none;" class="shopInfo" id="s_age" >${ShopStateAdmin.shop.s_age }</span>
  			<span style="display: none;" class="shopInfo" id="s_searchurl" >${ShopStateAdmin.shop.s_searchurl }</span>
  			<span style="display: none;" class="shopInfo" id="s_manager" >${ShopStateAdmin.shop.s_manager }</span>
  			<span style="display: none;" class="shopInfo" id="s_phonenumber" >${ShopStateAdmin.shop.s_phonenumber }</span>
  			<span style="display: none;" class="shopInfo" id="s_email" >${ShopStateAdmin.shop.s_email }</span>
- 			<span style="display: none;" class="shopInfo" id="ad_hitcount">${ShopStateAdmin.adShop.ad_hitcount }</span>
- 			<span style="display: none;" class="shopInfo" id="s_grade">${ShopStateAdmin.adShop.s_grade }</span>
- 			<span class="shopInfo" id="modifyShop"><a href="#myModal">수정</a></span>
+ 			<span class="shopInfo" id="modifyShop"><a data-toggle="modal" data-target="#myModal">수정</a></span>
  		</div>
  	</c:forEach>
  	
@@ -162,14 +165,16 @@
 					<div class="modal-body">
 						<div class="container-fluid">
 							<div class="row">
-								<div class="col-md-12" id="m_image">이미지</div>
+								<div class="col-md-12">
+								<img id="m_image" alt="" src="">
+								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-12 m_midtitle">기본정보</div>
 							</div>
 							<div class="row">
 								<div class="col-md-3">쇼핑몰 번호</div>
-								<div class="col-md-3" id="m_num"></div>
+								<div class="col-md-3 " id="m_num"></div>
 								<div class="col-md-3">등록 여부</div>
 								<div class="col-md-3" id="m_shopstate"></div>
 							</div>
@@ -239,7 +244,9 @@
 								<div class="col-md-3" id="m_hitcount"></div>
 								<div class="col-md-3">심사점수</div>
 								<div class="col-md-3">
-									<input type="text" id="m_grade" value="">
+									<a id="example" tabindex="0" data-toggle="popover" data-trigger="focus" data-content="숫자만 입력 가능합니다." >
+									<input type="text" id="m_grade" value="" placeholder="1~100">
+									</a>
 								</div>
 							</div>
 							
@@ -251,6 +258,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-info" id="adshopModal">쇼핑몰 등록</button>
 						<button type="button" class="btn btn-danger" id="delAdShopModal">등록 취소</button>
+						<button type="button" class="btn btn-info" id="modifyShopModal">저장</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 					</div>
 					
@@ -260,30 +268,33 @@
 			<!-- /.modal-dialog -->
 		</div>
 <!-- modal --> 	
+<br><br>
 
-
-eee
-
-</body>
-
+aaabbb
 <script>
+
+	$(document).ready(function(){
+		$(".registered").html("등록");
+		$(".unregistered").html("미등록");
+	});
+
 
 
 //모달창에 데이터 넣기
 	$("#shopList .shopInfo").on("click", function(event){
 			
 		$(".modal-title").html($(this).parent().find(".s_sname").text());
-		$("#m_image").html($(this).parent().find("#s_image").text());
+		$("#m_image").attr("src","http://"+$(this).parent().find("#s_image").text());
 		$("#m_num").html($(this).parent().find("#s_num").text());
 		$("#m_shopstate").html($(this).parent().find("#shopstate").text());
 		$("#m_sname").val($(this).parent().find(".s_sname").text());
-		$("#m_shopurl").val($(this).parent().find("#s_shopurl").text());
+		$("#m_shopurl").val($.trim($(this).parent().find("#s_shopurl").text()));
 		$("#m_shopreg").html($(this).parent().find("#s_shopreg").text());
 		//$("#m_age").attr("value",$(this).parent().find("#s_age").text());
 		$("#m_searchurl").val($(this).parent().find("#s_searchurl").text());
 		$("#m_manager").val($(this).parent().find("#s_manager").text());
 		$("#m_phonenumber").val($(this).parent().find("#s_phonenumber").text());
-		$("#m_email").val($(this).parent().find("#s_email").text());
+		$("#m_email").val($.trim($(this).parent().find("#s_email").text()));
 		$("#m_hitcount").html($(this).parent().find("#ad_hitcount").text());
 		$("#m_grade").val($(this).parent().find("#s_grade").text());
 		
@@ -309,46 +320,48 @@ eee
 //모달창에서 adshoppingmall 등록하기
 	$("#adshopModal").on("click", function(){
 		
-		var shop = {};
-		
-		shop["s_num"] = $("#m_num").text();
-		shop["s_manager"] = $("#m_manager").val();
-		shop["s_shopurl"] = $("#m_shopurl").val();
-		shop["s_searchurl"] = $("#m_searchurl").val();
-		shop["s_shopreg"] = $("#m_shopreg").text();
-		shop["s_sname"] = $("#m_sname").val();
-		shop["s_email"] = $("#m_email").val();
-		shop["s_age"] = $("#m_age option:selected").val();
-		shop["s_phonenumber"] = $("#m_phonenumber").val();
-		shop["s_image"] = $("#m_image").text();
-		
-		var s_grade = $("#m_grade").val();
-		
-		var temp = {};
-		temp["shop"] = JSON.stringify(shop);
-		temp["s_grade"] = s_grade;
-		
-		var checkState = $("#m_shopstate").html();
-		
-		if(checkState == "등록"){
-			alert("이미 등록된 쇼핑몰입니다.");
+		var inputGrade = $("#m_grade").val();
+		var reg = /[A-Za-z가-힣]/g;
+		if(reg.test(inputGrade) || inputGrade > 100){
+			alert("심사 점수를 다시 입력하세요");
 		}else{
-			$.ajax({
-				type:'post',
-				url:'/admin/shopModal',
-				headers:{
-					"Content-Type":"application/json"},
-				dataType:'text',
-				data: JSON.stringify(temp),
-//				data: JSON.stringify({s_num:s_num, s_manager:s_manager, s_shopurl:s_shopurl, s_searchurl:s_searchurl, s_shopreg:s_shopreg,
-//											s_sname:s_sname, s_email:s_email, s_age:s_age, s_phonenumber:s_phonenumber, s_image:s_image}),
-				//data2: JSON.stringify({s_grade:s_grade}),							
-				success:function(result){
-					alert("등록되었습니다.");
-					$("#myModal").modal("hide");
-					location.href="/admin/shopList";
-				}
-			});
+			alert("등록ㄱㄱ");
+			var shop = {};
+			
+			shop["s_num"] = $("#m_num").text();
+			shop["s_manager"] = $("#m_manager").val();
+			shop["s_shopurl"] = $("#m_shopurl").val();
+			shop["s_searchurl"] = $("#m_searchurl").val();
+			shop["s_shopreg"] = $("#m_shopreg").text();
+			shop["s_sname"] = $("#m_sname").val();
+			shop["s_email"] = $("#m_email").val();
+			shop["s_age"] = $("#m_age option:selected").val();
+			shop["s_phonenumber"] = $("#m_phonenumber").val();
+			shop["s_image"] = $("#m_image").attr("src");
+			
+			var jsonObj = {};
+			jsonObj["shop"] = JSON.stringify(shop);
+			jsonObj["s_grade"] = $("#m_grade").val();
+			
+			var checkState = $("#m_shopstate").html();
+			
+			if(checkState == "등록"){
+				alert("이미 등록된 쇼핑몰입니다.");
+			}else{
+				$.ajax({
+					type:'post',
+					url:'/admin/shopModal',
+					headers:{
+						"Content-Type":"application/json"},
+					dataType:'text',
+					data: JSON.stringify(jsonObj),	
+					success:function(result){
+						alert("등록되었습니다.");
+						$("#myModal").modal("hide");
+						location.href="/admin/shopList";
+					}
+				});
+			}
 		}
 	});
 	
@@ -427,21 +440,100 @@ eee
 	
 	});
 	
-	//검색
-	$("#searchBtn").on("click", function(event){
-		self.location = "shopList"+'${page.makeQuery(1)}'+"&searchType="+$("select option:selected").val()+"&keyword="+$('#searchText').val();
+	//모달창에서 쇼핑몰 정보 수정
+	$("#modifyShopModal").on("click", function(){
+		
+		var inputGrade = $("#m_grade").val();
+		var reg = /[A-Za-z가-힣]/g;
+		if(reg.test(inputGrade) || inputGrade > 100){
+			alert("심사 점수를 다시 입력하세요");
+		}else{
+			alert("저장ㄱㄱ");
+			var shop = {};
+			
+			shop["s_num"] = $("#m_num").text();
+			shop["s_manager"] = $("#m_manager").val();
+			shop["s_shopurl"] = $("#m_shopurl").val();
+			shop["s_searchurl"] = $("#m_searchurl").val();
+			shop["s_shopreg"] = $("#m_shopreg").text();
+			shop["s_sname"] = $("#m_sname").val();
+			shop["s_email"] = $("#m_email").val();
+			shop["s_age"] = $("#m_age option:selected").val();
+			shop["s_phonenumber"] = $("#m_phonenumber").val();
+			shop["s_image"] = $("#m_image").attr("src");
+			
+			var jsonObj = {};
+			jsonObj["shop"] = JSON.stringify(shop);
+			jsonObj["s_grade"] = $("#m_grade").val();
+			
+			var checkState = $("#m_shopstate").html();
+			
+			$.ajax({
+				type:'post',
+				url:'/admin/modifyShopModal',
+				headers:{
+					"Content-Type":"application/json"},
+				dataType:'text',
+				data: JSON.stringify(jsonObj),	
+				success:function(result){
+					alert("등록되었습니다.");
+					$("#myModal").modal("hide");
+					location.href="/admin/shopList";
+				}
+	 		});
+		}
+		
 	});
 	
-	//모달창 닫을 때 option 0으로 넣기
-    $('#myModal').on('hide.bs.modal', function(){
+	
+	//검색
+	$("#searchBtn").on("click", function(event){
+		self.location = "shopList"
+						+'${page.makeQuery(1)}'
+						+"&searchType="
+						+$("select option:selected").val()
+						+"&keyword="+$('#searchText').val();
+						
+	});
+	
+	$("input:radio").on("change", function(){
+		$(".shopInfotr").removeClass("hidden");
+
+		var checkedRadio = $("#searchRadio").find("input:radio:checked").attr("value");
+		if(checkedRadio == "o"){
+			$(".shopInfotr").removeClass("hidden");
+			$(".unregistered").parent().addClass("hidden");
+		}else if(checkedRadio == "x"){
+			$(".shopInfotr").removeClass("hidden");
+			$(".registered").parent().addClass("hidden");
+		}else if(checkedRadio == "all"){
+			$(".shopInfotr").removeClass("hidden");
+		}
+
+	});
+	
+	//모달창 닫을 때 age option 0으로 넣기
+    $("#myModal").on("hide.bs.modal", function(){
 		$("#m_age option").removeAttr("selected");
     	$("#m_age [value='0']").attr("selected","selected");
+		$("#m_grade").removeAttr("disabled");
     });
 	 	
-	
+	//심사점수 숫자인지 확인
+	$("#m_grade").on("blur",function(){
+		var inputGrade = $(this).val();
+		var reg = /[A-Za-z가-힣]/g;
+		if(reg.test(inputGrade) || inputGrade > 100){
+			alert("심사 점수를 다시 입력하세요");
+		}
+	});
+
+	//심사점수 옆에 팝오버 표시
+ 	$('#example').popover();
+
 
 	
-</script>
+	</script>
 
     
 </html>

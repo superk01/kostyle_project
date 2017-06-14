@@ -1,20 +1,62 @@
+<%@page import="kostyle.login.domain.CustomerVO"%>
 <%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript" src="../../../resources/jquery/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="../../../resources/js/mypage/join1.js"></script>
-<script type="text/javascript" src="../../../resources/js/mypage/modify.js"></script>    
+<!-- <script type="text/javascript" src="../../../resources/js/mypage/join1.js"></script>
+<script type="text/javascript" src="../../../resources/js/mypage/modify.js"></script>      -->
+<%@ taglib prefix="c" 
+uri="http://java.sun.com/jsp/jstl/core" %>
+<% CustomerVO login = (CustomerVO)session.getAttribute("login"); %>
+<c:set var="path" 
+value="${pageContext.request.contextPath}"/>
+
+<script>
+$(document).ready(function(){
+	$("#completecng").click(function(){
+		
+		var c_id = $("#c_id").val();
+		alert(c_id);
+		var c_pass = $("#c_pass").val();
+		var c_adress = $("#c_adress").val();
+		var c_email = $("#c_email").val();
+		var c_sms = $("#c_sms").val();
+	    var c_zipcode = $("#c_zipcode").val();
+		
+	    alert(c_zipcode);
+	    
+		document.form1.action=
+			"${path}/mypage/modifyMyInfo";
+		document.form1.submit();
+		
+	});
+	
+	$("#cancel").click(function(){
+		alert("di");
+		document.form1.action=
+			"${path}/mypage/MypageMain";
+		document.form1.submit();
+	});
+	
+});
+</script>
+
+
+
+
+
 <%
-	String birth = (String)session.getAttribute("c_birth");
-	int p_powernum = (Integer)session.getAttribute("p_powernum");
+	String birth = login.getC_birth();
+	int p_powernum = login.getP_powernum();
  	String year = birth.substring(0,4);
 	String month = birth.substring(5,7);
 	String day = birth.substring(8,10);  
-	String check = (String)session.getAttribute("c_sms");
-%>
+	int check1 = login.getC_sms();
+	String check = check1 + "";
+	%>
 
-<form name="form1" onsubmit="return checkValue()">
+<form name="form1" method="post">
 <style type="text/css">
 	@IMPORT url("../resources/css/mypage/MypageBody.css");
 </style>
@@ -78,7 +120,7 @@
 										</th>
 										<td>
 											<label for="name">
-												<input id="passText" class="passText1" name="c_pass" value="${dto.c_pass}" onkeyup="checkByte(this, '20');" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw_validation();"><br>
+												<input  class="passText1" id="c_pass" name="c_pass" value="${dto.c_pass}" onkeyup="checkByte(this, '20');" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw_validation();"><br>
 												<span id="m_pw"></span>
 											</label>
 											<span id="nameMsg" style="display: block; color:red"></span>
@@ -94,7 +136,7 @@
 										</th>
 										<td>
 											<label for="name">
-												<input id="checkPass" class="checkPass2" name="c_pass2"  onkeyup="checkByte(this, '20');" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw2_validation();"><br>
+												<input class="checkPass2" id="c_pass2" name="c_pass2"  onkeyup="checkByte(this, '20');" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw2_validation();"><br>
 												<span id="m_pw2"></span>
 											</label>
 											<span id="nameMsg" style="display: block; color:red"></span>
@@ -123,10 +165,10 @@
 											</label>
 										</th>
 										<td>
-											<input id="zip" name="c_zipcode" value="${dto.c_zipcode}" onkeypress="onlyNum();" onBlur="zip_validation();" placeholder="우편번호" type="text" autocomplete="off"> &nbsp;<input type="button" value="우편번호"/>
+											<input name="c_zipcode" id="c_zipcode" value="${dto.c_zipcode}" onkeypress="onlyNum();" onBlur="zip_validation();" placeholder="우편번호" type="text" autocomplete="off"> &nbsp;<input type="button" value="우편번호"/>
 											<span id="m_zip"></span>
 											<br>
-											<input id="ad" name="c_adress" value="${dto.c_adress}"	onkeyup="checkByte(this, '20');" placeholder="주소를 입력하세요" type="text" size='60'>
+											<input name="c_adress"  id="c_adress" value="${dto.c_adress}"	onkeyup="checkByte(this, '20');" placeholder="주소를 입력하세요" type="text" size='60'>
 										</td>
 									</tr>
 									
@@ -139,7 +181,7 @@
 										</th>
 										<td>
 											<label for="email">
-												<input id="emailText" class="inputTxt2" name="c_email" value="${dto.c_email}" placeholder="이메일을 입력해 주세요" type="text">
+												<input  class="inputTxt2" id="c_email" name="c_email" value="${dto.c_email}" placeholder="이메일을 입력해 주세요" type="text">
 											</label>
 												<p class="gray textS" style="margin-top:6px;">* 코스타일몰 이벤트 및 쇼핑몰 정보등은 입력하신 이메일로 발송됩니다.</p>
 												<span id="emailMsg" style="display: block; color:red"></span>
@@ -167,9 +209,9 @@
 										</th>
 										<td class="confirm">
 											<p class="gray">
-												 <input id="approveSmsYn1" name="c_sms" value="on" type="radio" <%=("on".equals(check))?"checked":""%>>
+												 <input id="c_sms" name="c_sms" value="on" type="radio" <%=("on".equals(check))?"checked":""%>>
 													<label for="approveSmsYn1">수신함</label>
-												<input id="approveSmsYn2" name="c_sms" value="off"  type="radio" <%=("off".equals(check))?"checked":""%>>
+												<input id="c_sms" name="c_sms" value="off"  type="radio" <%=("off".equals(check))?"checked":""%>>
 													<label for="approveSmsYn2">수신안함</label> 
 											</p>
 												<p class="gray textS" style="margin-top:3px;">* 코스타일몰에서 진행하는 이벤트 및 쇼핑몰 정보 등의 내용을 수신하는데 동의합니다.</p>
@@ -180,10 +222,12 @@
 							</table>
 						</div>
 						<div class="btn_mySite">
-						
-							<input type="submit" value="변경완료" class="submit">
 							
-							<input type="button" value="취소" onclick = "location.href = 'MypageBody.jsp?body=ModifyMyInfoCheck.jsp' ">
+							<input type="hidden" name="c_id" id="c_id" value="<%=login.getC_id() %>"/>
+							<button type="button" id="completecng">변경완료오</button>
+							
+							
+							<button type="button" id="cancel">취소</button>
 						</div>
 					</div>
 				</div>	

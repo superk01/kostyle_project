@@ -91,21 +91,41 @@
 	쇼핑몰세션: ${sessionScope.shoplogin }
 </div>
 
-<br><br><a href="/admin/shopList">shoppingMall List</a>
-
+<br><br><a href="/admin/shopList">쇼핑몰 리스트</a>
+<br><br><a href="/admin/joinForm">쇼핑몰 입점 신청</a>
+<br><br><a href="/stats/statsindex">통계</a>
+<br><br>
 <P>  The time on the server is ${serverTime}. </P>
 <P>  "${path }" </P>
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 	<div class="search_field">
-	<form action="${path }/search/do" method="get">
+	<form action="#" method="post" name="form">
 		<div class="search_box">
 			<dl class="clear_float">
 				<dt><input type="text" name="search"></dt>
-				<dd><input type="image" src="../resources/images/mainImg/mainsearch.png" alt="검색" title="검색"></dd>
+				<dd><input type="image" src="../resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="send()"></dd>
 			</dl>
 		</div>
 	</form>
 	</div>
+<div>
+	<a href="history/list/${login.c_num}">히스토리로 이동</a><br>
+	<a href="remocon/list/${login.c_num}">리모콘 보기</a>
+</div>
 </body>
+
+<script>
+
+function send(){
+	
+	document.form.action='/stats/insertstats';
+	document.form.submit();
+	
+	document.form.action='/search/do';
+	document.form.submit();
+}
+
+
+</script>
 </html>

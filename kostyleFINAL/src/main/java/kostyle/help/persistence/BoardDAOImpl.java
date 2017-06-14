@@ -24,8 +24,9 @@ public class BoardDAOImpl implements BoardDAO {
 	private static String namespace="kostyle.help.mappers.helpMapper";
 	@Override
 	public List<BoardVO> list(SearchCriteria cri) {
-		
-		return session.selectList(namespace+".list",cri, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+		List<BoardVO> list = session.selectList(namespace+".list",cri, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+		System.out.println("dao에서 list 찍어보기"+list);
+		return list;
 	}
 
 	@Override
@@ -71,8 +72,9 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public int totalCount(SearchCriteria cri) throws Exception {
-		
-		return session.selectOne(namespace+".totalCount", cri);
+		int count = session.selectOne(namespace+".totalCount", cri);
+		System.out.println("dao에서  count값 확인:"+count);
+		return count;
 	}
 	
 	

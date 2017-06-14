@@ -22,7 +22,7 @@ public class JoinDAOImpl implements JoinDAO {
 
 	@Override
 	public String autoNum() throws Exception {
-
+		System.out.println("회원가입 DAO");
 		if(session.selectOne(namespace+".autoNum") == null){
 			return "0";
 		}else{

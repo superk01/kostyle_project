@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="../main/kostyleHeader.jsp"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,8 +12,8 @@
 <title>게시글 상세보기</title>
 <script src="../../../resources/jquery/jquery-3.2.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> -->
 
 <script id="template" type="text/x-handlebars-template">
 				{{#each .}}
@@ -233,7 +234,7 @@ $(document).ready(function(){
 	/* 댓글 보기 */
 	$('#repliesDiv').on('click',function(){
 		alert('#repliesDiv');
-		if($('li.replyLi').length>1){
+		if($('li.replyLi').length>0){
 			console.log($('li.replyLi').length);
 			return;
 		} 
@@ -333,12 +334,12 @@ $(document).ready(function(){
   
 
 
- <%--  <c:if test="${not empty login}">  --%> 
+<c:if test="${not empty login}">
   <div class="box-body">
     <label for="exampleInputEmail1">Writer</label>
     <input class="form-control" type="text" placeholder="USER ID" 
-    	<%-- id="newReplyWriter" value="${login.urd }" readonly="readonly">   --%>   
-    	id="newReplyWriter" value="">     
+    	 id="newReplyWriter" value="${login.c_id }" readonly="readonly"> 
+    	     
     <label for="exampleInputEmail1">Reply Text</label> 
     <input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">
     </div>
@@ -346,13 +347,13 @@ $(document).ready(function(){
 		<div class="box-footer">
 		  <button type="submit" class="btn btn-primary" id="replyAddBtn">ADD REPLY</button>
 		</div>
- <%--  </c:if> --%>
+</c:if>
   
  <%--  <c:if test="${empty login}">
     <div class="box-body">
       <div><a href="javascript:goLogin();" >Login Please</a></div>
     </div>
-  </c:if> --%>				                 
+  </c:if> --%>			                 
 </div>            
 
 
@@ -362,7 +363,7 @@ $(document).ready(function(){
 		  <!-- timeline time label -->
 		<li class="time-label" id="repliesDiv">
 		  <span class="bg-green">
-		    Replies List <small id='replycntSmall'> [ ${boardVO.replycnt} ] </small>
+		    Replies List <small id='replycntSmall'> [ ${board.answerNum} ] </small>
 		    </span>
 		  </li>
 		</ul>

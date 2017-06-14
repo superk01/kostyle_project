@@ -54,12 +54,18 @@ public class LoginServiceImpl implements LoginService {
 		return dao.checkCusSessionKey(cookieVal);
 	}
 	@Override  //쇼핑몰자동로그인한계갱신
-	public void keepShopLoginLimit(int adshop_id, String sessionId,Date next){
+	public void keepShopLoginLimit(String adshop_id, String sessionId,Date next){
 		dao.keepShopLoginLimit(adshop_id, sessionId, next);
 	}
 	@Override //쇼핑몰자동로그인
 	public AdShopVO checkShopSessionKey(String cookieVal) {
 		return dao.checkShopSessionKey(cookieVal);
+	}
+
+
+	@Override
+	public CustomerVO cusGetId(String cus_id) {
+		return dao.cusGetId(cus_id);
 	}
 
 

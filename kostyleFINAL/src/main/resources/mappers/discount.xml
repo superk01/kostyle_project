@@ -11,6 +11,10 @@
 			where s_num=#{s_num}
 	</update>
 
+	<select id="getShopDiscountVOList" resultType="ShopDiscountVO">
+		select * from shoppingmall
+	</select>
+
 	<select id="getNewSaleUrlList" resultType="String">
 		select s_newsaleurl from shoppingmall s, adshoppingmall a
 		where s.s_num = a.s_num

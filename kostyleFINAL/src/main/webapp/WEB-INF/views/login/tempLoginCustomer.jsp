@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 
-<script src="kostyleFINAL/src/main/webapp/resources/jquery/jquery-3.2.1.js"></script>
+<script src="../../../resources/jquery/jquery-3.2.1.js"></script></script>
 <script src="/resources/js/jquery.js"></script>
 <script type="text/javascript">
 		$(function(){
