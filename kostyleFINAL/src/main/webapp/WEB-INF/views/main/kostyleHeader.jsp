@@ -60,16 +60,13 @@
   <body>
 
 		<div class="header-area">
+		
         <div class="container">
             <div class="row">
                 <c:choose>
 				<c:when test="${empty sessionScope.login}">
 				<div class="row">
-					<div class="col-md-8">
-    					<div class="user">
-       				 </div>
    				 </div>
-    				<div class="col-md-4">
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
                 				<li><a href="../join/join"><i class="fa fa-list-ul"></i> 회원가입 </a></li>
@@ -77,12 +74,10 @@
                 				<li><a href="../cuslogin/login"><i class="fa fa-user-o"></i> Login </a></li>
             				</ul>
         				</div>
-    				</div>
 				</div>
 				</c:when>
 
 				<c:when test="${not empty sessionScope.login}">
-				<div class="row">
 					<div class="col-md-8">
     					<div class="user">
         					<h5><i class="fa fa-heart"></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
@@ -96,11 +91,11 @@
             				</ul>
         				</div>
     					</div>
-				</div>
 				</c:when>
 				</c:choose>
             </div>
 		</div>
+		
 		</div> <!-- End header area -->
    
    
