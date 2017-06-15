@@ -3,6 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="../main/kostyleHeader.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -76,9 +77,24 @@ $(document).ready(function(){
 					<div class="CategoryResult_oneItemBox_child_Name"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.s_sname}</a></div>
 					<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_beforeDiscountprice }</a></div>
 					<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_afterDiscountprice }</a></div>
-					<c:if test="${product.sale_discountRate !=0}">
+					<c:choose>
+					<c:when test="${product.sale_discountRate !=0}">
 						<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_discountRate }%</a></div>
-					</c:if>
+					</c:when>
+					<c:otherwise>
+						<p></p>
+					</c:otherwise>
+					</c:choose>
+					
+					
+					<c:choose>
+					<c:when test="${product.sale_onePlusOne != null}">
+						<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_onePlusOne }</a></div>
+					</c:when>
+					<c:otherwise>
+						<p></p>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</c:forEach>
 		</div>
