@@ -33,8 +33,8 @@ public class ShopLoginController {
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginGET(@ModelAttribute("dto") LoginDTO dto, Model model){
 		model.addAttribute("dto", dto);
-		
-		return "/login/tempLoginShop";
+		return "/login/newShopLogin";
+		//return "/login/newShopLogin";
 	}
 	
 	@RequestMapping(value="/loginCheck", method=RequestMethod.POST)
@@ -48,7 +48,7 @@ public class ShopLoginController {
 		if(vo == null){ // null이라면 회원이 아님.
 			System.out.println("로그인실패");
 			//request.setAttribute("msg", "회원 아이디 또는 비밀번호가 일치하지 않습니다.(5회 이상 로그인 오류시 본인확인 후 로그인 가능합니다.)");
-			return "/login/tempLoginShop";
+			return "/login/newShopLogin";
 		}else{ //vo!=null
 
 			//----------

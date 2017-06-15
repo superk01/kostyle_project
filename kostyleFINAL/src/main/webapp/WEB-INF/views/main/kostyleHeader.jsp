@@ -108,7 +108,7 @@
             <a href="/"><img class="logoimg" src="../../../resources/images/mainImg/kostyle.png"></a>
             
             <div class="header_search">
-				<form class="search-form" action="search/do" method="post">
+				<form class="search-form" action="/search/do" method="post">
 					<div class="search-box">
 						<dl class="clear">
 						<dt class="search1"><input id="search-text" type="text" name="search"></dt>

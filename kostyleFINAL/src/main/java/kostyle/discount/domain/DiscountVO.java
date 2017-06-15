@@ -7,8 +7,17 @@ public class DiscountVO implements Serializable {
 	private String sale_imgUrl;
 	private String sale_beforeDiscountprice;
 	private String sale_afterDiscountprice;
-	private int sale_discountRate;
+	private int sale_discountRate; //1+1할인표시를위해 String으로바꾼다. 할인율 비교가 필요할시에 Integer로 바꿀수 있는지 없는지부터 판별해야함
+	private String sale_onePlusOne; 
 
+
+	public String getSale_onePlusOne() {
+		return sale_onePlusOne;
+	}
+
+	public void setSale_onePlusOne(String sale_onePlusOne) {
+		this.sale_onePlusOne = sale_onePlusOne;
+	}
 
 	private String sale_name;
 	private String s_sname;
@@ -17,13 +26,14 @@ public class DiscountVO implements Serializable {
 	public DiscountVO(){}
 
 	public DiscountVO(String sale_prdUrl, String sale_imgUrl, String sale_beforeDiscountprice,
-			String sale_afterDiscountprice, int sale_discountRate, String sale_name, String s_sname) {
+			String sale_afterDiscountprice, int sale_discountRate, String sale_onePlusOne, String sale_name, String s_sname) {
 		super();
 		this.sale_prdUrl = sale_prdUrl;
 		this.sale_imgUrl = sale_imgUrl;
 		this.sale_beforeDiscountprice = sale_beforeDiscountprice;
 		this.sale_afterDiscountprice = sale_afterDiscountprice;
 		this.sale_discountRate =sale_discountRate;
+		this.sale_onePlusOne = sale_onePlusOne;
 		this.sale_name = sale_name;
 		this.s_sname = s_sname;
 
@@ -97,9 +107,10 @@ public class DiscountVO implements Serializable {
 	public String toString() {
 		return "DiscountVO [sale_prdUrl=" + sale_prdUrl + ", sale_imgUrl=" + sale_imgUrl + ", sale_beforeDiscountprice="
 				+ sale_beforeDiscountprice + ", sale_afterDiscountprice=" + sale_afterDiscountprice
-				+ ", sale_discountRate=" + sale_discountRate + ", sale_name=" + sale_name + ", s_sname=" + s_sname
-				+ ", clo_zzim=" + clo_zzim + "]";
+				+ ", sale_discountRate=" + sale_discountRate + ", sale_onePlusOne=" + sale_onePlusOne + ", sale_name="
+				+ sale_name + ", s_sname=" + s_sname + ", clo_zzim=" + clo_zzim + "]";
 	}
+
 
 
 
