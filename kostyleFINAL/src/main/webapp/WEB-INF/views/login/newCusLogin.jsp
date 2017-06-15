@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="../main/kostyleHeader.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -22,17 +23,19 @@
 .colorgraph {
   height: 5px;
   border-top: 0;
-  background: #FF9600;
+  background: #ad82ab;
   margin: 40px 0;
 }
 
 .login h2{
-    color: #FFE270;
+    font-weight:bold;
+    
+display: inline;
+    color: #B38AB2;
     font-size: 30px;
-    margin-top: 60px;
+    margin-top: 20px;
     margin-bottom: 10px;
     font-family: inherit;
-    font-weight: 500;
     line-height: 1.1;
     box-sizing: border-box;
         -webkit-margin-before: 0.83em;
@@ -58,6 +61,9 @@
 
 <body>
 
+
+
+
 <section id="fullContainer">
 	<section id="rightContainer"></section>
 	
@@ -78,7 +84,9 @@
     	<div class="boxdiv">
     	<form id="loginForm" action="/cuslogin/loginCheck" method="post">
 			<fieldset>
-				<h2>로그인</h2>
+				<div class="logindiv">
+				<img class="logoimg" src="../../../resources/images/mainImg/kostyle.png"><h2>로그인</h2>
+				</div>
 				<hr class="colorgraph">
 			<div class="textboxdiv">	
 				<div class="form-group">
@@ -90,14 +98,20 @@
 			</div>	
 				
 				<span class="button-checkbox">
-					<button type="button" class="btn" data-color="warning"> 자동 로그인</button>
+					<button type="button" class="btn" id="cusAutoLogin" data-color="warning"> 자동 로그인</button>
                     <input type="checkbox" name="useCookie" id="remember_me" checked="checked" class="hidden">
-					<a href="" id="forgotPass" class="btn btn-link pull-right">비밀번호를 잊으셨나요?</a>
+					<a href="" id="forgotPass" class="btn btn-link pull-right">아직 회원이 아니신가요?</a>
 				</span>
 				<hr class="colorgraph">
-				<div class="row">
+				<div class="row" id="doingButton">
 					<div class="col-xs-12 col-sm-12 col-md-12">
 						<button type="submit" class="btn btn-lg btn-default btn-block" >로그인</button>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<a><button class="btn btn-lg btn-default btn-block" >아이디 찾기</button></a>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<a><button class="btn btn-lg btn-default btn-block" >비밀번호 찾기</button></a>
 					</div>
 				</div>
 			</fieldset>
@@ -106,7 +120,7 @@
 	<!-- 	</fieldset> -->
 	</div>
 </div>
-	
+	<br><br><br><br>
 	</section>
 
 </section>

@@ -128,7 +128,16 @@ a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
+.logoimg {
+    width: 150px;
+    height: 26px;
+    margin-top:0;
+    vertical-align:top;
 
+}
+.logindiv{
+	margin-top:20px;
+}
 #top-bar{
 	 display: block;
  	overflow: auto;
@@ -152,7 +161,15 @@ a:focus {
 	margin: 50px 0;
 } */
 #loginForm{
-	padding: 10%;	
-	
+	padding: 5% 10%;	
 
+}
+
+#cusAutoLogin{
+	color: #fff;
+    background-color: #ad82ab;
+    border-color: #ad82ab;
+}
+#doingButton div{
+	margin-bottom: 7px;
 }
