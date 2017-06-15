@@ -5,3 +5,19 @@
 	height: 60px;
 	padding: 5px;
 }
+
+
+#iframeRemove{
+ 	width : 2%;
+ 	height : 135px;
+ 	position: fixed;
+ 	overflow: hidden;
+ 	background: #3C3C3C;
+ 	bottom: 30%;
+ 	
+ 	font-size : 17px;
+ 	color: white;
+ 	font-weight : bold;
+ 	padding: 7px;
+ }
+ 

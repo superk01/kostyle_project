@@ -9,10 +9,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/../../resources/css/CategoryResult/CategoryResult.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/CategoryResult/CategoryResult.css" />
 <!-- <script type="text/javascript" src="../resources/js/jquery.js"></script> -->
-<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
-<script type="text/javascript"  src="/../../resources/js/CategorysearchResult/CategorysearchResult2.js"></script>
+<script src="/resources/jquery/jquery-3.2.1.js"></script>
+<script type="text/javascript"  src="/resources/js/CategorysearchResult/CategorysearchResult2.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('div.CategoryResult_oneItemBox').on('click',function(event){
