@@ -1,16 +1,19 @@
 package kostyle.mypage.controller;
 
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.tribes.MembershipService;
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javafx.scene.control.Alert;
 import kostyle.login.controller.CusLoginController;
+import kostyle.login.domain.CustomerVO;
+import kostyle.login.domain.LoginDTO;
 import kostyle.login.service.LoginService;
 import kostyle.mypage.domain.MyCustomerVO;
 import kostyle.mypage.service.MyCustomerService;
@@ -74,7 +79,7 @@ public class MyStatsController {
 			, HttpSession session) {
 		boolean result=service.loginCheck(vo, session);
 		ModelAndView mav = new ModelAndView();
-		if( result == true) {		//로그인 성공
+		if( result == true ) {		//로그인 성공
 			//home.jsp로 이동
 			mav.setViewName("mypage/MypageMain");
 		}else {	//로그인 실패
@@ -86,13 +91,12 @@ public class MyStatsController {
 	
 	@RequestMapping(value="modi_pass_check", method=RequestMethod.POST)
 	public ModelAndView ModifyMyInfo(@RequestParam String c_id,
-			@ModelAttribute MyCustomerVO vo, Model model) {
+			@ModelAttribute MyCustomerVO vo, Model model, HttpSession session) {
 		System.out.println("되냐?");
-		boolean result = service.passCheck(vo);
-
+	
 		ModelAndView mav = new ModelAndView();
 
-		if(result == true) {
+		if(BCrypt.checkpw(vo.getC_pass(), ((CustomerVO) session.getAttribute("login")).getC_pass())) {
 			System.out.println("아");
 			System.out.println(c_id);
 
@@ -110,8 +114,8 @@ public class MyStatsController {
 			@RequestParam String c_pass, @ModelAttribute MyCustomerVO vo,
 			Model model, HttpSession session) throws Exception {
 			System.out.println("회원탈퇴");
-				boolean result = service.passCheck(vo);
-				if(result){
+				//boolean result = service.passCheck(vo);
+			if(BCrypt.checkpw(vo.getC_pass(), ((CustomerVO) session.getAttribute("login")).getC_pass())){
 					//삭제 처리
 					service.DeleteMember(c_id);
 					//메인으로 이동
@@ -127,8 +131,14 @@ public class MyStatsController {
 	
 	@RequestMapping(value="modifyMyInfo", method=RequestMethod.POST)
 	public String update(@ModelAttribute MyCustomerVO vo, Model  model, 
-			@RequestParam String c_id) {
-
+			@RequestParam String c_id, HttpSession session) {
+			String hashPassword = BCrypt.hashpw(vo.getC_pass(), BCrypt.gensalt());
+			vo.setC_pass(hashPassword);
+		
+			
+			
+			((CustomerVO) session.getAttribute("login")).setC_pass(vo.getC_pass());
+			
 			service.UpdateMember(vo);
 			return "/mypage/MypageMain";
 	

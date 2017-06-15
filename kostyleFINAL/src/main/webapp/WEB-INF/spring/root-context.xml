@@ -55,6 +55,9 @@
 	<context:component-scan base-package="kostyle.discount.service"/>
 	<context:component-scan base-package="kostyle.find.persistence"/>
 	<context:component-scan base-package="kostyle.find.service"/>
+	<context:component-scan base-package="kostyle.ranking.persistence"/>
+	<context:component-scan base-package="kostyle.ranking.service"/>
+	
 	
 	
 	      <!-- 트랜잭션적용 -->
