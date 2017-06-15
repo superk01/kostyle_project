@@ -46,6 +46,22 @@
 		  select * from dual
 	</insert>
 	
+	<select id="weather_search"  resultType="kostyle.category.domain.Product_category">
+	select product_link, 
+			pro.product_name, 
+			pro.product_price, 
+			pro.product_ImageLink, 
+			pro.product_shopurl, 
+			pro.product_shopname,
+			pro.product_color 
+		from PRODUCT_LIST pro, WEATHERSEARCH wea
+
+		where pro.product_name like '%'|| wea.SEARCH_NAME ||'%' and 
+		pro.PRODUCT_KEYWORD = wea.SEARCH_KEYWORD
+		and wea.SEARCH_ID = #{level}
+		order by DBMS_RANDOM.RANDOM
+	</select>
+	
 	<!-- 
 	<select id="categorysmallSelect" resultType="Category.model.Categorysmall" parameterType="String">
 		select * from categorysmall where cm_num = #{cm_num}

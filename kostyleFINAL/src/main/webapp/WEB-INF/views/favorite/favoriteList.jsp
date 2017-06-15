@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="true"%>
 <%@ include file="../main/kostyleHeader.jsp"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,12 +13,13 @@
 <title>KOStylemall 즐겨찾기</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Bootstrap -->
-<link rel="stylesheet" href="../../../resources/css/favorite/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="/resources/css/favorite/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
 <!-- font awesome -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <!-- Custom style -->
-<link rel="stylesheet" href="../../../resources/css/favorite/favoriteList.css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="/resources/css/favorite/favoriteList.css" media="screen" title="no title" charset="utf-8">
 
+<script type="text/javascript" src="/resources/js/favorite/favoriteIframe.js"></script>
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -34,16 +34,20 @@
 	}
 </script>
 
+
 </head>
 
 <body>
 
-	<div class="body">
+<div class="body">
 
 		<div class="page-header">
 			<h1>즐겨찾기</h1>
 		</div>
-
+		
+<div id="favoritebackground">
+<div id="favoriteBodyTop"></div>
+<br><br>
 
 		<div class="box">
 			<div class="box-body">
@@ -63,18 +67,16 @@
 
 							<tr>
 								<td><img id="s_image" src="${Favorite.s_image}"></td>
-								<td><a href="http://${Favorite.s_shopurl }">${Favorite.s_sname}</a></td>
+								<td><a class="shoplink" href="http://${Favorite.s_shopurl }">${Favorite.s_sname}</a></td>
 								<td><a
 									href='/favorite/comentRead${pageMaker.makeQuery(pageMaker.cri.page)}&f_num=${Favorite.f_num }'>
-										<img src="../../../resources/image/favoriteImg/comment.png"
+										<img src="/resources/image/favoriteImg/comment.png"
 										title="코멘트">
 								</a></td>
-								<td><a href="http://${Favorite.s_shopurl }"><img
-										src="../../../resources/image/favoriteImg/home.png"
-										title="쇼핑몰 이동"></a></td>
-								<td><a
-									href="/favorite/deleteFavorite?f_num=${Favorite.f_num }&c_num=${Favorite.c_num}"><img
-										src="../../../resources/image/favoriteImg/delete2.png"
+								<td><a class="shoplink" href="http://${Favorite.s_shopurl }">
+								<img src="/resources/image/favoriteImg/home.png" title="쇼핑몰 이동"></a></td>
+								<td><a href="/favorite/deleteFavorite?f_num=${Favorite.f_num }&c_num=${Favorite.c_num}"><img
+										src="/resources/image/favoriteImg/delete2.png"
 										title="즐겨찾기 삭제"></a></td>
 							</tr>
 
@@ -116,8 +118,9 @@
 
 			</form>
 		</div>
+</div>
 
-	</div>
+</div>
 
 </body>
 

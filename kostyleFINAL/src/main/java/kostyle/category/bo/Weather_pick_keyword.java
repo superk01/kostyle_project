@@ -3,24 +3,21 @@ package kostyle.category.bo;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import kostyle.category.domain.Weather;
 import kostyle.category.domain.WeatherSearch;
+import kostyle.category.service.CategoryService;
 
 public class Weather_pick_keyword {
-	
+
 	private int level = 0;
 	private int user_bb = 0;
 	private String user_type = "";
 	private int result = 0;
-	public String getWeather_pick_Data(Weather weather, String User_type){
+	public int[] getWeather_pick_Data(Weather weather, String User_type){
 		this.user_type = User_type;
-				// 불쾌지수에 따라 각 조건 충족시 level 1상승
-				// 80이상 더위 잘탐
-				// 75~80미만 더위 조금 타는편
-				// 68~75미만 더위 안타는편
-				// 사용자 성향 체크하고 체감온도에서 옷 구하기
-				// 만약 불쾌지수가 68 이상이면 사용자 성향에 따라 옷 레벨 증가
-				// 옷 레벨 = 옷 타입
+			
 				//체감온도 13.12 + 0.6215 x T - 11.37v^0.16 + 0.3965v^0.16 x T			
 				//불쾌지수 1.8t-0.55(1-rh)(1.8t-26)+32
 				
@@ -40,9 +37,9 @@ public class Weather_pick_keyword {
 				user_bb = (int) mathRound2(bb);
 				//체감온도, 불쾌지수, 사용자 타입으로  온도레벨 생성
 				int User_level = getUserLevel(level, user_bb, User_type);
-				
+				int data[] = {User_level,level,user_bb};
 				//온도 레벨에따른 옷 키워드 
-		return getWeather_pick_keyword(User_level);
+		return data;
 	}
 	
 	public int getUserLevel(int level, int User_bb, String User_type){
@@ -84,11 +81,6 @@ public class Weather_pick_keyword {
 		return result;
 	}
 	
-	public String getWeather_pick_keyword(int User_level){
-		
-	
-		return "맨투맨";
-	}
 	
 	public double mathRound2(double data){
 		double bb = Math.round(data*10);

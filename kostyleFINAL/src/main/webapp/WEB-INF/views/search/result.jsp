@@ -9,14 +9,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/../../resources/css/CategoryResult/CategoryResult.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/CategoryResult/CategoryResult.css" />
 <!-- <script type="text/javascript" src="../resources/js/jquery.js"></script> -->
-<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
-<script type="text/javascript"  src="/../../resources/js/CategorysearchResult/CategorysearchResult2.js"></script>
+<script src="/resources/jquery/jquery-3.2.1.js"></script>
+<script type="text/javascript"  src="/resources/js/CategorysearchResult/CategorysearchResult2.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('div.CategoryResult_oneItemBox').on('click',function(event){
-		alert("이벤트 걸림?");
+		
 		event.preventDefault();
 		/* var product_link=$(this).eq(0).find('a').attr('href');
 		var product_ImageLink=$(this).eq(0).find('img').attr('src');
@@ -43,11 +43,11 @@ $(document).ready(function(){
 					h_Imgurl:$(this).eq(0).find('img').attr('src'),
 					h_Name:$(this).children().eq(1).find('a').html(),
 					h_Price:$(this).children().eq(2).find('a').html()}),
-			success : function(){
-				/* alert('히스토리에 추가');
-				if(result!=null){
-					location.href="${path}/history/list/"+result;
-				} */
+			success : function(data){
+				/* if(${login.c_id } != null){ */
+					$('.wing_fixed').remove();
+					remoconList();
+				/* } */
 			}		
 			});
 		});

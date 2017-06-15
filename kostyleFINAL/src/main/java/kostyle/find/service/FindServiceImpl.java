@@ -18,9 +18,14 @@ public class FindServiceImpl implements FindService {
 	}
 
 	@Override
-	public String pwFind(FindInfo find) throws Exception {
+	public int pwFind(FindInfo find) throws Exception {
 		System.out.println("비밀번호 찾기 Service : "+find);
 		return dao.pwFind(find);
+	}
+
+	@Override
+	public void randomPassword(FindInfo find) throws Exception {
+		dao.randomPassword(find);
 	}
 
 	

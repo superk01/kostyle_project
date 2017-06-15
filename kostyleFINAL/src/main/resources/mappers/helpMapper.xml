@@ -17,51 +17,107 @@
 		INNER JOIN customer c ON q.c_num=c.c_num
 		INNER JOIN adshoppingmall a ON q.s_num=a.s_num
 		INNER JOIN shoppingmall s ON s.s_num=q.s_num
-		<choose>
-			<when test="searchType != null and c_Id == null">
-				<where>
-					${searchType} LIKE '%'||#{keyWord}||'%'
-					and q_secret = 'n'
-				</where>
-			</when>
-			<when test="searchType !=null and c_Id != null">
-				<where>
-					${searchType} LIKE '%'||#{keyWord}||'%'
-					and q_secret = 'n'
-					or c_id = #{c_Id}
-				</where>
-			</when>
-		</choose>
-		
-		<!-- <if test="searchType != null">
-			<if test="c_Id !=null ">
-				<where>
-				${searchType} LIKE '%'||#{keyWord}||'%'
-				and q_Secret = 'n'
-				or c_id = #{c_Id}
-				and q_secret= 'y'
-				</where>
-			</if>
-			<if test="c_Id == null">
-				<where>
-					${searchType} LIKE '%'||#{keyWord}||'%'
-					and q_Secret = 'n'
-				</where>
-			</if>
-		</if> -->
-			
-			<!-- <if test="q_secret !=null ">
-				and a_secret = 'y'
-				and c_id = #{c_Id}
-			</if> -->
-		
-		<!-- <if test="q_secret !=null ">
-			and a_secret = 'y'
-			and c_id = #{c_Id}
-		</if> -->
-		
+	 		<include refid="search"/>
 		order by q_num desc
 	</select> 
+
+	<select id="adShoppingMallList" resultType="AdShoppingMallHelp">
+		select
+		(SELECT
+		DISTINCT s_sname
+		from ADSHOPPINGMALL a, SHOPPINGMALL s
+		where s.s_num =
+		a.s_num
+		and s.s_num = ad.s_num) as S_Name from adshoppingmall ad
+	</select>
+
+	<insert id="insert" parameterType="BoardVO">
+		insert into question
+		(q_num, q_title, q_content, q_date, c_num, s_num, q_secret)
+		VALUES
+		((select nvl(max(q_num+1),1) from question),#{q_Title},#{q_Content},sysdate,#{c_Num},#{s_Num},#{q_Secret})
+	</insert>
+	<select id="getS_Num" parameterType="String" resultType="String">
+		select s_num from shoppingmall where s_sname = #{value}
+	</select>
+	<select id="detail" resultType="BoardVO" parameterType="int">
+		select q_num as q_Num, q_title as q_Title, q_content as q_Content,
+		q_date as q_Date, c_id as c_Id, s_sname as s_Name, q_secret as q_Secret
+		from question q
+		INNER JOIN customer c ON q.c_num=c.c_num
+		INNER JOIN adshoppingmall a ON q.s_num=a.s_num
+		INNER JOIN shoppingmall s ON s.s_num=q.s_num
+		where q_num=#{value}
+	</select>
+	<update id="update" parameterType="BoardVO">
+		update question set
+		q_title =
+		#{q_Title},
+		q_content = #{q_Content}
+		where q_num = #{q_Num}
+	</update>
+	<delete id="delete">
+		delete from question where q_num = #{value}
+	</delete>
+	<select id="totalCount" resultType="int">
+		select count(q_num) from
+		question q
+		INNER JOIN customer c ON q.c_num=c.c_num
+		<include refid="search"/>
+	</select>
+	<!-- "여기까지 게시판 관련" -->
+
+	<!-- "아래부터는 Relpy 관련임." -->
+
+	<insert id="R_insert" parameterType="ReplyVO">
+		insert into answer (as_num,
+		q_num, as_content, c_id, as_date)
+		values ((select nvl(max(as_num)+1,1)
+		from answer),#{q_Num}, #{as_Content}, #{c_Id}, sysdate)
+	</insert>
+	<select id="R_list" resultType="ReplyVO" parameterType="int">
+		select *
+		from answer where q_num = #{q_num} order by as_num desc
+	</select>
+	<update id="R_update">
+		update answer set
+		as_content = #{as_Content}
+		where
+		as_num = #{as_Num}
+	</update>
+	<delete id="R_delete" parameterType="int">
+		delete from answer where
+		as_num=#{as_num}
+	</delete>
+	<select id="R_detail" resultType="ReplyVO">
+		select * from answer where
+		as_num=#{as_num}
+	</select>
+	<select id="R_count" parameterType="int" resultType="int">
+		select count(*) from answer where q_num = #{value}
+	</select>
+	<!-- 여기까지 Reply 관련부분임. -->
+	<!-- 검색관련 include -->
+	<sql id="search">
+		<if test="searchType != null">
+			<where>
+				${searchType} LIKE '%'||#{keyWord}||'%'
+			</where>
+			<choose>
+				<when test="searchType=='q_title'.toString() and c_Id != null">
+					and q_secret = 'n'
+					or c_id = #{c_Id} and q_secret = 'y'
+				</when>
+				<when test="searchType=='q_title'.toString() and c_Id == null">
+					and q_secret = 'n'
+				</when>
+				<when test="searchType=='c_Id'.toString()">
+					and q_secret = 'n'
+				</when>
+			</choose>
+		</if>
+	</sql>
+	<!-- 검색관련 include -->
 	<!-- 또 다른 셀렉트문 -->
 <!-- 	<select id="list" resultType="BoardVO" parameterType="SearchCriteria">
 		select q_num as q_Num, q_title as q_Title,
@@ -99,112 +155,6 @@
 		</if>
 		order by q_num desc
 	</select> -->
-
-	<select id="adShoppingMallList" resultType="AdShoppingMallHelp">
-		select
-		(SELECT
-		DISTINCT s_sname
-		from ADSHOPPINGMALL a, SHOPPINGMALL s
-		where s.s_num =
-		a.s_num
-		and s.s_num = ad.s_num) as S_Name from adshoppingmall ad
-	</select>
-
-	<insert id="insert" parameterType="BoardVO">
-		insert into question
-		(q_num,
-		q_title, q_content, q_date, c_num, s_num, q_secret)
-		VALUES
-		((select
-		nvl(max(q_num+1),1) from
-		question),#{q_Title},#{q_Content},sysdate,#{c_Num},#{s_Num},#{q_Secret})
-	</insert>
-	<select id="getS_Num" parameterType="String" resultType="String">
-		select
-		s_num from shoppingmall where s_sname = #{value}
-	</select>
-	<select id="detail" resultType="BoardVO" parameterType="int">
-		<!-- select temp.*,(SELECT c.c_id from question q, customer c where q.c_num=c.c_num 
-			and q_num=#{value})as c_Id from ((SELECT * FROM question)temp) where q_num=#{value} -->
-
-		<!-- select * from question where q_num = #{value} -->
-
-		select q_num as q_Num, q_title as q_Title, q_content as q_Content,
-		q_date as q_Date, c_id as c_Id, s_sname as s_Name, q_secret as
-		q_Secret
-		from question q
-		INNER JOIN customer c ON q.c_num=c.c_num
-		INNER
-		JOIN adshoppingmall a ON q.s_num=a.s_num
-		INNER JOIN shoppingmall s ON
-		s.s_num=q.s_num
-		where q_num=#{value}
-	</select>
-	<update id="update" parameterType="BoardVO">
-		update question set
-		q_title =
-		#{q_Title},
-		q_content = #{q_Content}
-		where q_num = #{q_Num}
-	</update>
-	<delete id="delete">
-		delete from question where q_num = #{value}
-	</delete>
-	<select id="totalCount" resultType="int">
-		select count(q_num) from
-		question q
-		INNER JOIN customer c ON q.c_num=c.c_num
-		<if test="searchType != null">
-			<where>
-				${searchType} LIKE '%'||#{keyWord}||'%'
-			</where>
-		</if>
-	</select>
-
-	<!-- 검색관련 include -->
-	<sql id="search">
-		<if test="searchType != null">
-			<where>
-				<!-- <foreach collection="searchType" item="searchType"> -->
-				${searchType} LIKE '%'||#{keyWord}||'%'
-				<!-- </foreach> -->
-			</where>
-		</if>
-		<!-- <if test="searchMine !=null"> <where> c_num = #{searchMine} </where> 
-			</if> -->
-	</sql>
-	<!-- "여기까지 게시판 관련" -->
-
-	<!-- "아래부터는 Relpy 관련임." -->
-
-	<insert id="R_insert" parameterType="ReplyVO">
-		insert into answer (as_num,
-		q_num, as_content, c_id, as_date)
-		values ((select nvl(max(as_num)+1,1)
-		from answer),#{q_Num}, #{as_Content}, #{c_Id}, sysdate)
-	</insert>
-	<select id="R_list" resultType="ReplyVO" parameterType="int">
-		select *
-		from answer where q_num = #{q_num} order by as_num desc
-	</select>
-	<update id="R_update">
-		update answer set
-		as_content = #{as_Content}
-		where
-		as_num = #{as_Num}
-	</update>
-	<delete id="R_delete" parameterType="int">
-		delete from answer where
-		as_num=#{as_num}
-	</delete>
-	<select id="R_detail" resultType="ReplyVO">
-		select * from answer where
-		as_num=#{as_num}
-	</select>
-	<select id="R_count" parameterType="int" resultType="int">
-		select count(*) from answer where q_num = #{value}
-	</select>
-	<!-- 여기까지 Reply 관련부분임. -->
 
 
 
