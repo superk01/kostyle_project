@@ -1,3 +1,4 @@
+<%@page import="kostyle.login.domain.CustomerVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
@@ -32,8 +33,33 @@
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/owl.carousel.css" />
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/responsive.css" />
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/kostyleHeader.css" />
- 
+ 	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
 <script type="text/javascript">
+<%Object userVO = session.getAttribute("login"); %>
+<%CustomerVO customerVO = null; %>
+<%String c_num = null; %>
+<%if(userVO instanceof CustomerVO){ 
+	customerVO = (CustomerVO)userVO; 
+	c_num = customerVO.getC_num();
+  }%>
+  <%if(userVO != null){%>
+	$(document).ready(function(){
+		remoconList();
+		<%-- $.ajax({
+			url:'/remocon/list/'+<%=c_num%>,
+			type: 'get',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"GET"
+			},
+			dataType:'text',
+			success : function(data) {
+				alert(data);
+				$('.mainmenu-area').append(data);
+			}
+		}); --%>
+	});
+<%}%>
 	 $(document).ready(function(){ 
 		var returnPath1 = jQuery(location).attr('pathname')+"";
 		var returnPath2 = location.pathname+"";
@@ -50,8 +76,46 @@
  			});
 			return false;
 		});
+ 		
+ 		 $('body').on('click','button.wing_btn_delete',function(){
+ 			 
+			 var h_num=$(this).val();
+			 $.ajax({
+				url : "/history/delete?h_num="+h_num,
+				type : 'get',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"GET"
+				},
+				dataType:'text',
+				success : function(data){
+					if(data=='delete'){
+						$('.wing_fixed').remove();
+						remoconList();
+					}
+				}					
+			});
+			return false;
+		});
+ 		 
 
 	});
+ 		function remoconList(){
+ 			
+ 			$.ajax({
+ 				url: '/remocon/list/'+${login.c_num},
+	 			type: 'post',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"POST"
+				},
+				dataType:'text',
+				success : function(data) {
+					
+					$('.remocon').after(data);
+				}
+ 			});
+ 		}
 </script>
 
 
@@ -60,13 +124,16 @@
   <body>
 
 		<div class="header-area">
-		
         <div class="container">
             <div class="row">
                 <c:choose>
 				<c:when test="${empty sessionScope.login}">
 				<div class="row">
+					<div class="col-md-8">
+    					<div class="user">
+       				 </div>
    				 </div>
+    				<div class="col-md-4">
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
                 				<li><a href="../join/join"><i class="fa fa-list-ul"></i> 회원가입 </a></li>
@@ -74,10 +141,12 @@
                 				<li><a href="../cuslogin/login"><i class="fa fa-user-o"></i> Login </a></li>
             				</ul>
         				</div>
+    				</div>
 				</div>
 				</c:when>
 
 				<c:when test="${not empty sessionScope.login}">
+				<div class="row">
 					<div class="col-md-8">
     					<div class="user">
         					<h5><i class="fa fa-heart"></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
@@ -91,11 +160,11 @@
             				</ul>
         				</div>
     					</div>
+				</div>
 				</c:when>
 				</c:choose>
             </div>
 		</div>
-		
 		</div> <!-- End header area -->
    
    
@@ -146,7 +215,8 @@
         </div>
     </div> <!-- End mainmenu area -->
 
+	<div class="remocon"></div>
 
   </body>
 </html>
-<%@ include file="../history/remocon.jsp" %>
+<%--  <%@ include file="../history/remocon.jsp" %>  --%>
