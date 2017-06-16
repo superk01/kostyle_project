@@ -30,7 +30,7 @@
 .login h2{
     font-weight:bold;
 display: inline;
-    color: #FFE270;
+    color: #FF9600;
     font-size: 30px;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -93,8 +93,8 @@ display: inline;
 				</div>
 			</div>
 				
-				<span class="button-checkbox">
-					<button type="button" class="btn" data-color="warning"> 자동 로그인</button>
+					<span class="button-checkbox">
+					<button type="button" class="btn"  data-color="warning"> 자동 로그인</button>
                     <input type="checkbox" name="useCookie" id="remember_me" checked="checked" class="hidden">
 					<a href="" id="forgotPass" class="btn btn-link pull-right">아직 회원이 아니신가요?</a>
 				</span>
@@ -103,21 +103,24 @@ display: inline;
 					<div class="col-xs-12 col-sm-12 col-md-12">
 						<button type="submit" class="btn btn-lg btn-default btn-block" >로그인</button>
 					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a><button class="btn btn-lg btn-default btn-block" >아이디 찾기</button></a>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a><button class="btn btn-lg btn-default btn-block" >비밀번호 찾기</button></a>
-					</div>
 				</div>
-			</fieldset>
 		</form>
+		<div class="findbtn">
+					<span class="findbtn col-xs-6 col-sm-6 col-md-6">
+						<a href="/findshop/idshop"><div class="btn btn-lg btn-default btn-block" >아이디 찾기 <i class="fa fa-info-circle"></i></div></a>
+					</span>
+					<span class="findbtn col-xs-6 col-sm-6 col-md-6">
+						<a href="/findshop/passwordshop"><div class="btn btn-lg btn-default btn-block" >비밀번호 찾기 <i class="fa fa-lock"></i></div></a>
+					</span>
+			</div>
+			</fieldset>
 		</div>
 	<!-- 	</fieldset> -->
 	</div>
 </div>
-	
+	<br><br><br><br>
 	</section>
+
 
 </section>
 
