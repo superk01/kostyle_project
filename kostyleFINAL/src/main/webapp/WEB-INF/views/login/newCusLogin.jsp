@@ -107,15 +107,17 @@ display: inline;
 					<div class="col-xs-12 col-sm-12 col-md-12">
 						<button type="submit" class="btn btn-lg btn-default btn-block" >로그인</button>
 					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a><button class="btn btn-lg btn-default btn-block">아이디 찾기</button></a>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a><button class="btn btn-lg btn-default btn-block">비밀번호 찾기</button></a>
-					</div>
 				</div>
-			</fieldset>
 		</form>
+		<div class="findbtn">
+					<span class="findbtn col-xs-6 col-sm-6 col-md-6">
+						<a href="/find/id"><div class="btn btn-lg btn-default btn-block" >아이디 찾기 <i class="fa fa-info-circle"></i></div></a>
+					</span>
+					<span class="findbtn col-xs-6 col-sm-6 col-md-6">
+						<a href="/find/password"><div class="btn btn-lg btn-default btn-block" >비밀번호 찾기 <i class="fa fa-lock"></i></div></a>
+					</span>
+			</div>
+			</fieldset>
 		</div>
 	<!-- 	</fieldset> -->
 	</div>
