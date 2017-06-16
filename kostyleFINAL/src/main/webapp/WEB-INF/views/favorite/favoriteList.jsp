@@ -53,29 +53,29 @@
 			<div class="box-body">
 				<table class="table table-hover">
 					<thead>
-						<tr>
-							<th>IMAGE</th>
-							<th>SHOPPING MALL</th>
-							<th>COMMENT</th>
-							<th>HOME</th>
-							<th>DELETE</th>
+						<tr  class="tr">
+							<th class="th">IMAGE</th>
+							<th class="th">SHOPPING MALL</th>
+							<th class="th">COMMENT</th>
+							<th class="th">HOME</th>
+							<th class="th">DELETE</th>
 						</tr>
 					</thead>
 
 					<tbody>
 						<c:forEach items="${list}" var="Favorite">
 
-							<tr>
-								<td><img id="s_image" src="${Favorite.s_image}"></td>
-								<td><a class="shoplink" href="http://${Favorite.s_shopurl }">${Favorite.s_sname}</a></td>
-								<td><a
+							<tr  class="tr">
+								<td class="td"><img id="s_image" src="${Favorite.s_image}"></td>
+								<td class="td"><a class="shoplink" href="http://${Favorite.s_shopurl }">${Favorite.s_sname}</a></td>
+								<td class="td"><a
 									href='/favorite/comentRead${pageMaker.makeQuery(pageMaker.cri.page)}&f_num=${Favorite.f_num }'>
 										<img src="/resources/image/favoriteImg/comment.png"
 										title="코멘트">
 								</a></td>
-								<td><a class="shoplink" href="http://${Favorite.s_shopurl }">
+								<td class="td"><a class="shoplink" href="http://${Favorite.s_shopurl }">
 								<img src="/resources/image/favoriteImg/home.png" title="쇼핑몰 이동"></a></td>
-								<td><a href="/favorite/deleteFavorite?f_num=${Favorite.f_num }&c_num=${Favorite.c_num}"><img
+								<td class="td"><a href="/favorite/deleteFavorite?f_num=${Favorite.f_num }&c_num=${Favorite.c_num}"><img
 										src="/resources/image/favoriteImg/delete2.png"
 										title="즐겨찾기 삭제"></a></td>
 							</tr>
@@ -89,7 +89,7 @@
 			 <div class="box-footer">
 
 					<div class="text-center">
-						<ul class="pagination">
+						<ul class="pagination" id="pagenation">
 
 							<c:if test="${pageMaker.prev}">
 								<li><a href="favoriteList${pageMaker.makeQuery(pageMaker.startPage - 1)}">&laquo;</a></li>
