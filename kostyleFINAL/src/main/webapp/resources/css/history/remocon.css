@@ -1,14 +1,14 @@
 .wing_fixed{
 	position: fixed;
-	right: 10%;
+	right: 4%;
 	}
 
-.wing_relative{
+.wing_fixed .wing_relative{
 	position: relative;
 }
 .wing_banner {
 	position: absolute;
-	top:250px;
+	top: 0px;
 	left:50%;
 	z-index:10000;
 	/* margin-left:1833px; */
@@ -17,10 +17,10 @@
 	position:fixed
 	top:10px;
 	} */
-#wingBanner{
+/* #wingBanner{
 	position:fixed;
 	top:10px;
-}
+} */
 .wing_banner .wing_prd_wrap {
 	position:relative;
 	width:68px;
@@ -38,7 +38,7 @@
 .wing_banner .wing_prd_wrap .hwrap .tit a:hover .ico{ background:url(/resources/images/historyImg/sp_common_v2.png) no-repeat -95px -385px;}
 .wing_banner .wing_prd_wrap .hwrap .tit a:hover .tx { text-decoration:underline;}
 .wing_banner .wing_prd_wrap .hwrap .tit.on a .ico{ background:url(/resources/images/historyImg/sp_common_v2.png) no-repeat -115px -385px;}
-.wing_banner .wing_prd_list {margin:9px 37px 0px;}
+.wing_banner .wing_prd_list {margin:9px 36px 0px;}
 .wing_banner .wing_prd_list ul {
 	position:relative;
 	width:60px;
@@ -48,7 +48,7 @@
 .wing_banner .wing_prd .wing_prd_img{display:block;width:60px;height:60px;text-align:center;}
 .wing_banner .wing_prd img {max-width:60px;height:60px;*width:60px;*max-width:auto;vertical-align:middle;}
 .wing_banner .wing_prd .wing_prd_info{ display:none;}
-.wing_banner .wing_prd a:hover .wing_prd_info{display:block; position:absolute; top:0;right:0;left:20;width:140px;height:58px;padding-right:59px;font-family:'占쏙옙占쏙옙',dotum,'AppleSDGothicNeo',Tahoma,sans-serif;font-size:11px;line-height:14px;border:1px solid #111111;}
+/* .wing_banner .wing_prd a:hover .wing_prd_info{display:block; position:absolute; top:0;right:0;left:15px;width:140px;height:58px;padding-right:59px;font-family:'占쏙옙占쏙옙',dotum,'AppleSDGothicNeo',Tahoma,sans-serif;font-size:11px;line-height:14px;border:1px solid #111111;} */
 .wing_banner .wing_prd a:hover .wing_prd_info .p_name{display:block;overflow:hidden;height:30px;padding:8px 20px 0 15px;line-height:15px;color:#111;background:#fff;}
 .wing_banner .wing_prd a:hover .wing_prd_info .p_price{display:block;height:14px;padding:0 20px 6px 15px;color:#f43142;background:#fff;}
 .wing_banner .wing_prd a:hover .wing_prd_info .p_price strong{font-family:tahoma, san-serif;}

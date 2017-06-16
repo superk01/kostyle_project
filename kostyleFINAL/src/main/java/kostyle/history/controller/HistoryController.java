@@ -45,7 +45,7 @@ public class HistoryController {
 		ResponseEntity<String> entity =null;
 		try {
 			service.insertHistory(historyVO,session);
-			entity = new ResponseEntity<String>(customerVO.getC_num(),HttpStatus.OK);
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
