@@ -14,7 +14,7 @@
 <!-- font awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
 <!-- Custom style -->
-<link rel="stylesheet" href="../../../resources/css/find/id_p.css"	media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="../../../resources/css/find/id_s.css"	media="screen" title="no title" charset="utf-8">
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -39,15 +39,15 @@
 	<div class="col-md-12">
 
 		<div class="page-header">
-			<h1><i class="fa fa-info-circle"></i> 회원 아이디 찾기 <small>KOStyle</small></h1>
+			<h1><i class="fa fa-info-circle"></i> 쇼핑몰 아이디 찾기 <small>KOStyle</small></h1>
 		</div>
 		
 		<div id="memberJoin">
 			
 			<c:choose>
-				<c:when test="${not empty find.c_id}">
-					<h3> 회원님의 아이디는 </h3>
-					<h3 id="findID">${find.c_id}</h3>
+				<c:when test="${not empty findshop.ad_id}">
+					<h3> 쇼핑몰의 아이디는 </h3>
+					<h3 id="findID">${findshop.ad_id}</h3>
 					<h3> 입니다. </h3>
 					
 					<div class="form-group">
@@ -68,8 +68,8 @@
 					<br><br>
 					<div class="form-group">
 					<div class="col-sm-12 text-center">
-					<button id="btn-join" class="btn btn-default btn-lg" onclick="location.href='/find/id'">
-						회원 아이디찾기 <i class="fa fa-info-circle"></i>
+					<button id="btn-join" class="btn btn-default btn-lg" onclick="location.href='/findshop/idshop'">
+						쇼핑몰 아이디찾기 <i class="fa fa-info-circle"></i>
 					</button>
 					<button id="btn-cancle" class="btn btn-default btn-lg" onclick="location.href='/'">
 						코스타일몰 홈 <i class="glyphicon glyphicon-home"></i>
