@@ -13,7 +13,7 @@
 <!-- font awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
 <!-- Custom style -->
-<link rel="stylesheet" href="../../../resources/css/find/id_p.css"	media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="../../../resources/css/find/id_s.css"	media="screen" title="no title" charset="utf-8">
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -33,27 +33,27 @@
 
 		<div class="page-header">
 			<h1>
-			<i class="fa fa-info-circle"></i> 회원 아이디 찾기 <small>KOStyle</small>
-			<a id="findshop" href="/findshop/idshop">쇼핑몰 아이디 찾기를 원하시면 <b>여기</b>를 클릭해주세요.</a>
+			<i class="fa fa-info-circle"></i> 쇼핑몰 아이디 찾기 <small>KOStyle</small>
+			<a id="findshop" href="/find/id">회원 아이디 찾기를 원하시면 <b>여기</b>를 클릭해주세요.</a>
 			</h1>
 		</div>
-		<form class="form-horizontal" action="idFindResult" method="post">
+		<form class="form-horizontal" action="idshopFindResult" method="post">
 		
 		<div id="memberJoin">
 		<p id="idfind"><i class="glyphicon glyphicon-hand-right"></i> 본인확인 이메일 주소와 가입시 입력한 이메일 주소가 같아야, 아이디를 찾을 수 있습니다.</p>
 			<div class="form-group">
 			<br><br>
-				<label class="col-sm-3 control-label" for="inputName">이름</label>
+				<label class="col-sm-3 control-label" for="inputName">쇼핑몰 명</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputName" type="text" name="c_name" required=""
-					 placeholder="이름을 입력해 주세요" autocomplete="off">
+					<input class="form-control" id="inputName" type="text" name="s_sname" required=""
+					 placeholder="쇼핑몰 이름을 정확히 입력해 주세요" autocomplete="off">
 				</div>
 			</div>
 			<br>
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputEmail" type="email" name="c_email"	required=""
+					<input class="form-control" id="inputEmail" type="email" name="s_email"	required=""
 					 placeholder="ex) gildong@kostyle.com" autocomplete="off">
 				</div>
 			</div>

@@ -120,7 +120,7 @@ $(document).ready(function(){
 										</th>
 										<td>
 											<label for="name">
-												<input  class="passText1" id="c_pass" name="c_pass" value="${dto.c_pass}" onkeyup="checkByte(this, '20');" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw_validation();"><br>
+												<input  class="passText1" id="c_pass" name="c_pass"  onkeyup="checkByte(this, '20');" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw_validation();"><br>
 												<span id="m_pw"></span>
 											</label>
 											<span id="nameMsg" style="display: block; color:red"></span>
