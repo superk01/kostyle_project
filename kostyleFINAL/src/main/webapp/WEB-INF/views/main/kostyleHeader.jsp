@@ -30,7 +30,6 @@
     <script src="../../../resources/js/main/main.js"></script>
        
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/owl.carousel.css" />
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/responsive.css" />
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/kostyleHeader.css" />
  	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
@@ -149,7 +148,7 @@
 				<div class="row">
 					<div class="col-md-8">
     					<div class="user">
-        					<h5><i class="fa fa-heart"></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
+        					<h5><i class="fa fa-heart" style=""></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
         				</div>
     				</div>
     				<div class="col-md-4">

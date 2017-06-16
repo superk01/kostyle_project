@@ -108,10 +108,10 @@ display: inline;
 						<button type="submit" class="btn btn-lg btn-default btn-block" >로그인</button>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a><button class="btn btn-lg btn-default btn-block" >아이디 찾기</button></a>
+						<a><button class="btn btn-lg btn-default btn-block">아이디 찾기</button></a>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a><button class="btn btn-lg btn-default btn-block" >비밀번호 찾기</button></a>
+						<a><button class="btn btn-lg btn-default btn-block">비밀번호 찾기</button></a>
 					</div>
 				</div>
 			</fieldset>

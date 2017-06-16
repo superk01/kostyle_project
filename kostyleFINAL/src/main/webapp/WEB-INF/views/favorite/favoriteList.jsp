@@ -13,7 +13,7 @@
 <title>KOStylemall 즐겨찾기</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Bootstrap -->
-<link rel="stylesheet" href="/resources/css/favorite/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+<!-- <link rel="stylesheet" href="/resources/css/favorite/bootstrap.min.css" media="screen" title="no title" charset="utf-8"> -->
 <!-- font awesome -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <!-- Custom style -->

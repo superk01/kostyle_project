@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KOStylemall 아이디 찾기</title>
+<title>KOStylemall 비밀번호 찾기</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Bootstrap -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -30,7 +30,7 @@
 	<div class="col-md-12">
 
 		<div class="page-header">
-			<h1><i class="fa fa-info-circle"></i> 쇼핑몰 아이디 찾기 <small>KOStyle</small></h1>
+			<h1><i class="fa fa-info-circle"></i> 쇼핑몰 비밀번호 찾기 <small>KOStyle</small></h1>
 		</div>
 		
 		<div id="memberJoin">
