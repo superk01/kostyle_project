@@ -40,11 +40,12 @@
 <%String c_num = null; %>
 <%if(userVO instanceof CustomerVO){ 
 	customerVO = (CustomerVO)userVO; 
-	c_num = customerVO.getC_num();
-  }%>
-  <%if(userVO != null){%>
+	c_num = customerVO.getC_num();%>
 	$(document).ready(function(){
 		remoconList();
+	});
+<%}%>
+ 
 		<%-- $.ajax({
 			url:'/remocon/list/'+<%=c_num%>,
 			type: 'get',
@@ -58,8 +59,7 @@
 				$('.mainmenu-area').append(data);
 			}
 		}); --%>
-	});
-<%}%>
+
 	 $(document).ready(function(){ 
 		var returnPath1 = jQuery(location).attr('pathname')+"";
 		var returnPath2 = location.pathname+"";
@@ -101,7 +101,6 @@
 
 	});
  		function remoconList(){
- 			
  			$.ajax({
  				url: '/remocon/list/'+${login.c_num},
 	 			type: 'post',

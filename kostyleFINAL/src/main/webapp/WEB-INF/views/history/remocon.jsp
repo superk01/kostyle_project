@@ -12,6 +12,7 @@
 <!-- <link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
 <script src="/resources/jquery/jquery-3.2.1.js"></script> -->
 
+
 <script type="text/javascript">
 <%-- <%Object userVO = session.getAttribute("login"); %>
 <%CustomerVO customerVO = null; %>
@@ -120,7 +121,7 @@
 					<div class="hwrap">											<!-- 히스토리로 이동 -->
 						<strong class = "tit">
 							<a id = "wingRecentCount" href = "/history/list/${login.c_num }">				
-								<span class = "tx">최근 본상품</span>
+								<span class = "tx" style="font-size: 11px;">최근 본상품</span>
 								<span class="count">${history_Num }</span>				<!-- 최대상품은 15개까지. -->
 								<span class = "ico"></span>	
 							</a>

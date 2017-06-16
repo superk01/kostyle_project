@@ -29,7 +29,8 @@
 	background:#fff; 
 	height: 270px;}
 .wing_banner .wing_prd_wrap .hwrap {margin-bottom:9px;line-height:14px;text-align:center;}
-.wing_banner .wing_prd_wrap .hwrap .tit{display:block;padding-top:9px;font-weight:normal;font-family:'占쏙옙占쏙옙',dotum,'AppleSDGothicNeo',Tahoma,sans-serif;font-size:11px;line-height:14px;color:#666;letter-spacing:-1px;}
+.wing_banner .wing_prd_wrap .hwrap .tit{display:block;padding-top:9px;font-weight:normal;font-family:'占쏙옙占쏙옙',dotum,'AppleSDGothicNeo',Tahoma,sans-serif; font-size:11px !important; line-height:14px;color:#666;letter-spacing:-1px;}
+.wing_banner .wing_prd_wrap .hwrap .tit a span{font-size:11px !important;}
 .wing_banner .wing_prd_wrap .hwrap .tit a {display:block;position:relative;margin-top:-9px;padding-top:9px;margin-bottom:12px;text-align:center;text-decoration:none;}
 .wing_banner .wing_prd_wrap .hwrap .tit a .tx {display:block;color:#666;}
 .wing_banner .wing_prd_wrap .hwrap .tit a .count{display:inline-block;margin-top:3px;padding-bottom:1px;font-weight:bold;font-family:Tahoma, sans-serif;font-size:11px;line-height:12px;letter-spacing:0;color:#f43142;background:url(/img/common/bg_tit_line.gif) repeat-x left bottom;}
