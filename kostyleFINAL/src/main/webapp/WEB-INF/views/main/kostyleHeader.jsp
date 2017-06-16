@@ -46,20 +46,7 @@
 	});
 <%}%>
  
-		<%-- $.ajax({
-			url:'/remocon/list/'+<%=c_num%>,
-			type: 'get',
-			headers:{
-				"Content-Type":"application/json",
-				"X-HTTP-Method-Override":"GET"
-			},
-			dataType:'text',
-			success : function(data) {
-				alert(data);
-				$('.mainmenu-area').append(data);
-			}
-		}); --%>
-
+	
 	 $(document).ready(function(){ 
 		var returnPath1 = jQuery(location).attr('pathname')+"";
 		var returnPath2 = location.pathname+"";
