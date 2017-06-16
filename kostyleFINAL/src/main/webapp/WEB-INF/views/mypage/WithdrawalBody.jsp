@@ -23,7 +23,7 @@
 		환영합니다.
 </h2>
 </c:if>
-<header>x
+<header>
 	<jsp:include page="header.jsp"/>
 </header>	
 <section>

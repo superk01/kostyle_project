@@ -6,14 +6,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KOStylemall 아이디 찾기</title>
+<title>KOStylemall 비밀번호 찾기</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Bootstrap -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <!-- font awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 <!-- Custom style -->
-<link rel="stylesheet" href="../../../resources/css/find/id_p.css"	media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="../../../resources/css/find/id_s.css"	media="screen" title="no title" charset="utf-8">
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -32,28 +32,37 @@
 	<div class="col-md-12">
 
 		<div class="page-header">
-			<h1>
-			<i class="fa fa-info-circle"></i> 회원 아이디 찾기 <small>KOStyle</small>
-			<a id="findshop" href="/findshop/idshop">쇼핑몰 아이디 찾기를 원하시면 <b>여기</b>를 클릭해주세요.</a>
+			<h1><i class="fa fa-lock"></i> 쇼핑몰 비밀번호 찾기 <small>KOStyle</small>
+			<a id="findshop" href="/find/password">회원 비밀번호 찾기를 원하시면 <b>여기</b>를 클릭해주세요.</a>
 			</h1>
 		</div>
-		<form class="form-horizontal" action="idFindResult" method="post">
+		<form class="form-horizontal" action="pwshopFindResult" method="post">
 		
+		<p id="idfind"><i class="glyphicon glyphicon-hand-right"></i> 본인확인 이메일 주소와 가입시 입력한 이메일 주소가 같아야, 비밀번호를 찾을 수 있습니다.</p>
+		<p id="idfind"><i class="glyphicon glyphicon-hand-right"></i> 가입 시 메일로 임시 비밀번호가 발급됩니다.</p>
+
 		<div id="memberJoin">
-		<p id="idfind"><i class="glyphicon glyphicon-hand-right"></i> 본인확인 이메일 주소와 가입시 입력한 이메일 주소가 같아야, 아이디를 찾을 수 있습니다.</p>
 			<div class="form-group">
 			<br><br>
-				<label class="col-sm-3 control-label" for="inputName">이름</label>
+				<label class="col-sm-3 control-label" for="inputName">쇼핑몰 명</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputName" type="text" name="c_name" required=""
-					 placeholder="이름을 입력해 주세요" autocomplete="off">
+					<input class="form-control" id="inputName" type="text" name="s_sname" required=""
+					 placeholder="쇼핑몰 이름을 정확히 입력해 주세요" autocomplete="off">
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="inputId">아이디</label>
+				<div class="col-sm-6">
+						<input class="form-control" id="inputId" type="text" name="ad_id" required=""
+						 placeholder="쇼핑몰 아이디를 입력해 주세요" autocomplete="off">
 				</div>
 			</div>
 			<br>
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
 				<div class="col-sm-6">
-					<input class="form-control" id="inputEmail" type="email" name="c_email"	required=""
+					<input class="form-control" id="inputEmail" type="email" name="s_email"	required=""
 					 placeholder="ex) gildong@kostyle.com" autocomplete="off">
 				</div>
 			</div>
@@ -62,7 +71,7 @@
 			<div class="form-group">
 				<div class="col-sm-12 text-center">
 					<button id="btn-join" class="btn btn-default btn-lg" type="submit" class="submit">
-						아이디찾기 <i class="fa fa-info-circle"></i>
+						비밀번호찾기 <i class="fa fa-lock"></i>
 					</button>
 					<button id="btn-cancle" class="btn btn-default btn-lg" onclick="location.href='/'">
 						코스타일몰 홈 <i class="glyphicon glyphicon-home"></i>

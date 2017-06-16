@@ -18,5 +18,6 @@
 		<package name="kostyle.admin.domain"/>
 		<package name="kostyle.discount.domain"/>
 		<package name="kostyle.find.domain"/>
+		<package name="kostyle.ranking.domain"/>
 	</typeAliases>
 </configuration>
