@@ -10,11 +10,11 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<!-- <link rel="stylesheet" type="text/css" href="/resources/css/history/historyiFrame.css" /> -->
 <title>Insert title here</title>
 <style type="text/css">
 .table{
-	width: 80%;
+	width: 1231px;
 }
 .prdurl {
 	height: 100px;
@@ -102,8 +102,7 @@ $(document).ready(function() {
 		location.href = "#CategoryResult_top";
 		event.preventDefault();
 		if ($('#CategorysearchIframe').length > 0) {
-			$('#CategorysearchIframe')
-					.attr("src", link);
+			$('#CategorysearchIframe').attr("src", link);
 		} else {
 			$('#CategoryResult_top').remove();
 			$('table.table').parent().prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
@@ -116,7 +115,9 @@ $(document).ready(function() {
 		});
 	})
 	$('.prdname a').on('click',function(event) {
+		alert('이벤트 확인');
 		var link = $(this).attr('href');
+		alert(link);
 		location.href = "#CategoryResult_top";
 		event.preventDefault();
 		if ($('#CategorysearchIframe').length > 0) {
@@ -137,10 +138,10 @@ $(document).ready(function() {
 </head>
 <body>
 
-		<div id="CategoryResult_top"></div>
+
 	<div class="container">
 		<!-- 최근본 상품정보 컨터이너 -->
-		<table border="1px solid" class="table">
+		<table border="1px solid" class="table" >
 			<!-- 최근 본 상품정보 테이블 -->
 			<caption>최근 본 상품 정보</caption>
 			<colgroup>

@@ -155,13 +155,13 @@ th.th{
 					<div class="dropdown-menu open">
 						<ul class="dropdown-menu inner" role="menu">
 							<li class="selected" data-original-index="0"><a tabindex="0"
-								data-tokens="null"><span class="text">통합검색</span><span
+								data-tokens="null"><span class="text"></span><span
 									class="glyphicon glyphicon-ok check-mark"></span></a></li>
 							<li data-original-index="1"><a tabindex="0"
-								data-tokens="null"><span class="text">작성자</span><span
+								data-tokens="null"><span class="text"></span><span
 									class="glyphicon glyphicon-ok check-mark"></span></a></li>
 							<li data-original-index="2"><a tabindex="0"
-								data-tokens="null"><span class="text">댓글작성자</span><span
+								data-tokens="null"><span class="text"></span><span
 									class="glyphicon glyphicon-ok check-mark"></span></a></li>
 						</ul>
 					</div>
