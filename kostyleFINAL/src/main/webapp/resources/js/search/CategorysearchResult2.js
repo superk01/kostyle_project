@@ -3,7 +3,7 @@ $(function(){
 	CategoryFilterClick();
 });
 
-function CategoryItemClick(){
+/*function CategoryItemClick(){
 	$('.CategoryResult_oneItemBox a').click(function(event){
 		$.ajax({
 			url : '/history/insert',
@@ -37,7 +37,7 @@ function CategoryItemClick(){
 			$('#IframeRemocon').remove();
 		});
 	});	
-}
+}*/
 
 function CategoryFilterClick(){
 	$('#CategoryFilterrandom').click(function(){
