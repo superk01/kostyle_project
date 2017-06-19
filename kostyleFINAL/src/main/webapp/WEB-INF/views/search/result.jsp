@@ -12,26 +12,15 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
 <!-- <script type="text/javascript" src="../resources/js/jquery.js"></script> -->
 <script src="/resources/jquery/jquery-3.2.1.js"></script>
-<script type="text/javascript"  src="/resources/js/search/CategorysearchResult2.js"></script>
+<script type="text/javascript"  src="/resources/js/search/CategorysearchResult2.js"/>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('div.CategoryResult_oneItemBox').on('click',function(event){
 		
-		event.preventDefault();
-		/* var product_link=$(this).eq(0).find('a').attr('href');
-		var product_ImageLink=$(this).eq(0).find('img').attr('src');
-		var product_name=$(this).children().eq(1).find('a').html();
-		var product_price=$(this).children().eq(2).find('a').html(); */
+		/* event.preventDefault();
 		
-/* 		alert($(this).eq(0).find('img').attr('src'));
-		alert($(this).eq(0).find('a').attr('href'));
-		alert($(this).children().eq(1).find('a').html());
-		alert($(this).children().eq(2).find('a').html()); */
-		
-		/* var nodes=$(this).children();
-		alert(nodes.length); */
-		
-		$.ajax({
+		alert('이벤트');
+		 $.ajax({
 			url : '/history/insert',
 			type : 'post',
 			headers:{
@@ -44,13 +33,11 @@ $(document).ready(function(){
 					h_Name:$(this).children().eq(1).find('a').html(),
 					h_Price:$(this).children().eq(2).find('a').html()}),
 			success : function(data){
-				/* if(${login.c_id } != null){ */
 					$('.wing_fixed').remove();
 					remoconList();
-				/* } */
-			}		
-			});
-		});
+				}		
+			}); 
+		}); */
 	});
 	
 

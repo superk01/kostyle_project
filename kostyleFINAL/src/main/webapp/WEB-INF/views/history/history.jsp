@@ -11,10 +11,11 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- <link rel="stylesheet" type="text/css" href="/resources/css/history/historyiFrame.css" /> -->
+<script type="text/javascript"  src="/resources/js/search/CategorysearchResult2.js"/>
 <title>Insert title here</title>
 <style type="text/css">
 .table{
-	width: 1231px;
+	width: 80%;
 }
 .prdurl {
 	height: 100px;
@@ -51,6 +52,7 @@
 <script src="/resources/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	/* 가장 상단의 체크박스 클릭시에 모든 체크 박스가 선택 되도록. */
 	$('#chkAll').click(function() {
 
 		if ($(this).prop('checked')) {
@@ -59,22 +61,21 @@ $(document).ready(function() {
 			$('.checkbox').prop('checked', false);
 		}
 	});
-
+	/* 삭제 버튼을 눌렀을 때 몇 개의 체크박스가 있는지 확인하고 체크 되어 있는 상품들을 DB에서 삭제. */
 	$('.deleteButton').click(function() {
 		var h_num = "";
 		var c_num = $('input[name=c_num]').val();
-		alert(c_num);
+		/* alert(c_num); */
 
 		$('input[name=box]:checked').each(function() {
 			h_num = h_num+ $(this).val()+ ",";
 		});
-		h_num = h_num.substring(0, h_num
-				.lastIndexOf(","));
+		h_num = h_num.substring(0, h_num.lastIndexOf(","));
 		alert(h_num);
 		if (h_num != "") {
 			/* location.href="deleteHistoryAction.history?h_num="+h_num+"&c_num="+c_num; */
 			$.ajax({
-				url : "${path}/history/delete?h_num="+ h_num,
+				url : "/history/delete?h_num="+ h_num,
 				type : 'get',
 				headers : {
 					"Content-Type" : "application/json",
@@ -82,7 +83,7 @@ $(document).ready(function() {
 				},
 				dataType : 'text',
 				success : function() {
-					location.href = "${path}/history/list/"+ c_num;
+					location.href = "/history/list/"+ c_num;
 				}
 			});
 		} else {

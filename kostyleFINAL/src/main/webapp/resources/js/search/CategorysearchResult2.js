@@ -5,6 +5,23 @@ $(function(){
 
 function CategoryItemClick(){
 	$('.CategoryResult_oneItemBox a').click(function(event){
+		$.ajax({
+			url : '/history/insert',
+			type : 'post',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"POST"
+			},
+			data : JSON.stringify(
+					{h_Prdurl:$(this).eq(0).find('a').attr('href'),
+					h_Imgurl:$(this).eq(0).find('img').attr('src'),
+					h_Name:$(this).children().eq(1).find('a').html(),
+					h_Price:$(this).children().eq(2).find('a').html()}),
+			success : function(data){
+					$('.wing_fixed').remove();
+					remoconList();
+			}		
+		});
 		event.preventDefault();
 		var link = $(this).attr('href');
 		if($('#CategorysearchIframe').length>0){
