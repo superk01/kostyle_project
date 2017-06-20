@@ -13,8 +13,7 @@
 <!-- font awesome -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 <!-- Custom style -->
-<link rel="stylesheet" href="../../../resources/css/join/style.css"	media="screen" title="no title" charset="utf-8">
-<link rel="stylesheet" href="../../../resources/css/find/idstyle.css"	media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="../../../resources/css/find/id_p.css"	media="screen" title="no title" charset="utf-8">
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -33,7 +32,9 @@
 	<div class="col-md-12">
 
 		<div class="page-header">
-			<h1><i class="fa fa-lock"></i> 비밀번호 찾기 <small>KOStyle</small></h1>
+			<h1><i class="fa fa-lock"></i> 회원 비밀번호 찾기 <small>KOStyle</small>
+			<a id="findshop" href="/findshop/passwordshop">쇼핑몰 비밀번호 찾기를 원하시면 <b>여기</b>를 클릭해주세요.</a>
+			</h1>
 		</div>
 		<form class="form-horizontal" action="pwFindResult" method="post">
 		

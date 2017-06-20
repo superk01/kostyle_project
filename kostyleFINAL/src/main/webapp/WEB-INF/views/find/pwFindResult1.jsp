@@ -7,14 +7,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KOStylemall 아이디 찾기</title>
+<title>KOStylemall 비밀번호 찾기</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- Bootstrap -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <!-- font awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
 <!-- Custom style -->
-<link rel="stylesheet" href="../../../resources/css/join/style.css"	media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="../../../resources/css/find/id_p.css"	media="screen" title="no title" charset="utf-8">
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -30,7 +30,7 @@
 	<div class="col-md-12">
 
 		<div class="page-header">
-			<h1><i class="fa fa-info-circle"></i> 아이디 찾기 <small>KOStyle</small></h1>
+			<h1><i class="fa fa-info-circle"></i> 회원 비밀번호 찾기 <small>KOStyle</small></h1>
 		</div>
 		
 		<div id="memberJoin">

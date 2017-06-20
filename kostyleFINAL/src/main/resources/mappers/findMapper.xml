@@ -22,6 +22,35 @@
 		where c_name=#{c_name} and c_email=#{c_email} and c_id=#{c_id}
 	</update>
     
+    
+    
+    
+    <!-- 쇼핑몰 -->
+    
+    <!-- 입력한 쇼핑몰이름과 이메일에 일치한 아이디 출력 -->
+	<select id="idshopFind" parameterType="FindshopInfo" resultType="String"> 
+		select ad_id
+		From shoppingmall s, adshoppingmall ad
+		where s.s_num = ad.s_num
+		and s.s_sname=#{s_sname} and s.s_email=#{s_email}
+    </select>
+
+
+	<!-- 입력한 쇼핑몰이름과 이메일과 아이디와 일치하는 정보가 있으면 1 없으면 0 
+	=> 이메일이 보내질 때, 비밀번호는 무작위로 바뀌어서 DB에 들어가져야함-->
+	<select id="pwshopFind" parameterType="FindshopInfo" resultType="int"> 
+     select count(ad_pass) from ADSHOPPINGMALL ad, SHOPPINGMALL s 
+     where s.s_num = ad.s_num and s.s_sname=#{s_sname} and s.s_email=#{s_email} and ad.ad_id=#{ad_id}
+    </select>
+    
+    
+    <!-- 임시 비밀번호로 db업데이트 => 메일은 암호화 전의 비밀번호가 보내져야하고, db에는 암호화 된 비밀번호가 들어가야함 -->
+    <update id="randomshopPassword" parameterType="FindshopInfo">
+		update ADSHOPPINGMALL set AD_PASS=#{ad_pass} 
+		where s_num=(select s_num from shoppingmall where s_sname=#{s_sname}
+		 and s_email=#{s_email}) and ad_id=#{ad_id}
+	</update>
+    
 </mapper>  
 
 

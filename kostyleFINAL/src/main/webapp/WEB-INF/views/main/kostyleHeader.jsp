@@ -11,7 +11,8 @@
     <title>KOStyle mall</title>
     
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="/resources/css/main/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     
     <!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
@@ -30,36 +31,23 @@
     <script src="../../../resources/js/main/main.js"></script>
        
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/owl.carousel.css" />
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/responsive.css" />
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/kostyleHeader.css" />
  	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
+ 	<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
 <script type="text/javascript">
 <%Object userVO = session.getAttribute("login"); %>
 <%CustomerVO customerVO = null; %>
 <%String c_num = null; %>
 <%if(userVO instanceof CustomerVO){ 
 	customerVO = (CustomerVO)userVO; 
-	c_num = customerVO.getC_num();
-  }%>
-  <%if(userVO != null){%>
+	c_num = customerVO.getC_num();%>
 	$(document).ready(function(){
 		remoconList();
-		<%-- $.ajax({
-			url:'/remocon/list/'+<%=c_num%>,
-			type: 'get',
-			headers:{
-				"Content-Type":"application/json",
-				"X-HTTP-Method-Override":"GET"
-			},
-			dataType:'text',
-			success : function(data) {
-				alert(data);
-				$('.mainmenu-area').append(data);
-			}
-		}); --%>
 	});
 <%}%>
+ 
+	
 	 $(document).ready(function(){ 
 		var returnPath1 = jQuery(location).attr('pathname')+"";
 		var returnPath2 = location.pathname+"";
@@ -97,11 +85,28 @@
 			});
 			return false;
 		});
+ 		   /* 리모컨의 상품을 클릭하였을때 iFrame으로 상품의 링크를  띄움. */
+ 		   $('body').on('click','li.wing_prd a',function(event) {
+ 			var link = $(this).attr('href');
+ 			location.href = "#CategoryResult_top";
+ 			event.preventDefault();
+ 			if ($('#CategorysearchIframe').length > 0) {
+ 				$('#CategorysearchIframe').attr("src", link);
+ 			} else {
+ 				$('#CategoryResult_top').remove();
+ 				$('.remocon').prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
+ 				$('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+ '">');
+ 				$('.remocon').prepend('<div id="#CategoryResult_top"></div>');
+ 			}
+ 			$('#IframeRemocon').click(function() {
+ 				$('#CategorysearchIframe').remove();
+ 				$('#IframeRemocon').remove();
+ 			});
+ 		});
  		 
-
 	});
+		/* 사용자의 히스토리내역을 리모컨에 띄우는 함수 */
  		function remoconList(){
- 			
  			$.ajax({
  				url: '/remocon/list/'+${login.c_num},
 	 			type: 'post',
@@ -149,7 +154,7 @@
 				<div class="row">
 					<div class="col-md-8">
     					<div class="user">
-        					<h5><i class="fa fa-heart"></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
+        					<h5><i class="fa fa-heart" style=""></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
         				</div>
     				</div>
     				<div class="col-md-4">

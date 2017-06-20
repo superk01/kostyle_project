@@ -257,11 +257,16 @@ $(document).ready(function(){
 	z-index: 10;																/* 엘리먼트드 레벨? z-index가 클수록 화면 위로 보여진다. */
 	visibility: hidden;
 }
+.detail{
+	width: 700px;
+	
+}
 </style>
 </head>
 <body>
 	<h2>글 상세보기</h2>
-	<table border="1">
+	<div class="container detail">
+	<table border="1" class="table table-striped table-bordered table-hover"> 
 		<tr height="30">
 			<td width="150">글번호</td>
 			<td width="150">${board.q_Num }</td>
@@ -277,18 +282,12 @@ $(document).ready(function(){
 			<td width="150">${board.s_Name }</td>
 			
 		</tr>			
-		<%-- <tr height="30">
-			<td width="150">파일</td>
-			<td colspan="3">
-				<a href="download.jsp?filename=${board.b_fname }">${board.b_fname }</a>
-			</td>			
-		</tr> --%>
 		<tr height="30">
 			<td width="150">제목</td>
 			<td colspan="3">${board.q_Title }</td>			
 		</tr>
 		<tr height="30">			
-			<td colspan="4">${board.q_Content }</td>			
+			<td colspan="4">${board.q_Content}</td>			
 		</tr>
 		<tr height="30">			
 			<td colspan="4">
@@ -381,7 +380,7 @@ $(document).ready(function(){
 		</div>
 		<!-- /.col -->
 	<!-- </div> -->
-
+</div>
 
 </body>
 </html>

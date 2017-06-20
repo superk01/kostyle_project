@@ -21,3 +21,36 @@
  	padding: 7px;
  }
  
+ 
+ .body {
+	margin: 0 5%;
+	font-family: 맑은 고딕;
+}
+
+th.th{
+	text-align: center;
+	border-bottom: 3px solid;
+}
+
+.tr{
+	text-align: center;
+	font-size: 20px;
+	color: black;
+}
+
+.td{
+	vertical-align: center;
+}
+
+.td a{
+	color: black;
+	text-align: center;
+	margin-top: 3px;
+}
+
+
+
+
+
+
+ 
