@@ -1,17 +1,27 @@
 package kostyle.stats.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kostyle.login.domain.CustomerVO;
+import kostyle.stats.domain.HitcountStatsChart;
 import kostyle.stats.domain.SearchKeywordStats;
 import kostyle.stats.service.StatsService;
 
@@ -22,19 +32,16 @@ public class StatsController {
 	@Inject
 	private StatsService service;
 	
-	@RequestMapping(value="/statsindex", method=RequestMethod.GET)
-	public void statsIndexGET()throws Exception{
-	}
+//	@RequestMapping(value="/statsindex", method=RequestMethod.GET)
+//	public void statsIndexGET()throws Exception{
+//	}
 	@RequestMapping(value="/statsSide", method=RequestMethod.GET)
 	public void statssideGET()throws Exception{
 	}
-	@RequestMapping(value="/statsSide2", method=RequestMethod.GET)
-	public void statsside2GET()throws Exception{
-	}
 
-	@RequestMapping(value="/test", method=RequestMethod.GET)
-	public void test()throws Exception{
-	}
+//	@RequestMapping(value="/test", method=RequestMethod.GET)
+//	public void test()throws Exception{
+//	}
 
 	//검색 시 키워드 저장
 	@RequestMapping(value="/insertstats", method=RequestMethod.POST)
@@ -64,5 +71,57 @@ public class StatsController {
 		service.insertSearchKeyword(sks);
 	
 	}
+	
+	@RequestMapping(value="/statsVisitor", method=RequestMethod.GET)
+	public void statsVisitorGET()throws Exception{
+		
+	}
+	
+	@RequestMapping(value="/statsVisitor", method=RequestMethod.POST)
+	public ResponseEntity<String> statsVisitorPOST(@RequestBody Map<String, Object> paramMap, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		ResponseEntity<String> entity = null;
+		List<HitcountStatsChart> chartList = null;
+		
+		try {
+			String s_sname = (String) paramMap.get("statsSearchShop");
+			String statsSearchStartDate = (String) paramMap.get("statsSearchStartDate");
+			String statsSearchEndDate = (String) paramMap.get("statsSearchEndDate");
+			String chartFor = (String) paramMap.get("chartFor");
+			
+			chartList = service.statsDate(s_sname, statsSearchStartDate, statsSearchEndDate, chartFor);
+			
+			for(int i=0;i<chartList.size();i++){
+				System.out.println("~~STATS/SUCCEED TO GET CHARTLIST");
+			}
+			
+			HttpSession session = request.getSession();
+			
+			if(session.getAttribute("statsVisitorJ") != null){
+				session.removeAttribute("statsVisitorJ");
+			}
+			
+			session.setAttribute("statsVisitorJ", chartList);
+			
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		
+		
+		return entity;
+	}
+	
+	@RequestMapping(value="/statsVisitor_gender", method=RequestMethod.GET)
+	public void statsVisitor_genderGET()throws Exception{
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 }
