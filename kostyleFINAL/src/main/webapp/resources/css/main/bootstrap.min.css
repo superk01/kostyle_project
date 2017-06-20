@@ -2344,13 +2344,13 @@ th {
 	.table>tbody>tr>td, .table>tfoot>tr>td {
 	padding: 8px;
 	line-height: 1.42857143;
-	vertical-align: top;
+	vertical-align: center;
 	border-top: 1px solid #ddd
 }
 
 .table>thead>tr>th {
 	vertical-align: bottom;
-	border-bottom: 2px solid #ddd
+	border-bottom: 5px solid #ad82ab
 }
 
 .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>th,
