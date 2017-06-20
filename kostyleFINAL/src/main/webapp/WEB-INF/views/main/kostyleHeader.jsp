@@ -8,9 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KOStyle mall</title>
-    
-    <!-- Bootstrap -->
+    <title>KOStyle</title>
+   <!-- Bootstrap -->
     <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="/resources/css/main/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     
@@ -31,7 +30,6 @@
     <script src="../../../resources/js/main/main.js"></script>
        
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/responsive.css" />
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/kostyleHeader.css" />
  	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
  	<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
@@ -124,11 +122,72 @@
 </script>
 
 
-   
-  </head>
-  <body>
 
-		<div class="header-area">
+<style type="text/css">
+.navbar-default{
+	background-color: #ad82ab;
+}
+
+.navbar-default .navbar-nav>li>a{
+	color: white;
+	font-family: sans-serif;
+	font-size: 25px;
+	font-weight: bold;
+	padding: 20px 70px;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
+ .navbar-default .navbar-nav>.open>a:focus{
+	color: #ad82ab;
+	background: white;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a{
+	color: black;
+}
+
+.navbar-nav>li>.dropdown-menu{
+	border: none;
+	width: 100%;
+}
+
+.container-fluid{
+	position: relative;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a{
+	font-family: 맑은 고딕;
+	font-size: 20px;
+	padding: 10px 30px;
+	font-weight: bold;
+	color: #ad82ab;
+}
+
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
+	color: #ad82ab;
+	background-color: white;
+}
+
+
+
+
+.navbar-toggle {
+    border-color: #fff;
+    float: none;
+    margin: 10px auto;
+}
+.navbar-toggle .icon-bar { background: none repeat scroll 0 0 #fff }  
+
+</style>
+
+
+</head>
+
+
+<body>
+
+<div class="header-area">
         <div class="container">
             <div class="row">
                 <c:choose>
@@ -160,7 +219,7 @@
     				<div class="col-md-4">
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
-            					<li><a href="../mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
+            					<li><a href="/mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
                  				<li><a id="cuslogout" href="../cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
             				</ul>
         				</div>
@@ -171,11 +230,9 @@
             </div>
 		</div>
 		</div> <!-- End header area -->
-   
-   
-    
-    
-    <div class="site-branding-area">
+
+
+<div class="site-branding-area" id="search-fixed-top">
         <div class="container">
             <div class="search-row">
             
@@ -194,9 +251,10 @@
             
             </div>
         </div>
-    </div> <!-- End site branding area -->
+</div> <!-- End site branding area -->
     
-    <div class="mainmenu-area">
+    
+<!-- <div class="mainmenu-area">
         <div class="container">
             <div class="row">
                 <div class="navbar-header">
@@ -210,7 +268,15 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="#">RANKING</a></li>
-                        <li><a href="#">DISCOUNT RANKING</a></li>
+                        
+                        <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT RANKING</a>
+                        <ul class="dropdown-menu">
+            				<li><a href="#">기획할인</a></li>
+            				<li><a href="#">신상품할인</a></li>
+          				</ul>
+                        </li>
+                        
                         <li><a href="../favorite/favoriteList">FAVORITE</a></li>
                         <li><a href="#">ZZIM</a></li>
                         <li><a href="/help/list">SERVICE CENTER</a></li>
@@ -218,10 +284,39 @@
                 </div>  
             </div>
         </div>
-    </div> <!-- End mainmenu area -->
+    </div>
+    
+ -->
 
-	<div class="remocon"></div>
 
-  </body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div>
+      <ul class="nav navbar-nav">
+      <li><a href="#">RANKING</a></li>
+      
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT RANKING</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">기획할인</a></li>
+            <li><a href="#">신상품할인</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="/favorite/favoriteList">FAVORITE</a></li>
+        <li><a href="#">ZZIM</a></li>
+        <li><a href="/help/list">SERVICE CENTER</a></li>
+      </ul>
+    </div>
+  </div>
+</nav> 
+
+
+<div class="remocon"></div>
+
+
+
+</body>
+
+
 </html>
-<%--  <%@ include file="../history/remocon.jsp" %>  --%>
