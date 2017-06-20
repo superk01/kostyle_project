@@ -10,7 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KOStyle</title>
    <!-- Bootstrap -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="/resources/css/main/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     
     <!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
@@ -21,8 +22,105 @@
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
+    <!-- jQuery sticky menu -->
+    <script src="../../../resources/js/main/owl.carousel.min.js"></script>
+    <script src="../../../resources/js/main/jquery.sticky.js"></script>
+    
+    <!-- Main Script -->
+    <script src="../../../resources/js/main/main.js"></script>
+       
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/kostyleHeader.css" />
+ 	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
+ 	<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
+<script type="text/javascript">
+<%Object userVO = session.getAttribute("login"); %>
+<%CustomerVO customerVO = null; %>
+<%String c_num = null; %>
+<%if(userVO instanceof CustomerVO){ 
+	customerVO = (CustomerVO)userVO; 
+	c_num = customerVO.getC_num();%>
+	$(document).ready(function(){
+		remoconList();
+	});
+<%}%>
+ 
+	
+	 $(document).ready(function(){ 
+		var returnPath1 = jQuery(location).attr('pathname')+"";
+		var returnPath2 = location.pathname+"";
+		console.log("returnPath= "+returnPath1);
+		
+		
+ 		$('#cuslogout').on('click',function(){
+ 			$.post("../cuslogin/logout", { returnPath: "/${path}/logintest/testpage1" },function(result){
+ 				if(result == "SUCCESS"){
+	 				console.log("logout ajax 성공");
+ 					location.href=returnPath1;
+ 					
+ 				}
+ 			});
+			return false;
+		});
+ 		
+ 		 $('body').on('click','button.wing_btn_delete',function(){
+ 			 
+			 var h_num=$(this).val();
+			 $.ajax({
+				url : "/history/delete?h_num="+h_num,
+				type : 'get',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"GET"
+				},
+				dataType:'text',
+				success : function(data){
+					if(data=='delete'){
+						$('.wing_fixed').remove();
+						remoconList();
+					}
+				}					
+			});
+			return false;
+		});
+ 		   /* 리모컨의 상품을 클릭하였을때 iFrame으로 상품의 링크를  띄움. */
+ 		   $('body').on('click','li.wing_prd a',function(event) {
+ 			var link = $(this).attr('href');
+ 			location.href = "#CategoryResult_top";
+ 			event.preventDefault();
+ 			if ($('#CategorysearchIframe').length > 0) {
+ 				$('#CategorysearchIframe').attr("src", link);
+ 			} else {
+ 				$('#CategoryResult_top').remove();
+ 				$('.remocon').prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
+ 				$('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+ '">');
+ 				$('.remocon').prepend('<div id="#CategoryResult_top"></div>');
+ 			}
+ 			$('#IframeRemocon').click(function() {
+ 				$('#CategorysearchIframe').remove();
+ 				$('#IframeRemocon').remove();
+ 			});
+ 		});
+ 		 
+	});
+		/* 사용자의 히스토리내역을 리모컨에 띄우는 함수 */
+ 		function remoconList(){
+ 			$.ajax({
+ 				url: '/remocon/list/'+${login.c_num},
+	 			type: 'post',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"POST"
+				},
+				dataType:'text',
+				success : function(data) {
+					
+					$('.remocon').after(data);
+				}
+ 			});
+ 		}
+</script>
+
 
 
 <style type="text/css">
@@ -121,7 +219,7 @@
     				<div class="col-md-4">
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
-            					<li><a href="../mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
+            					<li><a href="/mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
                  				<li><a id="cuslogout" href="../cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
             				</ul>
         				</div>
@@ -205,7 +303,7 @@
           </ul>
         </li>
         
-        <li><a href="../favorite/favoriteList">FAVORITE</a></li>
+        <li><a href="/favorite/favoriteList">FAVORITE</a></li>
         <li><a href="#">ZZIM</a></li>
         <li><a href="/help/list">SERVICE CENTER</a></li>
       </ul>
@@ -214,7 +312,7 @@
 </nav> 
 
 
-
+<div class="remocon"></div>
 
 
 
