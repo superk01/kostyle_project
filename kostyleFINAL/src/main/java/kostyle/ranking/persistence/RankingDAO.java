@@ -12,6 +12,7 @@ public interface RankingDAO {
 	public List<Integer> favoriteScore();
 	public List<String> showsnum();
 	public List<Integer> sumclickScore();
+	public List<Integer> avgclickScore();
 	public List<Integer> showRank();
 	public void updateRank(RankList rankList);
 
