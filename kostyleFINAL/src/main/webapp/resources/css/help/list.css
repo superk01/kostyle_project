@@ -1,9 +1,15 @@
-.box{
+#write{
+	background-color: hsl(287, 30%, 75%) !important;
+	color: white !important;
+	font-weight: bold;
+}
+
+/* .box{
 	position: absolute;
 	top: 50%;
 	left: 30%;
 }
-
+ */
 /* searchbar관련 css */
 .board-foot{
 	width:80%;
@@ -11,7 +17,7 @@
 	text-align: center;
 	height: 39px;
 	position: relative;
-	left: 66px;
+	left: 10%;
 }
 html,body{
 	font-size: 12px;

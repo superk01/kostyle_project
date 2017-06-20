@@ -3,9 +3,10 @@ $(function(){
 	CategoryFilterClick();
 });
 
-/*function CategoryItemClick(){
+function CategoryItemClick(){
 	$('.CategoryResult_oneItemBox a').click(function(event){
-		$.ajax({
+		event.preventDefault();
+		/*$.ajax({
 			url : '/history/insert',
 			type : 'post',
 			headers:{
@@ -21,8 +22,10 @@ $(function(){
 					$('.wing_fixed').remove();
 					remoconList();
 			}		
-		});
-		event.preventDefault();
+		});*/
+		
+		
+		
 		var link = $(this).attr('href');
 		if($('#CategorysearchIframe').length>0){
 			$('#CategorysearchIframe').remove();
@@ -37,7 +40,7 @@ $(function(){
 			$('#IframeRemocon').remove();
 		});
 	});	
-}*/
+}
 
 function CategoryFilterClick(){
 	$('#CategoryFilterrandom').click(function(){

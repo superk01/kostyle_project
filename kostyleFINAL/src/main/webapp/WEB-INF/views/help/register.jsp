@@ -10,11 +10,95 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
+<!-- <script src="/resources/jquery/jquery-3.2.1.js"></script> -->
 <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script> -->
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link href="http:////maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<style type="text/css">
+#registerBtn{
+	background-color: #ad82ab !important;
+	color: white !important;
+	font-weight: bold;
+	float: left;
+}
+#listBtn{
+	background-color: #ad82ab !important;
+	color: white !important;
+	font-weight: bold;
+	width: 101px;
+	float: left;
+}
+.checkbox{
+	float: left;
+} 
+#secret{
+	background-color: #ad82ab !important;
+	color: white !important;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.button-checkbox').each(function(){
+    	var $widget = $(this),
+			$button = $widget.find('button'),
+			$checkbox = $widget.find('input:checkbox'),
+			color = $button.data('color'),
+			settings = {
+					on: {
+						icon: 'glyphicon glyphicon-check'
+					},
+					off: {
+						icon: 'glyphicon glyphicon-unchecked'
+					}
+			};
+
+		$button.on('click', function () {
+			$checkbox.prop('checked', !$checkbox.is(':checked'));
+			$checkbox.triggerHandler('change');
+			updateDisplay();
+		});
+
+		$checkbox.on('change', function () {
+			updateDisplay();
+		});
+
+		function updateDisplay() {
+			var isChecked = $checkbox.is(':checked');
+			// Set the button's state
+			$button.data('state', (isChecked) ? "on" : "off");
+
+			// Set the button's icon
+			$button.find('.state-icon')
+				.removeClass()
+				.addClass('state-icon ' + settings[$button.data('state')].icon);
+
+			// Update the button's color
+			if (isChecked) {
+				$button
+					.removeClass('btn-default')
+					.addClass('btn-' + color + ' active');
+			}
+			else
+			{
+				$button
+					.removeClass('btn-' + color + ' active')
+					.addClass('btn-default');
+			}
+		}
+		function init() {
+			updateDisplay();
+			// Inject the icon if applicable
+			if ($button.find('.state-icon').length == 0) {
+				$button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
+			}
+		}
+		init();
+	});
+})
+</script>
 
 <title>Insert title here</title>
 </head>
@@ -30,7 +114,7 @@
 					<h3 class="box-title">REGISTER BOARD</h3>
 				</div>
 				<!-- /.box-header -->
-
+				<div class="container">
 				<form id='/help/insert' role="form" method="post">
 					<div class="box-body">
 						<div class="form-group">
@@ -39,13 +123,13 @@
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">문의 내용</label>
-							<textarea class="form-control" name="q_Content" rows="3"
+							<textarea class="form-control" name="q_Content" rows="5"
 								placeholder="Enter ..."></textarea>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">작성자</label> <input type="text"
 								name="writer" class="form-control" placeholder="Enter Writer"
-								value="${login.c_id}">
+								value="${login.c_id}" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">쇼핑몰 선택</label> 
@@ -73,14 +157,18 @@
 
 						<ul class="mailbox-attachments clearfix uploadedList">
 						</ul>
-						<div class="checkbox"> <label> <input type="checkbox" id="blankCheckbox" value="option1" aria-label="checkbox1" name="q_Secret">비밀글 </label> </div>
-	
-						<button type="submit" class="btn btn-primary">문의글 등록</button>
+						<!-- <div class="checkbox"> <label> <input type="checkbox" id="blankCheckbox" value="option1" aria-label="checkbox1" name="q_Secret">비밀글 </label> </div> -->
+						<button type="submit" class="btn btn-default pull-right" id="registerBtn">문의글 등록</button>
+						<span class="button-checkbox">
+							<button type="button" class="btn btn-default active pull-right" id="secret" data-color="warning">비밀글</button>
+							<!-- <i class="state-icon glyphicon glyphicon-check"></i> -->
+							<input type="checkbox" name="q_Secret" id="blankCheckbox" value="option1" aria-label="checkbox1" class="hidden">	
+						</span>
 						
 					</div>
 				</form>
-				<a href = "/help/list"><button type="button" class="btn btn-primary">목록보기</button></a>
-
+				<a href = "/help/list"><button type="button" class="btn btn-default" id="listBtn">목록보기</button></a>
+				</div>
 			</div>
 			<!-- /.box -->
 		</div>
