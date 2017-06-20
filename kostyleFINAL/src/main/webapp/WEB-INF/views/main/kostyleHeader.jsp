@@ -8,11 +8,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KOStyle mall</title>
-    
-    <!-- Bootstrap -->
-    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="/resources/css/main/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <title>KOStyle</title>
+   <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     
     <!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
@@ -23,112 +21,75 @@
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
-    <!-- jQuery sticky menu -->
-    <script src="../../../resources/js/main/owl.carousel.min.js"></script>
-    <script src="../../../resources/js/main/jquery.sticky.js"></script>
-    
-    <!-- Main Script -->
-    <script src="../../../resources/js/main/main.js"></script>
-       
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/responsive.css" />
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/kostyleHeader.css" />
- 	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
- 	<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
-<script type="text/javascript">
-<%Object userVO = session.getAttribute("login"); %>
-<%CustomerVO customerVO = null; %>
-<%String c_num = null; %>
-<%if(userVO instanceof CustomerVO){ 
-	customerVO = (CustomerVO)userVO; 
-	c_num = customerVO.getC_num();%>
-	$(document).ready(function(){
-		remoconList();
-	});
-<%}%>
- 
-	
-	 $(document).ready(function(){ 
-		var returnPath1 = jQuery(location).attr('pathname')+"";
-		var returnPath2 = location.pathname+"";
-		console.log("returnPath= "+returnPath1);
-		
-		
- 		$('#cuslogout').on('click',function(){
- 			$.post("../cuslogin/logout", { returnPath: "/${path}/logintest/testpage1" },function(result){
- 				if(result == "SUCCESS"){
-	 				console.log("logout ajax 성공");
- 					location.href=returnPath1;
- 					
- 				}
- 			});
-			return false;
-		});
- 		
- 		 $('body').on('click','button.wing_btn_delete',function(){
- 			 
-			 var h_num=$(this).val();
-			 $.ajax({
-				url : "/history/delete?h_num="+h_num,
-				type : 'get',
-				headers:{
-					"Content-Type":"application/json",
-					"X-HTTP-Method-Override":"GET"
-				},
-				dataType:'text',
-				success : function(data){
-					if(data=='delete'){
-						$('.wing_fixed').remove();
-						remoconList();
-					}
-				}					
-			});
-			return false;
-		});
- 		   /* 리모컨의 상품을 클릭하였을때 iFrame으로 상품의 링크를  띄움. */
- 		   $('body').on('click','li.wing_prd a',function(event) {
- 			var link = $(this).attr('href');
- 			location.href = "#CategoryResult_top";
- 			event.preventDefault();
- 			if ($('#CategorysearchIframe').length > 0) {
- 				$('#CategorysearchIframe').attr("src", link);
- 			} else {
- 				$('#CategoryResult_top').remove();
- 				$('.remocon').prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
- 				$('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+ '">');
- 				$('.remocon').prepend('<div id="#CategoryResult_top"></div>');
- 			}
- 			$('#IframeRemocon').click(function() {
- 				$('#CategorysearchIframe').remove();
- 				$('#IframeRemocon').remove();
- 			});
- 		});
- 		 
-	});
-		/* 사용자의 히스토리내역을 리모컨에 띄우는 함수 */
- 		function remoconList(){
- 			$.ajax({
- 				url: '/remocon/list/'+${login.c_num},
-	 			type: 'post',
-				headers:{
-					"Content-Type":"application/json",
-					"X-HTTP-Method-Override":"POST"
-				},
-				dataType:'text',
-				success : function(data) {
-					
-					$('.remocon').after(data);
-				}
- 			});
- 		}
-</script>
 
 
-   
-  </head>
-  <body>
+<style type="text/css">
+.navbar-default{
+	background-color: #ad82ab;
+}
 
-		<div class="header-area">
+.navbar-default .navbar-nav>li>a{
+	color: white;
+	font-family: sans-serif;
+	font-size: 25px;
+	font-weight: bold;
+	padding: 20px 70px;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
+ .navbar-default .navbar-nav>.open>a:focus{
+	color: #ad82ab;
+	background: white;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a{
+	color: black;
+}
+
+.navbar-nav>li>.dropdown-menu{
+	border: none;
+	width: 100%;
+}
+
+.container-fluid{
+	position: relative;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a{
+	font-family: 맑은 고딕;
+	font-size: 20px;
+	padding: 10px 30px;
+	font-weight: bold;
+	color: #ad82ab;
+}
+
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
+	color: #ad82ab;
+	background-color: white;
+}
+
+
+
+
+.navbar-toggle {
+    border-color: #fff;
+    float: none;
+    margin: 10px auto;
+}
+.navbar-toggle .icon-bar { background: none repeat scroll 0 0 #fff }  
+
+</style>
+
+
+</head>
+
+
+<body>
+
+<div class="header-area">
         <div class="container">
             <div class="row">
                 <c:choose>
@@ -171,11 +132,9 @@
             </div>
 		</div>
 		</div> <!-- End header area -->
-   
-   
-    
-    
-    <div class="site-branding-area">
+
+
+<div class="site-branding-area" id="search-fixed-top">
         <div class="container">
             <div class="search-row">
             
@@ -194,9 +153,10 @@
             
             </div>
         </div>
-    </div> <!-- End site branding area -->
+</div> <!-- End site branding area -->
     
-    <div class="mainmenu-area">
+    
+<!-- <div class="mainmenu-area">
         <div class="container">
             <div class="row">
                 <div class="navbar-header">
@@ -210,7 +170,15 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="#">RANKING</a></li>
-                        <li><a href="#">DISCOUNT RANKING</a></li>
+                        
+                        <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT RANKING</a>
+                        <ul class="dropdown-menu">
+            				<li><a href="#">기획할인</a></li>
+            				<li><a href="#">신상품할인</a></li>
+          				</ul>
+                        </li>
+                        
                         <li><a href="../favorite/favoriteList">FAVORITE</a></li>
                         <li><a href="#">ZZIM</a></li>
                         <li><a href="/help/list">SERVICE CENTER</a></li>
@@ -218,10 +186,39 @@
                 </div>  
             </div>
         </div>
-    </div> <!-- End mainmenu area -->
+    </div>
+    
+ -->
 
-	<div class="remocon"></div>
 
-  </body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div>
+      <ul class="nav navbar-nav">
+      <li><a href="#">RANKING</a></li>
+      
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT RANKING</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">기획할인</a></li>
+            <li><a href="#">신상품할인</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="../favorite/favoriteList">FAVORITE</a></li>
+        <li><a href="#">ZZIM</a></li>
+        <li><a href="/help/list">SERVICE CENTER</a></li>
+      </ul>
+    </div>
+  </div>
+</nav> 
+
+
+
+
+
+
+</body>
+
+
 </html>
-<%--  <%@ include file="../history/remocon.jsp" %>  --%>
