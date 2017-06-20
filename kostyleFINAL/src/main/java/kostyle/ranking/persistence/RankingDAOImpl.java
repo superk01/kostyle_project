@@ -35,6 +35,11 @@ public class RankingDAOImpl implements RankingDAO{
 	public List<Integer> sumclickScore() {
 		return session.selectList(namespace + ".sumclick_score");
 	}
+	
+	@Override
+	public List<Integer> avgclickScore() {
+		return session.selectList(namespace + ".avgclick_score");
+	}
 
 	@Override
 	public List<Integer> showRank() {

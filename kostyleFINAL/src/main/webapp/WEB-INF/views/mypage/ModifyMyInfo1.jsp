@@ -2,8 +2,17 @@
 <%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript" src="../../../resources/jquery/jquery-3.2.1.js"></script>
+
+
+<script type="text/javascript" src="../../../resources/js/mypage/joinAPI.js"></script>
+<script type="text/javascript" src="../../../resources/js/mypage/validate.js"></script>
+
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 <!-- <script type="text/javascript" src="../../../resources/js/mypage/join1.js"></script>
 <script type="text/javascript" src="../../../resources/js/mypage/modify.js"></script>      -->
 <%@ taglib prefix="c" 
@@ -120,7 +129,7 @@ $(document).ready(function(){
 										</th>
 										<td>
 											<label for="name">
-												<input  class="passText1" id="c_pass" name="c_pass"  onkeyup="checkByte(this, '20');" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw_validation();"><br>
+												<input  class="passText1" id="c_pass" name="c_pass"  onkeyup="pass_validation();" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw_validation();"><br>
 												<span id="m_pw"></span>
 											</label>
 											<span id="nameMsg" style="display: block; color:red"></span>
@@ -136,7 +145,7 @@ $(document).ready(function(){
 										</th>
 										<td>
 											<label for="name">
-												<input class="checkPass2" id="c_pass2" name="c_pass2"  onkeyup="checkByte(this, '20');" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw2_validation();"><br>
+												<input class="checkPass2" id="c_pass2" name="c_pass2"  onkeyup="pass2_validation();" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw2_validation();"><br>
 												<span id="m_pw2"></span>
 											</label>
 											<span id="nameMsg" style="display: block; color:red"></span>
@@ -165,10 +174,13 @@ $(document).ready(function(){
 											</label>
 										</th>
 										<td>
-											<input name="c_zipcode" id="c_zipcode" value="${dto.c_zipcode}" onkeypress="onlyNum();" onBlur="zip_validation();" placeholder="우편번호" type="text" autocomplete="off"> &nbsp;<input type="button" value="우편번호"/>
+										<input class="form-control" id="inputPostcode" value="${dto.c_zipcode }" type="text" required="" readonly="readonly"
+										 name="c_zipcode" placeholder="우편번호">
+											
+											 &nbsp; <input type="button" value="우편번호" onclick="sample6_execDaumPostcode()"/>
 											<span id="m_zip"></span>
 											<br>
-											<input name="c_adress"  id="c_adress" value="${dto.c_adress}"	onkeyup="checkByte(this, '20');" placeholder="주소를 입력하세요" type="text" size='60'>
+											<input name="c_adress"  id="input	Adress" value="${dto.c_adress}"	onkeyup="checkByte(this, '20');" placeholder="주소를 입력하세요" type="text" size='60'>
 										</td>
 									</tr>
 									
