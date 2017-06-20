@@ -102,7 +102,7 @@
 	      self.location = "/favorite/addFavorite?s_shopurl="+url4;
 	      
 	   });
-	   /* 히스토리 목록보는 코드 ajax이용 */
+	
 });
 		 
 		
@@ -149,20 +149,20 @@
 					</div>
 					<div class="wing_paging">
 						<div class="wing_btn">
-							<button id = "wb_btn_recentPrd_prev" class="wing_btn_prev" type="button">이전 상품 목록</button>
-							<button id = "wb_btn_recentPrd_next" class="wing_btn_next" type="button">다음 상품 목록</button>
+							<button id = "wb_btn_recentPrd_prev" class="wing_btn_prev" type="button" style="border: 0px;">이전 상품 목록</button>
+							<button id = "wb_btn_recentPrd_next" class="wing_btn_next" type="button" style="border: 0px;">다음 상품 목록</button>
 						</div>
 					</div>
 				</div>
 				<div class="buttons">
 					<div class="btns">
 						<div class="closet_btn">
-							<button id="closet_btn">
+							<button id="closet_btn" style="border: 0px;">
 								찜하기
 							</button>
 						</div>
 						<div class="favorite_btn">
-							<button id="favorite_btn">
+							<button id="favorite_btn" style="border: 0px;">
 								즐겨찾기
 							</button>
 						</div>

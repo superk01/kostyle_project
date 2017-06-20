@@ -16,23 +16,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('div.CategoryResult_oneItemBox').on('click',function(event){
-		alert("이벤트 걸림?");
 		event.preventDefault();
-		/* var product_link=$(this).eq(0).find('a').attr('href');
-		var product_ImageLink=$(this).eq(0).find('img').attr('src');
-		var product_name=$(this).children().eq(1).find('a').html();
-		var product_price=$(this).children().eq(2).find('a').html(); */
-		
-/* 		alert($(this).eq(0).find('img').attr('src'));
-		alert($(this).eq(0).find('a').attr('href'));
-		alert($(this).children().eq(1).find('a').html());
-		alert($(this).children().eq(2).find('a').html()); */
-		
-		/* var nodes=$(this).children();
-		alert(nodes.length); */
-		
 		$.ajax({
-			url : '${path}/history/insert',
+			url : '/history/insert',
 			type : 'post',
 			headers:{
 				"Content-Type":"application/json",
@@ -43,10 +29,8 @@ $(document).ready(function(){
 					h_Name:$(this).children().eq(1).find('a').html(),
 					h_Price:$(this).children().eq(2).find('a').html()}),
 			success : function(result){
-				alert('히스토리에 추가');
-				if(result!=null){
-					location.href="${path}/history/list/"+result;
-				}
+				$('.wing_fixed').remove();
+				remoconList();
 			}		
 			});
 		});

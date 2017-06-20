@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/responsive.css" />
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/kostyleHeader.css" />
  	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
+ 	<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
 <script type="text/javascript">
 <%Object userVO = session.getAttribute("login"); %>
 <%CustomerVO customerVO = null; %>
@@ -46,20 +47,7 @@
 	});
 <%}%>
  
-		<%-- $.ajax({
-			url:'/remocon/list/'+<%=c_num%>,
-			type: 'get',
-			headers:{
-				"Content-Type":"application/json",
-				"X-HTTP-Method-Override":"GET"
-			},
-			dataType:'text',
-			success : function(data) {
-				alert(data);
-				$('.mainmenu-area').append(data);
-			}
-		}); --%>
-
+	
 	 $(document).ready(function(){ 
 		var returnPath1 = jQuery(location).attr('pathname')+"";
 		var returnPath2 = location.pathname+"";
@@ -97,9 +85,27 @@
 			});
 			return false;
 		});
+ 		   /* 리모컨의 상품을 클릭하였을때 iFrame으로 상품의 링크를  띄움. */
+ 		   $('body').on('click','li.wing_prd a',function(event) {
+ 			var link = $(this).attr('href');
+ 			location.href = "#CategoryResult_top";
+ 			event.preventDefault();
+ 			if ($('#CategorysearchIframe').length > 0) {
+ 				$('#CategorysearchIframe').attr("src", link);
+ 			} else {
+ 				$('#CategoryResult_top').remove();
+ 				$('.remocon').prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
+ 				$('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+ '">');
+ 				$('.remocon').prepend('<div id="#CategoryResult_top"></div>');
+ 			}
+ 			$('#IframeRemocon').click(function() {
+ 				$('#CategorysearchIframe').remove();
+ 				$('#IframeRemocon').remove();
+ 			});
+ 		});
  		 
-
 	});
+		/* 사용자의 히스토리내역을 리모컨에 띄우는 함수 */
  		function remoconList(){
  			$.ajax({
  				url: '/remocon/list/'+${login.c_num},
