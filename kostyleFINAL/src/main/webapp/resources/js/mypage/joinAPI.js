@@ -1,32 +1,3 @@
-function overlapId(){
-$.ajax({
- url : "overlapId",
- type : "post",
- data : {
-  c_id : $("#inputId").val()
- },
- dataType : "json",
- success : function(data){
-  
-  $("<div style='text-align:center;'>"+data.resultMsg+"</div>").dialog({
-   modal : true,
-   resizable : false,
-   buttons : [{
-   text : "확인",
-   click : function() {
-    $(this).dialog("close");
-    }
-   }]
-  });
-  $(".ui-dialog-titlebar").hide();
-  
-  if ( data.result == "success") {
-  } else {
-  }
- }
-      });
-}
-
 
 
 
