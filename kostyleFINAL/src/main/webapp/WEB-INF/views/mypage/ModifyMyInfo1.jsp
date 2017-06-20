@@ -174,13 +174,13 @@ $(document).ready(function(){
 											</label>
 										</th>
 										<td>
-										<input class="form-control" id="inputPostcode" value="${dto.c_zipcode }" type="text" required="" readonly="readonly"
+										<input class="form-control1" id="inputPostcode" value="${dto.c_zipcode }" type="text" required="" readonly="readonly"
 										 name="c_zipcode" placeholder="우편번호">
 											
 											 &nbsp; <input type="button" value="우편번호" onclick="sample6_execDaumPostcode()"/>
 											<span id="m_zip"></span>
-											<br>
-											<input name="c_adress"  id="input	Adress" value="${dto.c_adress}"	onkeyup="checkByte(this, '20');" placeholder="주소를 입력하세요" type="text" size='60'>
+											<input class="form-control1" id="inputAdress" value="${dto.c_adress }"	 type="text" required="" name="c_adress"
+					 						autocomplete="off" size='60'>
 										</td>
 									</tr>
 									
