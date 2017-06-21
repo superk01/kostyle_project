@@ -86,13 +86,15 @@ th.th{
 </style>
 </head>
 <body>
-<div class="body">
-	<div class="page-header">
-			<h3>고객센터</h3>
+
+	<div class="body">
+		<div class="page-header">
+				<h3>고객센터</h3>
+		</div>
 	</div>
-</div>
 	<div class="box">
 		<div class="box-body">
+		<div class="container">
 		<table class="table table-bordered">
 			<thead>
 				<tr class="tr">
@@ -121,7 +123,8 @@ th.th{
 				</tbody>
 			</c:forEach>
 		</table>
-		<button id="write">글쓰기</button>
+		</div>
+		<button id="write" class="pull-right btn">글쓰기</button>
 		</div>
 	
 		<div class="text-center">
@@ -183,5 +186,6 @@ th.th{
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
