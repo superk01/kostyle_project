@@ -22,20 +22,13 @@
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
-    <!-- jQuery sticky menu -->
-    <!-- <script src="../../../resources/js/main/owl.carousel.min.js"></script>
-    <script src="../../../resources/js/main/jquery.sticky.js"></script> -->
-    
-    <!-- Main Script -->
-    <script src="../../../resources/js/main/main.js"></script>
-       
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="/resources/css/main/kostyleHeader.css" />
  	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
  	<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
  	
  	
- 	<style type="text/css">
+<style type="text/css">
  
 .table>thead>tr>th {
 	vertical-align: bottom;
@@ -60,7 +53,7 @@
 	min-height: 50px;
 	margin-bottom: 20px;
 	border: 1px solid transparent;
-	width: 120% !important;
+	width: 100% !important;
 }
 
 
@@ -145,32 +138,29 @@
 	border-color: #ad82ab !important;
 }
 
+.navbar-nav>li>.dropdown-menu{
+	width: 100% !important; 
+}
 
- </style>
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	<style>
-      .jbContent {
-        height: 2000px;
-      }
+.navbar-default .navbar-toggle{
+	border-color: white !important;
+}
+
+.navbar-default .navbar-toggle .icon-bar{
+	background-color: white !important;
+}
+
+
+
+</style>
+
+<style>
       .jbFixed {
         position: fixed;
         top: 0px;
+        width: 100%;
       }
-    </style>
+</style>
     
     <script>
       $( document ).ready( function() {
@@ -344,46 +334,20 @@
             </div>
         </div>
 </div> <!-- End site branding area -->
-    
-    
-<!-- <div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">RANKING</a></li>
-                        
-                        <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT RANKING</a>
-                        <ul class="dropdown-menu">
-            				<li><a href="#">기획할인</a></li>
-            				<li><a href="#">신상품할인</a></li>
-          				</ul>
-                        </li>
-                        
-                        <li><a href="../favorite/favoriteList">FAVORITE</a></li>
-                        <li><a href="#">ZZIM</a></li>
-                        <li><a href="/help/list">SERVICE CENTER</a></li>
-                    </ul>
-                </div>  
-            </div>
-        </div>
-    </div>
-    
- -->
+
 
 <div class="navSticky">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div>
+  	<div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+    </div>
+  
+    <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       <li><a href="#">RANKING</a></li>
       
