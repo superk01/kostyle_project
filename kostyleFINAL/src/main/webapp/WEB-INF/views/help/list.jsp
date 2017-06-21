@@ -58,10 +58,10 @@
 	
 </script>
 <style type="text/css">
- .body {
+/*  .body {
 	margin: 0 5%;
 	font-family: 맑은 고딕;
-}
+} */
 
 th.th{
 	text-align: center;
@@ -83,15 +83,19 @@ th.th{
 	text-align: center;
 	margin-top: 3px;
 }
+#write{
+	background-color: #ad82ab !important;
+	color: white !important;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
-
-	<div class="body">
-		<div class="page-header">
-				<h3>고객센터</h3>
-		</div>
+<div class="body">
+	<div class="page-header">
+			<h3>고객센터</h3>
 	</div>
+</div>
 	<div class="box">
 		<div class="box-body">
 		<div class="container">
@@ -123,8 +127,8 @@ th.th{
 				</tbody>
 			</c:forEach>
 		</table>
+		<button id="write" class="btn btn-default btn-lg pull-right">글쓰기</button>
 		</div>
-		<button id="write" class="pull-right btn">글쓰기</button>
 		</div>
 	
 		<div class="text-center">
@@ -186,6 +190,5 @@ th.th{
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
