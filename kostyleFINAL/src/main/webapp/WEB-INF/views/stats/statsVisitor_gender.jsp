@@ -40,6 +40,8 @@
               ['Male', <%=mSum %>]
             ]);
 	      var options2 = {
+	    		  chartArea:{top:10,width:'60%',height:'60%'},
+	    		  legend : 'bottom'
 	    		  };
 
       
@@ -134,73 +136,45 @@
 	</div>
 
 	<br><br><br>
+	<h3 class="page-header">남녀 비율</h3>
 	<div id="piechartbox">
-   		<div id="piechart" style="width:600px; height: 500px;"></div>
+   		<div id="piechart" style="width:600px; height: 400px;"></div>
 	</div>
    		
    		<div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>성별</th>
-                  <th>합계</th>
+                  <th colspan="2">성별</th>
+                  <th colspan="2">합계</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>여성</td>
-                  <td><%=fSum %></td>
+                  <td colspan="2">여성</td>
+                  <td colspan="2"><%=fSum %></td>
                 </tr>
                 <tr>
-                  <td>남성</td>
-                  <td><%=mSum %></td>
+                  <td colspan="2">남성</td>
+                  <td colspan="2"><%=mSum %></td>
                 </tr>
               </tbody>
             </table>
           </div>
    		
    		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   		
-   		
-   		
-   		
-   		
    		
 	<br><br><br>
 	<br><br><br>
 	<br><br><br>
 	<br><br><br>
 	<br><br><br>
-    	<div id="curve_chart" style="width: 900px; height: 300px"></div>
+	<h3 class="page-header">일자별 방문자수</h3>
+    	<div id="curve_chart" style="width: 1200px; height: 300px"></div>
 	<br><br><br>
 	
-	<div>
-		<table class="statsTable">
+	<div class="table-responsive">
+		<table class="statsTable table table-striped">
 			<thead>
 				<tr class="statsTableThead">
 					<th></th>

@@ -140,4 +140,5 @@ margin: 10px;
 
 #piechartbox{
 	display: inline;
+	float: left;
 }

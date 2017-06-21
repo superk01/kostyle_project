@@ -331,11 +331,11 @@
             <a href="/"><img class="logoimg" src="/resources/images/mainImg/kostyle.png"></a>
             
             <div class="header_search">
-				<form class="search-form" action="/search/do" method="post">
+				<form class="search-form" action="#" method="post" name="searchForm">
 					<div class="search-box">
 						<dl class="clear">
 						<dt class="search1"><input id="search-text" type="text" name="search"></dt>
-						<dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색"></dd>
+						<dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="sendtwo()"></dd>
 						</dl>
 					</div>
 				</form>
@@ -409,6 +409,15 @@
 
 
 </body>
-
+<script>
+function sendtwo(){
+	
+	document.searchForm.action='/stats/insertstats';
+	document.searchForm.submit();
+	
+	document.searchForm.action='/search/do';
+	document.searchForm.submit();
+}
+</script>
 
 </html>
