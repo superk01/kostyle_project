@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
 
+
+/* 
 .floatleft {
 	float: left
 }
@@ -22,28 +24,28 @@
 	display: block;
 	margin: 0 auto 15px;
 }
-
+ */
 a:focus {
 	outline: 0px solid
 }
 
-img {
+/* img {
 	max-width: 100%;
 	height: auto;
-}
+} */
 
-.fix {
+/* .fix {
 	overflow: hidden
-}
+} */
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;
 	margin: 0 0 15px;
 }
 
-body {
+/* body {
 	font-family: 'Titillium Web', sans-serif;
-}
+} */
 
 .header-area {
 	background: none repeat scroll 0 0 #f4f4f4;
@@ -83,14 +85,14 @@ body {
 	min-width: 100px;
 	text-align: center;
 }
-
+/* 
 .mainmenu-area {
 	background: none repeat scroll 0 0 #ad82ab;
 	font-family: "Roboto Condensed", sans-serif;
 	text-transform: uppercase;
 	width: 100%;
 	z-index: 999;
-}
+} */
 
 .logoimg {
 	width: 200px;
@@ -116,7 +118,7 @@ body {
 	color: #ad82ab;
 }
 
-.mainmenu-area ul.navbar-nav li a {
+/* .mainmenu-area ul.navbar-nav li a {
 	color: #fff;
 	font-size: 25px;
 	font-weight: 400;
@@ -133,7 +135,7 @@ body {
 	background: #ad82ab;
 	color: white
 }
-
+ */
 
 
 /* 검색창 */
@@ -172,6 +174,67 @@ body {
 	height: 60px;
 	margin-left: -5px;
 } 
+
+
+
+
+/* .navbar-default{
+	background-color: #ad82ab;
+} */
+/* 
+.navbar-default .navbar-nav>li>a{
+	color: white;
+	font-family: sans-serif;
+	font-size: 25px;
+	font-weight: bold;
+	padding: 20px 70px;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
+ .navbar-default .navbar-nav>.open>a:focus{
+	color: #ad82ab;
+	background: white;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a{
+	color: black;
+}
+
+.navbar-nav>li>.dropdown-menu{
+	border: none;
+	width: 100%;
+}
+
+.container-fluid{
+	position: relative;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a{
+	font-family: 맑은 고딕;
+	font-size: 20px;
+	padding: 10px 30px;
+	font-weight: bold;
+	color: #ad82ab;
+}
+
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
+	color: #ad82ab;
+	background-color: white;
+} */
+
+
+/* 
+
+.navbar-toggle {
+    border-color: #fff;
+    float: none;
+    margin: 10px auto;
+}
+.navbar-toggle .icon-bar { background: none repeat scroll 0 0 #fff }  
+
+ */
+
 
 
 
