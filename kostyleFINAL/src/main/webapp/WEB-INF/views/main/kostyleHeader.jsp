@@ -53,7 +53,6 @@
 	min-height: 50px;
 	margin-bottom: 20px;
 	border: 1px solid transparent;
-	width: 100% !important;
 }
 
 
