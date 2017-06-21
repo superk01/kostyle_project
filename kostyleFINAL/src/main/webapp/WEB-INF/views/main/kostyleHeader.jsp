@@ -130,7 +130,7 @@
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover,
 	.pagination>.active>span:hover, .pagination>.active>a:focus,
 	.pagination>.active>span:focus {
-	z-index: 10;
+	z-index: 2;
 	color: #fff;
 	cursor: default;
 	background-color: #ad82ab !important;
