@@ -7,12 +7,14 @@
 
 	List<HitcountStatsChart> list = (List) statsVisitorSession.getAttribute("statsVisitorJ");
 	
-	int fSum = 0;
-	int mSum = 0;
+	int teenSum = 0;
+	int twentySum = 0;
+	int thirtySum = 0;
 	
 	for(int i=0;i<list.size();i++){
-		fSum += list.get(i).getFemale();
-		mSum += list.get(i).getMale();
+		teenSum += list.get(i).getTeen();
+		twentySum += list.get(i).getTwenty();
+		thirtySum += list.get(i).getThirty();
 	}
 	
 %>
@@ -30,38 +32,41 @@
 		
       
       function drawChart() {
+ 	  
     	  
     	  /* 원형차트 */
-          var data2 = google.visualization.arrayToDataTable([
-              ['Gender', 'Rate'],
-              ['Female', <%=fSum %>],
-              ['Male', <%=mSum %>]
+          var data_age = google.visualization.arrayToDataTable([
+              ['AGE', 'Rate'],
+              ['10대', <%=teenSum %>],
+              ['20대', <%=twentySum %>],
+              ['30대', <%=thirtySum %>]
             ]);
-	      var options2 = {
+	      var options_age = {
 	    		  chartArea:{top:10,width:'60%',height:'60%'},
 	    		  legend : 'bottom'
 	    		  };
 
       
-     	 var chart_pie = new google.visualization.PieChart(document.getElementById('piechart'));
-    	  chart_pie.draw(data2, options2);
+     	 var chart_pie_age = new google.visualization.PieChart(document.getElementById('piechart'));
+    	  chart_pie_age.draw(data_age, options_age);
       
     	  
     	  
     	  /* 꺾은선 차트 */
     	  var data = new google.visualization.DataTable();
           data.addColumn('string', 'Date');
-          data.addColumn('number', 'Female');
-          data.addColumn('number', 'Male');
+          data.addColumn('number', '10대');
+          data.addColumn('number', '20대');
+          data.addColumn('number', '30대');
           data.addRows([
         	  <% for(int i=0;i<list.size();i++){%>
-	          ['<%=list.get(i).getCnt_date()%>' , <%=list.get(i).getFemale()%>, <%=list.get(i).getMale()%>],
+        	  ['<%=list.get(i).getCnt_date()%>' , <%=list.get(i).getTeen()%>, <%=list.get(i).getTwenty()%>,<%=list.get(i).getThirty()%>],
 	          <%}%>
           ]);   
 
 
         var options = {
-          title: '성별 방문자수',
+          title: '연령대별 방문자수',
           curveType: 'none',
           legend: { position: 'right' }
         };
@@ -131,7 +136,7 @@
 	</div>
 
 	<br><br><br>
-	<h3 class="page-header">남녀 비율</h3>
+	<h3 class="page-header">연령대 비율</h3>
 	<div id="piechartbox">
    		<div id="piechart" style="width:600px; height: 400px;"></div>
 	</div>
@@ -140,18 +145,22 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th colspan="2">성별</th>
+                  <th colspan="2">연령대</th>
                   <th colspan="2">합계</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td colspan="2">여성</td>
-                  <td colspan="2"><%=fSum %></td>
+                  <td colspan="2">10대</td>
+                  <td colspan="2"><%=teenSum %></td>
                 </tr>
                 <tr>
-                  <td colspan="2">남성</td>
-                  <td colspan="2"><%=mSum %></td>
+                  <td colspan="2">20대</td>
+                  <td colspan="2"><%=twentySum %></td>
+                </tr>
+                <tr>
+                  <td colspan="2">30대</td>
+                  <td colspan="2"><%=thirtySum %></td>
                 </tr>
               </tbody>
             </table>
@@ -180,15 +189,21 @@
 			</thead>
 			<tbody class="statsTableTbody">
 				<tr>
-					<td>Female</td>
+					<td>10대</td>
 					<%for(int j=0;j<list.size();j++){ %>
-					<td><%= list.get(j).getFemale()%></td>
+					<td><%= list.get(j).getTeen()%></td>
 					<%} %>
 				</tr>
 				<tr>
-					<td>Male</td>
+					<td>20대</td>
 					<%for(int j=0;j<list.size();j++){ %>
-					<td><%= list.get(j).getMale()%></td>
+					<td><%= list.get(j).getTwenty()%></td>
+					<%} %>
+				</tr>
+				<tr>
+					<td>30대</td>
+					<%for(int j=0;j<list.size();j++){ %>
+					<td><%= list.get(j).getThirty()%></td>
 					<%} %>
 				</tr>
 			</tbody>

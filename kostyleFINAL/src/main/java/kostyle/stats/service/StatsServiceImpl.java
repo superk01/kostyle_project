@@ -32,7 +32,7 @@ public class StatsServiceImpl implements StatsService{
 		}else if(chartFor.equals("area")){
 			list = dao.statsDate_adr(s_sname, statsSearchStartDate, statsSearchEndDate);
 		}else if(chartFor.equals("age")){
-			
+			list = dao.statsDate_age(s_sname, statsSearchStartDate, statsSearchEndDate);
 		}
 		
 		return list;

@@ -56,9 +56,6 @@
 				<label>
 				<input type="radio" name="chartFor" value="age">
 				연령별</label>&nbsp&nbsp&nbsp
-				<label>
-				<input type="radio" name="chartFor" value="area">
-				지역별</label>
 			</span>
 		</div>
 		
@@ -124,7 +121,7 @@
 			dataType:'text',
 			data: JSON.stringify(statsOpt),
 			success:function(result){
-				location.href='/stats/statsSide?statsbody=statsVisitor_gender.jsp';
+				location.href=result;
 			}
 		});
 	});

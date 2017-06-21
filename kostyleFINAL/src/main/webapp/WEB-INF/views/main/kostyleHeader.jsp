@@ -163,7 +163,7 @@
     
     <script>
       $( document ).ready( function() {
-        var jbOffset = $( '.header_search' ).offset();
+        var jbOffset = $( '.navSticky' ).offset();
         $( window ).scroll( function() {
           if ( $( document ).scrollTop() > jbOffset.top ) {
             $( '.navSticky' ).addClass( 'jbFixed' );
