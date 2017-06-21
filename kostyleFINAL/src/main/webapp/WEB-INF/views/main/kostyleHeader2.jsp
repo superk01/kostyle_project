@@ -18,23 +18,33 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
    
     <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
     <!-- jQuery sticky menu -->
-    <script src="../../../resources/js/main/owl.carousel.min.js"></script>
-    <script src="../../../resources/js/main/jquery.sticky.js"></script>
+    <!-- <script src="/resources/js/main/owl.carousel.min.js"></script>
+    <script src="/resources/js/main/jquery.sticky.js"></script> -->
     
     <!-- Main Script -->
-    <script src="../../../resources/js/main/main.js"></script>
+    <script src="/resources/js/main/main.js"></script>
        
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/responsive.css" />
     <link rel="stylesheet" type="text/css" href="../../../resources/css/main/kostyleHeader.css" />
  	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
  	<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
+ 	
+<style type="text/css">
+ 	
+.navFixed {
+        position: fixed;
+        top: 0px;
+      }
+</style>
+ 
+ 	
 <script type="text/javascript">
 <%Object userVO = session.getAttribute("login"); %>
 <%CustomerVO customerVO = null; %>
@@ -123,10 +133,22 @@
  		}
 </script>
 
-
+<script>
+      $( document ).ready( function() {
+        var navOffset = $( '.navbar navbar-default' ).offset();
+        $( window ).scroll( function() {
+          if ( $( document ).scrollTop() > navOffset.top ) {
+            $( '.navbar navbar-default' ).addClass( 'navFixed' );
+          }
+          else {
+            $( '.navbar navbar-default' ).removeClass( 'navFixed' );
+          }
+        });
+      } );
+</script>
    
-  </head>
-  <body>
+</head>
+<body>
 
 		<div class="header-area">
         <div class="container">
@@ -179,14 +201,14 @@
         <div class="container">
             <div class="search-row">
             
-            <a href="/"><img class="logoimg" src="../../../resources/images/mainImg/kostyle.png"></a>
+            <a href="/"><img class="logoimg" src="/resources/images/mainImg/kostyle.png"></a>
             
             <div class="header_search">
 				<form class="search-form" action="/search/do" method="post">
 					<div class="search-box">
 						<dl class="clear">
 						<dt class="search1"><input id="search-text" type="text" name="search"></dt>
-						<dd class="search2"><input id="search-icon" type="image" src="../../../resources/images/mainImg/kostylesearch.png" alt="검색" title="검색"></dd>
+						<dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색"></dd>
 						</dl>
 					</div>
 				</form>
@@ -198,7 +220,7 @@
     
     <div class="mainmenu-area">
         <div class="container">
-            <div class="row">
+            <div class="rowNav">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
