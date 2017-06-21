@@ -10,29 +10,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KOStyle</title>
    <!-- Bootstrap -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="/resources/css/main/bootstrap.min.css" media="screen" title="no title" charset="utf-8"> -->
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="/resources/css/main/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     
     <!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
    
     <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
     <!-- jQuery sticky menu -->
-    <script src="../../../resources/js/main/owl.carousel.min.js"></script>
-    <script src="../../../resources/js/main/jquery.sticky.js"></script>
+    <!-- <script src="../../../resources/js/main/owl.carousel.min.js"></script>
+    <script src="../../../resources/js/main/jquery.sticky.js"></script> -->
     
     <!-- Main Script -->
     <script src="../../../resources/js/main/main.js"></script>
        
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/kostyleHeader.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/main/kostyleHeader.css" />
  	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
  	<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
+ 	
+ 	<style>
+      .jbContent {
+        height: 2000px;
+      }
+      .jbFixed {
+        position: fixed;
+        top: 0px;
+      }
+    </style>
+    
+    <script>
+      $( document ).ready( function() {
+        var jbOffset = $( '.header_search' ).offset();
+        $( window ).scroll( function() {
+          if ( $( document ).scrollTop() > jbOffset.top ) {
+            $( '.navSticky' ).addClass( 'jbFixed' );
+          }
+          else {
+            $( '.navSticky' ).removeClass( 'jbFixed' );
+          }
+        });
+      } );
+    </script>
+ 	
+ 	
 <script type="text/javascript">
 <%Object userVO = session.getAttribute("login"); %>
 <%CustomerVO customerVO = null; %>
@@ -123,68 +149,6 @@
 
 
 
-<style type="text/css">
-.navbar-default{
-	background-color: #ad82ab;
-}
-
-.navbar-default .navbar-nav>li>a{
-	color: white;
-	font-family: sans-serif;
-	font-size: 25px;
-	font-weight: bold;
-	padding: 20px 70px;
-}
-
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
- .navbar-default .navbar-nav>.open>a:focus{
-	color: #ad82ab;
-	background: white;
-}
-
-.navbar-default .navbar-nav .open .dropdown-menu>li>a{
-	color: black;
-}
-
-.navbar-nav>li>.dropdown-menu{
-	border: none;
-	width: 100%;
-}
-
-.container-fluid{
-	position: relative;
-}
-
-.navbar-default .navbar-nav .open .dropdown-menu>li>a{
-	font-family: 맑은 고딕;
-	font-size: 20px;
-	padding: 10px 30px;
-	font-weight: bold;
-	color: #ad82ab;
-}
-
-
-.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
-	color: #ad82ab;
-	background-color: white;
-}
-
-
-
-
-.navbar-toggle {
-    border-color: #fff;
-    float: none;
-    margin: 10px auto;
-}
-.navbar-toggle .icon-bar { background: none repeat scroll 0 0 #fff }  
-
-</style>
-
-
-</head>
-
-
 <body>
 
 <div class="header-area">
@@ -236,14 +200,14 @@
         <div class="container">
             <div class="search-row">
             
-            <a href="/"><img class="logoimg" src="../../../resources/images/mainImg/kostyle.png"></a>
+            <a href="/"><img class="logoimg" src="/resources/images/mainImg/kostyle.png"></a>
             
             <div class="header_search">
-				<form class="search-form" action="/search/do" method="post">
+				<form class="search-form" action="#" method="post" name="searchForm">
 					<div class="search-box">
 						<dl class="clear">
 						<dt class="search1"><input id="search-text" type="text" name="search"></dt>
-						<dd class="search2"><input id="search-icon" type="image" src="../../../resources/images/mainImg/kostylesearch.png" alt="검색" title="검색"></dd>
+						<dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="sendtwo()"></dd>
 						</dl>
 					</div>
 				</form>
@@ -288,7 +252,7 @@
     
  -->
 
-
+<div class="navSticky">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div>
@@ -310,13 +274,22 @@
     </div>
   </div>
 </nav> 
-
+</div>
 
 <div class="remocon"></div>
 
 
 
 </body>
-
+<script>
+function sendtwo(){
+	
+	document.searchForm.action='/stats/insertstats';
+	document.searchForm.submit();
+	
+	document.searchForm.action='/search/do';
+	document.searchForm.submit();
+}
+</script>
 
 </html>
