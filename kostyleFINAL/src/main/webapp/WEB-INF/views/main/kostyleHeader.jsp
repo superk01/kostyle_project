@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KOStyle</title>
    <!-- Bootstrap -->
-    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="/resources/css/main/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/resources/css/main/bootstrap.min.css" media="screen" title="no title" charset="utf-8"> -->
     
     <!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
@@ -33,6 +33,134 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/main/kostyleHeader.css" />
  	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
  	<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
+ 	
+ 	
+ 	<style type="text/css">
+ 
+.table>thead>tr>th {
+	vertical-align: bottom;
+	border-bottom: 5px solid #ad82ab !important;
+}
+
+
+.dropdown-menu>li>a {
+	display: block;
+	padding: 12px 20px !important;
+	clear: both;
+	font-weight: 400;
+	line-height: 1.42857143;
+	color: #333;
+	white-space: nowrap;
+	font-size: 17px !important;
+}
+
+
+.navbar {
+	position: relative;
+	min-height: 50px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	width: 120% !important;
+}
+
+
+@media ( min-width :768px) {
+	.navbar {
+	border-radius: 0px !important; 
+	}
+}
+
+	
+.navbar-default {
+	background-color: #ad82ab !important;
+	border-color: #ad82ab !important;
+}
+
+.navbar-default .navbar-brand {
+	color: white !important;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus
+	{
+	color:  !important;
+	background-color:  !important;
+}
+
+.navbar-default .navbar-text {
+	color: white !important;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: white !important;
+	font-family: sans-serif !important;
+	font-size: 25px !important;
+	font-weight: bold !important;
+	padding: 20px 70px !important;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
+	{
+	color: #ad82ab !important;
+	background-color: white !important;
+}
+
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
+	.navbar-default .navbar-nav>.open>a:focus {
+	color: #ad82ab !important;
+	background: white !important;
+}
+
+@media ( max-width :767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+		font-family: 맑은 고딕 !important;
+		font-size: 20px !important;
+		padding: 10px 30px !important;
+		font-weight: bold !important;
+		color: white !important;
+		padding-left: 70px !important;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
+		.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
+		color: #ad82ab !important;
+		background-color: white !important;
+		padding-left: 70px !important;
+	}
+}
+
+.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus,
+	.pagination>li>span:focus {
+	color: #ad82ab !important;
+	background-color: #eee;
+	border-color: #ddd
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover,
+	.pagination>.active>span:hover, .pagination>.active>a:focus,
+	.pagination>.active>span:focus {
+	z-index: 2;
+	color: #fff;
+	cursor: default;
+	background-color: #ad82ab !important;
+	border-color: #ad82ab !important;
+}
+
+
+ </style>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
  	
  	<style>
       .jbContent {
