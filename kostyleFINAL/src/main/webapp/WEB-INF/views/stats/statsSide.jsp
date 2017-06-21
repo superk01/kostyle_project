@@ -6,6 +6,7 @@
 		statsbody = "statsMain.jsp";
 	}
 %>
+<%@ include file="../main/kostyleHeader.jsp" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +17,6 @@
 <title>Insert title here</title>
 
 
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
  
@@ -38,7 +38,7 @@
                 <li class="sidebar-brand">
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="statsSide">
                 	<span class="ifont"><i class="fa fa-bar-chart" style="font-size:19px"></i></span>
                     HOME</a>
                 </li>

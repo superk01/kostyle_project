@@ -292,8 +292,10 @@ $(document).ready(function(){
 		<tr height="30">			
 			<td colspan="4">
 				<input type="button" value="글목록" id="list">
-				<input type="button" value="수정" id="update">
-				<input type="button" value="삭제" id="remove">
+				<c:if test="${board.c_Id==login.c_id }">
+					<input type="button" value="수정" id="update">
+					<input type="button" value="삭제" id="remove">
+				</c:if>
 			</td>			
 		</tr>
 		

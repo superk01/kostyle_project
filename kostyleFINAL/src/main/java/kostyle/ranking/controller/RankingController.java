@@ -48,6 +48,7 @@ public class RankingController {
 		
 		List<Integer> sumclickScore = service.sumclickScore();			//총 클릭된 점수
 		List<Integer> favoriteScore = service.favoriteScore();			//즐겨찾기 한 점수
+		List<Integer> avgclickScore = service.avgclickScore();			//일주일동안 클릭된 점수		
 		
 		List<String> showSnum = service.showsnum();		//snum 보여주기위한리스트.			
 		List<Integer> showRank = service.showRank();		//s_rank에 넣을 리스트
@@ -56,13 +57,16 @@ public class RankingController {
 		
 		
 		for(int i=0; i<sumclickScore.size(); i++) {
-			int sum  = sumclickScore.get(i) + favoriteScore.get(i);
+			int sum  = sumclickScore.get(i) + favoriteScore.get(i) + avgclickScore.get(i);
 			totalScore.add(i, sum);
 		
+			System.out.println("일주일 클릭 점수 : "+avgclickScore.get(i));
+			
 			System.out.println("리스트"+ i + ": " + totalScore.get(i));
 			
 			showRank.set(i, sum);
 			System.out.println("진짜리스트"+ i + ": " + showRank.get(i));
+			
 			
 			System.out.println("snum:" + showSnum.get(i));
 			

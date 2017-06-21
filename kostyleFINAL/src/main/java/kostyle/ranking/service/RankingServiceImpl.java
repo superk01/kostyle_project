@@ -32,6 +32,11 @@ public class RankingServiceImpl implements RankingService{
 	public List<Integer> sumclickScore() {
 		return RankingDao.sumclickScore();
 	}
+	
+	@Override
+	public List<Integer> avgclickScore() {
+		return RankingDao.avgclickScore();
+	}
 
 	@Override
 	public List<Integer> showRank() {

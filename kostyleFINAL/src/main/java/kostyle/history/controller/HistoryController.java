@@ -72,17 +72,7 @@ public class HistoryController {
 	
 	@RequestMapping(value="delete", method=RequestMethod.GET)
 	public ResponseEntity<String> deleteHistory(HttpServletRequest request){
-		System.out.println("deleteHistory진입");
-		System.out.println("11111어디서 막힌건가11111?");
 		String[] str = request.getParameter("h_num").toString().split(",");
-		
-		System.out.println("배열안의 데이터 숫자 확인: "+str.length);
-		System.out.println("22222어디서 막힌건가22222?");
-		for(int i=0; i<str.length-1; i++){
-			System.out.println("deleteHistory-str("+(i+1)+") :"+str[i]);
-			System.out.println("33333어디서 막힌건가33333?");
-		}
-		System.out.println("44444어디서 막힌건가44444?");
 		ResponseEntity<String> entity= null;
 		try {
 			for(int i=0; i<str.length; i++){
