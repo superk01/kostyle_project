@@ -1,10 +1,33 @@
+.aaa{
+	height: 100px;
+	width: 100px;
+} 
+.deleteButton{
+	background-color: #ad82ab !important;
+	color: white !important;
+	font-weight: bold;
+}
 #CategoryBody{
 	background :#E8E7E0;
 	font-family: 'Noto Sans', sans-serif;
 	width: 100%;
 	height : 3000px;
 }
-
+.table{
+	font-size: 20px;
+}
+#IframeRemocon {
+	width: 1.5%;
+	height: 110px;
+	position: fixed;
+	overflow: hidden;
+	background: #3C3C3C;
+	bottom: 30%;
+	font-size: 17px;
+	color: white;
+	font-weight: bold;
+	padding: 7px;
+}
 #CategoryBody A:link{
 	text-decoration: none;
 	color : black;

@@ -10,14 +10,15 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="/resources/jquery/jquery-3.2.1.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/history/historyiFrame.css" />
-<script type="text/javascript"  src="/resources/js/search/CategorysearchResult2.js"/>
+<!-- <script type="text/javascript"  src="/resources/js/search/CategorysearchResult2.js"/> -->
 <title>Insert title here</title>
 <style type="text/css">
 .table{
-	width: 80%;
+	width: 100%;
 }
-.prdurl {
+/* .prdurl {
 	height: 100px;
 	width: 100px;
 }
@@ -29,32 +30,27 @@
 
 .date {
 	height: 100px;
-}
+} */
 
-.aaa {
+/* td.prdurl.td{
+ height: 50px;
+
+} */
+img.aaa{
 	height: 100px;
 	width: 100px;
-}
+} 
 
-#IframeRemocon {
-	width: 1.5%;
-	height: 110px;
-	position: fixed;
-	overflow: hidden;
-	background: #3C3C3C;
-	bottom: 30%;
-	font-size: 17px;
-	color: white;
-	font-weight: bold;
-	padding: 7px;
-}
+
+
 </style>
-<script src="/resources/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	/* 가장 상단의 체크박스 클릭시에 모든 체크 박스가 선택 되도록. */
-	$('#chkAll').click(function() {
 
+yh(document).ready(function() {
+	alert('페이지 열림');
+	/* 가장 상단의 체크박스 클릭시에 모든 체크 박스가 선택 되도록. */
+	yh('#chkAll').click(function() {
+		alert('체크박스 클릭 이벤트 확인');
 		if ($(this).prop('checked')) {
 			$('.checkbox').prop('checked', true);
 		} else {
@@ -62,7 +58,7 @@ $(document).ready(function() {
 		}
 	});
 	/* 삭제 버튼을 눌렀을 때 몇 개의 체크박스가 있는지 확인하고 체크 되어 있는 상품들을 DB에서 삭제. */
-	$('.deleteButton').click(function() {
+	$('#deleteButton').click(function() {
 		var h_num = "";
 		var c_num = $('input[name=c_num]').val();
 		/* alert(c_num); */
@@ -153,23 +149,24 @@ $(document).ready(function() {
 				<col width="">
 			</colgroup>
 			<thead>
-				<tr>
-					<th class="first col-md-1" scope="col" abbr="상품선택 체크박스">
+				<tr class="tr">
+					<th class="first th" scope="col" abbr="상품선택 체크박스" style="text-align: center;">
 						<div class="th_checkall">
 							<label for="chkAll"> <input id="chkAll" name="chkAll"
 								type="checkbox"> <!-- 온클릭 이벤트(체크박스 전부 체크되는 거)있음 -->
 							</label>
 						</div>
 					</th>
-					<th scope="col" class="col-md-3">이미지</th>
-					<th scope="col" class="col-md-4">상품이름</th>
-					<th scope="col" class="col-md-4">날짜</th>
+					<th scope="col" class="th" style="text-align: center;">이미지</th>
+					<th scope="col" class="th" style="text-align: center;">상품이름</th>
+					<th scope="col" class="th" style="text-align: center;">가격</th>
+					<th scope="col" class="th" style="text-align: center;">날짜</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="history" items="${list }">
-					<tr>
-						<td>
+					<tr class="tr">
+						<td class="td" style="text-align: center; vertical-align: middle;">
 							<div>
 								<label> <input class="checkbox" name="box"
 									type="checkbox" value="${history.h_Num }"> <input
@@ -177,20 +174,22 @@ $(document).ready(function() {
 								</label>
 							</div>
 						</td>
-						<td class="prdurl"><a href="${history.h_Prdurl }"><img
+						<td class="prdurl td" style="text-align: center; vertical-align: middle;"><a href="${history.h_Prdurl }"><img
 								alt="" src="${history.h_Imgurl }" class="aaa"></a></td>
-						<td class="prdname"><a href="${history.h_Prdurl }">${history.h_Name }</a></td>
-						<td class="date">${history.h_Date }</td>
+						<td class="prdname td" style="text-align: center; vertical-align: middle;"><a href="${history.h_Prdurl }">${history.h_Name }</a></td>
+						<td class="prdprice td" style="text-align: center; vertical-align: middle;">${history.h_Price }</td>
+						<td class="date td" style="text-align: center; vertical-align: middle;">${history.h_Date }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 
 		</table>
-		<input type="button" value="상품삭제" class="deleteButton">
+		<button id="deleteButton" class="btn btn-default btn-lg pull-right deleteButton">상품삭제</button>
+		
 	</div>
 	<div class="text-center">
 		<ul class="pagination">
-
+			
 			<c:if test="${pageMaker.prev}">
 				<li><a href="/history/list/${login.c_num }?page=${pageMaker.startPage - 1}">&laquo;</a></li>
 			</c:if>
