@@ -77,10 +77,33 @@
     group by to_char(h.cnt_date, 'YYYY-MM-DD')) e
     where d.cnt_date = e.cnt_date(+)
     order by d.cnt_date
+    
 	</select>
 	
 	
+	<select id="statsDate_age" resultType="HitcountStatsChart">
 	
+	select to_char(d.cnt_date,'MM-DD') as cnt_date, nvl(e.teen,0) as teen, nvl(e.twenty,0) as twenty, nvl(e.thirty,0) as thirty
+  from (select to_date(#{statsSearchStartDate})+level-1 as cnt_date
+    from DUAL
+        <![CDATA[
+    connect by level <= (to_date(#{statsSearchEndDate}) - to_date(#{statsSearchStartDate})+1)) d,	
+        ]]>
+        (select to_char(h.cnt_date, 'YYYY-MM-DD') as cnt_date, 
+                  count(decode(trunc((nvl(TRUNC(MONTHS_BETWEEN(sysdate, TO_DATE(c_birth,'yyyy-MM-dd'))/12), 0)+1),-1),'10',1,null)) teen,
+                  count(decode(trunc((nvl(TRUNC(MONTHS_BETWEEN(sysdate, TO_DATE(c_birth,'yyyy-MM-dd'))/12), 0)+1),-1),'20',1,null)) twenty,
+                  count(decode(trunc((nvl(TRUNC(MONTHS_BETWEEN(sysdate, TO_DATE(c_birth,'yyyy-MM-dd'))/12), 0)+1),-1),'30',1,null)) thirty
+    from customer c, hitcount h, shoppingmall s
+    where c.c_num = h.c_num
+    and s.s_num = h.s_num
+    and s.s_sname like '%'||#{s_sname}||'%'
+    group by to_char(h.cnt_date, 'YYYY-MM-DD')
+    order by to_char(h.cnt_date, 'YYYY-MM-DD')) e
+    where d.cnt_date = e.cnt_date(+)
+    order by d.cnt_date
+	
+	
+	</select>
 	
 	
 	

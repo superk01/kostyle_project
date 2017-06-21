@@ -72,6 +72,7 @@ public class StatsController {
 	
 	}
 	
+	//방문자수 통계
 	@RequestMapping(value="/statsVisitor", method=RequestMethod.GET)
 	public void statsVisitorGET()throws Exception{
 		
@@ -91,7 +92,7 @@ public class StatsController {
 			chartList = service.statsDate(s_sname, statsSearchStartDate, statsSearchEndDate, chartFor);
 			
 			for(int i=0;i<chartList.size();i++){
-				System.out.println("~~STATS/SUCCEED TO GET CHARTLIST");
+				System.out.println("~~STATS/SUCCEED TO GET CHARTLIST: "+chartList.get(i).getCnt_date());
 			}
 			
 			HttpSession session = request.getSession();
@@ -99,10 +100,18 @@ public class StatsController {
 			if(session.getAttribute("statsVisitorJ") != null){
 				session.removeAttribute("statsVisitorJ");
 			}
-			
 			session.setAttribute("statsVisitorJ", chartList);
 			
-			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+			String locate = "";
+			
+			if(chartFor.equals("gender")){
+				locate="/stats/statsSide?statsbody=statsVisitor_gender.jsp";
+			}else if(chartFor.equals("age")){
+				locate="/stats/statsSide?statsbody=statsVisitor_age.jsp";
+			}
+			
+			System.out.println("~~STATS/이동: "+locate);
+			entity = new ResponseEntity<String>(locate, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -113,12 +122,21 @@ public class StatsController {
 		return entity;
 	}
 	
+	//성별 방문자수 통계 출력
 	@RequestMapping(value="/statsVisitor_gender", method=RequestMethod.GET)
 	public void statsVisitor_genderGET()throws Exception{
 		
 	}
 	
+	@RequestMapping(value="/statsVisitor_age", method=RequestMethod.GET)
+	public void statsVisitor_ageGET()throws Exception{
+		
+	}
 	
+	@RequestMapping(value="/statsVisitor_adr", method=RequestMethod.GET)
+	public void statsVisitor_adrGET()throws Exception{
+		
+	}
 	
 	
 	

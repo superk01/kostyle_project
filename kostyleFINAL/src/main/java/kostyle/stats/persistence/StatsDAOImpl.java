@@ -41,7 +41,25 @@ public class StatsDAOImpl implements StatsDAO{
 	@Override
 	public List<HitcountStatsChart> statsDate_adr(String s_sname, String statsSearchStartDate,
 			String statsSearchEndDate) throws Exception {
-		return session.selectList(namespace+"statsDate_adr");
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("s_sname", s_sname);
+		paramMap.put("statsSearchStartDate", statsSearchStartDate);
+		paramMap.put("statsSearchEndDate", statsSearchEndDate);
+		
+		return session.selectList(namespace+".statsDate_adr", paramMap);
+	}
+
+	@Override
+	public List<HitcountStatsChart> statsDate_age(String s_sname, String statsSearchStartDate,
+			String statsSearchEndDate) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("s_sname", s_sname);
+		paramMap.put("statsSearchStartDate", statsSearchStartDate);
+		paramMap.put("statsSearchEndDate", statsSearchEndDate);
+		
+		return session.selectList(namespace+".statsDate_age", paramMap);
 	}
 	
 	
