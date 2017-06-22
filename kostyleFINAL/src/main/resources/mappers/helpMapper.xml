@@ -10,7 +10,7 @@
 	<!-- 여기부터 게시판 관련 -->
 	<!-- 고객문의 게시판 글 목록 보기(전체) -->
 	<!-- 스프링에서 조인으로 짠 셀렉트문 -->
-	<select id="customerList" resultType="BoardVO" parameterType="SearchCriteria">
+	<select id="list" resultType="BoardVO" parameterType="SearchCriteria">
 	    select q_num as q_Num, q_title as q_Title, q_content as q_Content,
 		q_date as q_Date, c_id as c_Id, s_sname as s_Name, q_secret as q_Secret
 		from question q
@@ -130,7 +130,7 @@
 			</when>
 			<when test="searchType == null and s_Num != null">
 				<where>
-					s_num = #{s_Num}
+					s.s_num = '${s_Num}'
 				</where>
 			</when>
 			<when test="searchType != null and s_Num != null">
