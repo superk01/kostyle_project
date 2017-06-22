@@ -5,6 +5,7 @@ $(function(){
 
 function CategoryItemClick(){
 	$('.CategoryResult_oneItemBox a').click(function(event){
+		alert('이벤트 걸림요?');
 		event.preventDefault();
 		var link = $(this).attr('href');
 		if($('#CategorysearchIframe').length>0){
