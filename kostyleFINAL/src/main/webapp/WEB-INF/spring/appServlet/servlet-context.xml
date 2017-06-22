@@ -63,6 +63,7 @@
 			<mapping path="/favorite/comentModify"/>
 			<mapping path="/favorite/comentRead"/>
 			<mapping path="/help/insert"/>
+			<mapping path="/help/detail"/>
 			<beans:ref bean="checkLoginInterceptor"/>
 		</interceptor>
 		
