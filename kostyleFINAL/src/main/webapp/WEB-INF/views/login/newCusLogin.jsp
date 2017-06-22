@@ -87,7 +87,7 @@ display: inline;
     	<form id="loginForm" action="/cuslogin/loginCheck" method="post">
 			<fieldset>
 				<div class="logindiv">
-				<img class="logoimg" src="../../../resources/images/mainImg/kostyle.png"><h2>로그인</h2>
+				<img class="login_logoimg col-xs-5 col-sm-5 col-md-5" src="../../../resources/images/mainImg/kostyle.png"><h2>로그인</h2>
 				</div>
 				<hr class="colorgraph">
 			<div class="textboxdiv">	
