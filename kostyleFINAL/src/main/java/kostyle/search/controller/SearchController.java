@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,11 +28,12 @@ public class SearchController {
 		return new ModelAndView("/main/header");
 	}
 	
-	@RequestMapping(value="do", method=RequestMethod.GET)
-	public ModelAndView doSearch(HttpServletRequest request, @RequestParam("search") String keyword){
+	@RequestMapping(value="do", method=RequestMethod.POST)
+	public ModelAndView doSearch(HttpServletRequest request){
 		System.out.println("doSearch호출");
-		/*String keyword=(String)request.getParameter("search");					//검색어 받음
-*/		
+		String keyword=(String)request.getParameter("search");					//검색어 받음
+		System.out.println("받은 키워드"+keyword);
+		
 		List<SearchVO> list = new ArrayList<SearchVO>(); 
 		/*System.out.println("SearchController에서 리스트를 만들었습니다.");*/
 		list = service.doSearch(keyword);
