@@ -190,7 +190,7 @@
  
 	
 	 $(document).ready(function(){ 
-		var returnPath1 = jQuery(location).attr('pathname')+"";
+		var returnPath1 = jQuery(location).attr('href')+"";
 		var returnPath2 = location.pathname+"";
 		console.log("returnPath= "+returnPath1);
 		
@@ -320,7 +320,7 @@
             <a href="/"><img class="logoimg" src="/resources/images/mainImg/kostyle.png"></a>
             
             <div class="header_search">
-				<form class="search-form" action="#" method="post" name="searchForm">
+				<form class="search-form" action="#" method="get" name="searchForm">
 					<div class="search-box">
 						<dl class="clear">
 						<dt class="search1"><input id="search-text" type="text" name="search"></dt>
@@ -379,6 +379,7 @@ function sendtwo(){
 	document.searchForm.submit();
 	
 	document.searchForm.action='/search/do';
+	/* document.searchForm.attr("method", "get"); */
 	document.searchForm.submit();
 }
 </script>
