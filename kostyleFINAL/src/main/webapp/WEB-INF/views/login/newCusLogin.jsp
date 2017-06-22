@@ -101,8 +101,8 @@ display: inline;
 				
 				<span class="button-checkbox">
 					<button type="button" class="btn" id="cusAutoLogin" data-color="warning"> 자동 로그인</button>
-                    <input type="checkbox" name="useCookie" id="remember_me" checked="checked" class="hidden">
-					<a href="" id="forgotPass" class="btn btn-link pull-right">아직 회원이 아니신가요?</a>
+                    <input type="checkbox" name="useCookie" id="remember_me"  class="hidden">
+					<a href="/join/join"  class="btn btn-link pull-right">아직 회원이 아니신가요?</a>
 				</span>
 				<hr class="colorgraph">
 				<div class="row" id="doingButton">

@@ -17,6 +17,7 @@ import kostyle.login.domain.CustomerVO;
 
 public class ShopLoginInterceptor extends HandlerInterceptorAdapter {
 	private static final String SHOPLOGIN = "shoplogin";
+	private static final String LOGIN = "login";
 	private static final Logger logger = LoggerFactory.getLogger(ShopLoginInterceptor.class);
 
 	@Override
@@ -43,7 +44,10 @@ public class ShopLoginInterceptor extends HandlerInterceptorAdapter {
 			 if(userVO instanceof AdShopVO){ //로그인성공
 					System.out.println("userVO의타입: AdShopVO진입");
 					session.setAttribute(SHOPLOGIN, (AdShopVO)userVO);
-					System.out.println("세션값확인: "+session.getAttribute(SHOPLOGIN));
+/*					System.out.println("세션값확인: "+session.getAttribute(SHOPLOGIN));
+					if(session.getAttribute(LOGIN) != null){
+						session.removeAttribute(LOGIN);
+					}*/
 					if(dest == null){
 						dest =  "/";
 					}
