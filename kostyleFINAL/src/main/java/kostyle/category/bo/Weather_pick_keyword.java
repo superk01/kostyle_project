@@ -17,22 +17,14 @@ public class Weather_pick_keyword {
 	private int result = 0;
 	public int[] getWeather_pick_Data(Weather weather, String User_type){
 		this.user_type = User_type;
-			
-				//체감온도 13.12 + 0.6215 x T - 11.37v^0.16 + 0.3965v^0.16 x T			
-				//불쾌지수 1.8t-0.55(1-rh)(1.8t-26)+32
+				double t = weather.getTemp();  //온도
+				double vms = weather.getWind_ms(); //풍속
+				double v2 = weather.getVher(); //습도
 				
-			
-				double t = weather.getTemp();
-				double vms = weather.getWind_ms();
-				double v2 = weather.getVher();
+				double v = vms*3600/1000;	 //풍속 km으로 변환
+				double oo= 13.12 + 0.6215 * t - 11.37 * Math.pow(v, 0.16) + 0.3965 * Math.pow(v, 0.16) * t;  //체감온도
+				double bb = (1.8*t)-(0.55*(1-v2/100)*(1.8*t-26))+32;	 //불쾌지수
 				
-				double v = vms*3600/1000;					
-				double oo= 13.12 + 0.6215 * t - 11.37 * Math.pow(v, 0.16) + 0.3965 * Math.pow(v, 0.16) * t; 		
-				double bb = (1.8*t)-(0.55*(1-v2/100)*(1.8*t-26))+32;	
-				
-				//
-				System.out.println("체감온도 :" + oo + " 불쾌지수 : " + bb);
-				//소숫점 두자리부터 정수까지 반올림
 				level = (int) mathRound2(oo);
 				user_bb = (int) mathRound2(bb);
 				//체감온도, 불쾌지수, 사용자 타입으로  온도레벨 생성
@@ -59,8 +51,7 @@ public class Weather_pick_keyword {
 					User_type_level = 2;
 				}else{
 					User_type_level = 0;
-				}
-				
+				}				
 				break;
 			}
 		}
@@ -81,6 +72,17 @@ public class Weather_pick_keyword {
 		return result;
 	}
 	
+	public String getUser_angry(int User_bb){
+		if(User_bb >= 80){
+			return "전원 불쾌감을 느끼는 날씨입니다.";
+		}else if( User_bb < 80 && User_bb >= 75 ){
+			return "50%정도 불쾌감을 느끼는 날씨입니다.";
+		}else if( User_bb < 75 && User_bb >= 68){
+			return "불쾌감을 나타내는 날씨입니다.";
+		}else{
+			return "전원 쾌적함을 느끼는 날씨입니다.";
+		}
+	}
 	
 	public double mathRound2(double data){
 		double bb = Math.round(data*10);
