@@ -87,11 +87,7 @@
 	font-family: sans-serif !important;
 	font-size: 25px !important;
 	font-weight: bold !important;
-<<<<<<< HEAD
 	padding: 20px 65px !important;
-=======
-	padding: 20px 70px !important;
->>>>>>> branch 'master' of https://github.com/superk01/kostyle_project
 }
 
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
@@ -287,7 +283,7 @@
     				<div class="col-md-4">
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
-                 				<li><a id="cuslogout" href="../shoplogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
+                 				<li><a id="cuslogout" href="/shoplogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
             				</ul>
         				</div>
     					</div>
@@ -370,7 +366,7 @@
          					<ul class="list-unstyled list-inline">
                 				<li><a href="../join/join"><i class="fa fa-list-ul"></i> 회원가입 </a></li>
                 				<!-- <li><a href="../mypage/login/"><i class="fa fa-id-badge"></i> My Page </a></li> -->
-                				<li><a href="../cuslogin/login"><i class="fa fa-user-o"></i> Login </a></li>
+                				<li><a href="/cuslogin/login"><i class="fa fa-user-o"></i> Login </a></li>
             				</ul>
         				</div>
     				</div>
@@ -388,7 +384,7 @@
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
             					<li><a href="/mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
-                 				<li><a id="cuslogout" href="../cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
+                 				<li><a id="cuslogout" href="/cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
             				</ul>
         				</div>
     					</div>
