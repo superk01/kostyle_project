@@ -32,6 +32,7 @@ public class SearchController {
 	public ModelAndView doSearch(HttpServletRequest request){
 		System.out.println("doSearch호출");
 		String keyword=(String)request.getParameter("search");					//검색어 받음
+		System.out.println("받은 키워드"+keyword);
 		
 		List<SearchVO> list = new ArrayList<SearchVO>(); 
 		/*System.out.println("SearchController에서 리스트를 만들었습니다.");*/
