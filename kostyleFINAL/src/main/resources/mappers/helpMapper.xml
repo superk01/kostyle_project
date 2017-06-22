@@ -10,7 +10,7 @@
 	<!-- 여기부터 게시판 관련 -->
 	<!-- 고객문의 게시판 글 목록 보기(전체) -->
 	<!-- 스프링에서 조인으로 짠 셀렉트문 -->
-	<select id="list" resultType="BoardVO" parameterType="SearchCriteria">
+	<select id="customerList" resultType="BoardVO" parameterType="SearchCriteria">
 	    select q_num as q_Num, q_title as q_Title, q_content as q_Content,
 		q_date as q_Date, c_id as c_Id, s_sname as s_Name, q_secret as q_Secret
 		from question q
@@ -20,6 +20,16 @@
 	 		<include refid="search"/>
 		order by q_num desc
 	</select> 
+	<select id="shopList" parameterType="SearchCriteria" resultType="BoardVO">
+		select q_num as q_Num, q_title as q_Title, q_content as q_Content,
+		q_date as q_Date, c_id as c_Id, s_sname as s_Name, q_secret as q_Secret
+		from question q
+		INNER JOIN customer c ON q.c_num=c.c_num
+		INNER JOIN adshoppingmall a ON q.s_num=a.s_num
+		INNER JOIN shoppingmall s ON s.s_num=q.s_num
+		where s.s_num = #{s_Num}
+	
+	</select>
 
 	<select id="adShoppingMallList" resultType="AdShoppingMallHelp">
 		select
@@ -49,6 +59,7 @@
 		INNER JOIN shoppingmall s ON s.s_num=q.s_num
 		where q_num=#{value}
 	</select>
+	
 	<update id="update" parameterType="BoardVO">
 		update question set
 		q_title =
@@ -99,23 +110,47 @@
 	<!-- 여기까지 Reply 관련부분임. -->
 	<!-- 검색관련 include -->
 	<sql id="search">
-		<if test="searchType != null">
-			<where>
-				${searchType} LIKE '%'||#{keyWord}||'%'
-			</where>
-			<choose>
-				<when test="searchType=='q_title'.toString() and c_Id != null">
-					and q_secret = 'n'
-					or c_id = #{c_Id} and q_secret = 'y'
-				</when>
-				<when test="searchType=='q_title'.toString() and c_Id == null">
-					and q_secret = 'n'
-				</when>
-				<when test="searchType=='c_Id'.toString()">
-					and q_secret = 'n'
-				</when>
-			</choose>
-		</if>
+		<choose>
+			<when test="searchType != null and s_Num == null">
+				<where>
+					${searchType} LIKE '%'||#{keyWord}||'%'
+				</where>
+				<choose>
+					<when test="searchType=='q_title'.toString() and c_Id != null">
+						and q_secret = 'n'
+						or c_id = #{c_Id} and q_secret = 'y'
+					</when>
+					<when test="searchType=='q_title'.toString() and c_Id == null">
+						and q_secret = 'n'
+					</when>
+					<when test="searchType=='c_Id'.toString()">
+						and q_secret = 'n'
+					</when>
+				</choose>
+			</when>
+			<when test="searchType == null and s_Num != null">
+				<where>
+					s_num = #{s_Num}
+				</where>
+			</when>
+			<when test="searchType != null and s_Num != null">
+				<where>
+					${searchType} LIKE '%'||#{keyWord}||'%' and s_num = #{s_Num}
+				</where>
+				<choose>
+					<when test="searchType=='q_title'.toString() and c_Id != null">
+						and q_secret = 'n'
+						or c_id = #{c_Id} and q_secret = 'y'
+					</when>
+					<when test="searchType=='q_title'.toString() and c_Id == null">
+						and q_secret = 'n'
+					</when>
+					<when test="searchType=='c_Id'.toString()">
+						and q_secret = 'n'
+					</when>
+				</choose>
+			</when>
+		</choose>
 	</sql>
 	<!-- 검색관련 include -->
 	<!-- 또 다른 셀렉트문 -->
