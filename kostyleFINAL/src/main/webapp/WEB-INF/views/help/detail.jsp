@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>게시글 상세보기</title>
-<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
+<script src="/resources/jquery/jquery-3.2.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> -->
@@ -66,14 +66,14 @@ $(document).ready(function(){
 	}
 	
 	
-	var printData = function(replyArr, target, templateObject){
+	/* var printData = function(replyArr, target, templateObject){
 		alert('printData');
 		var template = Handlebars.compile(templateObject.html());
 		
 		var html = template(replyArr);
 		$('.replyLi').remove();
 		target.after(html);
-	}
+	} */
 
 	/* alert("이벤트 발생"); */
 	$('#list').on('click', function(){
@@ -139,7 +139,7 @@ $(document).ready(function(){
 	$('#btnReplyUpdate').click(function(){
 		$.ajax({
 			type:"put",
-			url:"${path}/reply/update/${reply.as_Num}",
+			url:"/reply/update/${reply.as_Num}",
 			headers:{
 				"Content-Type":"application/json"
 			},
@@ -163,7 +163,7 @@ $(document).ready(function(){
 		var as_Num = $(this).parent().attr('data-rno');
 		alert(as_Num);
 		$.ajax({
-			url:"${path}/replies/"+as_Num,
+			url:"/replies/"+as_Num,
 			type : 'delete',
 			headers:{
 				"Content-Type":"application/json",
@@ -174,7 +174,7 @@ $(document).ready(function(){
 				/* alert("success:"+result);
 				$('#repliesDiv').after(data); */
 				if(result=="delete"){
-					getPage("${path}/replies/${board.q_Num}");
+					getPage("/replies/${board.q_Num}");
 				}
 			}
 			
@@ -187,7 +187,7 @@ $(document).ready(function(){
 		var as_Num = $(this).parent().attr('data-rno');
 		alert(as_Num);
 		$.ajax({
-			url:"${path}/replies/"+as_Num,
+			url:"/replies/"+as_Num,
 			type : 'post',
 			headers:{
 				"Content-Type":"application/json",
@@ -214,7 +214,7 @@ $(document).ready(function(){
 		alert(as_Content);
 		alert(as_Num);
 		$.ajax({
-			url:"${path}/replies/"+as_Num,
+			url:"/replies/"+as_Num,
 			type: "put",
 			headers:{
 				"Content-Type":"application/json",
@@ -226,7 +226,7 @@ $(document).ready(function(){
 			}),
 			success: function(result){
 				if(result=='success'){
-					getPage("${path}/replies/${board.q_Num}");
+					getPage("/replies/${board.q_Num}");
 				}
 			}
 		});

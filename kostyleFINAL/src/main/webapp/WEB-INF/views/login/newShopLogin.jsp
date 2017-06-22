@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../main/kostyleHeader.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ include file="../main/kostyleHeader.jsp" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
     <meta charset="utf-8">
-    <meta name="robots" content="noindex">
 
     <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http:////maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" type="text/css" href="/../../resources/css/login/newCusLogin.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/login/newCusLogin.css" />
 
     <style type="text/css">
     .btn-lg, .btn-group-lg>.btn {
@@ -72,16 +74,16 @@ display: inline;
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 		<!-- <fieldset> -->
 		<div class="uldiv">	
-				<ul id="top-bar" class="nav nav-tabs nav-justified col-xs-6 col-sm-6 col-md-6">
-							<li><a href="/cuslogin/login">개인 회원</a></li>
-							<li class="active"><a href="#">쇼핑몰 회원</a></li>
+				<ul id="top-bar" class="nav  nav-justified col-xs-6 col-sm-6 col-md-6">
+							<li class="col-xs-6 col-sm-6 col-md-6"><a href="/cuslogin/login">개인 회원</a></li>
+							<li class="active col-xs-6 col-sm-6 col-md-6"><a href="#">쇼핑몰 회원</a></li>
 				</ul>
 		</div>
-    	<div class="boxdiv">
+    	<div class="boxdiv col-xs-12 col-sm-12 col-md-12">
     	<form id="loginForm" action="/shoplogin/loginCheck" method="post">
 			<fieldset>
 				<div class="logindiv">
-				<img class="logoimg" src="../../../resources/images/mainImg/kostyle.png"><h2>로그인</h2>
+				<img class="col-xs-5 col-sm-5 col-md-5" src="/resources/images/mainImg/kostyle.png"><h2 >로그인</h2>
 				</div>
 				<hr class="colorgraph">
 			<div class="textboxdiv">	
@@ -94,9 +96,9 @@ display: inline;
 			</div>
 				
 					<span class="button-checkbox">
-					<button type="button" class="btn"  data-color="warning"> 자동 로그인</button>
-                    <input type="checkbox" name="useCookie" id="remember_me" checked="checked" class="hidden">
-					<a href="" id="forgotPass" class="btn btn-link pull-right">아직 회원이 아니신가요?</a>
+					<button type="button" class="btn btn-warning"  id="shopAutoLogin" data-color="warning"> 자동 로그인</button>
+                    <input type="checkbox" name="useCookie" id="remember_me"  class="hidden">
+					<a href=""  class="btn btn-link pull-right">아직 회원이 아니신가요?</a>
 				</span>
 				<hr class="colorgraph">
 				<div class="row" id="doingButton">

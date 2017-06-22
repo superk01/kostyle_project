@@ -95,7 +95,7 @@ public class JsoupThread extends Thread{
 					/*System.out.println("else if문 진입");*/
 					/*int index=prePrdName.indexOf("(");*/
 					/*String postPrdName=prePrdName.substring(0, index);*/
-					String postPrdName=prePrdName.replaceAll("([^)]*)", "");
+					String postPrdName=prePrdName.replaceAll("[(^*)$]([^)]*)", "");
 					System.out.println("이후 prePrdName:"+postPrdName);
 					prdName.add(postPrdName);
 				}else{
