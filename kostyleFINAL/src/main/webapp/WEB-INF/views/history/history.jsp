@@ -10,7 +10,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script src="/resources/jquery/jquery-3.2.1.js"></script>
+<!-- <script src="/resources/jquery/jquery-3.2.1.js"></script> -->
 <link rel="stylesheet" type="text/css" href="/resources/css/history/historyiFrame.css" />
 <!-- <script type="text/javascript"  src="/resources/js/search/CategorysearchResult2.js"/> -->
 <title>Insert title here</title>
@@ -46,10 +46,10 @@ img.aaa{
 </style>
 <script type="text/javascript">
 
-yh(document).ready(function() {
+$(document).ready(function() {
 	alert('페이지 열림');
 	/* 가장 상단의 체크박스 클릭시에 모든 체크 박스가 선택 되도록. */
-	yh('#chkAll').click(function() {
+	$('#chkAll').click(function() {
 		alert('체크박스 클릭 이벤트 확인');
 		if ($(this).prop('checked')) {
 			$('.checkbox').prop('checked', true);
@@ -95,6 +95,7 @@ yh(document).ready(function() {
 		}) */
 	});
 	$('.prdurl a').on('click',function(event) {
+		alert('이벤트 확인');
 		var link = $(this).attr('href');
 		location.href = "#CategoryResult_top";
 		event.preventDefault();
@@ -111,25 +112,48 @@ yh(document).ready(function() {
 			$('#IframeRemocon').remove();
 		});
 	})
-	$('.prdname a').on('click',function(event) {
+	$('.prdname a').click(function(event){
+		event.preventDefault();
+		var link = $(this).attr('href');
+		if($('#CategorysearchIframe').length>0){
+			$('#CategorysearchIframe').remove();
+		}
+		location.href = "#CategoryResult_top";
+		$('table.table').parent().prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
+		$('table.table').parent().prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="' +link +'">');
+		$('table.table').prepend('<div id="#CategoryResult_top"></div>');
+		
+		$('#IframeRemocon').click(function(){
+			$('#CategorysearchIframe').remove();
+			$('#IframeRemocon').remove();
+		});
+	});	
+	/* $('.prdname a').on('click',function(event) {
 		alert('이벤트 확인');
 		var link = $(this).attr('href');
 		alert(link);
 		location.href = "#CategoryResult_top";
+		alert('이벤트 진행1');
 		event.preventDefault();
+		alert('이벤트 진행2');
 		if ($('#CategorysearchIframe').length > 0) {
 			$('#CategorysearchIframe').attr("src", link);
+		alert('이벤트 진행3');
 		} else {
 			$('#CategoryResult_top').remove();
+		alert('이벤트 진행4');
 			$('table.talbe').parent().prepend('<div id="IframeRemocon">쇼핑몰 닫기</div> ');
+		alert('이벤트 진행5');
 			$('table.talbe').parent().prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+'">');
+		alert('이벤트 진행6');
 			$('table.talbe').prepend('<div id="#CategoryResult_top"></div>');
+		alert('이벤트 진행7');
 		}
 		$('#IframeRemocon').click(function() {
 			$('#CategorysearchIframe').remove();
 			$('#IframeRemocon').remove();
 		});
-	});
+	}); */
 });
 </script>
 </head>
