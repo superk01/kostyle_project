@@ -66,9 +66,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 					System.out.println("userVO의타입: CustomerVO진입");
 					session.setAttribute(LOGIN, (CustomerVO)userVO);
 					//괸리자나 customer가 로그인하면, 쇼핑몰은 로그아웃.
-/*					if(session.getAttribute(SHOPLOGIN) != null){
+				if(session.getAttribute(SHOPLOGIN) != null){
 						session.removeAttribute(SHOPLOGIN);
-					}*/
+					}
 					System.out.println("세션값확인: "+session.getAttribute("login"));
 					
 					if(request.getParameter("useCookie") != null){ 

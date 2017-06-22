@@ -44,10 +44,12 @@ public class ShopLoginInterceptor extends HandlerInterceptorAdapter {
 			 if(userVO instanceof AdShopVO){ //로그인성공
 					System.out.println("userVO의타입: AdShopVO진입");
 					session.setAttribute(SHOPLOGIN, (AdShopVO)userVO);
-/*					System.out.println("세션값확인: "+session.getAttribute(SHOPLOGIN));
+				System.out.println("세션값확인: "+session.getAttribute(SHOPLOGIN));
+				
+				//쇼핑몰 로그인시, 고객이나 관리자는 로그아웃처리.
 					if(session.getAttribute(LOGIN) != null){
 						session.removeAttribute(LOGIN);
-					}*/
+					}
 					if(dest == null){
 						dest =  "/";
 					}

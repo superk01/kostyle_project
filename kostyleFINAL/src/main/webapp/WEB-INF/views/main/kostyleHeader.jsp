@@ -188,12 +188,28 @@
 	});
 <%}%>
  
-	
+	//로그아웃시 고객은 고객으로, 쇼핑몰은 쇼핑몰로.
+	$(document).ready(function(){
+		console.log("#readyEvent");
+		var returnPath1 = jQuery(location).attr('href')+"";
+		var returnPath2 = location.pathname+"";
+		console.log("returnPath= "+returnPath1);
+		$('#shoplogout').on('click',function(){
+ 			console.log("#shoplogout Event");
+ 			$.post("../shoplogin/logout", { returnPath: "/${path}/logintest/testpage1" },function(result){
+ 				if(result == "SUCCESS"){
+	 				console.log("logout ajax 성공");
+ 					location.href=returnPath1;
+ 				}
+ 			});
+			return false;
+		});
+		
+	});
 	 $(document).ready(function(){ 
 		var returnPath1 = jQuery(location).attr('href')+"";
 		var returnPath2 = location.pathname+"";
 		console.log("returnPath= "+returnPath1);
-		
 		
  		$('#cuslogout').on('click',function(){
  			$.post("../cuslogin/logout", { returnPath: "/${path}/logintest/testpage1" },function(result){
@@ -205,6 +221,9 @@
  			});
 			return false;
 		});
+ 		
+ 		
+ 	
  		
  		 $('body').on('click','button.wing_btn_delete',function(){
  			 
@@ -248,6 +267,9 @@
 	});
 		/* 사용자의 히스토리내역을 리모컨에 띄우는 함수 */
  		function remoconList(){
+
+			if(${login.c_num !=""}){
+				
  			$.ajax({
  				url: '/remocon/list/'+${login.c_num},
 	 			type: 'post',
@@ -261,7 +283,9 @@
 					$('.remocon').after(data);
 				}
  			});
- 		}
+			}//remoconList()
+
+		}
 </script>
 
 
@@ -283,7 +307,7 @@
     				<div class="col-md-4">
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
-                 				<li><a id="cuslogout" href="/shoplogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
+                 				<li><a id="shoplogout" ><i class="fa fa-user"></i> Logout</a></li>
             				</ul>
         				</div>
     					</div>
@@ -384,7 +408,7 @@
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
             					<li><a href="/mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
-                 				<li><a id="cuslogout" href="/cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
+                 				<li><a id="cuslogout" ><i class="fa fa-user"></i> Logout</a></li>
             				</ul>
         				</div>
     					</div>

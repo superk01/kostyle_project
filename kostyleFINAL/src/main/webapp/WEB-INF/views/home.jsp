@@ -32,7 +32,7 @@
       $('#shoplogout ').on('click', function(){
 //         location.href = $(this).attr("href");
          //location.href = "/shoplogin/logout/"+currentPath1;
-         console.log("shoplogout event+ path: "+"/shoplogin/logout/"+currentPath1);
+        // console.log("shoplogout event+ path: "+"/shoplogin/logout/"+currentPath1);
          return false;
       }); 
       
