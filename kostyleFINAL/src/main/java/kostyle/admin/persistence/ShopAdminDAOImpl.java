@@ -12,6 +12,7 @@ import kostyle.admin.domain.AdShoppingMallAdmin;
 import kostyle.admin.domain.CriteriaAdmin;
 import kostyle.admin.domain.SearchCriteriaAdmin;
 import kostyle.admin.domain.ShoppingMallAdmin;
+import kostyle.stats.domain.SearchKeywordStats;
 
 @Repository
 public class ShopAdminDAOImpl implements ShopAdminDAO{
@@ -74,6 +75,11 @@ public class ShopAdminDAOImpl implements ShopAdminDAO{
 	@Override
 	public void updateShopInfo(ShoppingMallAdmin shop) throws Exception {
 		session.update(namespace+".updateShopInfo", shop);
+	}
+
+	@Override
+	public List<SearchKeywordStats> admintest(String sk_searchkey) throws Exception {
+		return session.selectList(namespace+".admintest",sk_searchkey);
 	}
 	
 

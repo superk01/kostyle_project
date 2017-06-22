@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -28,6 +31,7 @@ import kostyle.admin.domain.SearchCriteriaAdmin;
 import kostyle.admin.domain.ShopStateAdmin;
 import kostyle.admin.domain.ShoppingMallAdmin;
 import kostyle.admin.service.ShopAdminService;
+import kostyle.stats.domain.SearchKeywordStats;
 
 @Controller
 @RequestMapping("/admin")
@@ -253,13 +257,18 @@ public class shopAdminController {
 
 	
 	@RequestMapping(value="/test", method=RequestMethod.GET)
-	public void test(Model model)throws Exception{
-		logger.info("ddd");
+	public void testGET(String term, HttpServletResponse response)throws Exception{
+	}
+
+	@RequestMapping(value="/test", method=RequestMethod.POST)
+	public void testPOST(@RequestBody SearchKeywordStats key)throws Exception{
+		System.out.println(key.getSk_searchkey());
+		
 	}
 	
-	@RequestMapping(value="/admintest", method=RequestMethod.POST)
-	public void testPOST(String search)throws Exception{
-		System.out.println("admin: "+search);
-	}
+//	@RequestMapping(value="/admintest", method=RequestMethod.POST)
+//	public void testPOST(String search)throws Exception{
+//		System.out.println("admin: "+search);
+//	}
 	
 }

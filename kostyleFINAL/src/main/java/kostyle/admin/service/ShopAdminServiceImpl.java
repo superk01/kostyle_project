@@ -11,6 +11,7 @@ import kostyle.admin.domain.CriteriaAdmin;
 import kostyle.admin.domain.SearchCriteriaAdmin;
 import kostyle.admin.domain.ShoppingMallAdmin;
 import kostyle.admin.persistence.ShopAdminDAO;
+import kostyle.stats.domain.SearchKeywordStats;
 
 @Service
 public class ShopAdminServiceImpl implements ShopAdminService{
@@ -71,6 +72,11 @@ public class ShopAdminServiceImpl implements ShopAdminService{
 	@Override
 	public void updateShopInfo(ShoppingMallAdmin shop) throws Exception {
 		dao.updateShopInfo(shop);
+	}
+
+	@Override
+	public List<SearchKeywordStats> admintest(String sk_searchkey) throws Exception {
+		return dao.admintest(sk_searchkey);
 	}
 	
 	
