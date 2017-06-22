@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../main/kostyleHeader.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ include file="../main/kostyleHeader.jsp" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
     <meta charset="utf-8">
-    <meta name="robots" content="noindex">
 
     <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,11 +79,11 @@ display: inline;
 		<!-- <fieldset> -->
 		<div class="uldiv">	
 				<ul id="top-bar" class="nav nav-tabs nav-justified col-xs-6 col-sm-6 col-md-6">
-							<li class="active"><a href="#login-access">개인 회원</a></li>
-							<li><a href="/shoplogin/login">쇼핑몰 회원</a></li>
+							<li class="active col-xs-6 col-sm-6 col-md-6"><a href="#login-access">개인 회원</a></li>
+							<li class="col-xs-6 col-sm-6 col-md-6"><a href="/shoplogin/login">쇼핑몰 회원</a></li>
 				</ul>
 		</div>
-    	<div class="boxdiv">
+    	<div class="boxdiv col-xs-12 col-sm-12 col-md-12" >
     	<form id="loginForm" action="/cuslogin/loginCheck" method="post">
 			<fieldset>
 				<div class="logindiv">
