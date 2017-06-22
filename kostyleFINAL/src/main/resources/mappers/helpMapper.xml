@@ -62,8 +62,7 @@
 	
 	<update id="update" parameterType="BoardVO">
 		update question set
-		q_title =
-		#{q_Title},
+		q_title = #{q_Title},
 		q_content = #{q_Content}
 		where q_num = #{q_Num}
 	</update>

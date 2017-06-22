@@ -81,6 +81,53 @@ $(document).ready(function(){
 		} 
 		getPage("/replies/${board.q_Num}");
 	});
+	$('#updateform').on('click',function(){
+		alert('updateform 이벤트 확인');
+		$('#title').removeAttr("readonly");
+		$('#content').removeAttr("readonly");
+		$(this).css("display", "none");
+		$('#remove').css("display", "none");
+		$('.dynamicBtns').
+		append("<input type='button' value='확인' id='update' class='btn btn-default pull-right'>"+
+			  "<input type='button' value='취소' id='cancel' class='btn btn-default pull-right'>");
+	});
+	
+	$('.dynamicBtns').on('click','#cancel',function(){
+		alert('cancel이벤트 확인');
+		$('#title').attr("readonly","readonly");
+		$('#content').attr("readonly","readonly");
+		$('#updateform').css("display", "");
+		$('#remove').css("display", "");
+		$('#update').remove();
+		$('#cancel').remove();
+	});
+	$('.dynamicBtns').on('click','#update',function(){
+		alert('update버튼 이벤트 확인');
+		var title = $('input[name=title]').val();
+		var content = $('#content').text();		
+		alert(title);
+		alert(content);
+		$.ajax({
+			type:'post',
+			url:'/help/alter',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"POST"
+			},
+			dataType:'text',
+			data : JSON.stringify({
+				q_Title : title,
+				q_Content : content,
+			}),
+			success : function(result){
+				alert(result);
+				if(result=='success'){
+					$('#title').attr("readonly","readonly");
+					$('#content').attr("readonly","readonly");
+				}
+			}
+		});
+	});
 });
 </script>
 <style type="text/css">
@@ -97,6 +144,9 @@ $(document).ready(function(){
 }
 ul.timeline{
 	list-style: none;
+}
+div.dynamicBtns{
+	display: inline;
 }
 </style>
 
@@ -123,12 +173,12 @@ ul.timeline{
 					<div class="form-group">
 						<label for="exampleInputEmail1">제목</label> <input type="text"
 							name='title' class="form-control" value="${board.q_Title}"
-							readonly="readonly">
+							readonly="readonly" id="title">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">내용</label>
 						<textarea class="form-control" name="content" rows="3"
-							readonly="readonly">${board.q_Content}</textarea>
+							readonly="readonly" id="content">${board.q_Content}</textarea>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">작성자</label> <input type="text"
@@ -144,8 +194,10 @@ ul.timeline{
 				<div class="btns">
 					<input type="button" value="글목록" id="list" class="btn btn-default">
 					<c:if test="${board.c_Id==login.c_id }">
-						<input type="button" value="수정" id="update" class="btn btn-default pull-right">
-						<input type="button" value="삭제" id="remove" class="btn btn-default pull-right"> 
+						<div class="dynamicBtns">
+							<input type="button" value="수정" id="updateform" class="btn btn-default pull-right">
+							<input type="button" value="삭제" id="remove" class="btn btn-default pull-right" > 
+						</div>
 					</c:if>
 				</div>
 				<c:if test="${not empty login}">

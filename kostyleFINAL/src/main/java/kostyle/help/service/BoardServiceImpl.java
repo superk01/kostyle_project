@@ -171,24 +171,21 @@ public class BoardServiceImpl implements BoardService {
                cri.setSearchType(null);
           }
           AdShopVO adShopVO = (AdShopVO)session.getAttribute("shoplogin");
-          CustomerVO customerVO = (CustomerVO) session.getAttribute("cuslogin");
+          CustomerVO customerVO = (CustomerVO) session.getAttribute("login");
           List<BoardVO> list = new ArrayList<>();
           if(adShopVO != null){                                                                                                                 //쇼핑몰 로그인
                System.out.println("쇼핑몰 로그인");
                cri.setS_Num(adShopVO.getS_num());
                System.out.println("s_num들어간거 확인:"+cri);
                list = boardDAO.list(cri);
-          }else if(customerVO != null){                                                                                                         //고객 로그인
-               System.out.println("고객로그인");
+          }else{                                                                                                         //고객 로그인
+               System.out.println("고객이거나 로그인상태가 아니거나.");
                list = secretBoard(boardDAO.list(cri), customerVO);
-          }else {                                                                                                                                                    //로그아웃 상태
-               System.out.println();
-               list = boardDAO.list(cri);
           }
           return list;
     }
-    private List<BoardVO> secretBoard(List<BoardVO> list, CustomerVO customerVO) {
-          
+    public List<BoardVO> secretBoard(List<BoardVO> list, CustomerVO customerVO) {
+          System.out.println("필터함수 customer객체"+customerVO);
           for(int i=0; i<list.size(); i++){
                
                String writer = list.get(i).getC_Id();
@@ -204,6 +201,7 @@ public class BoardServiceImpl implements BoardService {
                }
           }
           
+          System.out.println("필터함수 거친후에 list"+list);
           
           return list;
     }
