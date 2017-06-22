@@ -6,141 +6,132 @@
 		statsbody = "statsMain.jsp";
 	}
 %>
+<%@ include file="../main/kostyleHeader.jsp" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
-	body{
-		position: relative ;
-		width: 100%;
-		height : auto;
-		float: none;
-		margin:0px;
-	}
 </style>
 
 <title>Insert title here</title>
 
 
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-   
-	<script src="../../../resources/js/stats/statsside.js"></script>
-	
-	<link rel="stylesheet" href="../../../resources/css/stats/statsside.css">
+ 
+	<script src="../../../resources/js/stats/statsside2.js"></script>
 
+	<link rel="stylesheet" href="../../../resources/css/stats/statsside2.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
 </head>
 <body>
 
-<div class="row">
-    <!-- uncomment code for absolute positioning tweek see top comment in css -->
-    <!-- <div class="absolute-wrapper"> </div> -->
+    <div id="wrapper">
+        <div class="overlay"></div>
     
-    <!-- -----------------------------Menu-------------------------------- -->
-    <div class="side-menu">
-    
-    <nav class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <div class="brand-wrapper">
-            <!-- Hamburger -->
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                </li>
+                <li>
+                    <a href="statsSide">
+                	<span class="ifont"><i class="fa fa-bar-chart" style="font-size:19px"></i></span>
+                    HOME</a>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" data-toggle="collapse" data-target="#dropdown-visitor">
+                    <span class="ifont"><i class="fa fa-female" style="font-size:23px"></i></span>
+                         방문자 <span class="caret"></span></a>
+                  
+                  <div class="panel-body">
+                  	<ul class="collapse" id="dropdown-visitor">
+                  		<li><a href="statsSide?statsbody=statsVisitor.jsp">방문자수 분석</a></li>
+                  		<li><a href="#">유입경로 분석</a></li>
+                  	</ul>
+                  </div>
+                  
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" data-toggle="collapse" data-target="#dropdown-shop">
+					<span class="ifont"><i class="material-icons" style="font-size:25px">store</i></span>
+                        쇼핑몰 <span class="caret"></span></a>
+                  
+                  <div class="panel-body">
+                  	<ul class="collapse" id="dropdown-shop">
+                  		<li><a href="#">전체 쇼핑몰 분석</a></li>
+                  	</ul>
+                  </div>
+                  
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" data-toggle="collapse" data-target="#dropdown-product">
+                   <span class="ifont"><i class="material-icons" style="font-size:24px">redeem</i></span>
+                        상품 <span class="caret"></span></a>
+                  
+                  <div class="panel-body">
+                  	<ul class="collapse" id="dropdown-product">
+                  		<li><a href="#">전체 상품 분석</a></li>
+                  		<li><a href="#">카테고리 분석</a></li>
+                  		<li><a href="#">검색어 분석</a></li>
+                  		<li><a href="#">찜하기 분석</a></li>
+                  	</ul>
+                  </div>
+                  
+                </li>
+
+                <li class="dropdown">
+                  <a href="#" data-toggle="collapse" data-target="#dropdown-user">
+                  <span class="ifont"><i class="fa fa-user" style="font-size:22px"></i></span>
+                  	회원 <span class="caret"></span></a>
+                
+                  <div class="panel-body">
+                  	<ul class="collapse" id="dropdown-user">
+	                <li><a href="#">신규 회원 분석</a></li>
+	                <li><a href="#">전체 회원 분석</a></li>
+	                <li><a href="#">상세 회원 분석</a></li>
+	                </ul>
+                  </div>
+                </li>
+       
+
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+    			<span class="hamb-middle"></span>
+				<span class="hamb-bottom"></span>
             </button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+						
+						<div id="statsbody">
+						
+							<jsp:include page="<%= statsbody %>"/>
+						 
+						</div>
 
-            <!-- Brand -->
-            <div class="brand-name-wrapper">
-                <a class="navbar-brand" href="#">
-                    Brand
-                </a>
-            </div>
 
-            <!-- Search -->
-            <a data-toggle="collapse" href="#search" class="btn btn-default" id="search-trigger">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-
-            <!-- Search body -->
-            <div id="search" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <form class="navbar-form" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default "><span class="glyphicon glyphicon-ok"></span></button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- /#page-content-wrapper -->
 
     </div>
-
-    <!-- Main Menu -->
-    <div class="side-menu-container">
-        <ul class="nav navbar-nav">
-
-            <li><a href="#"><span class="glyphicon glyphicon-send"></span> Link</a></li>
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
-
-            <!-- Dropdown-->
-            <li class="panel panel-default" id="dropdown">
-                <a data-toggle="collapse" href="#dropdown-lvl1">
-                    <span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
-                </a>
-
-                <!-- Dropdown level 1 -->
-                <div id="dropdown-lvl1" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-
-                            <!-- Dropdown level 2 -->
-                            <li class="panel panel-default" id="dropdown">
-                                <a data-toggle="collapse" href="#dropdown-lvl2">
-                                    <span class="glyphicon glyphicon-off"></span> Sub Level <span class="caret"></span>
-                                </a>
-                                <div id="dropdown-lvl2" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li><a href="#">Link</a></li>
-                                            <li><a href="#">Link</a></li>
-                                            <li><a href="#">Link</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-
-            <li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
-
-        </ul>
-    </div><!-- /.navbar-collapse -->
-</nav>
-    </div>
-    <!-- -----------------------------Menu-------------------------------- -->
-
-
-
-    <!-- Main Content -->
-	<div id="statsbody">
-	
-	<jsp:include page="<%= statsbody %>"/>
-	 
-	</div>
+    <!-- /#wrapper -->
     
-    
-</div>
 
 
 </body>

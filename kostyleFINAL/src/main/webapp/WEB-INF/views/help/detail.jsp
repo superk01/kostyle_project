@@ -66,14 +66,14 @@ $(document).ready(function(){
 	}
 	
 	
-	var printData = function(replyArr, target, templateObject){
+	/* var printData = function(replyArr, target, templateObject){
 		alert('printData');
 		var template = Handlebars.compile(templateObject.html());
 		
 		var html = template(replyArr);
 		$('.replyLi').remove();
 		target.after(html);
-	}
+	} */
 
 	/* alert("이벤트 발생"); */
 	$('#list').on('click', function(){
@@ -139,7 +139,7 @@ $(document).ready(function(){
 	$('#btnReplyUpdate').click(function(){
 		$.ajax({
 			type:"put",
-			url:"${path}/reply/update/${reply.as_Num}",
+			url:"/reply/update/${reply.as_Num}",
 			headers:{
 				"Content-Type":"application/json"
 			},
@@ -163,7 +163,7 @@ $(document).ready(function(){
 		var as_Num = $(this).parent().attr('data-rno');
 		alert(as_Num);
 		$.ajax({
-			url:"${path}/replies/"+as_Num,
+			url:"/replies/"+as_Num,
 			type : 'delete',
 			headers:{
 				"Content-Type":"application/json",
@@ -174,7 +174,7 @@ $(document).ready(function(){
 				/* alert("success:"+result);
 				$('#repliesDiv').after(data); */
 				if(result=="delete"){
-					getPage("${path}/replies/${board.q_Num}");
+					getPage("/replies/${board.q_Num}");
 				}
 			}
 			
@@ -187,7 +187,7 @@ $(document).ready(function(){
 		var as_Num = $(this).parent().attr('data-rno');
 		alert(as_Num);
 		$.ajax({
-			url:"${path}/replies/"+as_Num,
+			url:"/replies/"+as_Num,
 			type : 'post',
 			headers:{
 				"Content-Type":"application/json",
@@ -214,7 +214,7 @@ $(document).ready(function(){
 		alert(as_Content);
 		alert(as_Num);
 		$.ajax({
-			url:"${path}/replies/"+as_Num,
+			url:"/replies/"+as_Num,
 			type: "put",
 			headers:{
 				"Content-Type":"application/json",
@@ -226,7 +226,7 @@ $(document).ready(function(){
 			}),
 			success: function(result){
 				if(result=='success'){
-					getPage("${path}/replies/${board.q_Num}");
+					getPage("/replies/${board.q_Num}");
 				}
 			}
 		});
@@ -257,11 +257,16 @@ $(document).ready(function(){
 	z-index: 10;																/* 엘리먼트드 레벨? z-index가 클수록 화면 위로 보여진다. */
 	visibility: hidden;
 }
+.detail{
+	width: 700px;
+	
+}
 </style>
 </head>
 <body>
 	<h2>글 상세보기</h2>
-	<table border="1">
+	<div class="container detail">
+	<table border="1" class="table table-striped table-bordered table-hover"> 
 		<tr height="30">
 			<td width="150">글번호</td>
 			<td width="150">${board.q_Num }</td>
@@ -277,24 +282,20 @@ $(document).ready(function(){
 			<td width="150">${board.s_Name }</td>
 			
 		</tr>			
-		<%-- <tr height="30">
-			<td width="150">파일</td>
-			<td colspan="3">
-				<a href="download.jsp?filename=${board.b_fname }">${board.b_fname }</a>
-			</td>			
-		</tr> --%>
 		<tr height="30">
 			<td width="150">제목</td>
 			<td colspan="3">${board.q_Title }</td>			
 		</tr>
 		<tr height="30">			
-			<td colspan="4">${board.q_Content }</td>			
+			<td colspan="4">${board.q_Content}</td>			
 		</tr>
 		<tr height="30">			
 			<td colspan="4">
 				<input type="button" value="글목록" id="list">
-				<input type="button" value="수정" id="update">
-				<input type="button" value="삭제" id="remove">
+				<c:if test="${board.c_Id==login.c_id }">
+					<input type="button" value="수정" id="update">
+					<input type="button" value="삭제" id="remove">
+				</c:if>
 			</td>			
 		</tr>
 		
@@ -381,7 +382,7 @@ $(document).ready(function(){
 		</div>
 		<!-- /.col -->
 	<!-- </div> -->
-
+</div>
 
 </body>
 </html>

@@ -3,6 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="../main/kostyleHeader.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,28 +11,14 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../resources/css/CategoryResult/CategoryResult.css" />
 <!-- <script type="text/javascript" src="../resources/js/jquery.js"></script> -->
-<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
+<script src="/resources/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript"  src="../resources/js/CategorysearchResult/CategorysearchResult2.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('div.CategoryResult_oneItemBox').on('click',function(event){
-		alert("이벤트 걸림?");
 		event.preventDefault();
-		/* var product_link=$(this).eq(0).find('a').attr('href');
-		var product_ImageLink=$(this).eq(0).find('img').attr('src');
-		var product_name=$(this).children().eq(1).find('a').html();
-		var product_price=$(this).children().eq(2).find('a').html(); */
-		
-/* 		alert($(this).eq(0).find('img').attr('src'));
-		alert($(this).eq(0).find('a').attr('href'));
-		alert($(this).children().eq(1).find('a').html());
-		alert($(this).children().eq(2).find('a').html()); */
-		
-		/* var nodes=$(this).children();
-		alert(nodes.length); */
-		
 		$.ajax({
-			url : '${path}/history/insert',
+			url : '/history/insert',
 			type : 'post',
 			headers:{
 				"Content-Type":"application/json",
@@ -42,10 +29,8 @@ $(document).ready(function(){
 					h_Name:$(this).children().eq(1).find('a').html(),
 					h_Price:$(this).children().eq(2).find('a').html()}),
 			success : function(result){
-				alert('히스토리에 추가');
-				if(result!=null){
-					location.href="${path}/history/list/"+result;
-				}
+				$('.wing_fixed').remove();
+				remoconList();
 			}		
 			});
 		});
@@ -76,9 +61,24 @@ $(document).ready(function(){
 					<div class="CategoryResult_oneItemBox_child_Name"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.s_sname}</a></div>
 					<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_beforeDiscountprice }</a></div>
 					<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_afterDiscountprice }</a></div>
-					<c:if test="${product.sale_discountRate !=0}">
+					<c:choose>
+					<c:when test="${product.sale_discountRate !=0}">
 						<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_discountRate }%</a></div>
-					</c:if>
+					</c:when>
+					<c:otherwise>
+						<p></p>
+					</c:otherwise>
+					</c:choose>
+					
+					
+					<c:choose>
+					<c:when test="${product.sale_onePlusOne != null}">
+						<div class="CategoryResult_oneItemBox_child_price"><a href="${product.sale_prdUrl}" class="countShoppingmall">${product.sale_onePlusOne }</a></div>
+					</c:when>
+					<c:otherwise>
+						<p></p>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</c:forEach>
 		</div>

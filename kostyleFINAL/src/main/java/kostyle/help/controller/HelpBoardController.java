@@ -74,7 +74,7 @@ public class HelpBoardController {
 		System.out.println("컨트롤러 detail메소드에서 boardVO확인:"+boardVO);
 		if(boardVO != null){																//비밀글인 경우에 권한 없는 사용자가 접근하면 boardVO객체를 반환하지 않음.
 			mav.addObject("board", boardVO);												//따라서, boardVO객체가 null이 아니면 글 읽기가 가능
-			
+			mav.setViewName("/help/readpage");												//null이면 다른 페이지로 이동.
 		}else{																
 			mav.setViewName("/help/secret");												//null이면 다른 페이지로 이동.
 		}

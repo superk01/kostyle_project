@@ -38,7 +38,19 @@ public class RemoteController {
 		}
 		return entity;
 	}*/
-	@RequestMapping(value="list/{c_num}", method=RequestMethod.GET)
+	
+	
+//	@RequestMapping(value="list/{c_num}", method=RequestMethod.GET)
+//	public void remeconList(HttpSession session, @PathVariable("c_num") int c_num){
+//		List<HistoryVO> list = new ArrayList<>();
+//		list = service.listHistory(c_num);
+//		session.setAttribute("remoconList", list);
+//		session.setAttribute("history_Num", service.countHistory(c_num));
+//	}
+	
+	
+	/*반환값이 ResponseEntity<String>*/
+	/*@RequestMapping(value="list/{c_num}", method=RequestMethod.GET)
 	public ResponseEntity<String> remoconList(HttpSession session, @PathVariable("c_num") int c_num){
 		ResponseEntity<String> entity = null;
 		List<HistoryVO> list = new ArrayList<>(); 
@@ -51,8 +63,8 @@ public class RemoteController {
 			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		return entity;
-	}
-/*	@RequestMapping(value="list/{c_num}", method=RequestMethod.GET)
+	}*/
+	@RequestMapping(value="list/{c_num}", method=RequestMethod.POST)
 	public ModelAndView remoconList(HttpSession session, @PathVariable("c_num") int c_num){
 		System.out.println("리모콘 리스트 컨트롤러 호출!!!");
 		ModelAndView mav = new ModelAndView();
@@ -64,4 +76,4 @@ public class RemoteController {
 		mav.addObject("c_num", c_num);
 		return mav;
 	}
-*/}
+}

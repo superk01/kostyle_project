@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="../main/kostyleHeader.jsp" %>
 <%
 	String body = request.getParameter("body");
 
@@ -23,7 +24,7 @@
 		환영합니다.
 </h2>
 </c:if>
-<header>x
+<header>
 	<jsp:include page="header.jsp"/>
 </header>	
 <section>

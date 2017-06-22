@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kostyle.ranking.mappers.rankingMapper">
+	<select id="list_Ranking" resultType="RankingVO">
+		select s.s_num as s_num, s_shopurl, s_sname, s_age, s_image, a.s_rank as s_rank
+		from shoppingmall s, adshoppingmall a 
+		where s.s_num = a.s_num order by s_rank desc 
+	</select>
+	
+	<select id="favorite_score" resultType="int">
+		select 35*count(f_num) from adshoppingmall m, favorite f 
+		where m.s_num = f.s_num(+) group by m.s_num order by m.s_num
+	</select>
+	
+	<select id="show_snum" resultType="String">
+		select s_num from adshoppingmall
+	</select>
+	
+	<select id="sumclick_score" resultType="int">
+		select 10*count(hit_num) from adshoppingmall m, hitcount h 
+		where m.s_num =h.s_num(+) group by m.s_num order by m.s_num
+	</select>
+	
+	<select id="avgclick_score" resultType="int">
+		select 20*count(hit_num) from adshoppingmall m, hitcount h 
+		<![CDATA[
+		where cnt_date >= sysdate-7 AND cnt_date <= sysdate AND m.s_num =h.s_num(+)
+		]]>
+		group by m.s_num order by m.s_num
+	</select>
+	
+	<select id="show_rank" resultType="int">
+		select s_rank from adshoppingmall order by s_num
+	</select>
+	
+	
+ 	<update id="update_rank" parameterType="kostyle.ranking.domain.RankList">
+		update adshoppingmall set s_rank = #{s_rank}	where s_num = #{s_num}
+	</update>
+
+</mapper>  
+

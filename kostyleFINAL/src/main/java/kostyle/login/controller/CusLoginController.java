@@ -45,13 +45,18 @@ public class CusLoginController {
 		return "/login/loginCustomer";
 	}
 	
+	@RequestMapping(value="/newCusLogin")
+	public String newCusLogin(){
+		return "/login/newCusLogin";
+	}
 
 	
 	//로그인실패시 에러메시지 띄우기 추가해야함.
 	@RequestMapping("/login")
 	public String login(@ModelAttribute("dto") LoginDTO dto, Model model){
 		model.addAttribute("dto", dto);
-		return "/login/tempLoginCustomer";
+		return "/login/newCusLogin";
+//		return "/login/newCusLogin";
 /*		return "/login/loginCustomer";
 */
 	}
@@ -71,7 +76,7 @@ public class CusLoginController {
 		if(vo == null){ // null이라면 회원이 아님.
 			//request.setAttribute("msg", "회원 아이디 또는 비밀번호가 일치하지 않습니다.(5회 이상 로그인 오류시 본인확인 후 로그인 가능합니다.)");
 			//postHandle에서 sednRedirect로보내서 전달안됨.
-			return "/login/tempLoginCustomer";
+			return "/login/newCusLogin";
 			/*		return "/login/loginCustomer";
 			*/
 		}else{//vo!=null
@@ -86,7 +91,7 @@ public class CusLoginController {
 					System.out.println("keepCuLoginLimit에 보내는값- vo.getC_id():  "+vo.getC_id()+"   /  session.getId(): "+session.getId());
 					service.keepCusLoginLimit(vo.getC_id(), session.getId(),sessionLimit);
 				}
-				
+
 				model.addAttribute("dto",dto);
 				model.addAttribute("userVO", vo);
 				
@@ -94,7 +99,7 @@ public class CusLoginController {
 				return "/login/loginCheck";
 				
 			}
-			return "/login/tempLoginCustomer";
+			return "/login/newCusLogin";
 			}
 			
 			

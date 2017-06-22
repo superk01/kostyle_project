@@ -57,42 +57,78 @@
 	 });
 	
 </script>
+<style type="text/css">
+/*  .body {
+	margin: 0 5%;
+	font-family: 맑은 고딕;
+} */
+
+th.th{
+	text-align: center;
+	border-bottom: 3px solid;
+}
+
+.tr{
+	text-align: center;
+	font-size: 20px;
+	color: black;
+}
+
+.td{
+	vertical-align: center;
+}
+
+.td a{
+	color: black;
+	text-align: center;
+	margin-top: 3px;
+}
+#write{
+	background-color: #ad82ab !important;
+	color: white !important;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
+<div class="body">
+	<div class="page-header">
+			<h3>고객센터</h3>
+	</div>
+</div>
 	<div class="box">
-		<div class="box-header with-border">
-			<h3 class="box-title">고객센터</h3>
-		</div>
 		<div class="box-body">
+		<div class="container">
 		<table class="table table-bordered">
 			<thead>
-				<tr>
-					<th>게시글 번호</th>
+				<tr class="tr">
+					<th class="th">게시글 번호</th>
 					<!-- <th>답변 여부</th> -->
-					<th>대상 쇼핑몰</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
+					<th class="th">대상 쇼핑몰</th>
+					<th class="th">제목</th>
+					<th class="th">작성자</th>
+					<th class="th">작성일</th>
 				</tr>
 			</thead>
 			<c:forEach var="board" items="${list }">
 				<tbody>
-					<tr>
-						<td>${board.q_Num }</td>
+					<tr class="tr">
+						<td class="td">${board.q_Num }</td>
 						<!--글 번호  -->
 						<!-- <td>답변 여부</td> -->
-						<td>${board.s_Name }</td>
+						<td class="td">${board.s_Name }</td>
 						<!--쇼핑몰 번호  -->
-						<td><a href="/help/detail?q_num=${board.q_Num }">${board.q_Title }</a></td>
-						<td>${board.c_Id }</td>
+						<td class="td"><a href="/help/detail?q_num=${board.q_Num }">${board.q_Title }</a></td>
+						<td class="td">${board.c_Id }</td>
 						<!--작성자 Id  -->
-						<td>${board.q_Date }</td>
+						<td class="td">${board.q_Date }</td>
 						<!--작성 날짜, 시간  -->
 					</tr>
 				</tbody>
 			</c:forEach>
 		</table>
-		<button id="write">글쓰기</button>
+		<button id="write" class="btn btn-default btn-lg pull-right">글쓰기</button>
+		</div>
 		</div>
 	
 		<div class="text-center">
@@ -126,13 +162,13 @@
 					<div class="dropdown-menu open">
 						<ul class="dropdown-menu inner" role="menu">
 							<li class="selected" data-original-index="0"><a tabindex="0"
-								data-tokens="null"><span class="text">통합검색</span><span
+								data-tokens="null"><span class="text"></span><span
 									class="glyphicon glyphicon-ok check-mark"></span></a></li>
 							<li data-original-index="1"><a tabindex="0"
-								data-tokens="null"><span class="text">작성자</span><span
+								data-tokens="null"><span class="text"></span><span
 									class="glyphicon glyphicon-ok check-mark"></span></a></li>
 							<li data-original-index="2"><a tabindex="0"
-								data-tokens="null"><span class="text">댓글작성자</span><span
+								data-tokens="null"><span class="text"></span><span
 									class="glyphicon glyphicon-ok check-mark"></span></a></li>
 						</ul>
 					</div>

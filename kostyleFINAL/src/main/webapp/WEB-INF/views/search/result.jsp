@@ -1,36 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="../main/kostyleHeader.jsp" %> 
+<%@ include file="../main/kostyleHeader.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/../../resources/css/CategoryResult/CategoryResult.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
 <!-- <script type="text/javascript" src="../resources/js/jquery.js"></script> -->
-<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
-<script type="text/javascript"  src="/../../resources/js/CategorysearchResult/CategorysearchResult2.js"></script>
+<script src="/resources/jquery/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/resources/js/search/CategorysearchResult2.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('div.CategoryResult_oneItemBox').on('click',function(event){
-		alert("이벤트 걸림?");
 		event.preventDefault();
-		/* var product_link=$(this).eq(0).find('a').attr('href');
-		var product_ImageLink=$(this).eq(0).find('img').attr('src');
-		var product_name=$(this).children().eq(1).find('a').html();
-		var product_price=$(this).children().eq(2).find('a').html(); */
-		
-/* 		alert($(this).eq(0).find('img').attr('src'));
-		alert($(this).eq(0).find('a').attr('href'));
-		alert($(this).children().eq(1).find('a').html());
-		alert($(this).children().eq(2).find('a').html()); */
-		
-		/* var nodes=$(this).children();
-		alert(nodes.length); */
-		
 		$.ajax({
 			url : '/history/insert',
 			type : 'post',
@@ -38,16 +24,13 @@ $(document).ready(function(){
 				"Content-Type":"application/json",
 				"X-HTTP-Method-Override":"POST"
 			},
-			data : JSON.stringify(
-					{h_Prdurl:$(this).eq(0).find('a').attr('href'),
+			data : JSON.stringify({h_Prdurl:$(this).eq(0).find('a').attr('href'),
 					h_Imgurl:$(this).eq(0).find('img').attr('src'),
 					h_Name:$(this).children().eq(1).find('a').html(),
 					h_Price:$(this).children().eq(2).find('a').html()}),
-			success : function(){
-				/* alert('히스토리에 추가');
-				if(result!=null){
-					location.href="${path}/history/list/"+result;
-				} */
+			success : function(result){
+				$('.wing_fixed').remove();
+				remoconList();
 			}		
 			});
 		});

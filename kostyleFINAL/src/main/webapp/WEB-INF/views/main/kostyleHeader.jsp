@@ -1,3 +1,4 @@
+<%@page import="kostyle.login.domain.CustomerVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
@@ -7,35 +8,189 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KOStyle mall</title>
-    
-    <!-- Bootstrap -->
+    <title>KOStyle</title>
+   <!-- Bootstrap -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/resources/css/main/bootstrap.min.css" media="screen" title="no title" charset="utf-8"> -->
     
     <!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
    
     <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
-    <!-- jQuery sticky menu -->
-    <script src="../../../resources/js/main/owl.carousel.min.js"></script>
-    <script src="../../../resources/js/main/jquery.sticky.js"></script>
-    
-    <!-- Main Script -->
-    <script src="../../../resources/js/main/main.js"></script>
-       
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/owl.carousel.css" />
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/main/kostyleHeader.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/main/kostyleHeader.css" />
+ 	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
+ 	<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
+ 	
+ 	
+<style type="text/css">
  
+.table>thead>tr>th {
+	vertical-align: bottom;
+	border-bottom: 5px solid #ad82ab !important;
+}
+
+
+.dropdown-menu>li>a {
+	display: block;
+	padding: 12px 20px !important;
+	clear: both;
+	font-weight: 400;
+	line-height: 1.42857143;
+	color: #333;
+	white-space: nowrap;
+	font-size: 17px !important;
+}
+
+
+.navbar {
+	position: relative;
+	min-height: 50px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+}
+
+
+@media ( min-width :768px) {
+	.navbar {
+	border-radius: 0px !important; 
+	}
+}
+
+	
+.navbar-default {
+	background-color: #ad82ab !important;
+	border-color: #ad82ab !important;
+}
+
+.navbar-default .navbar-brand {
+	color: white !important;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus
+	{
+	color:  !important;
+	background-color:  !important;
+}
+
+.navbar-default .navbar-text {
+	color: white !important;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: white !important;
+	font-family: sans-serif !important;
+	font-size: 25px !important;
+	font-weight: bold !important;
+	padding: 20px 70px !important;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
+	{
+	color: #ad82ab !important;
+	background-color: white !important;
+}
+
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
+	.navbar-default .navbar-nav>.open>a:focus {
+	color: #ad82ab !important;
+	background: white !important;
+}
+
+@media ( max-width :767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+		font-family: 맑은 고딕 !important;
+		font-size: 20px !important;
+		padding: 10px 30px !important;
+		font-weight: bold !important;
+		color: white !important;
+		padding-left: 70px !important;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
+		.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
+		color: #ad82ab !important;
+		background-color: white !important;
+		padding-left: 70px !important;
+	}
+}
+
+.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus,
+	.pagination>li>span:focus {
+	color: #ad82ab !important;
+	background-color: #eee;
+	border-color: #ddd
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover,
+	.pagination>.active>span:hover, .pagination>.active>a:focus,
+	.pagination>.active>span:focus {
+	z-index: 2;
+	color: #fff;
+	cursor: default;
+	background-color: #ad82ab !important;
+	border-color: #ad82ab !important;
+}
+
+.navbar-nav>li>.dropdown-menu{
+	width: 100% !important; 
+}
+
+.navbar-default .navbar-toggle{
+	border-color: white !important;
+}
+
+.navbar-default .navbar-toggle .icon-bar{
+	background-color: white !important;
+}
+
+
+
+</style>
+
+<style>
+      .jbFixed {
+        position: fixed;
+        top: 0px;
+        width: 100%;
+      }
+</style>
+    
+    <script>
+      $( document ).ready( function() {
+        var jbOffset = $( '.navSticky' ).offset();
+        $( window ).scroll( function() {
+          if ( $( document ).scrollTop() > jbOffset.top ) {
+            $( '.navSticky' ).addClass( 'jbFixed' );
+          }
+          else {
+            $( '.navSticky' ).removeClass( 'jbFixed' );
+          }
+        });
+      } );
+    </script>
+ 	
+ 	
 <script type="text/javascript">
+<%Object userVO = session.getAttribute("login"); %>
+<%CustomerVO customerVO = null; %>
+<%String c_num = null; %>
+<%if(userVO instanceof CustomerVO){ 
+	customerVO = (CustomerVO)userVO; 
+	c_num = customerVO.getC_num();%>
+	$(document).ready(function(){
+		remoconList();
+	});
+<%}%>
+ 
+	
 	 $(document).ready(function(){ 
-		var returnPath1 = jQuery(location).attr('pathname')+"";
+		var returnPath1 = jQuery(location).attr('href')+"";
 		var returnPath2 = location.pathname+"";
 		console.log("returnPath= "+returnPath1);
 		
@@ -50,16 +205,70 @@
  			});
 			return false;
 		});
-
+ 		
+ 		 $('body').on('click','button.wing_btn_delete',function(){
+ 			 
+			 var h_num=$(this).val();
+			 $.ajax({
+				url : "/history/delete?h_num="+h_num,
+				type : 'get',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"GET"
+				},
+				dataType:'text',
+				success : function(data){
+					if(data=='delete'){
+						$('.wing_fixed').remove();
+						remoconList();
+					}
+				}					
+			});
+			return false;
+		});
+ 		   /* 리모컨의 상품을 클릭하였을때 iFrame으로 상품의 링크를  띄움. */
+ 		   $('body').on('click','li.wing_prd a',function(event) {
+ 			var link = $(this).attr('href');
+ 			location.href = "#CategoryResult_top";
+ 			event.preventDefault();
+ 			if ($('#CategorysearchIframe').length > 0) {
+ 				$('#CategorysearchIframe').attr("src", link);
+ 			} else {
+ 				$('#CategoryResult_top').remove();
+ 				$('.remocon').prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
+ 				$('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+ '">');
+ 				$('.remocon').prepend('<div id="#CategoryResult_top"></div>');
+ 			}
+ 			$('#IframeRemocon').click(function() {
+ 				$('#CategorysearchIframe').remove();
+ 				$('#IframeRemocon').remove();
+ 			});
+ 		});
+ 		 
 	});
+		/* 사용자의 히스토리내역을 리모컨에 띄우는 함수 */
+ 		function remoconList(){
+ 			$.ajax({
+ 				url: '/remocon/list/'+${login.c_num},
+	 			type: 'post',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"POST"
+				},
+				dataType:'text',
+				success : function(data) {
+					
+					$('.remocon').after(data);
+				}
+ 			});
+ 		}
 </script>
 
 
-   
-  </head>
-  <body>
 
-		<div class="header-area">
+<body>
+
+<div class="header-area">
         <div class="container">
             <div class="row">
                 <c:choose>
@@ -85,13 +294,13 @@
 				<div class="row">
 					<div class="col-md-8">
     					<div class="user">
-        					<h5><i class="fa fa-heart"></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
+        					<h5><i class="fa fa-heart" style=""></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
         				</div>
     				</div>
     				<div class="col-md-4">
     					<div class="header-right">
          					<ul class="list-unstyled list-inline">
-            					<li><a href="../mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
+            					<li><a href="/mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
                  				<li><a id="cuslogout" href="../cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
             				</ul>
         				</div>
@@ -102,22 +311,20 @@
             </div>
 		</div>
 		</div> <!-- End header area -->
-   
-   
-    
-    
-    <div class="site-branding-area">
+
+
+<div class="site-branding-area" id="search-fixed-top">
         <div class="container">
             <div class="search-row">
             
-            <a href="/"><img class="logoimg" src="../../../resources/images/mainImg/kostyle.png"></a>
+            <a href="/"><img class="logoimg" src="/resources/images/mainImg/kostyle.png"></a>
             
             <div class="header_search">
-				<form class="search-form" action="search/do" method="post">
+				<form class="search-form" action="#" method="get" name="searchForm">
 					<div class="search-box">
 						<dl class="clear">
 						<dt class="search1"><input id="search-text" type="text" name="search"></dt>
-						<dd class="search2"><input id="search-icon" type="image" src="../../../resources/images/mainImg/kostylesearch.png" alt="검색" title="검색"></dd>
+						<dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="sendtwo()"></dd>
 						</dl>
 					</div>
 				</form>
@@ -125,33 +332,56 @@
             
             </div>
         </div>
-    </div> <!-- End site branding area -->
-    
-    <div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">RANKING</a></li>
-                        <li><a href="#">DISCOUNT RANKING</a></li>
-                        <li><a href="../favorite/favoriteList">FAVORITE</a></li>
-                        <li><a href="#">ZZIM</a></li>
-                        <li><a href="/help/list">SERVICE CENTER</a></li>
-                    </ul>
-                </div>  
-            </div>
-        </div>
-    </div> <!-- End mainmenu area -->
+</div> <!-- End site branding area -->
 
 
-  </body>
+<div class="navSticky">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+    </div>
+  
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+      <li><a href="#">RANKING</a></li>
+      
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT RANKING</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">기획할인</a></li>
+            <li><a href="#">신상품할인</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="/favorite/favoriteList">FAVORITE</a></li>
+        <li><a href="#">ZZIM</a></li>
+        <li><a href="/help/list">SERVICE CENTER</a></li>
+      </ul>
+    </div>
+  </div>
+</nav> 
+</div>
+
+<div class="remocon"></div>
+
+
+
+</body>
+<script>
+function sendtwo(){
+	
+	document.searchForm.action='/stats/insertstats';
+	document.searchForm.submit();
+	
+	document.searchForm.action='/search/do';
+	/* document.searchForm.attr("method", "get"); */
+	document.searchForm.submit();
+}
+</script>
+
 </html>
-<%@ include file="../history/remocon.jsp" %>

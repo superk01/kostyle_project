@@ -5,3 +5,52 @@
 	height: 60px;
 	padding: 5px;
 }
+
+
+#iframeRemove{
+ 	width : 2%;
+ 	height : 135px;
+ 	position: fixed;
+ 	overflow: hidden;
+ 	background: #3C3C3C;
+ 	bottom: 30%;
+ 	
+ 	font-size : 17px;
+ 	color: white;
+ 	font-weight : bold;
+ 	padding: 7px;
+ }
+ 
+ 
+ .body {
+	margin: 0 5%;
+	font-family: 맑은 고딕;
+}
+
+th.th{
+	text-align: center;
+	border-bottom: 3px solid;
+}
+
+.tr{
+	text-align: center;
+	font-size: 20px;
+	color: black;
+}
+
+.td{
+	vertical-align: center;
+}
+
+.td a{
+	color: black;
+	text-align: center;
+	margin-top: 3px;
+}
+
+
+
+
+
+
+ 
