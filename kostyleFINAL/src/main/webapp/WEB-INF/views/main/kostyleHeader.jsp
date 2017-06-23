@@ -131,7 +131,7 @@
 	.pagination>.active>span:hover, .pagination>.active>a:focus,
 	.pagination>.active>span:focus {
 	z-index: 2;
-	color: #fff;
+	color: white;
 	cursor: default;
 	background-color: gray !important;
 	border-color: gray !important;
@@ -158,6 +158,7 @@
         position: fixed;
         top: 0px;
         width: 100%;
+        z-index:10000;
       }
 </style>
     
