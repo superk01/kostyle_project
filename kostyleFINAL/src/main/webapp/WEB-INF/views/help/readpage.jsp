@@ -85,7 +85,8 @@ $(document).ready(function(){
 	});
 	$('#updateform').on('click',function(){
 		alert('updateform 이벤트 확인');
-		$('#title').removeAttr("readonly");
+		$('#title1').css("display", "none");
+		$('#title2').css("display", "");
 		$('#content').css("display", "none");
 		$('#content2').css("display","");
 		$(this).css("display", "none");
@@ -96,17 +97,21 @@ $(document).ready(function(){
 	});
 	
 	$('.dynamicBtns').on('click','#cancel',function(){
+		var title = $('input[name=title]').val();
+		var content = $('#content').val()
 		alert('cancel이벤트 확인');
 		$('#title').attr("readonly","readonly");
-		$('#content').attr("readonly","readonly");
+		$('#title').val(title);
+		$('#content').css("display", "");
+		$('#content2').css("display","none");
 		$('#updateform').css("display", "");
 		$('#remove').css("display", "");
 		$('#update').remove();
 		$('#cancel').remove();
 	});
-	$('.dynamicBtns').on('click','#update',function(){
+	$('.dynamicBtns').on('click','#replyUpdate',function(){
 		alert('update버튼 이벤트 확인');
-		var title = $('input[name=title]').val();
+		var title = $('#title2').val();
 		var content = $('#content2').val();		
 		var q_num = $('input[name=q_Num]').val()
 		alert(title);
@@ -127,7 +132,9 @@ $(document).ready(function(){
 			success : function(result){
 				alert(result);
 				if(result=='success'){
-					$('#title').attr("readonly","readonly");
+					$('#title1').val(title);
+					$('#title1').css("display","");
+					$('#title2').css("display","none");
 					$('#content').val(content);
 					$('#content').css("display","");
 					$('#content2').css("display","none");
@@ -135,7 +142,20 @@ $(document).ready(function(){
 			}
 		});
 	});
+	/* 댓글 수정폼 소환 */
+	$('.timeline').on('click','.replyLi #btnUpdateForm',function(){
+		var $dynamic1 = $(this).parent();
+		var $dynamic2 = $(this).parent().next();
+		alert('이벤트 확인');
+		$('timeline-body').css("display","none");
+		$('#replyUpdate').css("display", "");
+		
+		$dynamic1.css("display","none");
+		$dynamic2.css("display","");
+		
+	});
 	function getAnswerNum(q_Num){
+		
 		$.ajax({
 			url: "/help/getAnswerNum?q_num="+q_Num,
 			type: "get",
@@ -199,7 +219,9 @@ li.replyLi{
 					<div class="form-group">
 						<label for="exampleInputEmail1">제목</label> <input type="text"
 							name='title' class="form-control" value="${board.q_Title}"
-							readonly="readonly" id="title">
+							readonly="readonly" id="title1">
+						<input type="text" name='title' class="form-control" placeholder="${board.q_Title}"
+							id="title2" style="display: none">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">내용</label>
