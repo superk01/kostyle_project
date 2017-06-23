@@ -155,15 +155,17 @@
 
 <style>
       .jbFixed {
-        position: fixed;
+        position: sticky;
         top: 0px;
         width: 100%;
         z-index:10000;
       }
+      
+      
 </style>
     
     <script>
-      $( document ).ready( function() {
+       $( document ).ready( function() {
         var jbOffset = $( '.navSticky' ).offset();
         $( window ).scroll( function() {
           if ( $( document ).scrollTop() > jbOffset.top ) {
@@ -173,7 +175,29 @@
             $( '.navSticky' ).removeClass( 'jbFixed' );
           }
         });
-      } );
+      } ); 
+      
+      /* $(window).scroll(function () { 
+          var height = $(document).scrollTop(); 
+          if (parseInt(height) > 186) { 
+              $('.navSticky').css({ 
+                  "position": "fixed", 
+                  "display": "block", 
+                  "width":"100%",
+                  "margin-top":"-180px",
+                  "z-index" : "10000" 
+              }); 
+          } else { 
+              $('.navSticky').css({ 
+                  "display": "block", 
+                  "position":"relative", 
+                  "margin-top":"0px",
+                  "z-index" : "10000" 
+              }); 
+          } 
+      });  */
+      
+      
     </script>
     
     
@@ -488,116 +512,11 @@
   </div>
 </nav> 
 </div>
-
 <div class="remocon"></div>
 </c:when>
 
 
 </c:choose>
-
-
-<%-- <div class="header-area">
-        <div class="container">
-            <div class="row">
-                <c:choose>
-            <c:when test="${empty sessionScope.login}">
-            <div class="row">
-               <div class="col-md-8">
-                   <div class="user">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                   <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                            <li><a href="../join/join"><i class="fa fa-list-ul"></i> 회원가입 </a></li>
-                            <!-- <li><a href="../mypage/login/"><i class="fa fa-id-badge"></i> My Page </a></li> -->
-                            <li><a href="../cuslogin/login"><i class="fa fa-user-o"></i> Login </a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            </c:when>
-
-            <c:when test="${not empty sessionScope.login}">
-            <div class="row">
-               <div class="col-md-8">
-                   <div class="user">
-                       <h5><i class="fa fa-heart" style=""></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                   <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                           <li><a href="/mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
-                             <li><a id="cuslogout" href="../cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
-                        </ul>
-                    </div>
-                   </div>
-            </div>
-            </c:when>
-            </c:choose>
-            </div>
-      </div>
-</div> <!-- End header area -->
-
-
-<div class="site-branding-area" id="search-fixed-top">
-        <div class="container">
-            <div class="search-row">
-            
-            <a href="/"><img class="logoimg" src="/resources/images/mainImg/kostyle.png"></a>
-            
-            <div class="header_search">
-            <form class="search-form" action="#" method="post" name="searchForm">
-               <div class="search-box">
-                  <dl class="clear">
-                  <dt class="search1"><input id="search-text" type="text" name="search"></dt>
-                  <dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="sendtwo()"></dd>
-                  </dl>
-               </div>
-            </form>
-            </div>
-            
-            </div>
-        </div>
-</div> <!-- End site branding area -->
-
-
-<div class="navSticky">
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-    </div>
-  
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-      <li><a href="#">RANKING</a></li>
-      
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">기획할인</a></li>
-            <li><a href="#">신상품할인</a></li>
-          </ul>
-        </li>
-        
-        <li><a href="/favorite/favoriteList">FAVORITE</a></li>
-        <li><a href="#">ZZIM</a></li>
-        <li><a href="/help/list">SERVICE CENTER</a></li>
-      </ul>
-    </div>
-  </div>
-</nav> 
-</div> --%>
-
-<!-- <div class="remocon"></div> -->
-
-
 
 </body>
 
