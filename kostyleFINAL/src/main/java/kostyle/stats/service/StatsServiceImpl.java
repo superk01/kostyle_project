@@ -29,7 +29,7 @@ public class StatsServiceImpl implements StatsService{
 		List<HitcountStatsChart> list = null;
 		if(chartFor.equals("gender")){
 			list = dao.statsDate_gender(s_sname, statsSearchStartDate, statsSearchEndDate);
-		}else if(chartFor.equals("area")){
+		}else if(chartFor.equals("adr")){
 			list = dao.statsDate_adr(s_sname, statsSearchStartDate, statsSearchEndDate);
 		}else if(chartFor.equals("age")){
 			list = dao.statsDate_age(s_sname, statsSearchStartDate, statsSearchEndDate);

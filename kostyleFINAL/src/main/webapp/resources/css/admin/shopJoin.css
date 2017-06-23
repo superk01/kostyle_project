@@ -36,3 +36,8 @@
 .hidden{
 	display:none;
 }
+
+#shopJoin{
+	border: solid 8px #ad82ab;
+	padding: 40px 20px;
+}
