@@ -149,6 +149,7 @@ th.th{
 				</c:if>
 			</ul>
 		</div>
+		<c:if test=""></c:if>
 		  <div class="board-foot">
 			<div class="board-foot-search" data-role="view-search">
 				<input id="viewSearchBoardCd" type="hidden" value="community">

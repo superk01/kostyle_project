@@ -9,7 +9,10 @@ import kostyle.help.domain.SearchCriteria;
 
 public interface BoardDAO {
 	
-	public List<BoardVO> list(SearchCriteria cri)throws Exception;							//게시판 리스트(쇼핑몰 이름 나오는 거 까지...)
+/*	public List<BoardVO> customerList(SearchCriteria cri)throws Exception;					//고객이 로그인 한 경우 게시판 리스트(쇼핑몰 이름 나오는 거 까지...)
+*/	public List<BoardVO> list(SearchCriteria cri)throws Exception;					//고객이 로그인 한 경우 게시판 리스트(쇼핑몰 이름 나오는 거 까지...)
+	
+	public List<BoardVO> shopList(SearchCriteria cri)throws Exception;						//쇼핑몰이 로그인 한 경우 게시판 리스트(비밀글을 구분하지 않고 일단 다 가져옴.)
 	
 	public void insert(BoardVO baBoardVO)throws Exception;									//글 추가
 

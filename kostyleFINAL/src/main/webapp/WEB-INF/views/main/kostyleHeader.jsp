@@ -14,7 +14,7 @@
     <!-- <link rel="stylesheet" href="/resources/css/main/bootstrap.min.css" media="screen" title="no title" charset="utf-8"> -->
     
     <!-- Font Awesome -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
    
     <!-- Latest jQuery form server -->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -24,110 +24,111 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="/resources/css/main/kostyleHeader.css" />
- 	<link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
- 	<link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
- 	
- 	
+    <link rel="stylesheet" type="text/css" href="/resources/css/history/remocon.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
+    
+    
 <style type="text/css">
  
 .table>thead>tr>th {
-	vertical-align: bottom;
-	border-bottom: 5px solid gray !important;
+   vertical-align: bottom;
+   border-bottom: 5px solid gray !important;
 }
 
 
 .dropdown-menu>li>a {
-	display: block;
-	padding: 12px 20px !important;
-	clear: both;
-	font-weight: 400;
-	line-height: 1.42857143;
-	color: #333;
-	white-space: nowrap;
-	font-size: 17px !important;
+   display: block;
+   padding: 12px 20px !important;
+   clear: both;
+   font-weight: 400;
+   line-height: 1.42857143;
+   color: #333;
+   white-space: nowrap;
+   font-size: 17px !important;
 }
 
 
 .navbar {
-	position: relative;
-	min-height: 50px;
-	margin-bottom: 20px;
-	border: 1px solid transparent;
+   position: relative;
+   min-height: 50px;
+   margin-bottom: 20px;
+   border: 1px solid transparent;
 }
 
 
 @media ( min-width :768px) {
-	.navbar {
-	border-radius: 0px !important; 
-	}
+   .navbar {
+   border-radius: 0px !important; 
+   }
 }
 
-	
+   
 .navbar-default {
-	background-color: #ad82ab !important;
-	border-color: #ad82ab !important;
+   background-color: #ad82ab !important;
+   border-color: #ad82ab !important;
 }
 
 .navbar-default .navbar-brand {
-	color: white !important;
+   color: white !important;
 }
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus
-	{
-	color:  !important;
-	background-color:  black !important;
+   {
+   color:  !important;
+   background-color:  black !important;
 }
 
 .navbar-default .navbar-text {
-	color: white !important;
+   color: white !important;
 }
 
 .navbar-default .navbar-nav>li>a {
-	color: white !important;
-	font-family: sans-serif !important;
-	font-size: 25px !important;
-	font-weight: bold !important;
-	padding: 20px 65px !important;
+   color: white !important;
+   font-family: sans-serif !important;
+   font-size: 25px !important;
+   font-weight: bold !important;
+   padding: 20px 65px !important;
 }
 
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
-	{
-	color: black !important;
-	background-color: white !important;
+   {
+   color: black !important;
+   background-color: white !important;
 }
 
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
-	.navbar-default .navbar-nav>.open>a:focus {
-	color: black !important;
-	background: white !important;
+   .navbar-default .navbar-nav>.open>a:focus {
+   color: black !important;
+   background: white !important;
 }
 
 @media ( max-width :767px) {
-	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
-		font-family: 맑은 고딕 !important;
-		font-size: 20px !important;
-		padding: 10px 50px !important;
-		font-weight: bold !important;
-		color: white !important;
-		padding-left: 70px !important;
-	}
-	.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
-		.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
-		color: black !important;
-		background-color: white !important;
-		padding-left: 70px !important;
-	}
+   .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+      font-family: 맑은 고딕 !important;
+      font-size: 20px !important;
+      padding: 10px 50px !important;
+      font-weight: bold !important;
+      color: white !important;
+      padding-left: 70px !important;
+   }
+   .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
+      .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
+      color: black !important;
+      background-color: white !important;
+      padding-left: 70px !important;
+   }
 }
 
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus,
-	.pagination>li>span:focus {
-	color: gray !important;
-	background-color: #eee;
-	border-color: #ddd
+   .pagination>li>span:focus {
+   color: gray !important;
+   background-color: #eee;
+   border-color: #ddd
 }
 
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover,
+<<<<<<< HEAD
 	.pagination>.active>span:hover, .pagination>.active>a:focus,
 	.pagination>.active>span:focus {
 	z-index: 2;
@@ -135,18 +136,27 @@
 	cursor: default;
 	background-color: gray !important;
 	border-color: gray !important;
+=======
+   .pagination>.active>span:hover, .pagination>.active>a:focus,
+   .pagination>.active>span:focus {
+   z-index: 2;
+   color: #fff;
+   cursor: default;
+   background-color: gray !important;
+   border-color: gray !important;
+>>>>>>> branch 'master' of https://github.com/superk01/kostyle_project
 }
 
 .navbar-nav>li>.dropdown-menu{
-	width: 100% !important; 
+   width: 100% !important; 
 }
 
 .navbar-default .navbar-toggle{
-	border-color: white !important;
+   border-color: white !important;
 }
 
 .navbar-default .navbar-toggle .icon-bar{
-	background-color: white !important;
+   background-color: white !important;
 }
 
 
@@ -175,94 +185,132 @@
         });
       } );
     </script>
- 	
- 	
+    
+    
 <script type="text/javascript">
+
+ 
+   //로그아웃시 고객은 고객으로, 쇼핑몰은 쇼핑몰로.
+    $(document).ready(function(){
+      var returnPath1 = jQuery(location).attr('href')+"";
+      var returnPath2 = location.pathname+"";
+      console.log("returnPath= "+returnPath1);
+      $('#shoplogout').on('click',function(){
+          console.log("#shoplogout Event");
+          $.post("../shoplogin/logout", { returnPath: "/${path}/logintest/testpage1" },function(result){
+             if(result == "SUCCESS"){
+                console.log("logout ajax 성공");
+                location.href=returnPath1;
+             }
+          });
+         return false;
+      });
+   }); 
+    $(document).ready(function(){
+      var returnPath1 = jQuery(location).attr('href')+"";
+      var returnPath2 = location.pathname+"";
+      console.log("returnPath= "+returnPath1);
+      
+      $('#cuslogout').on('click',function(){
+  		$.ajax({
+
+  			type: "post",
+  			url:"/cuslogin/logout",
+  			data : { "returnPath": "/${path}/logintest/testpage1" },
+  			success: function (data){
+  			//	alert("ajax결과: "+data);
+  				//console.log("ajax결과: "+data);
+  				if(returnPath2=="/favorite/favoriteList"){
+  					location.href="/";
+  				}else{
+	    				location.href=returnPath1;
+  				}
+  			}  ,
+
+  		}); 
+/*           $.post("../cuslogin/logout", { returnPath: "/${path}/logintest/testpage1" },function(result){
+           if(result == "SUCCESS"){
+              console.log("logout ajax 성공");
+              location.href=returnPath1;
+              
+           }
+        }); */
+       return false;
+    });
+       
+    
+       
+        $('body').on('click','button.wing_btn_delete',function(){
+           
+          var h_num=$(this).val();
+          $.ajax({
+            url : "/history/delete?h_num="+h_num,
+            type : 'get',
+            headers:{
+               "Content-Type":"application/json",
+               "X-HTTP-Method-Override":"GET"
+            },
+            dataType:'text',
+            success : function(data){
+               if(data=='delete'){
+                  $('.wing_fixed').remove();
+                  remoconList();
+               }
+            }               
+         });
+         return false;
+      });
+          /* 리모컨의 상품을 클릭하였을때 iFrame으로 상품의 링크를  띄움. */
+          $('body').on('click','li.wing_prd a',function(event) {
+          var link = $(this).attr('href');
+          location.href = "#CategoryResult_top";
+          event.preventDefault();
+          if ($('#CategorysearchIframe').length > 0) {
+             $('#CategorysearchIframe').attr("src", link);
+          } else {
+             $('#CategoryResult_top').remove();
+             $('.remocon').prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
+             $('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+ '">');
+             $('.remocon').prepend('<div id="#CategoryResult_top"></div>');
+          }
+          $('#IframeRemocon').click(function() {
+             $('#CategorysearchIframe').remove();
+             $('#IframeRemocon').remove();
+          });
+       });
+        
+   });
+      /* 사용자의 히스토리내역을 리모컨에 띄우는 함수 */
+        function remoconList(){
+
+         if(${login.c_num!=""}){
+            
+          $.ajax({
+             url: '/remocon/list/${login.c_num}',
+             type: 'post',
+            headers:{
+               "Content-Type":"application/json",
+               "X-HTTP-Method-Override":"POST"
+            },
+            dataType:'text',
+            success : function(data) {
+               $('.remocon').after(data);
+            }
+          });
+         }//if()
+
+      } //remoconList()
 <%Object userVO = session.getAttribute("login"); %>
 <%CustomerVO customerVO = null; %>
 <%String c_num = null; %>
 <%if(userVO instanceof CustomerVO){ 
-	customerVO = (CustomerVO)userVO; 
-	c_num = customerVO.getC_num();%>
-	$(document).ready(function(){
-		remoconList();
-	});
+   customerVO = (CustomerVO)userVO; 
+   c_num = customerVO.getC_num();%>
+   $(document).ready(function(){
+      
+      remoconList();
+   });
 <%}%>
- 
-	
-	 $(document).ready(function(){ 
-		var returnPath1 = jQuery(location).attr('href')+"";
-		var returnPath2 = location.pathname+"";
-		console.log("returnPath= "+returnPath1);
-		
-		
- 		$('#cuslogout').on('click',function(){
- 			$.post("../cuslogin/logout", { returnPath: "/${path}/logintest/testpage1" },function(result){
- 				if(result == "SUCCESS"){
-	 				console.log("logout ajax 성공");
- 					location.href=returnPath1;
- 					
- 				}
- 			});
-			return false;
-		});
- 		
- 		 $('body').on('click','button.wing_btn_delete',function(){
- 			 
-			 var h_num=$(this).val();
-			 $.ajax({
-				url : "/history/delete?h_num="+h_num,
-				type : 'get',
-				headers:{
-					"Content-Type":"application/json",
-					"X-HTTP-Method-Override":"GET"
-				},
-				dataType:'text',
-				success : function(data){
-					if(data=='delete'){
-						$('.wing_fixed').remove();
-						remoconList();
-					}
-				}					
-			});
-			return false;
-		});
- 		   /* 리모컨의 상품을 클릭하였을때 iFrame으로 상품의 링크를  띄움. */
- 		   $('body').on('click','li.wing_prd a',function(event) {
- 			var link = $(this).attr('href');
- 			location.href = "#CategoryResult_top";
- 			event.preventDefault();
- 			if ($('#CategorysearchIframe').length > 0) {
- 				$('#CategorysearchIframe').attr("src", link);
- 			} else {
- 				$('#CategoryResult_top').remove();
- 				$('.remocon').prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
- 				$('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+ '">');
- 				$('.remocon').prepend('<div id="#CategoryResult_top"></div>');
- 			}
- 			$('#IframeRemocon').click(function() {
- 				$('#CategorysearchIframe').remove();
- 				$('#IframeRemocon').remove();
- 			});
- 		});
- 		 
-	});
-		/* 사용자의 히스토리내역을 리모컨에 띄우는 함수 */
- 		function remoconList(){
- 			$.ajax({
- 				url: '/remocon/list/'+${login.c_num},
-	 			type: 'post',
-				headers:{
-					"Content-Type":"application/json",
-					"X-HTTP-Method-Override":"POST"
-				},
-				dataType:'text',
-				success : function(data) {
-					
-					$('.remocon').after(data);
-				}
- 			});
- 		}
 </script>
 
 
@@ -275,21 +323,21 @@
 <div class="header-area">
         <div class="container">
             
-				<div class="row">
-					<div class="col-md-8">
-    					<div class="user">
-    					<h5><i class="fa fa-heart" style=""></i> ${shoplogin.s_sname}님 환영합니다. <i class="fa fa-heart"></i></h5>
-        				</div>
-    				</div>
-    				<div class="col-md-4">
-    					<div class="header-right">
-         					<ul class="list-unstyled list-inline">
-                 				<li><a id="cuslogout" href="/shoplogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
-            				</ul>
-        				</div>
-    					</div>
+            <div class="row">
+               <div class="col-md-8">
+                   <div class="user">
+                   <h5><i class="fa fa-heart" style=""></i> ${shoplogin.s_sname}님 환영합니다. <i class="fa fa-heart"></i></h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                   <div class="header-right">
+                        <ul class="list-unstyled list-inline">
+                             <li><a id="shoplogout" ><i class="fa fa-user"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                   </div>
             </div>
-		</div>
+      </div>
 </div> <!-- End header area -->
 
 
@@ -300,14 +348,14 @@
             <a href="/"><img class="logoimg" src="/resources/images/mainImg/kostyle2.png"></a>
             
             <div class="header_search">
-				<form class="search-form" action="#" method="post" name="searchForm">
-					<div class="search-box">
-						<dl class="clear">
-						<dt class="search1"><input id="search-text" type="text" name="search" style="border:5px solid #EC971F;"></dt>
-						<dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch2.png" alt="검색" title="검색" onclick="sendtwo()" style="border:5px solid #EC971F;"></dd>
-						</dl>
-					</div>
-				</form>
+            <form class="search-form" action="#" method="get" name="searchForm">
+               <div class="search-box">
+                  <dl class="clear">
+                  <dt class="search1"><input id="search-text" type="text" name="search" style="border:5px solid #EC971F;"></dt>
+                  <dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch2.png" alt="검색" title="검색" onclick="sendtwo()" style="border:5px solid #EC971F;"></dd>
+                  </dl>
+               </div>
+            </form>
             </div>
             
             </div>
@@ -318,7 +366,7 @@
 <div class="navSticky">
 <nav class="navbar navbar-default" style="background-color: #EC971F !important; border-color:  #EC971F !important;">
   <div class="container-fluid">
-  	<div class="navbar-header">
+     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -352,48 +400,48 @@
 <c:when test="${sessionScope.login.p_powernum==2 || sessionScope.login==null}"><!-- 일반고객 -->
 
 
-	<div class="header-area">
+   <div class="header-area">
         <div class="container">
             <div class="row">
                 <c:choose>
-				<c:when test="${empty sessionScope.login}">
-				<div class="row">
-					<div class="col-md-8">
-    					<div class="user">
-       				 </div>
-   				 </div>
-    				<div class="col-md-4">
-    					<div class="header-right">
-         					<ul class="list-unstyled list-inline">
-                				<li><a href="../join/join"><i class="fa fa-list-ul"></i> 회원가입 </a></li>
-                				<!-- <li><a href="../mypage/login/"><i class="fa fa-id-badge"></i> My Page </a></li> -->
-                				<li><a href="/cuslogin/login"><i class="fa fa-user-o"></i> Login </a></li>
-            				</ul>
-        				</div>
-    				</div>
-				</div>
-				</c:when>
-
-				<c:when test="${not empty sessionScope.login}">
-				<div class="row">
-					<div class="col-md-8">
-    					<div class="user">
-        					<h5><i class="fa fa-heart" style=""></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
-        				</div>
-    				</div>
-    				<div class="col-md-4">
-    					<div class="header-right">
-         					<ul class="list-unstyled list-inline">
-            					<li><a href="/mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
-                 				<li><a id="cuslogout" href="/cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
-            				</ul>
-        				</div>
-    					</div>
-				</div>
-				</c:when>
-				</c:choose>
+            <c:when test="${empty sessionScope.login}">
+            <div class="row">
+               <div class="col-md-8">
+                   <div class="user">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                   <div class="header-right">
+                        <ul class="list-unstyled list-inline">
+                            <li><a href="../join/join"><i class="fa fa-list-ul"></i> 회원가입 </a></li>
+                            <!-- <li><a href="../mypage/login/"><i class="fa fa-id-badge"></i> My Page </a></li> -->
+                            <li><a href="/cuslogin/login"><i class="fa fa-user-o"></i> Login </a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-		</div>
+            </c:when>
+
+            <c:when test="${not empty sessionScope.login}">
+            <div class="row">
+               <div class="col-md-8">
+                   <div class="user">
+                       <h5><i class="fa fa-heart" style=""></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                   <div class="header-right">
+                        <ul class="list-unstyled list-inline">
+                           <li><a href="/mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
+                             <li><a id="cuslogout" ><i class="fa fa-user"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                   </div>
+            </div>
+            </c:when>
+            </c:choose>
+            </div>
+      </div>
 </div> <!-- End header area -->
 
 
@@ -404,14 +452,14 @@
             <a href="/"><img class="logoimg" src="/resources/images/mainImg/kostyle.png"></a>
             
             <div class="header_search">
-				<form class="search-form" action="#" method="get" name="searchForm">
-					<div class="search-box">
-						<dl class="clear">
-						<dt class="search1"><input id="search-text" type="text" name="search"></dt>
-						<dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="sendtwo()"></dd>
-						</dl>
-					</div>
-				</form>
+            <form class="search-form" action="#" method="get" name="searchForm">
+               <div class="search-box">
+                  <dl class="clear">
+                  <dt class="search1"><input id="search-text" type="text" name="search"></dt>
+                  <dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="sendtwo()"></dd>
+                  </dl>
+               </div>
+            </form>
             </div>
             
             </div>
@@ -422,7 +470,7 @@
 <div class="navSticky">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-  	<div class="navbar-header">
+     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -462,44 +510,44 @@
         <div class="container">
             <div class="row">
                 <c:choose>
-				<c:when test="${empty sessionScope.login}">
-				<div class="row">
-					<div class="col-md-8">
-    					<div class="user">
-       				 </div>
-   				 </div>
-    				<div class="col-md-4">
-    					<div class="header-right">
-         					<ul class="list-unstyled list-inline">
-                				<li><a href="../join/join"><i class="fa fa-list-ul"></i> 회원가입 </a></li>
-                				<!-- <li><a href="../mypage/login/"><i class="fa fa-id-badge"></i> My Page </a></li> -->
-                				<li><a href="../cuslogin/login"><i class="fa fa-user-o"></i> Login </a></li>
-            				</ul>
-        				</div>
-    				</div>
-				</div>
-				</c:when>
-
-				<c:when test="${not empty sessionScope.login}">
-				<div class="row">
-					<div class="col-md-8">
-    					<div class="user">
-        					<h5><i class="fa fa-heart" style=""></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
-        				</div>
-    				</div>
-    				<div class="col-md-4">
-    					<div class="header-right">
-         					<ul class="list-unstyled list-inline">
-            					<li><a href="/mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
-                 				<li><a id="cuslogout" href="../cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
-            				</ul>
-        				</div>
-    					</div>
-				</div>
-				</c:when>
-				</c:choose>
+            <c:when test="${empty sessionScope.login}">
+            <div class="row">
+               <div class="col-md-8">
+                   <div class="user">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                   <div class="header-right">
+                        <ul class="list-unstyled list-inline">
+                            <li><a href="../join/join"><i class="fa fa-list-ul"></i> 회원가입 </a></li>
+                            <!-- <li><a href="../mypage/login/"><i class="fa fa-id-badge"></i> My Page </a></li> -->
+                            <li><a href="../cuslogin/login"><i class="fa fa-user-o"></i> Login </a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-		</div>
+            </c:when>
+
+            <c:when test="${not empty sessionScope.login}">
+            <div class="row">
+               <div class="col-md-8">
+                   <div class="user">
+                       <h5><i class="fa fa-heart" style=""></i> ${login.c_name}님 환영합니다. <i class="fa fa-heart"></i></h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                   <div class="header-right">
+                        <ul class="list-unstyled list-inline">
+                           <li><a href="/mypage/MypageMain/"><i class="fa fa-id-badge"></i> My Page</a></li>
+                             <li><a id="cuslogout" href="../cuslogin/logout/"+${currentPath }><i class="fa fa-user"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                   </div>
+            </div>
+            </c:when>
+            </c:choose>
+            </div>
+      </div>
 </div> <!-- End header area -->
 
 
@@ -510,14 +558,14 @@
             <a href="/"><img class="logoimg" src="/resources/images/mainImg/kostyle.png"></a>
             
             <div class="header_search">
-				<form class="search-form" action="#" method="post" name="searchForm">
-					<div class="search-box">
-						<dl class="clear">
-						<dt class="search1"><input id="search-text" type="text" name="search"></dt>
-						<dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="sendtwo()"></dd>
-						</dl>
-					</div>
-				</form>
+            <form class="search-form" action="#" method="post" name="searchForm">
+               <div class="search-box">
+                  <dl class="clear">
+                  <dt class="search1"><input id="search-text" type="text" name="search"></dt>
+                  <dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="sendtwo()"></dd>
+                  </dl>
+               </div>
+            </form>
             </div>
             
             </div>
@@ -528,7 +576,7 @@
 <div class="navSticky">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-  	<div class="navbar-header">
+     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -567,13 +615,13 @@
 
 <script>
 function sendtwo(){
-	
-	document.searchForm.action='/stats/insertstats';
-	document.searchForm.submit();
-	
-	document.searchForm.action='/search/do';
-	/* document.searchForm.attr("method", "get"); */
-	document.searchForm.submit();
+   
+   document.searchForm.action='/stats/insertstats';
+   document.searchForm.submit();
+   
+   document.searchForm.action='/search/do';
+   /* document.searchForm.attr("method", "get"); */
+   document.searchForm.submit();
 }
 </script>
 

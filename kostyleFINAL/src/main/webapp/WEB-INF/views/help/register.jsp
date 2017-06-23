@@ -115,7 +115,7 @@ $(document).ready(function(){
             </div>
             <!-- /.box-header -->
             <div class="container">
-            <form id='/help/insert' role="form" method="post">
+            <form id="/help/insert" role="form" method="post">
                <div class="box-body">
                   <div class="form-group">
                      <label for="exampleInputEmail1">제목</label> <input type="text"

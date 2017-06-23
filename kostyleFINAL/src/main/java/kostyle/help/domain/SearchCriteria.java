@@ -7,6 +7,14 @@ public class SearchCriteria extends Criteria {
 	private String searchType;
 	private String keyWord;
 	private String c_Id;
+	private String s_Num;
+	
+	public String getS_Num() {
+		return s_Num;
+	}
+	public void setS_Num(String s_Num) {
+		this.s_Num = s_Num;
+	}
 	public String getSearchType() {
 		return searchType;
 	}
@@ -27,10 +35,9 @@ public class SearchCriteria extends Criteria {
 	}
 	@Override
 	public String toString() {
-		return "SearchCriteria [searchType=" + searchType + ", keyWord=" + keyWord + ", c_Id=" + c_Id + "]";
+		return "SearchCriteria [searchType=" + searchType + ", keyWord=" + keyWord + ", c_Id=" + c_Id + ", s_Num="
+				+ s_Num + "]";
 	}
-	
-	
 	
 	
 }

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +22,8 @@ import kostyle.help.domain.Criteria;
 import kostyle.help.domain.PageMaker;
 import kostyle.help.domain.SearchCriteria;
 import kostyle.help.service.BoardService;
+import kostyle.login.domain.AdShopVO;
+import kostyle.login.domain.CustomerVO;
 
 @RestController
 @RequestMapping("/help/*")
@@ -29,7 +33,7 @@ public class HelpBoardController {
 	private BoardService service;
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public ModelAndView list(@ModelAttribute("cri") SearchCriteria cri, HttpServletRequest request)throws Exception {
+	public ModelAndView customerList(@ModelAttribute("cri") SearchCriteria cri, HttpServletRequest request)throws Exception {
 		System.out.println("컨트롤러의 cri객체 확인:"+cri);
 		ModelAndView mav = new ModelAndView();												//페이지 이동 및 데이터 전달을 위한 ModelAndView객체
 		HttpSession session = request.getSession();											//비밀글 사용시 사용자를 확인하기 위해 세션을 사용.
@@ -42,17 +46,18 @@ public class HelpBoardController {
 		PageMaker maker = new PageMaker();													//페이징 처리를 위한 객체(책의 내용과 동일하다.)		
 		maker.setCri(cri);																	//초기의 페이지 세팅.
 		
-		/*if(cri.getSearchType()!=null||cri.getSearchType()!=""){								//검색어를 입력하여 list를 뽑아오는 경우.
+		if(cri.getSearchType()!=null||cri.getSearchType()!=""){								//검색어를 입력하여 list를 뽑아오는 경우.
 			maker.setTotalCount(list.size());												//mapper에서 sql문으로 count한 값과 list의 값이 불일치 하기 때문에 pageMaker객체에 totalCount값을 직접 입력해준다.
-		}else{		*/								
+		}else{										
 			maker.setTotalCount(service.totalCount(cri));									//모들 글 개수를 카운팅하여 페이지를 계산한다.
-		/*}*/
+		}
 		System.out.println("HelpController-PageMaker:"+maker);	
-		/*System.out.println("HelpController-Criteria:"+cri);*/
+		System.out.println("HelpController-Criteria:"+cri);
 		mav.addObject("pageMaker", maker);													//데이터 전달.
 		mav.setViewName("/help/list");														//view(view/help/list.jsp)로 이동
 		return mav;																			//리턴
 	}//list()
+	
 	@RequestMapping(value="insert", method=RequestMethod.GET)
 	public ModelAndView insertGET()throws Exception{										//글입력을 위한 폼으로 이동하는 메소드.
 		ModelAndView mav = new ModelAndView();
@@ -96,5 +101,17 @@ public class HelpBoardController {
 		service.delete(q_Num);																//db의 게시글 삭제
 		response.sendRedirect("/help/list");												//리스트메소드로 리다이렉트
 	}//delete()
-	
+	@RequestMapping(value="alter", method=RequestMethod.POST)
+	public ResponseEntity<String> alter(BoardVO boardVO)throws Exception{
+		System.out.println("alter메소드에서 BoardVO객체 확인"+boardVO);
+		ResponseEntity<String> entity= null;
+		try {
+			service.update(boardVO);
+			entity= new ResponseEntity<String>("success", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 }
