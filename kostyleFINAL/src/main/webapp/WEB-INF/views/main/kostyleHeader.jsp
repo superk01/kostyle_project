@@ -128,15 +128,6 @@
 }
 
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover,
-<<<<<<< HEAD
-	.pagination>.active>span:hover, .pagination>.active>a:focus,
-	.pagination>.active>span:focus {
-	z-index: 2;
-	color: white;
-	cursor: default;
-	background-color: gray !important;
-	border-color: gray !important;
-=======
    .pagination>.active>span:hover, .pagination>.active>a:focus,
    .pagination>.active>span:focus {
    z-index: 2;
@@ -144,7 +135,6 @@
    cursor: default;
    background-color: gray !important;
    border-color: gray !important;
->>>>>>> branch 'master' of https://github.com/superk01/kostyle_project
 }
 
 .navbar-nav>li>.dropdown-menu{
@@ -212,22 +202,22 @@
       console.log("returnPath= "+returnPath1);
       
       $('#cuslogout').on('click',function(){
-  		$.ajax({
+        $.ajax({
 
-  			type: "post",
-  			url:"/cuslogin/logout",
-  			data : { "returnPath": "/${path}/logintest/testpage1" },
-  			success: function (data){
-  			//	alert("ajax결과: "+data);
-  				//console.log("ajax결과: "+data);
-  				if(returnPath2=="/favorite/favoriteList"){
-  					location.href="/";
-  				}else{
-	    				location.href=returnPath1;
-  				}
-  			}  ,
+           type: "post",
+           url:"/cuslogin/logout",
+           data : { "returnPath": "/${path}/logintest/testpage1" },
+           success: function (data){
+           //   alert("ajax결과: "+data);
+              //console.log("ajax결과: "+data);
+              if(returnPath2=="/favorite/favoriteList"){
+                 location.href="/";
+              }else{
+                   location.href=returnPath1;
+              }
+           }  ,
 
-  		}); 
+        }); 
 /*           $.post("../cuslogin/logout", { returnPath: "/${path}/logintest/testpage1" },function(result){
            if(result == "SUCCESS"){
               console.log("logout ajax 성공");
