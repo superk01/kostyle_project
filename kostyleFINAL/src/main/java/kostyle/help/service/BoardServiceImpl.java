@@ -206,6 +206,14 @@ public class BoardServiceImpl implements BoardService {
           return list;
     }
 
+	@Override
+	public BoardVO detail(int q_Num) throws Exception {
+		BoardVO boardVO = boardDAO.detail(q_Num);
+		int replyCount = replyDAO.ReplyCount(q_Num);
+		boardVO.setAnswerNum(replyCount);
+		return boardVO;
+	}
+
 	
 	
 

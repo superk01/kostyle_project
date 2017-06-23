@@ -66,6 +66,8 @@ $(document).ready(function(){
 			success : function(result){
 				alert(result);
 				if(result=='success'){
+					$('#repliesDiv').siblings().remove();
+					getAnswerNum(q_Num);
 					getPage("/replies/"+q_Num);
 					$('#newReplyText').val("");
 				}
@@ -84,7 +86,8 @@ $(document).ready(function(){
 	$('#updateform').on('click',function(){
 		alert('updateform 이벤트 확인');
 		$('#title').removeAttr("readonly");
-		$('#content').removeAttr("readonly");
+		$('#content').css("display", "none");
+		$('#content2').css("display","");
 		$(this).css("display", "none");
 		$('#remove').css("display", "none");
 		$('.dynamicBtns').
@@ -104,30 +107,50 @@ $(document).ready(function(){
 	$('.dynamicBtns').on('click','#update',function(){
 		alert('update버튼 이벤트 확인');
 		var title = $('input[name=title]').val();
-		var content = $('#content').text();		
+		var content = $('#content2').val();		
+		var q_num = $('input[name=q_Num]').val()
 		alert(title);
 		alert(content);
 		$.ajax({
-			type:'post',
+			type:'put',
 			url:'/help/alter',
 			headers:{
 				"Content-Type":"application/json",
-				"X-HTTP-Method-Override":"POST"
+				"X-HTTP-Method-Override":"PUT"
 			},
 			dataType:'text',
 			data : JSON.stringify({
 				q_Title : title,
 				q_Content : content,
+				q_Num : q_num
 			}),
 			success : function(result){
 				alert(result);
 				if(result=='success'){
 					$('#title').attr("readonly","readonly");
-					$('#content').attr("readonly","readonly");
+					$('#content').val(content);
+					$('#content').css("display","");
+					$('#content2').css("display","none");
 				}
 			}
 		});
 	});
+	function getAnswerNum(q_Num){
+		$.ajax({
+			url: "/help/getAnswerNum?q_num="+q_Num,
+			type: "get",
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"GET"
+			},
+			data : 'json',
+			success : function(data){
+				alert(data.answerNum);
+				$('#replycntSmall').remove();
+				$('.bg-green').append("<small id='replycntSmall'> ["+ data.answerNum+ "] </small>");
+			}
+		})
+	}
 });
 </script>
 <style type="text/css">
@@ -147,6 +170,9 @@ ul.timeline{
 }
 div.dynamicBtns{
 	display: inline;
+}
+li.replyLi{
+	padding-top: 15px;
 }
 </style>
 
@@ -177,8 +203,10 @@ div.dynamicBtns{
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">내용</label>
-						<textarea class="form-control" name="content" rows="3"
+						<textarea class="form-control" name="content1" rows="5"
 							readonly="readonly" id="content">${board.q_Content}</textarea>
+						<textarea class="form-control" name="content2" rows="5"
+							 id="content2" placeholder="${board.q_Content}" style="display: none"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">작성자</label> <input type="text"

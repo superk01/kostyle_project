@@ -21,6 +21,8 @@ public interface BoardService {
 	
 	public BoardVO detail(int q_Num, HttpSession session)throws Exception;						
 	
+	public BoardVO detail(int q_Num)throws Exception;	
+	
 	public List<AdShoppingMallHelp> adShoppingMallList()throws Exception; 
 	
 	public int totalCount(SearchCriteria cri)throws Exception;

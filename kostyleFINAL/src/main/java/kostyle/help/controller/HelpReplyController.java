@@ -13,7 +13,6 @@ import javax.xml.ws.Response;
 import org.apache.catalina.tribes.group.interceptors.ThroughputInterceptor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +28,7 @@ import kostyle.help.service.ReplyService;
 public class HelpReplyController {
 	
 	@Inject
-	private ReplyService service;
+	private ReplyService replyService;
 	
 	/*댓글 등록 메소드*/
 	@RequestMapping(value="/", method=RequestMethod.POST)
@@ -39,7 +38,7 @@ public class HelpReplyController {
 		ResponseEntity<String> entity = null;
 		
 		try {
-			service.ReplyInsert(replyVO);
+			replyService.ReplyInsert(replyVO);
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,7 +54,7 @@ public class HelpReplyController {
 		ResponseEntity<Map<String, Object>> entity = null;
 		List<ReplyVO> list = new ArrayList<>();
 		try {
-			list = service.ReplyList(q_Num);
+			list = replyService.ReplyList(q_Num);
 			System.out.println("리플리스트의 맵:"+map);
 			entity= new ResponseEntity<List<ReplyVO>>(HttpStatus.OK);
 		} catch (Exception e) {
@@ -72,7 +71,7 @@ public class HelpReplyController {
 		ResponseEntity<List<ReplyVO>> entity=null;
 		
 		try {
-			entity=new ResponseEntity<>(service.ReplyList(q_Num), HttpStatus.OK);
+			entity=new ResponseEntity<>(replyService.ReplyList(q_Num), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity= new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -86,7 +85,7 @@ public class HelpReplyController {
 	public ModelAndView ReplyList(@PathVariable("q_Num") int q_Num){
 		System.out.println("ReplyList진입.");
 		List<ReplyVO> list = new ArrayList<>();
-		list = service.ReplyList(q_Num);
+		list = replyService.ReplyList(q_Num);
 		System.out.println("HelpReplyController-ReplyList:"+list);
 		return new ModelAndView("help/replyList", "list", list);
 	}
@@ -95,7 +94,7 @@ public class HelpReplyController {
 	@RequestMapping(value="/{q_Num}/{as_Num}", method=RequestMethod.GET)
 	public ModelAndView ReplyDetail(@PathVariable("as_Num") int as_Num, @PathVariable("q_Num") int q_Num, HttpSession session){
 		System.out.println("ReplyDetail 진입");
-		ReplyVO replyVO = service.ReplyDetail(as_Num,q_Num,session);
+		ReplyVO replyVO = replyService.ReplyDetail(as_Num,q_Num,session);
 		return new ModelAndView("help/reply_detail","reply",replyVO);
 	}
 	/*댓글 수정 폼 가져오는 메소드*/
@@ -103,7 +102,7 @@ public class HelpReplyController {
 	public ResponseEntity<ReplyVO> ReplyUpatePOST(@PathVariable("as_Num") int as_Num){
 		System.out.println("HelpReplyController-ReplyUpdatePOST진입");
 		ResponseEntity<ReplyVO> entity = null;
-		ReplyVO replyVO = service.ReplyDetail(as_Num);
+		ReplyVO replyVO = replyService.ReplyDetail(as_Num);
 		System.out.println("replyVO객체 생성 :"+replyVO);
 		System.out.println("HelpReplyController-ReplyUpdatePOST:"+replyVO);
 		
@@ -121,7 +120,7 @@ public class HelpReplyController {
 	@RequestMapping(value="/{as_Num}", method=RequestMethod.POST)
 	public ReplyVO ReplyUpatePOST(@PathVariable("as_Num") int as_Num){
 		System.out.println("HelpReplyController-ReplyUpdatePOST진입");
-		ReplyVO replyVO = service.ReplyDetail(as_Num);
+		ReplyVO replyVO = replyService.ReplyDetail(as_Num);
 		System.out.println("HelpReplyController-ReplyUpdatePOST에서 replyVO객체 가져옴:"+replyVO);
 		return replyVO;
 	}
@@ -135,7 +134,7 @@ public class HelpReplyController {
 		replyVO.setAs_Num(as_Num+"");
 		System.out.println("replyVO에 as_Num값을 세팅 하였는가?"+replyVO);
 		try {
-			service.ReplyUpdate(replyVO);
+			replyService.ReplyUpdate(replyVO);
 			System.out.println("HelpReplyController-ReplyUpdatePUT:"+replyVO);
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
@@ -151,7 +150,7 @@ public class HelpReplyController {
 	public ResponseEntity<String> ReplyDelete(@PathVariable("as_Num") int as_Num, HttpServletResponse response)throws Exception{
 		ResponseEntity<String> entity = null;
 		try {
-			service.ReplyDelete(as_Num);
+			replyService.ReplyDelete(as_Num);
 			entity = new ResponseEntity<>("delete", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -162,9 +161,9 @@ public class HelpReplyController {
 		//아래는 삽질입니다;;;
 		/*System.out.println("ReplyDelete진입");
 		
-		ReplyVO replyVO = service.ReplyDetail(as_Num);
+		ReplyVO replyVO = replyService.ReplyDetail(as_Num);
 		
-		service.ReplyDelete(as_Num);
+		replyService.ReplyDelete(as_Num);
 		System.out.println("ReplyDelete에서 댓글 삭제");
 		System.out.println("ReplyDelete:"+replyVO.getQ_Num());
 		return "redirect:/replies/"+replyVO.getQ_Num();
