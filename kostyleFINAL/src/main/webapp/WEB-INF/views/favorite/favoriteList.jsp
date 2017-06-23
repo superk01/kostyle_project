@@ -37,6 +37,7 @@
 			<h1>즐겨찾기</h1>
 		</div>
 		
+		
 <div id="favoritebackground">
 <div id="favoriteBodyTop"></div>
 <br><br>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -101,8 +102,8 @@ public class HelpBoardController {
 		service.delete(q_Num);																//db의 게시글 삭제
 		response.sendRedirect("/help/list");												//리스트메소드로 리다이렉트
 	}//delete()
-	@RequestMapping(value="alter", method=RequestMethod.POST)
-	public ResponseEntity<String> alter(BoardVO boardVO)throws Exception{
+	@RequestMapping(value="alter", method=RequestMethod.PUT)
+	public ResponseEntity<String> alter(@RequestBody BoardVO boardVO)throws Exception{
 		System.out.println("alter메소드에서 BoardVO객체 확인"+boardVO);
 		ResponseEntity<String> entity= null;
 		try {
@@ -113,5 +114,12 @@ public class HelpBoardController {
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return entity;
+	}
+	@RequestMapping(value="getAnswerNum", method=RequestMethod.GET)
+	public BoardVO getAnswerNum(@RequestParam("q_num") int q_Num)throws Exception{
+		System.out.println("getAnswerNum진입 확인");
+		BoardVO boardVO = service.detail(q_Num);
+		System.out.println("getAnswerNum에서 boardVO객체확인"+boardVO);
+		return boardVO;
 	}
 }
