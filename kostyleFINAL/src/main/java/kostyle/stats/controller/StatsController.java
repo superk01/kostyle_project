@@ -83,6 +83,7 @@ public class StatsController {
 		ResponseEntity<String> entity = null;
 		List<HitcountStatsChart> chartList = null;
 		
+		
 		try {
 			String s_sname = (String) paramMap.get("statsSearchShop");
 			String statsSearchStartDate = (String) paramMap.get("statsSearchStartDate");
@@ -108,6 +109,8 @@ public class StatsController {
 				locate="/stats/statsSide?statsbody=statsVisitor_gender.jsp";
 			}else if(chartFor.equals("age")){
 				locate="/stats/statsSide?statsbody=statsVisitor_age.jsp";
+			}else if(chartFor.equals("adr")){
+				locate="/stats/statsSide?statsbody=statsVisitor_adr.jsp";
 			}
 			
 			System.out.println("~~STATS/이동: "+locate);

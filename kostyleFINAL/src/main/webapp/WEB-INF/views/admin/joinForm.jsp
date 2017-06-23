@@ -17,8 +17,14 @@
 
     <div class="container">
 
+		<div class="page-header">
+			<h1>
+				입점 신청 <small>KOStyle</small>
+			</h1>
+		</div>
+
       <form class="form-signin" method="post">
-        <h2 class="form-signin-heading">입점 신청</h2>
+	
         <label for="inputShopName" class="sr-only">ShoppingMall Name</label>
         <input type="text" id="inputShopName" class="form-control" name="s_sname" placeholder="쇼핑몰명" required autofocus>
         
@@ -55,7 +61,6 @@
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
-
     </div> <!-- /container -->
 
 
