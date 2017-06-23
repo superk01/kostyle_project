@@ -158,6 +158,7 @@
         position: fixed;
         top: 0px;
         width: 100%;
+        z-index:10000;
       }
 </style>
     
@@ -201,22 +202,22 @@
       console.log("returnPath= "+returnPath1);
       
       $('#cuslogout').on('click',function(){
-  		$.ajax({
+        $.ajax({
 
-  			type: "post",
-  			url:"/cuslogin/logout",
-  			data : { "returnPath": "/${path}/logintest/testpage1" },
-  			success: function (data){
-  			//	alert("ajax결과: "+data);
-  				//console.log("ajax결과: "+data);
-  				if(returnPath2=="/favorite/favoriteList"){
-  					location.href="/";
-  				}else{
-	    				location.href=returnPath1;
-  				}
-  			}  ,
+           type: "post",
+           url:"/cuslogin/logout",
+           data : { "returnPath": "/${path}/logintest/testpage1" },
+           success: function (data){
+           //   alert("ajax결과: "+data);
+              //console.log("ajax결과: "+data);
+              if(returnPath2=="/favorite/favoriteList"){
+                 location.href="/";
+              }else{
+                   location.href=returnPath1;
+              }
+           }  ,
 
-  		}); 
+        }); 
 /*           $.post("../cuslogin/logout", { returnPath: "/${path}/logintest/testpage1" },function(result){
            if(result == "SUCCESS"){
               console.log("logout ajax 성공");
