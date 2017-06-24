@@ -103,9 +103,9 @@ h3{
 </head>
 <body>
 
-		<c:forEach var="row" items="${list}">
+		<c:forEach var="row" items="${list}" varStatus="status">
 	
-			<li class="replyLi" data-rno="${row.as_Num}">
+			<li class="replyLi" data-rno="${row.as_Num}" >
 				<i class="fa fa-comments bg-blue pull-left"></i>
 					<c:set var="val" value="${row.c_Id }" /> 
 					<c:set var="val2" value="${login.c_id}" /> 
@@ -113,12 +113,12 @@ h3{
 					<%-- <c:choose> --%>
 					<c:if test="${val == val2 }">
 						<div class="replyDynamicBtnGroup1">
-							<input id="btnUpdateForm" type="button" class="btn btn-default pull-right" value="수정">
-							<input id="btnRelpyDelete" type="button" class="btn btn-warning pull-right" value="삭제">
+							<input id="btnUpdateForm" type="button" class="btn btn-default pull-right btnUpdateForm" value="수정">
+							<input id="btnRelpyDelete" type="button" class="btn btn-warning pull-right btnRelpyDelete" value="삭제">
 						</div>
 						<div class="replyDynamicBtnGroup2" style="display: none">
-							<input id="btnCancel" type="button" class="btn btn-default pull-right" value="취소">
-							<input id="btnSubmit" type="button" class="btn btn-warning pull-right" value="확인">
+							<input id="btnSubmit" type="button" class="btn btn-default pull-right btnReplySubmit" value="확인">
+							<input id="btnCancel" type="button" class="btn btn-warning pull-right btnReplyCancel" value="취소">
 						</div>
 					</c:if>
 				<%-- </c:choose>  --%>
@@ -128,7 +128,7 @@ h3{
 						${row.c_Id }
 					</h3>
 					<div class="timeline-body">${row.as_Content}</div>
-					<textarea rows="3" class="form-control" placeholder="${row.as_Content}" style="display: none" id="replyUpdate"></textarea>
+					<textarea rows="3" class="form-control replyUpdate" placeholder="${row.as_Content}" style="display: none" id="replyUpdate" name="${status}"></textarea>
 					<div class="timeline-footer"></div>
 				</div></li>
 		</c:forEach>
