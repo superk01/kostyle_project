@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kostyle.admin.mappers.coordinatorMapper">
+<insert id="insert_coordi" parameterType="CoordinatorVO">
+	insert into coordi 
+	(cd_num, s_num, cd_img, cd_name, regdate, cd_content)
+	values
+	((select nvl(max(cd_num)+1, 1) from coordi),
+	(select s_num from adshoppingmall where ad_id = #{s_name}),
+	cd_img = #{cd_img}, sysdate, cd_content=#{cd_content})
+</insert>
+<insert id="insert_detail" parameterType="CoordinatorVO">
+	insert into coordi_detail (cdprd_num,cd_num,cdprd_url1,cdprd_url2,cdprd_url3)
+	values(
+	(select nvl(max(cdprd_num)+1,1) from coordi_detail),
+	(select max(cd_num) from coordi),
+	cdprd_url=#{cdprd_url},cdprd_url2=#{cdprd_url},cdprd_url3=#{cdprd_url}) 
+</insert>
+</mapper>
