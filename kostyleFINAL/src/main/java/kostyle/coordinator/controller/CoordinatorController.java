@@ -75,8 +75,8 @@ public class CoordinatorController {
 	}
 	@RequestMapping("list")
 	public ModelAndView coordiList(HttpServletRequest request){
-		String contextPath = request.getSession().getServletContext().getRealPath("/");
-		String realPath = contextPath+"resources/images/coordiuploadimg";
+		/*String contextPath = request.getSession().getServletContext().getRealPath("/");*/
+		String realPath = "resources/images/coordiuploadimg";
 		List<CoordinatorVO> list = new ArrayList<>();
 		list = service.coordiList();
 		for(int i=0; i<list.size(); i++){

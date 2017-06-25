@@ -63,13 +63,14 @@
 			<mapping path="/favorite/favoriteList"/>
 			<mapping path="/favorite/comentModify"/>
 			<mapping path="/favorite/comentRead"/>
-			<mapping path="/help/register"/>
+			<mapping path="/help/insert/"/>
 			<beans:ref bean="checkLoginInterceptor"/>
 		</interceptor>
 		
 		
  		<interceptor>
 			<mapping path="/logintest/testpage2" />
+			<mapping path="/coordinator/coordiregister"/>
 			<beans:ref bean="shopCheckLoginInterceptor"/>
 		</interceptor>
 		

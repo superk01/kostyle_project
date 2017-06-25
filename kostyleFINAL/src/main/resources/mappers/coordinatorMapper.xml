@@ -23,6 +23,6 @@
 </select> -->
 
 <select id="coordiList" resultType="CoordinatorVO">
-	select * from coordi
+	select * from coordi order by cd_num DESC
 </select>
 </mapper>

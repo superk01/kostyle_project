@@ -3,6 +3,7 @@ package kostyle.coordinator.domain;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CoordinatorVO {
+	private String cd_num;
 	private String cd_name;
 	private String s_num;
 	private String s_name;
@@ -16,6 +17,14 @@ public class CoordinatorVO {
 	private MultipartFile uploadFile;
 	
 	
+	
+	
+	public String getCd_num() {
+		return cd_num;
+	}
+	public void setCd_num(String cd_num) {
+		this.cd_num = cd_num;
+	}
 	public String getCd_content() {
 		return cd_content;
 	}
@@ -77,26 +86,22 @@ public class CoordinatorVO {
 	public void setPrd_url3(String prd_url3) {
 		this.prd_url3 = prd_url3;
 	}
-	/**
-	 * @return the uploadFile
-	 */
+	
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
-	/**
-	 * @param uploadFile the uploadFile to set
-	 */
+	
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
 	@Override
 	public String toString() {
-		return "CoordinatorVO [cd_name=" + cd_name + ", s_num=" + s_num + ", s_name=" + s_name + ", cd_img=" + cd_img
-				+ ", regdate=" + regdate + ", cd_like=" + cd_like + ", prd_url1=" + prd_url1 + ", prd_url2=" + prd_url2
-				+ ", prd_url3=" + prd_url3 + ", cd_content=" + cd_content + ", uploadFile=" + uploadFile + "]";
+		return "CoordinatorVO [cd_num=" + cd_num + ", cd_name=" + cd_name + ", s_num=" + s_num + ", s_name=" + s_name
+				+ ", cd_img=" + cd_img + ", regdate=" + regdate + ", cd_like=" + cd_like + ", prd_url1=" + prd_url1
+				+ ", prd_url2=" + prd_url2 + ", prd_url3=" + prd_url3 + ", cd_content=" + cd_content + ", uploadFile="
+				+ uploadFile + "]";
 	}
+	
 	
 }
