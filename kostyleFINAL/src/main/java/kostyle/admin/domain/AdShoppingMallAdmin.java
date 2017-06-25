@@ -7,7 +7,6 @@ public class AdShoppingMallAdmin {
 	private String s_num;
 	private String ad_id;
 	private String ad_pass;
-	private int ad_hitcount;
 	private int s_grade;
 	private int p_powernum;
 	private Date ad_sessionlimit;
@@ -30,12 +29,6 @@ public class AdShoppingMallAdmin {
 	}
 	public void setAd_pass(String ad_pass) {
 		this.ad_pass = ad_pass;
-	}
-	public int getAd_hitcount() {
-		return ad_hitcount;
-	}
-	public void setAd_hitcount(int ad_hitcount) {
-		this.ad_hitcount = ad_hitcount;
 	}
 	public int getS_grade() {
 		return s_grade;

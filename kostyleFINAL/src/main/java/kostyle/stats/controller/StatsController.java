@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kostyle.login.domain.CustomerVO;
 import kostyle.stats.domain.HitcountStatsChart;
+import kostyle.stats.domain.SearchKeywordChart;
 import kostyle.stats.domain.SearchKeywordStats;
 import kostyle.stats.service.StatsService;
 
@@ -141,6 +142,34 @@ public class StatsController {
 		
 	}
 	
+	@RequestMapping(value="/statsSearch", method=RequestMethod.POST)
+	public ResponseEntity<String> statsSearchPOST(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		ResponseEntity<String> entity = null;
+		List<SearchKeywordChart> list = null;
+		
+		try {
+			entity = new ResponseEntity<String>("hello", HttpStatus.OK);
+			list = service.statsSearchRank();
+			
+			for(int i=0;i<list.size();i++){
+				System.out.println(list.get(i).getSk_searchkey());
+			}
+			
+			
+			HttpSession session = request.getSession();
+			
+			if(session.getAttribute("statsSearchRankJ") != null){
+				session.removeAttribute("statsSearchRankJ");
+			}
+			session.setAttribute("statsSearchRankJ", list);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 	
 	
 	

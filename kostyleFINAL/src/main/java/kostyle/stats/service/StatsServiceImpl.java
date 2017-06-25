@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kostyle.stats.domain.HitcountStats;
 import kostyle.stats.domain.HitcountStatsChart;
+import kostyle.stats.domain.SearchKeywordChart;
 import kostyle.stats.domain.SearchKeywordStats;
 import kostyle.stats.persistence.StatsDAO;
 
@@ -37,6 +38,12 @@ public class StatsServiceImpl implements StatsService{
 		
 		return list;
 	}
+
+	@Override
+	public List<SearchKeywordChart> statsSearchRank()throws Exception {
+		return dao.statsSearchRank();
+	}
+	
 
 	
 }

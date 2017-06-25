@@ -6,11 +6,13 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kostyle.stats.domain.HitcountStats;
 import kostyle.stats.domain.HitcountStatsChart;
+import kostyle.stats.domain.SearchKeywordChart;
 import kostyle.stats.domain.SearchKeywordStats;
 
 @Repository
@@ -60,6 +62,11 @@ public class StatsDAOImpl implements StatsDAO{
 		paramMap.put("statsSearchEndDate", statsSearchEndDate);
 		
 		return session.selectList(namespace+".statsDate_age", paramMap);
+	}
+
+	@Override
+	public List<SearchKeywordChart> statsSearchRank() throws Exception{
+		return session.selectList(namespace+".getSearchRank", new RowBounds(1, 5));
 	}
 	
 	

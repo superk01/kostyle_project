@@ -94,7 +94,7 @@
                   
                   <div class="panel-body">
                   	<ul class="collapse" id="dropdown-product">
-                  		<li><a href="#">검색어 분석</a></li>
+                  		<li><a href="statsSide?statsbody=statsSearch.jsp">검색어 분석</a></li>
                   		<li><a href="#">찜하기 분석</a></li>
                   	</ul>
                   </div>

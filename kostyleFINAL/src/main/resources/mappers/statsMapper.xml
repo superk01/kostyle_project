@@ -122,7 +122,16 @@
     where d.cnt_date = e.cnt_date(+)
     order by d.cnt_date
 	
+	</select>
 	
+	<select id="getSearchRank" resultType="SearchKeywordChart">
+  select sk_searchkey, count(sk_num) as sk_count
+    from searchkeyword
+    where sk_date between '17/06/13' and '17/06/21'
+    group by sk_searchkey 
+    order by count(sk_num) desc
+
+
 	</select>
 	
 	
