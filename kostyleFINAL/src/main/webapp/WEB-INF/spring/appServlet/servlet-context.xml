@@ -63,13 +63,14 @@
 			<mapping path="/favorite/favoriteList"/>
 			<mapping path="/favorite/comentModify"/>
 			<mapping path="/favorite/comentRead"/>
-			<mapping path="/help/register"/>
+			<mapping path="/help/insert/"/>
 			<beans:ref bean="checkLoginInterceptor"/>
 		</interceptor>
 		
 		
  		<interceptor>
 			<mapping path="/logintest/testpage2" />
+			<mapping path="/coordinator/coordiregister"/>
 			<beans:ref bean="shopCheckLoginInterceptor"/>
 		</interceptor>
 		
@@ -81,7 +82,7 @@
 		<beans:property name="maxUploadSize" value="10485760"/>
 	</beans:bean>
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:\\KostyleOnly"/>
+		<beans:constructor-arg value="F:\\upload"/>
 </beans:bean>
 
 

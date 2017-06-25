@@ -9,6 +9,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+$(document).ready(function(){
+	/* $('.file').on('change', function(){
+		alert("message");
+	}); */
+});
+function upload(event){
+	var files = event.originalEvent.dataTransfer.files;
+
+	var file = files[0];
+
+	var formData = new FormData();
+
+	formData.append("file", file);
+	$.ajax({
+		url : '/coordinator/uploadAjax',
+		data : formData,
+		dataType : 'text',
+		processData : false,
+		contentType : false,
+		type : 'POST',
+		success : function(data) {
+			console.log(data);
+			var fileInfo = getFileInfo(data);
+
+			var html = template(fileInfo);
+
+			$(".uploadedList").append(html);
+		}
+	});
+}
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -24,7 +57,7 @@
             </div>
             <!-- /.box-header -->
             <div class="container">
-            <form id="/coordinator/coordiregister" role="form" method="post">
+            <form action="/coordinator/coordiregister" role="form" method="post" enctype="multipart/form-data">
                <div class="box-body">
                   <div class="form-group">
                      <label for="exampleInputEmail1">코디 이름</label> <input type="text"
@@ -41,8 +74,8 @@
                         value="${shoplogin.ad_id}" readonly="readonly">
                   </div>
                   <div class="form-group">
-                  	<label for="exampleInputEmail1">파일 업로드</label>
-                  	<input type="file" class="form-control" name="cd_img">
+                  	<label for="exampleInputEmail1">대표 이미지</label>
+                  	<input type="file" class="form-control" name="uploadFile">
                   </div>
                   <div class="form-group">
                   	<label for="exampleInputEmail1">상품링크1</label>
