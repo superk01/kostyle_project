@@ -81,7 +81,7 @@
 		<beans:property name="maxUploadSize" value="10485760"/>
 	</beans:bean>
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:\\KostyleOnly"/>
+		<beans:constructor-arg value="F:\\upload"/>
 </beans:bean>
 
 

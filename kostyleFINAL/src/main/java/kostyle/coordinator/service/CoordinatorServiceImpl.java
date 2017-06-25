@@ -27,8 +27,9 @@ public class CoordinatorServiceImpl implements CoordinatorService {
 
 	@Override
 	public List<CoordinatorVO> coordiList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<CoordinatorVO> list = dao.coordiList();
+		System.out.println("DAO에서 list:"+list);
+		return list;
 	}
 
 	@Override

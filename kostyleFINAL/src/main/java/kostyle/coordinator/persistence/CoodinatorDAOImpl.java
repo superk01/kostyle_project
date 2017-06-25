@@ -31,8 +31,7 @@ public class CoodinatorDAOImpl implements CoordinatorDAO {
 
 	@Override
 	public List<CoordinatorVO> coordiList() {
-		// TODO Auto-generated method stub
-		return null;
+		return session.selectList(Namespace+".coordiList");
 	}
 
 	@Override
