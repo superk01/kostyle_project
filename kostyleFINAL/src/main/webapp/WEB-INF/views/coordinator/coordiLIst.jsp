@@ -10,7 +10,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 .coordiImg{
-   width: 100px;
+   width: 300px;
+   height: 450px;
+   padding-top: 55px;
 }
 
 .box{
@@ -24,6 +26,17 @@ th{
 .explain{
    text-align: center;
    color: #428bca;
+}
+
+.cdname{
+	color: gray;
+	font-size: 15px;
+	text-align: center;
+}
+
+
+.col-sm-4{
+	text-align: center;
 }
 
 </style>
@@ -43,16 +56,17 @@ th{
       <table class="table table-bordered">
          <thead>
             <tr class="tr">
-               <th class="th">NO</th>
+               <!-- <th class="th">NO</th> -->
                <!-- <th>답변 여부</th> -->
-               <th class="th">대표이미지</th>
-               <th class="th">제목</th>
-               <th class="th">쇼핑몰</th>
-               <th class="th">작성일</th>
+               <!-- <th class="th">대표이미지</th>
+               <th class="th">제목</th> -->
+               <!-- <th class="th">쇼핑몰</th>
+               <th class="th">작성일</th> -->
             </tr>
          </thead>
+         <div class="row">
          <c:forEach var="coordi" items="${list }">
-            <tbody>
+            <%-- <tbody>
                <tr class="tr">
                   <td class="td">${coordi.cd_num }</td>
                   <!--글 번호  -->
@@ -65,14 +79,21 @@ th{
                   <td class="td">${coordi.regdate }</td>
                   <!--작성 날짜, 시간  -->
                </tr>
-            </tbody>
+            </tbody> --%>
+            
+            <div class="col-sm-4"><img class="coordiImg" src="/${coordi.cd_img }"><br>
+            <a class="cdname" href="/coordinator/detail?cd_num=${coordi.cd_num }">${coordi.cd_name }</a></div>
+         	
          </c:forEach>
+         </div>
       </table>
-      <button id="write" class="btn btn-default btn-lg pull-right">글쓰기</button>
+      <button id="write" class="btn btn-default btn-lg pull-right"><a href="/coordinator/coordiregister">글쓰기</a></button>
       </div>
       </div>
-   
-      <div class="text-center">
+   <div class="form-group">
+                     <div class="col-sm-12" style="height:50px;">
+                </div>
+      <%-- <div class="text-center">
          <ul class="pagination">
             <c:if test="${pageMaker.prev }">
                <li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">[이전]</a></li>
@@ -89,7 +110,7 @@ th{
                <li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1) }">[이후]</a></li>
             </c:if>
          </ul>
-      </div>
+      </div> --%>
 </div>
 </body>
 </html>

@@ -53,7 +53,7 @@ function resize_btn(){
        
 		$('#media_2_div').html('<div class="col-md-8 pull-right action-buttons"><span class="col-md-4"><button type="button" class="btn icon-btn btn-success folderDeleteBtn" ><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span> 옷장추가</button></span><span class="col-md-4"><button type="button"  class="btn icon-btn btn-danger folderAddBtn" ><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span> 옷장삭제</button></span><span class="col-md-4"><button  type="button" class="btn btn icon-btn btn-primary folderSaveBtn" ><span class="glyphicon glyphicon-saved"></span> 옷장저장</button></span></div>');
 	}*/
-}
+//}
 
 
 //창크기 리사이즈 감지. 리사이즈시 resize_btn()함수 실행

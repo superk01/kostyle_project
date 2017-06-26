@@ -390,18 +390,19 @@
   
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      <li><a href="#" style="padding:20px 90px !important">RAKING</a></li>
+      <li><a href="#" style="padding:20px 59px !important">RAKING</a></li>
       
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:20px 90px !important">DISCOUNT</a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:20px 59px !important">DISCOUNT</a>
           <ul class="dropdown-menu">
             <li><a href="#">기획할인</a></li>
             <li><a href="#">신상품할인</a></li>
           </ul>
         </li>
         
-        <li><a href="/help/list" style="padding:20px 90px !important">SERVICE CENTER</a></li>
-        <li><a href="#" style="padding:20px 90px !important">STATISTICS</a></li>
+        <li><a href="/help/list" style="padding:20px 59px !important">SERVICE CENTER</a></li>
+        <li><a href="#" style="padding:20px 59px !important">STATISTICS</a></li>
+        <li><a href="/coordinator/list" style="padding:20px 59px !important">COORDI</a></li>
       </ul>
     </div>
   </div>

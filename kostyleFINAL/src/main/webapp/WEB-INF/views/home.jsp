@@ -8,7 +8,7 @@
 <html>
 <head>
 <script src="../../../resources/jquery/jquery-3.2.1.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(document).ready(function(){ 
       var returnPath1 = jQuery(location).attr('pathname')+"";
       var returnPath2 = location.pathname+"";
@@ -37,96 +37,52 @@
       }); 
       
    });
-</script>
-   <title>Home</title>
-</head>
+</script> -->
 
+<style type="text/css">
+#weather{
+	width: 50%;
+	text-align: center;
+	vertical-align: middle;
+}
+#today{
+	width: 50%;
+	text-align: center;
+	vertical-align: middle;
+}
 
-<body>
+.main button{
+	background: black;
+	color: white;
+	border: none;
+	font-size: 30px;
+	position: absolute;
+	top: 350px;
+	right: 200px;
+}	
 
-<h1>
-   Hello world!  
-</h1>
-<c:set var="currentPath" value="${requestScope.currentPath }"></c:set>
-<c:set var="loginSession" value="${sessionScope.login }"></c:set>
-<c:set var="shoploginSession" value="${sessionScope.shoplogin }"></c:set>
+.col-sm-6{
+	padding-left: 0px;
+	padding-right: 0px;
+}
 
-<c:if test="${empty sessionScope.login && empty sessionScope.shoplogin}">
-   <a href="/cuslogin/login">고객로그인</a>
-   <a href="/shoplogin/login">쇼핑몰로그인</a>
-   <a href="/find/id">아이디 찾기</a>
-   <a href="/find/password">비밀번호 찾기</a>
-</c:if>
-
-<c:choose>
-   <c:when test="${not empty login}">
-      <p>고객세션있음</p>
-      <!-- <div id="cuslogout">고객로그아웃</div> -->
-       <div id="cuslogout"><a href="/cuslogin/logout/"+${currentPath }>고객로그아웃</a></div> 
-   </c:when>
-   <c:when test="${not empty shoplogin}">
-      <p>쇼핑몰세션있음</p>
-      <div id="shoplogout">쇼핑몰로그아웃</div>
-       <div id="shoplogout"><a href="/shoplogin/logout/"+${currentPath }>쇼핑몰로그아웃</a></div> 
-      
-   </c:when>
-<%--    <c:when test="${not empty sessionScope.login}">
-      <p>고객세션있음</p>
-      <div id="cuslogout"><a href="/cuslogin/logout/${currentPath }">고객로그아웃</a></div>
-   </c:when>
-   <c:when test="${not empty sessionScope.shoplogin}">
-      <p>쇼핑몰세션있음</p>
-      <div id="shoplogout"><a href="/shoplogin/logout/${currentPath }">쇼핑몰로그아웃</a></div>
-      
-   </c:when> --%>
-</c:choose>
-<div>
-<div>${login.getC_name() }님 환영합니다.</div>
-   고객세션: ${login.c_name }
-   <br>
-   고객세션: ${sessionScope.login.c_name }
-   <br>
-   고객세션: ${loginSession.c_name }
-   <br>
-   쇼핑몰세션: ${sessionScope.shoplogin }
-</div>
-
-<br><br><a href="/admin/shopList">쇼핑몰 리스트</a>
-<br><br><a href="/admin/joinForm">쇼핑몰 입점 신청</a>
-<br><br><a href="/stats/statsMain">통계</a>
-<br><br>
-<P>  The time on the server is ${serverTime}. </P>
-<P>  "${path }" </P>
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-   <div class="search_field">
-   <form action="#" method="post" name="form">
-      <div class="search_box">
-         <dl class="clear_float">
-            <dt><input type="text" name="search"></dt>
-            <dd><input type="image" src="../resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="send()"></dd>
-         </dl>
-      </div>
-   </form>
-   </div>
-<div>
-   <a href="history/list/${login.c_num}">히스토리로 이동</a><br>
-   <a href="remocon/list/${login.c_num}">리모콘 보기</a><br>
-   <a href="coordinator/coordiregister">코디등록 페이지</a>
-</div>
-</body>
-
-<script>
-
-function send(){
-   
-   document.form.action='/stats/insertstats';
-   document.form.submit();
-   
-   document.form.action='/search/do';
-   document.form.submit();
+button:focus {
+  outline: none;
+  font-size: 32px;
 }
 
 
-</script>
+</style>
+
+
+   <title>여성 통합 쇼핑몰 KOSTYLE</title>
+</head>
+
+<div class="main">
+<div class="col-sm-6" id="weather"><img alt="" src="/resources/images/mainImg/main1.jpg"><button><i class="fa fa-cloud"></i> 날씨별 옷 추천</button></div>
+<div class="col-sm-6" id="today"><img alt="" src="/resources/images/mainImg/main2.jpg"><button><i class="fa fa-shopping-bag"></i> 오늘의 코디</button></div>
+</div>
+
+<body>
+
 </html>
