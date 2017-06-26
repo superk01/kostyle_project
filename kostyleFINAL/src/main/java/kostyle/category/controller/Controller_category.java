@@ -39,10 +39,8 @@ public class Controller_category {
 	@Inject 
 	CategoryService service;
 	
-	@RequestMapping(value="/search", method = RequestMethod.GET)
-	public void categorySearchGET(){}
-	//
-	@RequestMapping(value="/search", method = RequestMethod.POST) 
+	
+	@RequestMapping(value="/search") 
 	public String categorySearchPOST(@RequestParam("keyword") String keyword, HttpSession session, Model model)throws Exception{
 		CategorySearch search = new CategorySearch();
 		if(service.product_Search(keyword).size() == 0){
