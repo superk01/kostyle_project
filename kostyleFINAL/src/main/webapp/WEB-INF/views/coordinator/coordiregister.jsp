@@ -43,6 +43,39 @@ function upload(event){
 }
 
 </script>
+
+<style type="text/css">
+
+.form-control{
+	margin-bottom: 20px;
+}
+
+.col-sm-2{
+	text-align: center;
+	margin-top: 5px;
+	font-size: 16px;
+	font-family: 맑은 고딕;
+}
+
+.allborder{
+	border-top: solid 20px gray;
+	border-radius: 5px;
+	border-bottom: solid 20px gray;
+	/* border-left: solid 1px Lightgray;
+	border-right: solid 1px Lightgray; */
+	
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 40px;
+	margin-top: 10px
+}
+
+.btn{
+	margin: 55px -40px !important;
+}
+</style>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -58,43 +91,55 @@ function upload(event){
 		</div>
             <!-- /.box-header -->
             <div class="container">
+            <div class="allborder">
             <form action="/coordinator/coordiregister" role="form" method="post" enctype="multipart/form-data">
                <div class="box-body">
                   <div class="form-group">
-                     <label for="exampleInputEmail1">코디 이름</label> <input type="text"
+                     <label class="col-sm-2 control-label" for="exampleInputEmail1">코디 이름</label> 
+                     <div class="col-sm-10">
+                     <input type="text"
                         name='cd_name' class="form-control" placeholder="Enter Title" autocomplete="off">
                   </div>
+                  </div>
                   <div class="form-group">
-                     <label for="exampleInputPassword1">코디 설명</label>
+                     <label class="col-sm-2 control-label" for="exampleInputPassword1">코디 설명</label>
+                     <div class="col-sm-10">
                      <textarea class="form-control" name="cd_content" rows="5"
                         placeholder="Enter ..." autocomplete="off"></textarea>
+                        </div>
                   </div>
                   <div class="form-group">
-                     <label for="exampleInputEmail1">쇼핑몰</label> <input type="text"
+                     <label class="col-sm-2 control-label" for="exampleInputEmail1">쇼핑몰</label>
+                     <div class="col-sm-10">
+                      <input type="text"
                         name="s_name" class="form-control" placeholder="Enter Writer"
                         value="${shoplogin.ad_id}" readonly="readonly">
+                        </div>
                   </div>
+                  
                   <div class="form-group">
-                  	<label for="exampleInputEmail1">대표 이미지</label>
+                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">대표 이미지</label>
+                  	<div class="col-sm-10">
                   	<input type="file" class="form-control" name="uploadFile">
+                  	</div>
                   </div>
                   <div class="form-group">
-                  	<label for="exampleInputEmail1">상의</label>
-                  	<input type="text" class="form-control" name="prd_url1" autocomplete="off">
-                  	<label for="exampleInputEmail1">이미지</label>
-                  	<input type="text" class="form-control" name="prd_img1" autocomplete="off">
+                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">상의</label>
+                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_url1" autocomplete="off"></div>
+                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">이미지</label>
+                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_img1" autocomplete="off"></div>
                   </div>
                   <div class="form-group">
-                  	<label for="exampleInputEmail1">하의</label>
-                  	<input type="text" class="form-control" name="prd_url2" autocomplete="off">
-                  	<label for="exampleInputEmail1">이미지</label>
-                  	<input type="text" class="form-control" name="prd_img2" autocomplete="off">
+                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">하의</label>
+                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_url2" autocomplete="off"></div>
+                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">이미지</label>
+                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_img2" autocomplete="off"></div>
                   </div>
                   <div class="form-group">
-                  	<label for="exampleInputEmail1">액세서리</label>
-                  	<input type="text" class="form-control" name="prd_url3" autocomplete="off">
-                  	<label for="exampleInputEmail1">이미지</label>
-                  	<input type="text" class="form-control" name="prd_img3" autocomplete="off">
+                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">액세서리</label>
+                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_url3" autocomplete="off"></div>
+                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">이미지</label>
+                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_img3" autocomplete="off"></div>
                   </div>
                  <%--  <div class="form-group">
                      <label for="exampleInputEmail1">쇼핑몰 선택</label> 
@@ -112,6 +157,8 @@ function upload(event){
                   
 
                </div>
+               
+               
 
                <!-- /.box-body -->
 
@@ -123,11 +170,13 @@ function upload(event){
                   <ul class="mailbox-attachments clearfix uploadedList">
                   </ul>
                   <!-- <div class="checkbox"> <label> <input type="checkbox" id="blankCheckbox" value="option1" aria-label="checkbox1" name="q_Secret">비밀글 </label> </div> -->
-                  <button type="submit" class="btn btn-default pull-right" id="registerBtn">코디 등록</button>
+                  <button type="submit" class="btn btn-default btn-lg pull-right" id="registerBtn">코디 등록</button>
                   
                </div>
             </form>
             </div>
+            </div>
+            
          </div>
          <!-- /.box -->
       </div>

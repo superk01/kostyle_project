@@ -8,7 +8,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
 
+#title1{
+ 	background-color: white;
+ 	border: none;
+ 	border-radius: 0;
+ 	font-size: 45px;
+ 	text-align: center;
+ 	box-shadow: none;
+ 	margin-top: 30px;
+ 	cursor: text;
+ }
+ 
+#content{
+	background-color: white;
+ 	border: none;
+ 	border-radius: 0;
+ 	font-size: 30px;
+ 	box-shadow: none;
+ 	cursor: text;
+}
+
+/* .NoScroll {
+        overflow:hidden;  
+    } */
+
+</style>
 <!-- <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -252,7 +278,6 @@ li.replyLi{
 <body>
 <div class="container">
 <div class="box-header">
-					<h3 class="box-title">READ BOARD</h3>
 				</div>
 				<!-- /.box-header -->
 
@@ -268,23 +293,23 @@ li.replyLi{
 
 				<div class="box-body">
 					<div class="form-group">
-						<label for="exampleInputEmail1">제목</label> <input type="text"
+						<!-- <label for="exampleInputEmail1">제목</label>  --><input type="text"
 							name='title' class="form-control" value="${coordi.cd_name}"
-							readonly="readonly" id="title1">
+							readonly="readonly" id="title1" style="background-color: white; border: none;" >
 						<input type="text" name='title' class="form-control" placeholder="${coordi.cd_name}"
 							id="title2" style="display: none">
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1">내용</label>
-						<textarea class="form-control" name="content1" rows="5"
-							readonly="readonly" id="content">${coordi.cd_content}</textarea>
+						<!-- <label for="exampleInputPassword1">내용</label> -->
+						<textarea class="form-control" name="content1" rows="3" onclick="onLoadTextArea();"
+							readonly="readonly" id="content" style="background-color: white">${coordi.cd_content}</textarea>
 						<textarea class="form-control" name="content2" rows="5"
 							 id="content2" placeholder="${coordi.cd_content}" style="display: none"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">쇼핑몰</label> <input type="text"
 							name="writer" class="form-control" value="${coordi.s_name}"
-							readonly="readonly">
+							readonly="readonly" style="background-color: white">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">대표이미지</label> 
@@ -334,5 +359,19 @@ li.replyLi{
 		  			</li>
 				</ul> --%>
 </div>
+
+<!-- <script type="text/javascript" language="javascript">
+function onFitSizeOfTextArea()
+    {
+        var textArea = event.srcElement;
+        while( textArea.clientHeight < textArea.scrollHeight )
+        {
+            textArea.rows = textArea.rows + 1;
+        }
+        textArea.className = "NoScroll";
+    }
+</script> -->
+
+
 </body>
 </html>
