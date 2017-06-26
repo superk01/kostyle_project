@@ -56,35 +56,22 @@
                 <li class="sidebar-brand">
                 </li>
                 <li>
-                    <a href="statsSide">
+                    <a href="/stats/statsMain">
                 	<span class="ifont"><i class="fa fa-bar-chart" style="font-size:19px"></i></span>
                     HOME</a>
                 </li>
                 
                 <li class="dropdown">
-                    <a href="#" data-toggle="collapse" data-target="#dropdown-visitor">
+                    <a href="/stats/statsVisitor">
                     <span class="ifont"><i class="fa fa-female" style="font-size:23px"></i></span>
-                         방문자 <span class="caret"></span></a>
-                  
-                  <div class="panel-body">
-                  	<ul class="collapse" id="dropdown-visitor">
-                  		<li><a href="/stats/statsVisitor">방문자수 분석</a></li>
-                  	</ul>
-                  </div>
+                         방문자수 분석</a>
                   
                 </li>
                 
                 <li class="dropdown">
-                    <a href="#" data-toggle="collapse" data-target="#dropdown-product">
+                    <a href="/stats/statsSearch">
                    <span class="ifont"><i class="material-icons" style="font-size:24px">redeem</i></span>
-                        상품 <span class="caret"></span></a>
-                  
-                  <div class="panel-body">
-                  	<ul class="collapse" id="dropdown-product">
-                  		<li><a href="/stats/statsSearch">검색어 분석</a></li>
-                  		<li><a href="#">찜하기 분석</a></li>
-                  	</ul>
-                  </div>
+                        검색어 분석 </a>
                   
                 </li>
 

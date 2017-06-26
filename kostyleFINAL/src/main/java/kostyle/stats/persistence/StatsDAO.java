@@ -15,6 +15,7 @@ public interface StatsDAO {
 	public List<HitcountStatsChart> statsDate_adr(String s_sname, String statsSearchStartDate, String statsSearchEndDate)throws Exception;
 	public List<HitcountStatsChart> statsDate_age(String s_sname, String statsSearchStartDate, String statsSearchEndDate)throws Exception;
 	public List<SearchKeywordChart> statsSearchRank()throws Exception;
+	public List<SearchKeywordChart> searchRankChart(String sk1, String sk2, String sk3, String sk4, String sk5, String sk6, String sk7, String sk8)throws Exception;
 	public List<CustomerStats> customerSearchKeyAll(String c_num)throws Exception;
 	public List<CustomerStats> customerVisitShopAll(String c_num)throws Exception;
 	public List<CustomerStats> customerVisitPrdAll(String c_num)throws Exception;

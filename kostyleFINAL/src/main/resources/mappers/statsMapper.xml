@@ -132,13 +132,45 @@
 	
 	
 	<!-- 검색어 순위 -->
-	<select id="getSearchRank" resultType="SearchKeywordChart">
-  select sk_searchkey, count(sk_num) as sk_count
-    from searchkeyword
-    where sk_date between '17/06/13' and '17/06/21'
-    group by sk_searchkey 
-    order by count(sk_num) desc
+	<select id="statsSearchRank" resultType="SearchKeywordChart">
+		   select sk_searchkey, count(sk_num) as sk_count
+		    from searchkeyword
+		    where sk_date between sysdate-7 and sysdate
+		    group by sk_searchkey 
+		    order by count(sk_num) desc
 
+	</select>
+	
+	<!-- 검색어 순위 차트 -->
+	<select id="searchRankChart" resultType="SearchKeywordChart">
+			select to_char(d.cnt_date,'MM-DD') as cnt_date, 
+		          nvl(e.sk1,0) as sk1,
+		          nvl(e.sk2,0) as sk2,
+		          nvl(e.sk3,0) as sk3,
+		          nvl(e.sk4,0) as sk4,
+		          nvl(e.sk5,0) as sk5,
+		          nvl(e.sk6,0) as sk6,
+		          nvl(e.sk7,0) as sk7,
+		          nvl(e.sk8,0) as sk8
+		  from (select to_date(sysdate-7)+level-1 as cnt_date
+		    from DUAL
+        <![CDATA[
+		    connect by level <= (to_date(sysdate) - to_date(sysdate-7)+1)) d,	
+        ]]>
+		        (select to_char(sk_date, 'YYYY-MM-DD') as cnt_date, 
+			                count(decode(sk_searchkey, #{sk1}, 1,  null)) sk1,
+			                count(decode(sk_searchkey, #{sk2}, 1,  null)) sk2,
+			                count(decode(sk_searchkey, #{sk3}, 1,  null)) sk3,
+			                count(decode(sk_searchkey, #{sk4}, 1,  null)) sk4,
+			                count(decode(sk_searchkey, #{sk5}, 1,  null)) sk5,
+			                count(decode(sk_searchkey, #{sk6}, 1,  null)) sk6,
+			                count(decode(sk_searchkey, #{sk7}, 1,  null)) sk7,
+			                count(decode(sk_searchkey, #{sk8}, 1,  null)) sk8
+		    from searchkeyword
+		    group by to_char(sk_date, 'YYYY-MM-DD')) e
+		    where d.cnt_date = e.cnt_date(+)
+		    order by d.cnt_date
+	
 	</select>
 	
 	
