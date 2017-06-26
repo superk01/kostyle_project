@@ -79,16 +79,22 @@ function upload(event){
                   	<input type="file" class="form-control" name="uploadFile">
                   </div>
                   <div class="form-group">
-                  	<label for="exampleInputEmail1">상품링크1</label>
+                  	<label for="exampleInputEmail1">상의</label>
                   	<input type="text" class="form-control" name="prd_url1" autocomplete="off">
+                  	<label for="exampleInputEmail1">이미지</label>
+                  	<input type="text" class="form-control" name="prd_img1" autocomplete="off">
                   </div>
                   <div class="form-group">
-                  	<label for="exampleInputEmail1">상품링크2</label>
+                  	<label for="exampleInputEmail1">하의</label>
                   	<input type="text" class="form-control" name="prd_url2" autocomplete="off">
+                  	<label for="exampleInputEmail1">이미지</label>
+                  	<input type="text" class="form-control" name="prd_img2" autocomplete="off">
                   </div>
                   <div class="form-group">
-                  	<label for="exampleInputEmail1">상품링크3</label>
+                  	<label for="exampleInputEmail1">액세서리</label>
                   	<input type="text" class="form-control" name="prd_url3" autocomplete="off">
+                  	<label for="exampleInputEmail1">이미지</label>
+                  	<input type="text" class="form-control" name="prd_img3" autocomplete="off">
                   </div>
                  <%--  <div class="form-group">
                      <label for="exampleInputEmail1">쇼핑몰 선택</label> 
