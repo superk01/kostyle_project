@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,10 +51,10 @@ public class CoordinatorController {
 	
 	@RequestMapping(value="coordiregister", method=RequestMethod.POST)
 	public String coordiregisterPOST(CoordinatorVO coordinatorVO, HttpServletRequest request){
-		/*String contextPath = request.getSession().getServletContext().getRealPath("/");	*/										//톰캣 서버의 context경로
-		/*String uploadPath = contextPath+"resources/images/coordiuploadimg";*/														//이미지업로드 주소
-		String uploadPath = "resources/images/coordiuploadimg";														//이미지업로드 주소
-		/*System.out.println("contnextPath:"+contextPath);	*/							
+		String contextPath = request.getSession().getServletContext().getRealPath("/");										//톰캣 서버의 context경로
+		String uploadPath = contextPath+"resources/images/coordiuploadimg";														//이미지업로드 주소
+		/*String realPath = request.getRealPath("resources");*/																			//이미지업로드 주소
+								
 		System.out.println("coordiregisterPOST:"+coordinatorVO);
 		MultipartFile uploadfile = coordinatorVO.getUploadFile();																//폼에서 받은 파일
 		if(uploadfile != null){
@@ -63,7 +64,7 @@ public class CoordinatorController {
 			System.out.println("coordiregisterPOST:"+fileName);
 			coordinatorVO.setCd_img(savedName);
 			try {
-				File file = new File("/"+uploadPath+"/"+savedName);
+				File file = new File(uploadPath+"/"+savedName);
 				/*File file = new File(uploadPath+"/"+fileName);*/
 				uploadfile.transferTo(file);
 				service.register(coordinatorVO);
@@ -85,6 +86,14 @@ public class CoordinatorController {
 		}
 		return new ModelAndView("coordinator/coordiLIst", "list", list);
 		
+	}
+	
+	@RequestMapping("detail")
+	public ModelAndView coordiDetail(@RequestParam("cd_num") String cd_num){
+		String realPath = "/resources/images/coordiuploadimg";
+		CoordinatorVO coordinatorVO = service.coordiDetail(cd_num);
+		coordinatorVO.setCd_img(realPath+"/"+coordinatorVO.getCd_img());
+		return new ModelAndView("coordinator/coordiDetail", "coordi", coordinatorVO);
 	}
 
 	

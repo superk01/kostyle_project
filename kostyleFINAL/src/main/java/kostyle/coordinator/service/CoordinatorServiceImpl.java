@@ -44,4 +44,10 @@ public class CoordinatorServiceImpl implements CoordinatorService {
 		
 	}
 
+	@Override
+	public CoordinatorVO coordiDetail(String cd_num) {
+		return dao.coordiDetail(cd_num);
+	}
+
+	
 }

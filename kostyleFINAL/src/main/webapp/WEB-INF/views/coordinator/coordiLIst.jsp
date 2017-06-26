@@ -33,7 +33,7 @@
 						<!-- <td>답변 여부</td> -->
 						<td class="td"><img src="/${coordi.cd_img }"></td>
 						<!--쇼핑몰 번호  -->
-						<td class="td"><a href="/help/detail?q_num=${coordi.cd_num }">${coordi.cd_name }</a></td>
+						<td class="td"><a href="/coordinator/detail?cd_num=${coordi.cd_num }">${coordi.cd_name }</a></td>
 						<td class="td">${coordi.s_num }</td>
 						<!--작성자 Id  -->
 						<td class="td">${coordi.regdate }</td>

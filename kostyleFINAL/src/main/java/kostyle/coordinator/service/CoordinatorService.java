@@ -10,6 +10,8 @@ public interface CoordinatorService {
 	
 	public List<CoordinatorVO> coordiList();
 	
+	public CoordinatorVO coordiDetail(String cd_num); 
+	
 	public void update(CoordinatorVO coordinatorVO);
 	
 	public void delete(String cdprd_num);

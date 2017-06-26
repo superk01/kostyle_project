@@ -25,4 +25,8 @@
 <select id="coordiList" resultType="CoordinatorVO">
 	select * from coordi order by cd_num DESC
 </select>
+
+<select id="coordiDetail" parameterType="String" resultType="CoordinatorVO">
+	select * from coordi where cd_num = #{value}
+</select>
 </mapper>

@@ -51,6 +51,11 @@ public class CoodinatorDAOImpl implements CoordinatorDAO {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public CoordinatorVO coordiDetail(String cd_num) {
+		return session.selectOne(Namespace+".coordiDetail", cd_num);
+	}
     
 	
 }
