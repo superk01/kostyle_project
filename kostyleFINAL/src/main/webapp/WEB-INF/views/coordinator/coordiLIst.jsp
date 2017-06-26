@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -8,62 +8,88 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+.coordiImg{
+   width: 100px;
+}
+
+.box{
+   margin: 0 5%;
+}
+
+th{
+   text-align: center;
+}
+
+.explain{
+   text-align: center;
+   color: #428bca;
+}
+
+</style>
 <title>Insert title here</title>
 </head>
 <body>
 <div class="box">
-		<div class="box-body">
-		<div class="container">
-		<table class="table table-bordered">
-			<thead>
-				<tr class="tr">
-					<th class="th">NO</th>
-					<!-- <th>답변 여부</th> -->
-					<th class="th">대표이미지</th>
-					<th class="th">제목</th>
-					<th class="th">쇼핑몰</th>
-					<th class="th">작성일</th>
-				</tr>
-			</thead>
-			<c:forEach var="coordi" items="${list }">
-				<tbody>
-					<tr class="tr">
-						<td class="td">${coordi.cd_num }</td>
-						<!--글 번호  -->
-						<!-- <td>답변 여부</td> -->
-						<td class="td"><img src="/${coordi.cd_img }"></td>
-						<!--쇼핑몰 번호  -->
-						<td class="td"><a href="/coordinator/detail?cd_num=${coordi.cd_num }">${coordi.cd_name }</a></td>
-						<td class="td">${coordi.s_num }</td>
-						<!--작성자 Id  -->
-						<td class="td">${coordi.regdate }</td>
-						<!--작성 날짜, 시간  -->
-					</tr>
-				</tbody>
-			</c:forEach>
-		</table>
-		<button id="write" class="btn btn-default btn-lg pull-right">글쓰기</button>
-		</div>
-		</div>
-	
-		<div class="text-center">
-			<ul class="pagination">
-				<c:if test="${pageMaker.prev }">
-					<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">[이전]</a></li>
-				</c:if>
-				<!-- 페이지 목록 -->
-				<c:forEach var="pageNo" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-					<li
-						<c:out value="${pageMaker.cri.page==pageNo?'class=active':''}"/>>
-						<a  href="list${pageMaker.makeSearch(pageNo) }">${pageNo }</a>
-					
-				</c:forEach>
-				<!-- 이후 -->
-				<c:if test="${pageMaker.endPage>0 && pageMaker.next }">
-					<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1) }">[이후]</a></li>
-				</c:if>
-			</ul>
-		</div>
+      <div class="page-header">
+         <h1>오늘의 코디</h1>
+         <p class="explain">마음에 드는 상품에 들어가 <b><i class="fa fa-thumbs-o-up"></i>좋아요</b>를 눌러주세요.</p>
+         <p class="explain">회원님들의 좋아요 순에 따라 메인 상단에 게시됩니다!</p>
+      </div>
+
+
+      <div class="box-body">
+      <div class="container">
+      <table class="table table-bordered">
+         <thead>
+            <tr class="tr">
+               <th class="th">NO</th>
+               <!-- <th>답변 여부</th> -->
+               <th class="th">대표이미지</th>
+               <th class="th">제목</th>
+               <th class="th">쇼핑몰</th>
+               <th class="th">작성일</th>
+            </tr>
+         </thead>
+         <c:forEach var="coordi" items="${list }">
+            <tbody>
+               <tr class="tr">
+                  <td class="td">${coordi.cd_num }</td>
+                  <!--글 번호  -->
+                  <!-- <td>답변 여부</td> -->
+                  <td class="td"><img class="coordiImg" src="/${coordi.cd_img }"></td>
+                  <!--쇼핑몰 번호  -->
+                  <td class="td"><a href="/coordinator/detail?cd_num=${coordi.cd_num }">${coordi.cd_name }</a></td>
+                  <td class="td">${coordi.s_num }</td>
+                  <!--작성자 Id  -->
+                  <td class="td">${coordi.regdate }</td>
+                  <!--작성 날짜, 시간  -->
+               </tr>
+            </tbody>
+         </c:forEach>
+      </table>
+      <button id="write" class="btn btn-default btn-lg pull-right">글쓰기</button>
+      </div>
+      </div>
+   
+      <div class="text-center">
+         <ul class="pagination">
+            <c:if test="${pageMaker.prev }">
+               <li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">[이전]</a></li>
+            </c:if>
+            <!-- 페이지 목록 -->
+            <c:forEach var="pageNo" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+               <li
+                  <c:out value="${pageMaker.cri.page==pageNo?'class=active':''}"/>>
+                  <a  href="list${pageMaker.makeSearch(pageNo) }">${pageNo }</a>
+               
+            </c:forEach>
+            <!-- 이후 -->
+            <c:if test="${pageMaker.endPage>0 && pageMaker.next }">
+               <li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1) }">[이후]</a></li>
+            </c:if>
+         </ul>
+      </div>
 </div>
 </body>
 </html>
