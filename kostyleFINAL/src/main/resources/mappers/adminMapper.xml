@@ -55,7 +55,9 @@
 	where s_num=#{s_num}
 </update>
 
-
+<select id="admintest" resultType="SearchKeywordStats">
+	select sk_searchkey from searchkeyword where sk_searchkey like '%'||#{sk_searchkey}||'%' 
+</select>
 
 
 

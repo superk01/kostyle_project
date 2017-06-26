@@ -8,14 +8,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+
 <script type="text/javascript">
 $(document).ready(function(){
 	
 	
 	function getPage(pageInfo){
-		alert(pageInfo);
-		
-			$.ajax({
+		$.ajax({
 			type:'get',
 			url: pageInfo,
 			headers:{
@@ -24,9 +23,6 @@ $(document).ready(function(){
 			},
 			dataType:'text',
 			success : function(data){
-				alert(data);
-				alert("successHandler진입.");
-				
 				$('#repliesDiv').after(data);
 			}
 		}); 
@@ -49,7 +45,6 @@ $(document).ready(function(){
 		var replyer = $('#newReplyWriter').val();
 		var replytext = $('#newReplyText').val();
 		var q_Num = ${board.q_Num};
-		alert(replyer+","+replytext+","+q_Num);
 		$.ajax({
 			type:'post',
 			url:'/replies/',
@@ -66,6 +61,8 @@ $(document).ready(function(){
 			success : function(result){
 				alert(result);
 				if(result=='success'){
+					$('#repliesDiv').siblings().remove();
+					getAnswerNum(q_Num);
 					getPage("/replies/"+q_Num);
 					$('#newReplyText').val("");
 				}
@@ -74,13 +71,157 @@ $(document).ready(function(){
 	});
 	/* 댓글 보기 */
 	$('#repliesDiv').on('click',function(){
-		alert('#repliesDiv');
 		if($('li.replyLi').length>0){
 			console.log($('li.replyLi').length);
 			return;
 		} 
 		getPage("/replies/${board.q_Num}");
 	});
+	/*게시글 수정시 수정폼 나오게... */
+	$('#updateform').on('click',function(){
+		
+		$('#title1').css("display", "none");
+		$('#title2').css("display", "");
+		$('#content').css("display", "none");
+		$('#content2').css("display","");
+		$(this).css("display", "none");
+		$('#remove').css("display", "none");
+		$('.dynamicBtns').
+		append("<input type='button' value='확인' id='update' class='btn btn-default pull-right'>"+
+			  "<input type='button' value='취소' id='cancel' class='btn btn-default pull-right'>");
+	});
+	/*게시글 수정시 취소버튼 누르면 원래대로... */
+	$('.dynamicBtns').on('click','#cancel',function(){
+		var title = $('input[name=title]').val();
+		var content = $('#content').val()
+		
+		$('#title').attr("readonly","readonly");
+		$('#title').val(title);
+		$('#content').css("display", "");
+		$('#content2').css("display","none");
+		$('#updateform').css("display", "");
+		$('#remove').css("display", "");
+		$('#update').remove();
+		$('#cancel').remove();
+	});
+	/*  */
+	$('.dynamicBtns').on('click','#update',function(){
+		var title = $('#title2').val();
+		var content = $('#content2').val();		
+		var q_num = $('input[name=q_Num]').val()
+		$.ajax({
+			type:'put',
+			url:'/help/alter',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"PUT"
+			},
+			dataType:'text',
+			data : JSON.stringify({
+				q_Title : title,
+				q_Content : content,
+				q_Num : q_num
+			}),
+			success : function(result){
+				if(result=='success'){
+					$('#title1').val(title);
+					$('#title1').css("display","");
+					$('#title2').css("display","none");
+					$('#content').val(content);
+					$('#content').css("display","");
+					$('#content2').css("display","none");
+				}
+			}
+		});
+	});
+	/*--------------------------댓글 관련 ------------------------------- */
+	/* 댓글 수정폼 소환 */
+	var $textarea = null;
+	var $dynamic1 = null;
+	var $dynamic2 = null;
+	$('.timeline').on('click','.btnUpdateForm',function(){
+		if($textarea != null){
+			$textarea.css("display", "none");
+			$dynamic1.css("display", "");
+			$dynamic2.css("display","none");
+		}
+		$dynamic1 = $(this).parent();
+		$dynamic2 = $(this).parent().next();
+		$textarea = $(this).parent().parent().find('.replyUpdate');
+		$textarea.css("display","");
+		$dynamic1.css("display","none");
+		$dynamic2.css("display","");
+	});
+	/* 취소버튼 눌렀을때 댓글 수정폼 원래대로 */
+	$('.timeline').on('click','.btnReplyCancel', function(){
+		var $dynamic1 = $(this).parent().prev();
+		var $dynamic2 = $(this).parent();
+		
+		$dynamic1.css("display","");
+		$dynamic2.css("display","none");
+		$textarea.css("display","none");
+	});
+	/* 댓글 삭제 버튼 */
+	$('.timeline').on('click', '.btnRelpyDelete', function(){
+		var q_Num = ${board.q_Num};		
+		var as_Num = $(this).parent().parent().attr('data-rno');
+		$.ajax({
+			url:"/replies/"+as_Num,
+			type : 'delete',
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"DELETE"
+			},
+			dataType:"text",
+			success: function(result){
+				if(result=="delete"){
+					getAnswerNum(q_Num);
+					$('.timeline').find('.replyLi').remove();
+					getPage("/replies/${board.q_Num}");
+				}
+			}
+		});
+	});
+	/* 수정폼의 수정확인 버튼 */
+	$('.timeline').on('click', '.btnReplySubmit', function(){
+		var as_Num = $(this).closest('.replyLi').attr('data-rno');
+		var as_Content = $(this).parent().parent().find('textarea').val();
+		$.ajax({
+			url:"/replies/"+as_Num,
+			type: "put",
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"PUT" 
+			},
+			dataType:"text",
+			data : JSON.stringify({
+				as_Content : as_Content
+			}),
+			success: function(result){
+				if(result=='success'){
+					$('.timeline').find('.replyLi').remove();
+					getPage("/replies/${board.q_Num}");
+				}
+			}
+		});
+	});
+	function getAnswerNum(q_Num){
+		
+		$.ajax({
+			url: "/help/getAnswerNum?q_num="+q_Num,
+			type: "get",
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"GET"
+			},
+			data : 'json',
+			success : function(data){
+				alert(data.answerNum);
+				$('#replycntSmall').remove();
+				$('.bg-green').append("<small id='replycntSmall'> ["+ data.answerNum+ "] </small>");
+			}
+		})
+	}
 });
 </script>
 <style type="text/css">
@@ -97,6 +238,12 @@ $(document).ready(function(){
 }
 ul.timeline{
 	list-style: none;
+}
+div.dynamicBtns{
+	display: inline;
+}
+li.replyLi{
+	padding-top: 15px;
 }
 </style>
 
@@ -123,12 +270,16 @@ ul.timeline{
 					<div class="form-group">
 						<label for="exampleInputEmail1">제목</label> <input type="text"
 							name='title' class="form-control" value="${board.q_Title}"
-							readonly="readonly">
+							readonly="readonly" id="title1">
+						<input type="text" name='title' class="form-control" placeholder="${board.q_Title}"
+							id="title2" style="display: none">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">내용</label>
-						<textarea class="form-control" name="content" rows="3"
-							readonly="readonly">${board.q_Content}</textarea>
+						<textarea class="form-control" name="content1" rows="5"
+							readonly="readonly" id="content">${board.q_Content}</textarea>
+						<textarea class="form-control" name="content2" rows="5"
+							 id="content2" placeholder="${board.q_Content}" style="display: none"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">작성자</label> <input type="text"
@@ -144,8 +295,10 @@ ul.timeline{
 				<div class="btns">
 					<input type="button" value="글목록" id="list" class="btn btn-default">
 					<c:if test="${board.c_Id==login.c_id }">
-						<input type="button" value="수정" id="update" class="btn btn-default pull-right">
-						<input type="button" value="삭제" id="remove" class="btn btn-default pull-right"> 
+						<div class="dynamicBtns">
+							<input type="button" value="수정" id="updateform" class="btn btn-default pull-right">
+							<input type="button" value="삭제" id="remove" class="btn btn-default pull-right" > 
+						</div>
 					</c:if>
 				</div>
 				<c:if test="${not empty login}">

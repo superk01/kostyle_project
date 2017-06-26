@@ -20,6 +20,12 @@
 	}
 </script>
 
+<style type="text/css">
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, 
+.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+	vertical-align: middle !important;
+}
+</style>
 
 </head>
 
@@ -30,6 +36,7 @@
 		<div class="page-header">
 			<h1>즐겨찾기</h1>
 		</div>
+		
 		
 <div id="favoritebackground">
 <div id="favoriteBodyTop"></div>
@@ -52,7 +59,7 @@
 						<c:forEach items="${list}" var="Favorite">
 
 							<tr  class="tr">
-								<td class="td"><img id="s_image" src="${Favorite.s_image}"></td>
+								<td class="td"><img id="s_image" src="http://${Favorite.s_image}"></td>
 								<td class="td"><a class="shoplink" href="http://${Favorite.s_shopurl }">${Favorite.s_sname}</a></td>
 								<td class="td"><a
 									href='/favorite/comentRead${pageMaker.makeQuery(pageMaker.cri.page)}&f_num=${Favorite.f_num }'>

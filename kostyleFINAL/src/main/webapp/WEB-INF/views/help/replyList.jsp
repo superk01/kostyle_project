@@ -15,6 +15,23 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+h3{
+	font-size: 15px !important; 
+	font-weight: normal !important;
+}
+.timeline-body{
+	font-size: 20px !important;
+	font-weight: bold;
+}
+/* #btnUpdateForm{
+	width: 22px !important;
+	height: 27px !important;
+	font-size: 100% !important;
+	text-align: center !important;
+	vertical-align: middle !important;
+} */
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		
@@ -86,27 +103,32 @@
 </head>
 <body>
 
-		<c:forEach var="row" items="${list}">
+		<c:forEach var="row" items="${list}" varStatus="status">
 	
-			<li class="replyLi" data-rno="${row.as_Num}">
+			<li class="replyLi" data-rno="${row.as_Num}" >
+				<i class="fa fa-comments bg-blue pull-left"></i>
 					<c:set var="val" value="${row.c_Id }" /> 
 					<c:set var="val2" value="${login.c_id}" /> 
-					<span>${val},${val2}</span> 
+					<%-- <span>${val},${val2}</span> --%> 
 					<%-- <c:choose> --%>
 					<c:if test="${val == val2 }">
-						<button id="btnUpdateForm" type="button">수정</button>
-					</c:if>
-					<c:if test="${val == val2 }">
-						<button id="btnRelpyDelete" type="button">삭제</button>
+						<div class="replyDynamicBtnGroup1">
+							<input id="btnUpdateForm" type="button" class="btn btn-default pull-right btnUpdateForm" value="수정">
+							<input id="btnRelpyDelete" type="button" class="btn btn-warning pull-right btnRelpyDelete" value="삭제">
+						</div>
+						<div class="replyDynamicBtnGroup2" style="display: none">
+							<input id="btnSubmit" type="button" class="btn btn-default pull-right btnReplySubmit" value="확인">
+							<input id="btnCancel" type="button" class="btn btn-warning pull-right btnReplyCancel" value="취소">
+						</div>
 					</c:if>
 				<%-- </c:choose>  --%>
-				<i class="fa fa-comments bg-blue"></i>
 				<div class="timeline-item">
-					<span class="time"> <i class="fa fa-clock-o"></i>${row.as_Date }</span>
+					<span class="time pull-right"> <i class="fa fa-clock-o"></i>${row.as_Date }</span>
 					<h3 class="timeline-header">
-						<strong>${row.as_Num }</strong> -${row.c_Id }
+						${row.c_Id }
 					</h3>
-					<div class="timeline-body">${row.as_Content }</div>
+					<div class="timeline-body">${row.as_Content}</div>
+					<textarea rows="3" class="form-control replyUpdate" placeholder="${row.as_Content}" style="display: none" id="replyUpdate" name="${status}"></textarea>
 					<div class="timeline-footer"></div>
 				</div></li>
 		</c:forEach>

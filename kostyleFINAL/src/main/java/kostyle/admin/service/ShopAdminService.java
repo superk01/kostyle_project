@@ -6,6 +6,7 @@ import kostyle.admin.domain.AdShoppingMallAdmin;
 import kostyle.admin.domain.CriteriaAdmin;
 import kostyle.admin.domain.SearchCriteriaAdmin;
 import kostyle.admin.domain.ShoppingMallAdmin;
+import kostyle.stats.domain.SearchKeywordStats;
 
 public interface ShopAdminService {
 	public void insertShoppingMall(ShoppingMallAdmin shop)throws Exception;
@@ -19,4 +20,5 @@ public interface ShopAdminService {
 	public void deleteAdShop(String s_num)throws Exception;
 	public void updateAdShopInfo(AdShoppingMallAdmin adShop)throws Exception;
 	public void updateShopInfo(ShoppingMallAdmin shop)throws Exception;
+	public List<SearchKeywordStats> admintest(String sk_searchkey)throws Exception;
 }

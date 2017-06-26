@@ -120,6 +120,9 @@
 				<label>
 				<input type="radio" name="chartFor" value="age">
 				연령별</label>&nbsp&nbsp&nbsp
+				<label>
+				<input type="radio" name="chartFor" value="adr">
+				지역별</label>&nbsp&nbsp&nbsp
 			</span>
 		</div>
 		
@@ -156,9 +159,6 @@
               </tbody>
             </table>
           </div>
-   		
-   		
-   		
 	<br><br><br>
 	<br><br><br>
 	<br><br><br>

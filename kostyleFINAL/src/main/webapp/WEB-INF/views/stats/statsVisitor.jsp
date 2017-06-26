@@ -10,6 +10,7 @@
 <body>
 		조회 단위
 		<br><br><br><br>
+	<h3 class="page-header">일자별 방문자수</h3>
 	<div id="statsVisitorFilter">
 	<form action="../statsVisitor" method="post">
 	<fieldset>
@@ -56,6 +57,9 @@
 				<label>
 				<input type="radio" name="chartFor" value="age">
 				연령별</label>&nbsp&nbsp&nbsp
+				<label>
+				<input type="radio" name="chartFor" value="adr">
+				지역별</label>&nbsp&nbsp&nbsp
 			</span>
 		</div>
 		

@@ -41,23 +41,43 @@
 	</select>
 		-->
 		
-	<select id="statsDate_adr" parameterType="String" resultType="HitcountStats">
+	<select id="statsDate_adr" resultType="HitcountStatsChart">
 	 
-	 select to_char(d.cnt_date,'MM-DD') as cnt_date, nvl(e.seoul,0) as Seoul, nvl(e.busan,0) as Busan, nvl(e.jeju,0) as Jeju
-  		from (select to_date(#{statsSearchStartDate})+level-1 as cnt_date
- 					   	from DUAL
- 				<![CDATA[
-    					connect by level <= (to_date(#{statsSearchEndDate}) - to_date(#{statsSearchStartDate})+1)) d,
-    			]]>		
-        		(select to_char(h.cnt_date,'YYYY-MM-DD') as cnt_date, count(decode(c.c_adress, 'Seoul', 1, null)) seoul, count(decode(c.c_adress, 'Busan', 1, null)) busan, count(decode(c.c_adress, 'Jeju', 1, null)) jeju
-  						from customer c, hitcount h, shoppingmall s
-  						where c.c_num = h.c_num
-  						and h.s_num = s.s_num
-  						and s.s_sname = '%#{s_sname}%'
-  						group by to_char(h.cnt_date,'YYYY-MM-DD')) e
-    	where d.cnt_date = e.cnt_date(+)
-    	order by d.cnt_date
-	 
+	 select to_char(d.cnt_date,'MM-DD') as cnt_date, 
+        nvl(e.seoul,0) as seoul, nvl(e.jeju,0) as jeju,
+        nvl(e.jeonbuk,0)+nvl(e.jeonnam,0)+nvl(e.kwangju,0) as jeonla,
+        nvl(e.kyoungbuk,0)+nvl(e.kyoungnam,0)+nvl(e.busan,0)+nvl(e.daegu,0)+nvl(e.ulsan,0) as kyoungsang,
+        nvl(e.chungbuk,0)+nvl(e.chungnam,0)+nvl(e.daejeon,0) as chungcheong,
+        nvl(e.kangwon,0) as kangwon, nvl(e.kyounggi,0) as kyounggi, nvl(e.incheon,0) as incheon
+  from (select to_date(#{statsSearchStartDate})+level-1 as cnt_date
+    from DUAL
+    <![CDATA[
+    connect by level <= (to_date(#{statsSearchEndDate}) - to_date(#{statsSearchStartDate})+1)) d,
+    ]]>	
+        (select to_char(h.cnt_date, 'YYYY-MM-DD') as cnt_date, 
+                count(decode(SUBSTR(c_adress,0,2), '부산', 1, null)) busan, 
+                count(decode(SUBSTR(c_adress,0,2), '서울', 1, null)) seoul, 
+                count(decode(SUBSTR(c_adress,0,2), '제주', 1, null)) jeju, 
+                count(decode(SUBSTR(c_adress,0,2), '전북', 1, null)) jeonbuk, 
+                count(decode(SUBSTR(c_adress,0,2), '전남', 1, null)) jeonnam,  
+                count(decode(SUBSTR(c_adress,0,2), '광주', 1, null)) kwangju,
+                count(decode(SUBSTR(c_adress,0,2), '강원', 1, null)) kangwon, 
+                count(decode(SUBSTR(c_adress,0,2), '경북', 1, null)) kyoungbuk,
+                count(decode(SUBSTR(c_adress,0,2), '경남', 1, null)) kyoungnam,
+                count(decode(SUBSTR(c_adress,0,2), '대구', 1, null)) daegu,
+                count(decode(SUBSTR(c_adress,0,2), '울산', 1, null)) ulsan,
+                count(decode(SUBSTR(c_adress,0,2), '경기', 1, null)) kyounggi,
+                count(decode(SUBSTR(c_adress,0,2), '충북', 1, null)) chungbuk,
+                count(decode(SUBSTR(c_adress,0,2), '충남', 1, null)) chungnam,
+                count(decode(SUBSTR(c_adress,0,2), '대전', 1, null)) daejeon,
+                count(decode(SUBSTR(c_adress,0,2), '인천', 1, null)) incheon
+    from customer c, hitcount h, shoppingmall s
+    where c.c_num = h.c_num
+    and h.s_num = s.s_num
+    and s.s_sname like '%'||#{s_sname}||'%'
+    group by to_char(h.cnt_date, 'YYYY-MM-DD')) e
+    where d.cnt_date = e.cnt_date(+)
+    order by d.cnt_date
 	 
 	</select>
 	
@@ -102,7 +122,16 @@
     where d.cnt_date = e.cnt_date(+)
     order by d.cnt_date
 	
+	</select>
 	
+	<select id="getSearchRank" resultType="SearchKeywordChart">
+  select sk_searchkey, count(sk_num) as sk_count
+    from searchkeyword
+    where sk_date between '17/06/13' and '17/06/21'
+    group by sk_searchkey 
+    order by count(sk_num) desc
+
+
 	</select>
 	
 	

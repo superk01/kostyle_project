@@ -2,6 +2,7 @@ package kostyle.help.service;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,6 +18,7 @@ import kostyle.help.domain.Criteria;
 import kostyle.help.domain.SearchCriteria;
 import kostyle.help.persistence.BoardDAO;
 import kostyle.help.persistence.ReplyDAO;
+import kostyle.login.domain.AdShopVO;
 import kostyle.login.domain.CustomerVO;
 
 @Service
@@ -28,9 +30,9 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	private ReplyDAO replyDAO;
 	
-	@Override
+	/*@Override
 	public List<BoardVO> list(SearchCriteria cri, HttpSession session)throws Exception {
-		/*System.out.println("서비스에서 cri객체 확인:"+cri);*/
+		System.out.println("서비스에서 cri객체 확인:"+cri);
 		//검색을 안 하고 있는 경우 페이지를 바꿨을때 keyWord값과 searchType값이 공백으로 들어가 공백인 경우 null로 바꿔주는 코드
 		if(cri.getKeyWord()==""){
 			cri.setKeyWord(null);
@@ -38,10 +40,10 @@ public class BoardServiceImpl implements BoardService {
 		if(cri.getSearchType()==""){
 			cri.setSearchType(null);
 		}
-		/*System.out.println("서비스에서 cri객체 다시 확인:"+cri);*/
-		/*System.out.println("BoardServiceImpl-list:"+list);*/
+		System.out.println("서비스에서 cri객체 다시 확인:"+cri);
+		System.out.println("BoardServiceImpl-list:"+list);
 		Object userVO = session.getAttribute("login");
-		/*cri.setKeyWord("%"+cri.getKeyWord()+"%");*/
+		cri.setKeyWord("%"+cri.getKeyWord()+"%");
 		CustomerVO customerVO = null;
 		if(userVO instanceof CustomerVO){
 			customerVO = (CustomerVO)userVO;
@@ -51,8 +53,8 @@ public class BoardServiceImpl implements BoardService {
 		}
 		List<BoardVO> list = boardDAO.list(cri);
 		for(int i=0; i<list.size(); i++){
-			/*System.out.println("BoardServiceImpl-c_id:"+vo.getC_Id());
-			System.out.println("BoardServiceImpl-q_secret:"+vo.getQ_Secret());*/
+			System.out.println("BoardServiceImpl-c_id:"+vo.getC_Id());
+			System.out.println("BoardServiceImpl-q_secret:"+vo.getQ_Secret());
 			String writer = list.get(i).getC_Id();
 			String q_Secret = list.get(i).getQ_Secret();
 			
@@ -64,7 +66,7 @@ public class BoardServiceImpl implements BoardService {
 						list.get(i).setQ_Title("비밀 글입니다.");								//역시, 글 제목을 "비밀 글입니다."로 표시									
 					}
 				}
-			}/*else{
+			}else{
 				if(q_Secret.equals("y")){													//검색을 통하여 list를 뽑은 경우.
 					if(userVO==null){													    //로그인 상태를 확인.
 						list.remove(i);														//로그인 한 상태가 아니면 해당 boardVO객체를 list에서 삭제
@@ -72,11 +74,11 @@ public class BoardServiceImpl implements BoardService {
 						list.remove(i);														//로그인 한 상태가 아니면 해당 boardVO객체를 list에서 삭제									
 					}
 				}
-			}*/
+			}
 		}
 		System.out.println("서비스에서 list확인:"+list);
 		return list;
-	}
+	}*/
 
 	@Override
 	public void insert(BoardVO boardVO, HttpSession session)throws Exception {
@@ -160,7 +162,58 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.totalCount(cri);
 	}
 	
-	
+	@Override
+    public List<BoardVO> list(SearchCriteria cri, HttpSession session) throws Exception {
+          if(cri.getKeyWord()==""){                                                                            //검색을 안 하고 있는 경우 페이지를 바꿨을때 keyWord값과 searchType값이 공백으로 들어가 공백인 경우 null로 바꿔주는 코드
+               cri.setKeyWord(null);
+          }
+          if(cri.getSearchType()==""){
+               cri.setSearchType(null);
+          }
+          AdShopVO adShopVO = (AdShopVO)session.getAttribute("shoplogin");
+          CustomerVO customerVO = (CustomerVO) session.getAttribute("login");
+          List<BoardVO> list = new ArrayList<>();
+          if(adShopVO != null){                                                                                                                 //쇼핑몰 로그인
+               System.out.println("쇼핑몰 로그인");
+               cri.setS_Num(adShopVO.getS_num());
+               System.out.println("s_num들어간거 확인:"+cri);
+               list = boardDAO.list(cri);
+          }else{                                                                                                         //고객 로그인
+               System.out.println("고객이거나 로그인상태가 아니거나.");
+               list = secretBoard(boardDAO.list(cri), customerVO);
+          }
+          return list;
+    }
+    public List<BoardVO> secretBoard(List<BoardVO> list, CustomerVO customerVO) {
+          System.out.println("필터함수 customer객체"+customerVO);
+          for(int i=0; i<list.size(); i++){
+               
+               String writer = list.get(i).getC_Id();
+               String q_Secret = list.get(i).getQ_Secret();
+               
+               
+               if(q_Secret.equals("y")){                                                                  //비밀글인 경우에...
+                    if(customerVO==null){                                                                     //로그인 상태가 아니면?
+                          list.get(i).setQ_Title("비밀 글입니다.");                                          //그 글의 제목을 "비밀 글입니다."로 표시
+                    }else if(customerVO != null && !(customerVO.getC_id().equals(writer))){        //로그인을 했는데 글 작성자와 로그인한 사용자가 다른 경우->즉 글쓴이가 로그인 한 경우가 아님.
+                          list.get(i).setQ_Title("비밀 글입니다.");                                          //역시, 글 제목을 "비밀 글입니다."로 표시                                               
+                    }
+               }
+          }
+          
+          System.out.println("필터함수 거친후에 list"+list);
+          
+          return list;
+    }
+
+	@Override
+	public BoardVO detail(int q_Num) throws Exception {
+		BoardVO boardVO = boardDAO.detail(q_Num);
+		int replyCount = replyDAO.ReplyCount(q_Num);
+		boardVO.setAnswerNum(replyCount);
+		return boardVO;
+	}
+
 	
 	
 

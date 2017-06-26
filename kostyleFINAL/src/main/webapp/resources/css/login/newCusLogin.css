@@ -136,7 +136,7 @@ a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.logoimg {
+img.login_logoimg {
     width: 150px;
     height: 26px;
     margin-top:0;
@@ -197,6 +197,11 @@ a:focus {
 	color: #fff;
     background-color: #ad82ab;
     border-color: #ad82ab;
+}
+#shopAutoLogin{
+    color: #fff;
+    background-color: #ec971f;
+    border-color: #d58512;
 }
 #doingButton div{
 	margin-bottom: 7px;
