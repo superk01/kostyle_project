@@ -19,17 +19,22 @@
  	box-shadow: none;
  	margin-top: 30px;
  	cursor: text;
+ 	height: 60px;
  }
  
 #content{
 	background-color: white;
  	border: none;
  	border-radius: 0;
- 	font-size: 30px;
+ 	font-size: 15px;
  	box-shadow: none;
  	cursor: text;
+ 	text-align: center;
 }
 
+.like{
+	display: block;
+}
 /* .NoScroll {
         overflow:hidden;  
     } */
@@ -301,41 +306,62 @@ li.replyLi{
 					</div>
 					<div class="form-group">
 						<!-- <label for="exampleInputPassword1">내용</label> -->
-						<textarea class="form-control" name="content1" rows="3" onclick="onLoadTextArea();"
-							readonly="readonly" id="content" style="background-color: white">${coordi.cd_content}</textarea>
+						<textarea class="form-control" name="content1" rows="10" onclick="onLoadTextArea();"
+							readonly="readonly" id="content" style="background-color: white; resize: none;" >${coordi.cd_content}</textarea>
 						<textarea class="form-control" name="content2" rows="5"
 							 id="content2" placeholder="${coordi.cd_content}" style="display: none"></textarea>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">쇼핑몰</label> <input type="text"
+						<label class="col-sm-2 control-label" for="exampleInputEmail1">쇼핑몰</label>
+						<div class="col-sm-10">
+						 <input type="text"
 							name="writer" class="form-control" value="${coordi.s_name}"
-							readonly="readonly" style="background-color: white">
+							readonly="readonly" style="background-color: white"></div>
 					</div>
+					
 					<div class="form-group">
-						<label for="exampleInputEmail1">대표이미지</label> 
+						<button id="like" class="btn btn-default pull-left">좋아요</button>
+					</div>
+					
+					<div class="form-group">
+                  	<div class="col-sm-12" style="height:50px;"></div>
+                  </div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="exampleInputEmail1">대표이미지</label> 
+						<div class="col-sm-10">
 						<img alt="" src="${coordi.cd_img }">
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">상품 링크1</label> 
+						<label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크1</label> 
+						<div class="col-sm-10">
 						<img alt="" src="${coordi.prd_url1 }">
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">상품 링크2</label> 
+						<label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크2</label> 
+						<div class="col-sm-10">
 						<img alt="" src="${coordi.prd_url2 }">
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">상품 링크3</label> 
+						<label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크3</label> 
+						<div class="col-sm-10">
 						<img alt="" src="${coordi.prd_url3 }">
+						</div>
 					</div>
 				</div>
 				<div class="btns">
+					<div class="col-sm-12">
 					<input type="button" value="글목록" id="list" class="btn btn-default">
+					
 					<c:if test="${coordi.s_num==shoplogin.s_num }">
 						<div class="dynamicBtns">
 							<input type="button" value="수정" id="updateform" class="btn btn-default pull-right">
 							<input type="button" value="삭제" id="remove" class="btn btn-default pull-right" > 
 						</div>
 					</c:if>
+					</div>
 				</div>
 			<%-- 	<c:if test="${not empty login}">
   					<div class="box-body">

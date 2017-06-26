@@ -44,37 +44,6 @@ function upload(event){
 
 </script>
 
-<style type="text/css">
-
-.form-control{
-	margin-bottom: 20px;
-}
-
-.col-sm-2{
-	text-align: center;
-	margin-top: 5px;
-	font-size: 16px;
-	font-family: 맑은 고딕;
-}
-
-.allborder{
-	border-top: solid 20px gray;
-	border-radius: 5px;
-	border-bottom: solid 20px gray;
-	/* border-left: solid 1px Lightgray;
-	border-right: solid 1px Lightgray; */
-	
-	padding-top: 20px;
-	padding-bottom: 20px;
-	padding-left: 20px;
-	padding-right: 40px;
-	margin-top: 10px
-}
-
-.btn{
-	margin: 55px -40px !important;
-}
-</style>
 
 <title>Insert title here</title>
 </head>
@@ -117,11 +86,15 @@ function upload(event){
                         </div>
                   </div>
                   
+                  
                   <div class="form-group">
                   	<label class="col-sm-2 control-label" for="exampleInputEmail1">대표 이미지</label>
                   	<div class="col-sm-10">
                   	<input type="file" class="form-control" name="uploadFile">
                   	</div>
+                  </div>
+                   <div class="form-group">
+                  	<div class="col-sm-12" style="height:50px;"><hr></div>
                   </div>
                   <div class="form-group">
                   	<label class="col-sm-2 control-label" for="exampleInputEmail1">상의</label>
@@ -129,11 +102,17 @@ function upload(event){
                   	<label class="col-sm-2 control-label" for="exampleInputEmail1">이미지</label>
                   	<div class="col-sm-10"><input type="text" class="form-control" name="prd_img1" autocomplete="off"></div>
                   </div>
+                   <div class="form-group">
+                  	<div class="col-sm-12" style="height:50px;"><hr></div>
+                  </div>
                   <div class="form-group">
                   	<label class="col-sm-2 control-label" for="exampleInputEmail1">하의</label>
                   	<div class="col-sm-10"><input type="text" class="form-control" name="prd_url2" autocomplete="off"></div>
                   	<label class="col-sm-2 control-label" for="exampleInputEmail1">이미지</label>
                   	<div class="col-sm-10"><input type="text" class="form-control" name="prd_img2" autocomplete="off"></div>
+                  </div>
+                   <div class="form-group">
+                  	<div class="col-sm-12" style="height:50px;"><hr></div>
                   </div>
                   <div class="form-group">
                   	<label class="col-sm-2 control-label" for="exampleInputEmail1">액세서리</label>
