@@ -1,6 +1,7 @@
 package kostyle.coordinator.service;
 
 import java.lang.annotation.Inherited;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,6 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kostyle.coordinator.domain.CoordiDetailVO;
 import kostyle.coordinator.domain.CoordinatorVO;
 import kostyle.coordinator.persistence.CoordinatorDAO;
 @Service
@@ -22,7 +24,12 @@ public class CoordinatorServiceImpl implements CoordinatorService {
 		System.out.println("서비스 진입.");
 		dao.insert_coordi(coordinatorVO);
 		System.out.println("insert_coordi 끝남.");
-		dao.insert_detail(coordinatorVO);
+		
+		List<CoordiDetailVO> list = new ArrayList<>();
+		list.add(new CoordiDetailVO(coordinatorVO.getCd_num(), coordinatorVO.getPrd_url1(), coordinatorVO.getPrd_img1()));
+		list.add(new CoordiDetailVO(coordinatorVO.getCd_num(), coordinatorVO.getPrd_url2(), coordinatorVO.getPrd_img2()));
+		list.add(new CoordiDetailVO(coordinatorVO.getCd_num(), coordinatorVO.getPrd_url3(), coordinatorVO.getPrd_img3()));
+		dao.insert_detail(list);
 	}
 
 	@Override
