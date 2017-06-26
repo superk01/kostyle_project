@@ -60,13 +60,15 @@ public class CoordinatorDAOImpl implements CoordinatorDAO {
 
 	@Override
 	public CoordinatorVO coordiDetail(String cd_num) {
-		return session.selectOne(Namespace+".coordiDetail", cd_num);
+		CoordinatorVO coordinatorVO = session.selectOne(Namespace+".coordiDetail", cd_num);
+		System.out.println("CoordinatorDAOImpl-coordiDetail:"+coordinatorVO);
+		return coordinatorVO;
 	}
 
 	@Override
 	public List<CoordiDetailVO> getCoordiDetail(String cd_num) {
 		List<CoordiDetailVO> list = session.selectList(Namespace+".detailList", cd_num);
-		System.out.println("CoordinatorDAOImpl:"+list);
+		System.out.println("CoordinatorDAOImpl-List:"+list);
 		return list;
 	}
     

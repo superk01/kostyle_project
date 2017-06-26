@@ -67,9 +67,29 @@ public class StatsDAOImpl implements StatsDAO{
 
 	@Override
 	public List<SearchKeywordChart> statsSearchRank() throws Exception{
-		return session.selectList(namespace+".getSearchRank", new RowBounds(1, 5));
+		RowBounds rowbounds = new RowBounds(0, 8);
+		String temp = "";
+		return session.selectList(namespace+".statsSearchRank", temp, rowbounds);
 	}
+	
+	@Override
+	public List<SearchKeywordChart> searchRankChart(String sk1, String sk2, String sk3, String sk4, String sk5,
+			String sk6, String sk7, String sk8) throws Exception {
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("sk1", sk1);
+		paramMap.put("sk2", sk2);
+		paramMap.put("sk3", sk3);
+		paramMap.put("sk4", sk4);
+		paramMap.put("sk5", sk5);
+		paramMap.put("sk6", sk6);
+		paramMap.put("sk7", sk7);
+		paramMap.put("sk8", sk8);
 
+		return session.selectList(namespace+".searchRankChart",paramMap);
+	}
+	
 	@Override
 	public List<CustomerStats> customerSearchKeyAll(String c_num) throws Exception {
 		RowBounds rowbounds = new RowBounds(0, 5);
@@ -93,6 +113,6 @@ public class StatsDAOImpl implements StatsDAO{
 		RowBounds rowbounds = new RowBounds(0, 5);
 		return session.selectList(namespace+".getSimilar", cnt_prdurl, rowbounds);
 	}
-	
+
 	
 }

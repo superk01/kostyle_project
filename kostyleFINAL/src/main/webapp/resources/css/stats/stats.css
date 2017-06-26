@@ -149,3 +149,17 @@ margin: 10px;
     vertical-align: top;	
     margin-top: 10px;
 }
+
+#searchkeyRankTable{
+	width: 20%;
+	float: left;
+}
+
+#curve_chart{
+	float: right;
+}
+
+#searchkeyRankTableMain{
+	width: 30%;
+	float: left;
+}

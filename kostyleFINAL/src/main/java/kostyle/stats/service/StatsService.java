@@ -14,6 +14,7 @@ public interface StatsService {
 	public void insertSearchKeyword(SearchKeywordStats sks)throws Exception;
 	public List<HitcountStatsChart> statsDate(String s_sname, String statsSearchStartDate, String statsSearchEndDate, String chartFor)throws Exception;
 	public List<SearchKeywordChart> statsSearchRank()throws Exception;
+	public List<SearchKeywordChart> searchRankChart(List<SearchKeywordChart> list)throws Exception;
 	public List<CustomerStats> customerSearchKeyAll(String c_num)throws Exception;
 	public List<CustomerStats> customerVisitShopAll(String c_num)throws Exception;
 	public List<CustomerStats> customerVisitPrdAll(String c_num)throws Exception;

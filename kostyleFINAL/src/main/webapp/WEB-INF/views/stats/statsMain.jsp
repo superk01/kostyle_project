@@ -1,6 +1,17 @@
+<%@page import="kostyle.stats.domain.SearchKeywordChart"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="statsSide.jsp" %>     
+<%
+	HttpSession searchkeyRankSession = request.getSession();
+	
+	List<SearchKeywordChart> list = (List) searchkeyRankSession.getAttribute("searchkeyRankingJ");
+	
+	
+	HttpSession loginSession = request.getSession();
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +23,6 @@
 <script src="../resources/js/stats/statsmain.js" type="text/javascript"></script>
 </head>
 <body>
-
         <!-- Page Content -->
         <div id="page-content-wrapper">
         	<div class="hamburgerSticky">
@@ -28,9 +38,32 @@
 						
 						<div id="statsbody">
 						
-								<h1>Statistics main</h1>
-								<br>
-								<h3>통계 요약</h3>
+								<div class="table-responsive" id="searchkeyRankTableMain">
+								<h3 class="page-header">검색어 순위</h3>
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<td></td>
+											<td colspan="2">검색어</td>
+										</tr>
+									</thead>
+									<tbody>
+										<%for(int i=0;i<list.size();i++){ %>
+										<tr>
+											<td><%=i+1 %></td>
+											<td><%=list.get(i).getSk_searchkey() %></td>
+										</tr>
+										<%} %>
+									
+									</tbody>
+
+
+
+</table>
+</div>
+								
+								
+								
 
 						</div>
 

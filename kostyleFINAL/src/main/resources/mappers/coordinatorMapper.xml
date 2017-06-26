@@ -7,7 +7,7 @@
 	(cd_num, s_num, cd_img, cd_name, regdate, cd_content)
 	values
 	((select nvl(max(cd_num)+1, 1) from coordi),
-	(select s_num from adshoppingmall where ad_id = #{s_name}),
+	(select s_num from adshoppingmall where ad_id = #{s_sname}),
 	#{cd_img},#{cd_name}, sysdate, #{cd_content})
 </insert>
 <insert id="insert_detail" parameterType="CoordiDetailVO">
@@ -30,6 +30,6 @@
 </select>
 
 <select id="coordiDetail" parameterType="String" resultType="CoordinatorVO">
-	select * from coordi where cd_num = #{value}
+	select * from coordi c, shoppingmall s where c.s_num=s.s_num and cd_num = #{value}
 </select>
 </mapper>

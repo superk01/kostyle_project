@@ -148,34 +148,31 @@ public class StatsController {
 	
 	
 	
-	//검색어 분석
-	@RequestMapping(value="/statsSearch", method=RequestMethod.POST)
-	public ResponseEntity<String> statsSearchPOST(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		ResponseEntity<String> entity = null;
+	//검색어 순위
+	@RequestMapping(value="/statsSearch", method=RequestMethod.GET)
+	public String statsSearchGET(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		List<SearchKeywordChart> list = null;
+		List<SearchKeywordChart> chart = null;
 		
-		try {
-			entity = new ResponseEntity<String>("hello", HttpStatus.OK);
-			list = service.statsSearchRank();
-			
-			for(int i=0;i<list.size();i++){
-				System.out.println(list.get(i).getSk_searchkey());
-			}
-			
-			
-			HttpSession session = request.getSession();
-			
-			if(session.getAttribute("statsSearchRankJ") != null){
-				session.removeAttribute("statsSearchRankJ");
-			}
-			session.setAttribute("statsSearchRankJ", list);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		list = service.statsSearchRank();
+		chart = service.searchRankChart(list);
+		System.out.println("~~검색어 순위");
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i).getSk_searchkey());
 		}
 		
-		return entity;
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("searchkeyRankingJ") != null){
+			session.removeAttribute("searchkeyRankingJ");
+		}
+		session.setAttribute("searchkeyRankingJ", list);
+
+		if(session.getAttribute("searchkeyRankChartJ") != null){
+			session.removeAttribute("searchkeyRankChartJ");
+		}
+		session.setAttribute("searchkeyRankChartJ", chart);
+		return "/stats/statsSearch";
 	}
 	
 	
@@ -232,6 +229,23 @@ public class StatsController {
 	
 	@RequestMapping(value="/statsCustomerChart", method=RequestMethod.GET)
 	public void statsCustomerChartGET()throws Exception{
+	}
+	
+	@RequestMapping(value="/statsCustomerLogin", method=RequestMethod.GET)
+	public String statsCustomerLoginGET(Model model, HttpSession session)throws Exception{
+		try {
+		   CustomerVO login = (CustomerVO) session.getAttribute("login");
+		   System.out.println(login.getC_num());
+		   String c_num = login.getC_num();
+		   
+		   model.addAttribute("searchKeyList",service.customerSearchKeyAll(c_num));
+		   model.addAttribute("shopList",service.customerVisitShopAll(c_num));
+		   model.addAttribute("prdList",service.customerVisitPrdAll(c_num));
+		   
+		   return null;
+		} catch (Exception e) {
+			return "redirect:/cuslogin/login";
+		}
 	}
 	
 }
