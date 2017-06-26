@@ -48,7 +48,7 @@ public class ClosetFolderController {
 		return entity;
 	}
 	 * */
-	
+
 	@RequestMapping(value="/cdSessionAttribute" , method=RequestMethod.POST)
 	public ResponseEntity<String> cdSessionAttribute(@RequestBody Map<Object,Object> param, HttpServletRequest request){
 		ResponseEntity<String> entity = null;

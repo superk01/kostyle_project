@@ -14,9 +14,12 @@ public interface CoordinatorDAO {
 	
 	public CoordinatorVO coordiDetail(String cd_num); 
 	
+	public List<CoordiDetailVO> getCoordiDetail(String cd_num);
+	
 	public void update(CoordinatorVO coordinatorVO);
 	
 	public void delete_coordi(String cd_num);
 	
 	public void delete_detail(String cdprd_num);
+	
 }

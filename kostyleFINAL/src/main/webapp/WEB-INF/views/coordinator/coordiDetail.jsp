@@ -27,7 +27,7 @@
 	background-color: white;
  	border: none;
  	border-radius: 0;
- 	font-size: 18px;
+ 	font-size: 15px;
  	box-shadow: none;
  	cursor: text;
  	text-align: center;
@@ -44,6 +44,11 @@
 .col-sm-2{
 	text-align: center;
 	margin-top: 5px;
+}
+
+.p_img{
+	width: 400px;
+	height: 400px;
 }
 
 </style>
@@ -326,6 +331,43 @@ li.replyLi{
 						<textarea class="form-control" name="content2" rows="5"
 							 id="content2" placeholder="${coordi.cd_content}" style="display: none"></textarea>
 					</div>
+					
+					<div class="form-group">
+						<!-- <label class="col-sm-2 control-label" for="exampleInputEmail1">대표이미지</label> --> 
+						<div class="col-sm-12">
+						<img class="image1" alt="" src="${coordi.cd_img }"><br><br><h4>오늘의 코디</h4>
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+                     <div class="col-sm-12" style="height:100px;"><hr>
+                     <h3><i class="fa fa-gift"> </i> 관련상품 <i class="fa fa-gift"> </i></h3>
+                     </div>
+                  </div>
+					<div class="form-group">
+						<!-- <label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크1</label> --> 
+						<div class="col-sm-4">
+						<a href="${coordi.prd_url1 }"><img class="p_img" alt="" src="${coordi.prd_img1 }"></a>
+						</div>
+					</div>
+					<div class="form-group">
+						<!-- <label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크2</label> --> 
+						<div class="col-sm-4">
+						<a href="${coordi.prd_url2 }"><img class="p_img" alt="" src="${coordi.prd_img2 }"></a>
+						</div>
+					</div>
+					<div class="form-group">
+						<!-- <label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크3</label> --> 
+						<div class="col-sm-4">
+						<a href="${coordi.prd_url3 }"><img class="p_img" alt="" src="${coordi.prd_img3 }"></a>
+						</div>
+					</div>
+					
+				<div class="form-group">
+                     <div class="col-sm-12" style="height:50px;">
+                </div>
+					
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="exampleInputEmail1">쇼핑몰</label>
 						<div class="col-sm-10">
@@ -333,51 +375,31 @@ li.replyLi{
 							name="writer" class="form-control" value="${coordi.s_name}"
 							readonly="readonly" style="background-color: white"></div>
 					</div>
-					
-					<div class="form-group">
-						<button id="like" class="btn btn-default pull-left">좋아요</button>
-					</div>
-					
-					<div class="form-group">
-                  	<div class="col-sm-12" style="height:50px;"></div>
-                  </div>
-					<div class="form-group">
-						<!-- <label class="col-sm-2 control-label" for="exampleInputEmail1">대표이미지</label> --> 
-						<div class="col-sm-12">
-						<img class="image1" alt="" src="${coordi.cd_img }">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크1</label> 
-						<div class="col-sm-10">
-						<img alt="" src="${coordi.prd_url1 }">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크2</label> 
-						<div class="col-sm-10">
-						<img alt="" src="${coordi.prd_url2 }">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크3</label> 
-						<div class="col-sm-10">
-						<img alt="" src="${coordi.prd_url3 }">
-						</div>
-					</div>
 				</div>
+				
+				
+				<div class="form-group">
+                     <div class="col-sm-12" style="height:50px;">
+                </div>
+                
 				<div class="btns">
 					<div class="col-sm-12">
 					<input type="button" value="글목록" id="list" class="btn btn-default">
+					<button id="like" class="btn btn-default">좋아요</button>
+					</div>
 					
-					<c:if test="${coordi.s_num==shoplogin.s_num }">
+					<%-- <c:if test="${coordi.s_num==shoplogin.s_num }">
 						<div class="dynamicBtns">
 							<input type="button" value="수정" id="updateform" class="btn btn-default pull-right">
 							<input type="button" value="삭제" id="remove" class="btn btn-default pull-right" > 
 						</div>
-					</c:if>
+					</c:if> --%>
 					</div>
 				</div>
+				
+				<div class="form-group">
+                     <div class="col-sm-12" style="height:50px;">
+                </div>
 			<%-- 	<c:if test="${not empty login}">
   					<div class="box-body">
     					<label for="exampleInputEmail1">Writer</label>
