@@ -75,19 +75,6 @@
                 </li>
                 
                 <li class="dropdown">
-                    <a href="#" data-toggle="collapse" data-target="#dropdown-shop">
-					<span class="ifont"><i class="material-icons" style="font-size:25px">store</i></span>
-                        쇼핑몰 <span class="caret"></span></a>
-                  
-                  <div class="panel-body">
-                  	<ul class="collapse" id="dropdown-shop">
-                  		<li><a href="#">전체 쇼핑몰 분석</a></li>
-                  	</ul>
-                  </div>
-                  
-                </li>
-                
-                <li class="dropdown">
                     <a href="#" data-toggle="collapse" data-target="#dropdown-product">
                    <span class="ifont"><i class="material-icons" style="font-size:24px">redeem</i></span>
                         상품 <span class="caret"></span></a>
@@ -108,7 +95,6 @@
                 
                   <div class="panel-body">
                   	<ul class="collapse" id="dropdown-user">
-	                <li><a href="#">신규 회원 분석</a></li>
 	                <li><a href="#">전체 회원 분석</a></li>
 	                <li><a href="#">상세 회원 분석</a></li>
 	                </ul>
