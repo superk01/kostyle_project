@@ -13,7 +13,7 @@
     <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http:////maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" type="text/css" href="/../../resources/css/login/newCusLogin.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/login/newCusLogin.css" />
 
     <style type="text/css">
     .btn-lg, .btn-group-lg>.btn {
@@ -61,7 +61,7 @@ display: inline;
     </script>
 </head>
 
-<body>
+<body id="loginBody">
 
 
 

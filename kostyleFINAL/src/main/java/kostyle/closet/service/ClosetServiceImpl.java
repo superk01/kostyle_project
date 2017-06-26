@@ -373,8 +373,8 @@ public class ClosetServiceImpl implements ClosetService {
 		
 
 		//6. 미친건지.. c_num이 인식이 안된다! Integer로 잡혀서 일단은 인티저->스트링으로 변환
-		System.out.println("c_num변환: "+ request.getSession().getAttribute("c_num").toString());
-		String c_num = request.getSession().getAttribute("c_num").toString();
+		System.out.println("c_num변환: "+ (String)((CustomerVO) session.getAttribute("login")).getC_num());
+		String c_num = (String)((CustomerVO) session.getAttribute("login")).getC_num();
 		//String c_num =(String)request.getSession().getAttribute("c_num");
 		//System.out.println("c_num캐스팅...테스트 String "+c_num);
 		
@@ -414,8 +414,12 @@ public class ClosetServiceImpl implements ClosetService {
 		int dupliCount = -1;
 
 		//6. 미친건지.. c_num이 인식이 안된다! Integer로 잡혀서 일단은 인티저->스트링으로 변환
-		System.out.println("c_num변환: "+ request.getSession().getAttribute("c_num").toString());
-		String c_num = session.getAttribute("c_num").toString();
+//		System.out.println("c_num변환: "+ request.getSession().getAttribute("c_num").toString());
+//		System.out.println("c_num변환: "+ (String)request.getSession().getAttribute("c_num"));
+		System.out.println("c_num변환: "+ ((CustomerVO) session.getAttribute("login")).getC_num());
+//		String c_num = session.getAttribute("c_num").toString();
+	//	String c_num = (String)session.getAttribute("c_num");
+		String c_num = ((CustomerVO) session.getAttribute("login")).getC_num();
 		//String c_num =(String)request.getSession().getAttribute("c_num");
 		//System.out.println("c_num캐스팅...테스트 String "+c_num);
 		
@@ -429,7 +433,6 @@ public class ClosetServiceImpl implements ClosetService {
 		System.out.println("받은 dupliCount: "+dupliCount);
 		
 		return dao.check_duplication(closetPrd);
-		
 	}
 
 		
@@ -490,16 +493,6 @@ public class ClosetServiceImpl implements ClosetService {
 	}
 
 
-
-
-
-
-	
-
-
-	
-	
-	
 	
 	
 }//class
