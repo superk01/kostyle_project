@@ -13,6 +13,9 @@ public class CoordinatorVO {
 	private String prd_url1;
 	private String prd_url2;
 	private String prd_url3;
+	private String prd_img1;
+	private String prd_img2;
+	private String prd_img3;
 	private String cd_content;
 	private MultipartFile uploadFile;
 	
@@ -94,14 +97,31 @@ public class CoordinatorVO {
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
-
+	public String getPrd_img1() {
+		return prd_img1;
+	}
+	public void setPrd_img1(String prd_img1) {
+		this.prd_img1 = prd_img1;
+	}
+	public String getPrd_img2() {
+		return prd_img2;
+	}
+	public void setPrd_img2(String prd_img2) {
+		this.prd_img2 = prd_img2;
+	}
+	public String getPrd_img3() {
+		return prd_img3;
+	}
+	public void setPrd_img3(String prd_img3) {
+		this.prd_img3 = prd_img3;
+	}
 	@Override
 	public String toString() {
 		return "CoordinatorVO [cd_num=" + cd_num + ", cd_name=" + cd_name + ", s_num=" + s_num + ", s_name=" + s_name
 				+ ", cd_img=" + cd_img + ", regdate=" + regdate + ", cd_like=" + cd_like + ", prd_url1=" + prd_url1
-				+ ", prd_url2=" + prd_url2 + ", prd_url3=" + prd_url3 + ", cd_content=" + cd_content + ", uploadFile="
-				+ uploadFile + "]";
+				+ ", prd_url2=" + prd_url2 + ", prd_url3=" + prd_url3 + ", prd_img1=" + prd_img1 + ", prd_img2="
+				+ prd_img2 + ", prd_img3=" + prd_img3 + ", cd_content=" + cd_content + ", uploadFile=" + uploadFile
+				+ "]";
 	}
-	
 	
 }

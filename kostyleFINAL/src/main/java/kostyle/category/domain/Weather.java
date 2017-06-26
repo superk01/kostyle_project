@@ -7,6 +7,10 @@ public class Weather {
 	private double rainper;
 	private String weather;
 	
+	public String getweather(){
+		return weather;
+	}
+	
 	public double getTemp() {
 		return temp;
 	}
