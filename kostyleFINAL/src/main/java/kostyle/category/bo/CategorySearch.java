@@ -37,12 +37,16 @@ public class CategorySearch {
 		while(  threadList.size() != 0){
 			for(int i=0; i<threadList.size(); i++){
 				if(threadList.get(i).getState() == State.TERMINATED){
-					System.out.println(i + " 번째 쇼핑몰 완료 ThreadList 삭제");
 					product_list_total.add(new Product_list(threadList.get(i).getMain_product_list()));
 					threadList.remove(i);
 				}
 			}
 		}		
+		
+		
+		
+		
+		
 		 for(int z=0; z<product_list_total.size(); z++){
 			 for(int x=0; x<product_list_total.get(z).getList().size(); x++){
 				 product_list.add(product_list_total.get(z).getList().get(x));

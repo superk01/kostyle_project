@@ -34,8 +34,10 @@ public class TestWeatherController {
 	public void getWeatherGET(Model model){
 		Weather weather = getWeather.start();
 		Weather_pick_keyword wpk = new Weather_pick_keyword();
+		model.addAttribute("weather", weather.getweather());
 		model.addAttribute("level",wpk.getWeather_pick_Data(weather, "none")[1]);
 		model.addAttribute("user_bo",wpk.getWeather_pick_Data(weather, "none")[2]);
+		model.addAttribute("user_angry",wpk.getUser_angry(wpk.getWeather_pick_Data(weather, "none")[2]));
 	
 	}
 	

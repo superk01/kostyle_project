@@ -1,19 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="statsSide.jsp" %>     
+<%@ include file="statsSide.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../resources/css/stats/stats.css">
-<script type="text/javascript"></script>
-<script src="../resources/js/jquery.js" type="text/javascript"></script>
-<script src="../resources/js/stats/statsmain.js" type="text/javascript"></script>
 </head>
+
 <body>
 
-        <!-- Page Content -->
         <div id="page-content-wrapper">
         	<div class="hamburgerSticky">
             <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
@@ -25,23 +22,45 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
-						
-						<div id="statsbody">
-						
-								<h1>Statistics main</h1>
-								<br>
-								<h3>통계 요약</h3>
 
-						</div>
+
+								<div id="statsbody">
+								<h3 class="page-header">상세 회원 분석</h3>
+								<form acton="#" method="post" id="statsCustomerForm">
+								<div>
+								<label>회원<span>
+								<input type="text" name="statsCustomer" id="statsCustomer">
+								</span></label>
+								</div>
+								<button type="submit" class="btn btn-default" id="statsCustomerBtn">Sign In</button>
+								
+								</form>
+								</div>
+								<h3 class="page-header"></h3>
 
 
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
-	
-
-	
 </body>
+
+<script>
+
+$("#statsCustomerForm").submit(function(event){
+	event.preventDefault();
+	
+	$.ajax({
+		type:'post',
+		url:'/stats/statsCustomer',
+		dataType:'text',
+		data: {statsCustomer:$("#statsCustomer").val()},
+		success:function(result){
+			location.href="statsCustomerChart";
+		}
+	});
+});
+
+</script>
+
 </html>
