@@ -56,11 +56,13 @@ public class CoordinatorServiceImpl implements CoordinatorService {
 		CoordinatorVO coordinatorVO = dao.coordiDetail(cd_num);
 		List<CoordiDetailVO> list = dao.getCoordiDetail(cd_num);
 		coordinatorVO.setPrd_img1(list.get(0).getPrd_img());
-		coordinatorVO.setPrd_img1(list.get(1).getPrd_img());
-		coordinatorVO.setPrd_img1(list.get(2).getPrd_img());
+		coordinatorVO.setPrd_img2(list.get(1).getPrd_img());
+		coordinatorVO.setPrd_img3(list.get(2).getPrd_img());
 		coordinatorVO.setPrd_url1(list.get(0).getPrd_url());
-		coordinatorVO.setPrd_url1(list.get(1).getPrd_url());
-		coordinatorVO.setPrd_url1(list.get(2).getPrd_url());
+		coordinatorVO.setPrd_url2(list.get(1).getPrd_url());
+		coordinatorVO.setPrd_url3(list.get(2).getPrd_url());
+		
+		System.out.println("coordiDetail메소드:"+coordinatorVO);
 		return coordinatorVO;
 	}
 

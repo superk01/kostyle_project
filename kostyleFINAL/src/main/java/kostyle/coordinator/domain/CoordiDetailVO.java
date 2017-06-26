@@ -6,6 +6,8 @@ public class CoordiDetailVO {
 	private String prd_url;
 	private String prd_img;
 	
+	public CoordiDetailVO(){};
+	
 	public CoordiDetailVO(String cd_num, String prd_url, String prd_img) {
 		super();
 		this.cd_num = cd_num;
@@ -36,6 +38,7 @@ public class CoordiDetailVO {
 	public void setPrd_img(String prd_img) {
 		this.prd_img = prd_img;
 	}
+	
 	@Override
 	public String toString() {
 		return "CoordiDetailVO [cd_num=" + cd_num + ", cdprd_num=" + cdprd_num + ", prd_url=" + prd_url + ", prd_img="

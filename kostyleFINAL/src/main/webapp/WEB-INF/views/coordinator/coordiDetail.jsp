@@ -350,19 +350,19 @@ li.replyLi{
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크1</label> 
 						<div class="col-sm-10">
-						<img alt="" src="${coordi.prd_url1 }">
+						<a href="${coodi.prd_url1 }"><img alt="" src="${coordi.prd_img1 }"></a>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크2</label> 
 						<div class="col-sm-10">
-						<img alt="" src="${coordi.prd_url2 }">
+						<a href="${coodi.prd_url2 }"><img alt="" src="${coordi.prd_img2 }"></a>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="exampleInputEmail1">상품 링크3</label> 
 						<div class="col-sm-10">
-						<img alt="" src="${coordi.prd_url3 }">
+						<a href="${coodi.prd_url3 }"><img alt="" src="${coordi.prd_img3 }"></a>
 						</div>
 					</div>
 				</div>
