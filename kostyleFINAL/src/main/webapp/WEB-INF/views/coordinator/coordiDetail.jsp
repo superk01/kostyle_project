@@ -20,13 +20,14 @@
  	margin-top: 30px;
  	cursor: text;
  	height: 60px;
+ 	color: navy;
  }
  
 #content{
 	background-color: white;
  	border: none;
  	border-radius: 0;
- 	font-size: 15px;
+ 	font-size: 18px;
  	box-shadow: none;
  	cursor: text;
  	text-align: center;
@@ -35,9 +36,15 @@
 .like{
 	display: block;
 }
-/* .NoScroll {
-        overflow:hidden;  
-    } */
+
+.col-sm-12{
+	text-align: center;
+}
+
+.col-sm-2{
+	text-align: center;
+	margin-top: 5px;
+}
 
 </style>
 <!-- <script type="text/javascript">
@@ -285,7 +292,12 @@ li.replyLi{
 <div class="box-header">
 				</div>
 				<!-- /.box-header -->
-
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
 				<form role="form" action="modifyPage" method="post">
 
 					<input type='hidden' name='cd_num' value="${coordi.cd_num}"> 
@@ -304,6 +316,9 @@ li.replyLi{
 						<input type="text" name='title' class="form-control" placeholder="${coordi.cd_name}"
 							id="title2" style="display: none">
 					</div>
+				<br>
+				<br>
+				<br>
 					<div class="form-group">
 						<!-- <label for="exampleInputPassword1">내용</label> -->
 						<textarea class="form-control" name="content1" rows="10" onclick="onLoadTextArea();"
@@ -327,9 +342,9 @@ li.replyLi{
                   	<div class="col-sm-12" style="height:50px;"></div>
                   </div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="exampleInputEmail1">대표이미지</label> 
-						<div class="col-sm-10">
-						<img alt="" src="${coordi.cd_img }">
+						<!-- <label class="col-sm-2 control-label" for="exampleInputEmail1">대표이미지</label> --> 
+						<div class="col-sm-12">
+						<img class="image1" alt="" src="${coordi.cd_img }">
 						</div>
 					</div>
 					<div class="form-group">
