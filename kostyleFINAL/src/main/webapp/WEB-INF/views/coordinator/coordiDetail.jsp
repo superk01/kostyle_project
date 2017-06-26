@@ -372,7 +372,7 @@ li.replyLi{
 						<label class="col-sm-2 control-label" for="exampleInputEmail1">쇼핑몰</label>
 						<div class="col-sm-10">
 						 <input type="text"
-							name="writer" class="form-control" value="${coordi.s_name}"
+							name="writer" class="form-control" value="${coordi.s_sname}"
 							readonly="readonly" style="background-color: white"></div>
 					</div>
 				</div>
