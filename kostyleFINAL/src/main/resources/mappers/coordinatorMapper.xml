@@ -21,6 +21,9 @@
 	select c.cd_name, c.s_num, c.cd_img, c.regdate, cd.cdprd_url1 as prd_url1, cd.cdprd_url2 as prd_url2, cd.cdprd_url3 as prd_url3  
 	from coordi c, coordi_detail cd where c.cd_num = cd.cd_num
 </select> -->
+<select id="detailList" parameterType="String">
+	select * from coordi_detail where cd_num = ${value}
+</select>
 
 <select id="coordiList" resultType="CoordinatorVO">
 	select * from coordi order by cd_num DESC

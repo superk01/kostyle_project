@@ -292,15 +292,15 @@ li.replyLi{
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">상품 링크1</label> 
-						<img alt="" src="${coordi.prd_url1 }">
+						<a href="${coordi.prd_img1 }"><img alt="" src="${coordi.prd_url1 }"></a>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">상품 링크2</label> 
-						<img alt="" src="${coordi.prd_url2 }">
+						<a href="${coordi.prd_img2 }"><img alt="" src="${coordi.prd_url2 }"></a>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">상품 링크3</label> 
-						<img alt="" src="${coordi.prd_url3 }">
+						<a href="${coordi.prd_img3 }"><img alt="" src="${coordi.prd_url3 }"></a>
 					</div>
 				</div>
 				<div class="btns">

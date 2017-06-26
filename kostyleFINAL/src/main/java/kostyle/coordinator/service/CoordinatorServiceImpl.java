@@ -53,7 +53,10 @@ public class CoordinatorServiceImpl implements CoordinatorService {
 
 	@Override
 	public CoordinatorVO coordiDetail(String cd_num) {
-		return dao.coordiDetail(cd_num);
+		CoordinatorVO coordinatorVO = dao.coordiDetail(cd_num);
+		/*List<CoordiDetailVO> list = dao.getCoordiDetail(cd_num);
+		coordinatorVO.setPrd_img1(prd_img1);*/
+		return coordinatorVO;
 	}
 
 	
