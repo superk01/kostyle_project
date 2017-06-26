@@ -68,7 +68,7 @@
                   
                   <div class="panel-body">
                   	<ul class="collapse" id="dropdown-visitor">
-                  		<li><a href="statsSide?statsbody=statsVisitor.jsp">방문자수 분석</a></li>
+                  		<li><a href="/stats/statsVisitor">방문자수 분석</a></li>
                   	</ul>
                   </div>
                   
@@ -81,7 +81,7 @@
                   
                   <div class="panel-body">
                   	<ul class="collapse" id="dropdown-product">
-                  		<li><a href="statsSide?statsbody=statsSearch.jsp">검색어 분석</a></li>
+                  		<li><a href="/stats/statsSearch">검색어 분석</a></li>
                   		<li><a href="#">찜하기 분석</a></li>
                   	</ul>
                   </div>
@@ -89,16 +89,10 @@
                 </li>
 
                 <li class="dropdown">
-                  <a href="#" data-toggle="collapse" data-target="#dropdown-user">
+                  <a href="/stats/statsCustomer">
                   <span class="ifont"><i class="fa fa-user" style="font-size:22px"></i></span>
-                  	회원 <span class="caret"></span></a>
+                  	상세 회원 분석</a>
                 
-                  <div class="panel-body">
-                  	<ul class="collapse" id="dropdown-user">
-	                <li><a href="#">전체 회원 분석</a></li>
-	                <li><a href="#">상세 회원 분석</a></li>
-	                </ul>
-                  </div>
                 </li>
        
 
@@ -121,7 +115,6 @@
 						
 						<div id="statsbody">
 						
-							<jsp:include page="<%= statsbody %>"/>
 						 
 						</div>
 

@@ -93,7 +93,7 @@
 
 <br><br><a href="/admin/shopList">쇼핑몰 리스트</a>
 <br><br><a href="/admin/joinForm">쇼핑몰 입점 신청</a>
-<br><br><a href="/stats/statsSide">통계</a>
+<br><br><a href="/stats/statsMain">통계</a>
 <br><br>
 <P>  The time on the server is ${serverTime}. </P>
 <P>  "${path }" </P>

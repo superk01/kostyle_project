@@ -9,6 +9,8 @@
 			where s_shopurl = #{s_shopurl}
 	</select>
 	 -->
+	 
+	 <!-- 검색어 DB저장 -->
 	<insert id="insertSearchKeyword" parameterType="SearchKeywordStats">
 		insert into searchkeyword(
 			c_num, sk_searchkey, sk_date, sk_num
@@ -41,6 +43,8 @@
 	</select>
 		-->
 		
+		
+	<!-- 지역별 방문자수 -->
 	<select id="statsDate_adr" resultType="HitcountStatsChart">
 	 
 	 select to_char(d.cnt_date,'MM-DD') as cnt_date, 
@@ -81,6 +85,8 @@
 	 
 	</select>
 	
+	
+	<!-- 성별 방문자수 -->
 	<select id="statsDate_gender" resultType="HitcountStatsChart">
 	
 	select to_char(d.cnt_date,'MM-DD') as cnt_date, nvl(e.f,0) as female, nvl(e.m,0) as male
@@ -100,7 +106,7 @@
     
 	</select>
 	
-	
+	<!-- 연령대별 방문자수 -->
 	<select id="statsDate_age" resultType="HitcountStatsChart">
 	
 	select to_char(d.cnt_date,'MM-DD') as cnt_date, nvl(e.teen,0) as teen, nvl(e.twenty,0) as twenty, nvl(e.thirty,0) as thirty
@@ -124,6 +130,8 @@
 	
 	</select>
 	
+	
+	<!-- 검색어 순위 -->
 	<select id="getSearchRank" resultType="SearchKeywordChart">
   select sk_searchkey, count(sk_num) as sk_count
     from searchkeyword
@@ -131,10 +139,46 @@
     group by sk_searchkey 
     order by count(sk_num) desc
 
-
 	</select>
 	
 	
+	<!-- 특정 회원이 많이 검색한 검색어 -->
+	<select id="customerSearchKeyAll" resultType="CustomerStats">
+		select sk_searchkey, count(*) as key_count
+			from searchkeyword
+		  where c_num=#{c_num}
+		  group by sk_searchkey
+		  order by count(*) desc
+	</select>
 	
+	
+	<!-- 특정 회원이 많이 들어간 쇼핑몰 -->
+	<select id="customerVisitShopAll" resultType="CustomerStats">
+		select s.S_SNAME, count(*) as shop_count
+		  from hitcount h, shoppingmall s
+		  where h.s_num = s.s_num
+		  and h.c_num=#{c_num}
+		  group by s.s_sname
+		  order by count(*) desc
+	</select>
+	
+	<!-- 특정 회원이 많이 본 상품 -->
+	<select id="customerVisitPrdAll" resultType="CustomerStats">
+			select h_name, count(h_num) as count, h_prdurl, h_imgurl
+			  from history
+			  where c_num=#{c_num}
+			  group by h_name, H_PRDURL, h_imgurl
+			  order by count(h_num) desc	
+	</select>
+	
+	
+	<!-- 취향 비슷한 회원 -->
+	<select id="getSimilar" resultType="CustomerStats">
+				select c_num, count(*) as customer_count
+			  from hitcount
+			  where cnt_prdurl like '%'||#{cnt_prdurl}||'%'
+			  group by c_num
+			  order by count(*) desc
+	</select>
 	
 </mapper>
