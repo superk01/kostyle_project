@@ -390,17 +390,18 @@
   
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      <li><a href="#" style="padding:20px 100px !important">R A N K I N G</a></li>
+      <li><a href="#" style="padding:20px 90px !important">RAKING</a></li>
       
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:20px 100px !important">D I S C O U N T</a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:20px 90px !important">DISCOUNT</a>
           <ul class="dropdown-menu">
             <li><a href="#">기획할인</a></li>
             <li><a href="#">신상품할인</a></li>
           </ul>
         </li>
         
-        <li><a href="/help/list" style="padding:20px 100px !important">S E R V I C E  C E N T E R</a></li>
+        <li><a href="/help/list" style="padding:20px 90px !important">SERVICE CENTER</a></li>
+        <li><a href="#" style="padding:20px 90px !important">STATISTICS</a></li>
       </ul>
     </div>
   </div>
@@ -411,7 +412,7 @@
 
 
 
-<c:when test="${sessionScope.login.p_powernum==2 || sessionScope.login==null}"><!-- 일반고객 -->
+<c:when test="${sessionScope.login.p_powernum==2 || sessionScope.login.p_powernum==null}"><!-- 일반고객 -->
 
 
    <div class="header-area">
@@ -469,7 +470,7 @@
             <form class="search-form" action="#" method="get" name="searchForm">
                <div class="search-box">
                   <dl class="clear">
-                  <dt class="search1"><input id="search-text" type="text" name="search"></dt>
+                  <dt class="search1"><input id="search-text" type="text" name="keyword"></dt>
                   <dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="sendtwo()"></dd>
                   </dl>
                </div>
@@ -516,6 +517,99 @@
 </c:when>
 
 
+
+
+
+
+
+
+
+
+
+
+
+<c:when test="${sessionScope.login.p_powernum==0 }"><!-- 관리자 -->
+<div class="header-area">
+        <div class="container">
+            
+            <div class="row">
+               <div class="col-md-8">
+                   <div class="user">
+                   <h5><i class="fa fa-heart" style=""></i>KOSTYLE 관리자모드<i class="fa fa-heart"></i></h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                   <div class="header-right">
+                        <ul class="list-unstyled list-inline">
+                             <li><a id="adminlogout" ><i class="fa fa-user"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                   </div>
+            </div>
+      </div>
+</div> <!-- End header area -->
+
+
+<div class="site-branding-area" id="search-fixed-top">
+        <div class="container">
+            <div class="search-row">
+            
+            <a href="/"><img class="logoimg" src="/resources/images/mainImg/kostyle3.png"></a>
+            
+            <div class="header_search">
+            <form class="search-form" action="#" method="get" name="searchForm">
+               <div class="search-box">
+                  <dl class="clear">
+                  <dt class="search1"><input id="search-text" type="text" name="search" style="border:5px solid #427ef5;"></dt>
+                  <dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch3.png" alt="검색" title="검색" onclick="sendtwo()" style="border:5px solid #427ef5;"></dd>
+                  </dl>
+               </div>
+            </form>
+            </div>
+            
+            </div>
+        </div>
+</div> <!-- End site branding area -->
+
+
+<div class="navSticky">
+<nav class="navbar navbar-default" style="background-color: #427ef5 !important; border-color:  #427ef5 !important;">
+  <div class="container-fluid">
+     <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+    </div>
+  
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+      <li><a href="#" style="padding:20px 90px !important">RANKING</a></li>
+      
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT</a>
+          <ul class="dropdown-menu">
+            <li><a href="#" style="padding:20px 90px !important">기획할인</a></li>
+            <li><a href="#" style="padding:20px 90px !important">신상품할인</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="/help/list" style="padding:20px 90px !important">SERVICE CENTER</a></li>
+        <li><a href="#" style="padding:20px 90px !important">SHOP LIST</a></li>
+      </ul>
+    </div>
+  </div>
+</nav> 
+</div>
+</c:when>
+
+
+
+
+
+
+
 </c:choose>
 
 </body>
@@ -528,7 +622,7 @@ function sendtwo(){
    document.searchForm.action='/stats/insertstats';
    document.searchForm.submit();
     */
-   document.searchForm.action='/search/do';
+   document.searchForm.action='/category/search';
    /* document.searchForm.attr("method", "get"); */
    document.searchForm.submit();
 }
