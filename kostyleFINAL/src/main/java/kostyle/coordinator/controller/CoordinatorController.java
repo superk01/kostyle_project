@@ -50,9 +50,10 @@ public class CoordinatorController {
 	
 	@RequestMapping(value="coordiregister", method=RequestMethod.POST)
 	public String coordiregisterPOST(CoordinatorVO coordinatorVO, HttpServletRequest request){
-		String contextPath = request.getSession().getServletContext().getRealPath("/");											//톰캣 서버의 context경로
-		String uploadPath = contextPath+"resources/images/coordiuploadimg";														//이미지업로드 주소
-		System.out.println("contnextPath:"+contextPath);								
+		/*String contextPath = request.getSession().getServletContext().getRealPath("/");	*/										//톰캣 서버의 context경로
+		/*String uploadPath = contextPath+"resources/images/coordiuploadimg";*/														//이미지업로드 주소
+		String uploadPath = "resources/images/coordiuploadimg";														//이미지업로드 주소
+		/*System.out.println("contnextPath:"+contextPath);	*/							
 		System.out.println("coordiregisterPOST:"+coordinatorVO);
 		MultipartFile uploadfile = coordinatorVO.getUploadFile();																//폼에서 받은 파일
 		if(uploadfile != null){
@@ -62,7 +63,7 @@ public class CoordinatorController {
 			System.out.println("coordiregisterPOST:"+fileName);
 			coordinatorVO.setCd_img(savedName);
 			try {
-				File file = new File(uploadPath+"/"+savedName);
+				File file = new File("/"+uploadPath+"/"+savedName);
 				/*File file = new File(uploadPath+"/"+fileName);*/
 				uploadfile.transferTo(file);
 				service.register(coordinatorVO);
