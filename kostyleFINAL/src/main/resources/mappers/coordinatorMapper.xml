@@ -10,12 +10,12 @@
 	(select s_num from adshoppingmall where ad_id = #{s_name}),
 	#{cd_img},#{cd_name}, sysdate, #{cd_content})
 </insert>
-<insert id="insert_detail" parameterType="CoordinatorVO">
-	insert into coordi_detail (cdprd_num,cd_num,cdprd_url1,cdprd_url2,cdprd_url3)
+<insert id="insert_detail" parameterType="CoordiDetailVO">
+	insert into coordi_detail (cdprd_num,cd_num,prd_url,prd_img)
 	values(
 	(select nvl(max(cdprd_num)+1,1) from coordi_detail),
 	(select max(cd_num) from coordi),
-	#{prd_url1},#{prd_url2},#{prd_url3}) 
+	#{prd_url},#{prd_img}) 
 </insert>
 <!-- <select id="coordiList" resultType="CoordinatorVO">
 	select c.cd_name, c.s_num, c.cd_img, c.regdate, cd.cdprd_url1 as prd_url1, cd.cdprd_url2 as prd_url2, cd.cdprd_url3 as prd_url3  
