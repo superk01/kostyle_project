@@ -15,7 +15,7 @@ import kostyle.coordinator.domain.CoordiDetailVO;
 import kostyle.coordinator.domain.CoordinatorVO;
 
 @Repository
-public class CoodinatorDAOImpl implements CoordinatorDAO {
+public class CoordinatorDAOImpl implements CoordinatorDAO {
 	
 	@Inject
 	private SqlSession session;
@@ -61,6 +61,13 @@ public class CoodinatorDAOImpl implements CoordinatorDAO {
 	@Override
 	public CoordinatorVO coordiDetail(String cd_num) {
 		return session.selectOne(Namespace+".coordiDetail", cd_num);
+	}
+
+	@Override
+	public List<CoordiDetailVO> getCoordiDetail(String cd_num) {
+		List<CoordiDetailVO> list = session.selectList(Namespace+".detailList", cd_num);
+		System.out.println("CoordinatorDAOImpl:"+list);
+		return list;
 	}
     
 	

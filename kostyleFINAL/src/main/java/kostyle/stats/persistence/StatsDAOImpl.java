@@ -10,6 +10,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kostyle.stats.domain.CustomerStats;
 import kostyle.stats.domain.HitcountStats;
 import kostyle.stats.domain.HitcountStatsChart;
 import kostyle.stats.domain.SearchKeywordChart;
@@ -67,6 +68,30 @@ public class StatsDAOImpl implements StatsDAO{
 	@Override
 	public List<SearchKeywordChart> statsSearchRank() throws Exception{
 		return session.selectList(namespace+".getSearchRank", new RowBounds(1, 5));
+	}
+
+	@Override
+	public List<CustomerStats> customerSearchKeyAll(String c_num) throws Exception {
+		RowBounds rowbounds = new RowBounds(0, 5);
+		return session.selectList(namespace+".customerSearchKeyAll", c_num, rowbounds);
+	}
+
+	@Override
+	public List<CustomerStats> customerVisitShopAll(String c_num) throws Exception {
+		RowBounds rowbounds = new RowBounds(0, 5);
+		return session.selectList(namespace+".customerVisitShopAll", c_num, rowbounds);
+	}
+
+	@Override
+	public List<CustomerStats> customerVisitPrdAll(String c_num) throws Exception {
+		RowBounds rowbounds = new RowBounds(0, 5);
+		return session.selectList(namespace+".customerVisitPrdAll", c_num, rowbounds);
+	}
+
+	@Override
+	public List<CustomerStats> getSimilar(String cnt_prdurl) throws Exception {
+		RowBounds rowbounds = new RowBounds(0, 5);
+		return session.selectList(namespace+".getSimilar", cnt_prdurl, rowbounds);
 	}
 	
 	

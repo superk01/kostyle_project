@@ -81,15 +81,6 @@ public class MainActionThread extends Thread{
 
           // 물품 바로가기 링크 페이지 인식
           String productLink[] = { "a href=\"/product/detail", "a href=\"/shop/view" };
-          String product_NameCheck = "[가-힣]"; // 물품 이미지 검색 (한글 있으면 true 리턴)
-          int productImgLinkRowNum = 0;// 이미지 src 담겨있는 열 검사결과
-
-          String Not_product_NameCheck = "[^가-힣]"; // 물품 이름 추출 최대길이 10, 물품 금액은
-                                           // 한글 4글자 이하, 물품 설명은 한글
-                                           // 10자 이하 한글 검사 있으면
-                                           // false리턴
-          int productLinkRowNum = 0; // 결과값 저장
-
           
           //검색한 하나의 상품을 Box형태로 모으기
           for (int i = 0; i < list.size(); i++) {
@@ -241,25 +232,25 @@ public class MainActionThread extends Thread{
     public String searchImgLink(String row, String shopurl){        
        String pattern[] = {".gif\"",".jpg\"",".png\""};
        
-        int productImgLinkRow = row.indexOf("<img src");        //물품 바로가기에서 옷 이미지 링크 줄번호 가져오기
+        int productImgLinkRow = row.indexOf("<img src");       
 
-        String productLinkResult = "";        //물품 바로가기에서 옷 이미지 링크 가져오기
+        String productLinkResult = "";        
         if( productImgLinkRow != -1){
-           String productLinkRow = row; //ex ) aaaaA<img src = "dddddd">ddd
-           String productLinkRow_Frist_Cut = productLinkRow.substring(productImgLinkRow, productLinkRow.length()); //ex) <img src="ddddddd">ddd
+           String productLinkRow = row; 
+           String productLinkRow_Frist_Cut = productLinkRow.substring(productImgLinkRow, productLinkRow.length()); 
            int productLinkRow_End_Cut_Index = -1;
            for(int i=0; i<pattern.length; i++){
               if( productLinkRow_Frist_Cut.indexOf(pattern[i]) != -1){
-              productLinkRow_End_Cut_Index = productLinkRow_Frist_Cut.indexOf(pattern[i])+5; //끝값 식별 .gif .png .jpg
+              productLinkRow_End_Cut_Index = productLinkRow_Frist_Cut.indexOf(pattern[i])+5;
               }
            }
-           productLinkResult = productLinkRow_Frist_Cut.substring(12, productLinkRow_End_Cut_Index-1); // <img src="ddddddd">
+           productLinkResult = productLinkRow_Frist_Cut.substring(12, productLinkRow_End_Cut_Index-1);
         }
         return productLinkResult;
     }
     
     public String searchProduct_Name(String row){
-          row = row.trim();
+         row = row.trim();
         String start_Atag = "<a href=\"";
         String end_Atag = "/>";
         
@@ -278,7 +269,7 @@ public class MainActionThread extends Thread{
     }
     
     public String searchProduct_Link(String row,String shopurl){
-          row = row.trim();
+         row = row.trim();
         String start_Atag = "<a href=\"";
         String end_Atag = ">";           
 

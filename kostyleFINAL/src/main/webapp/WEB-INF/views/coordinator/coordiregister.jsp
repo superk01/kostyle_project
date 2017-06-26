@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -12,34 +12,34 @@
 <link rel="stylesheet" href="/resources/css/coordi/coordiRegister.css" media="screen" title="no title" charset="utf-8">
 <script type="text/javascript">
 $(document).ready(function(){
-	/* $('.file').on('change', function(){
-		alert("message");
-	}); */
+   /* $('.file').on('change', function(){
+      alert("message");
+   }); */
 });
 function upload(event){
-	var files = event.originalEvent.dataTransfer.files;
+   var files = event.originalEvent.dataTransfer.files;
 
-	var file = files[0];
+   var file = files[0];
 
-	var formData = new FormData();
+   var formData = new FormData();
 
-	formData.append("file", file);
-	$.ajax({
-		url : '/coordinator/uploadAjax',
-		data : formData,
-		dataType : 'text',
-		processData : false,
-		contentType : false,
-		type : 'POST',
-		success : function(data) {
-			console.log(data);
-			var fileInfo = getFileInfo(data);
+   formData.append("file", file);
+   $.ajax({
+      url : '/coordinator/uploadAjax',
+      data : formData,
+      dataType : 'text',
+      processData : false,
+      contentType : false,
+      type : 'POST',
+      success : function(data) {
+         console.log(data);
+         var fileInfo = getFileInfo(data);
 
-			var html = template(fileInfo);
+         var html = template(fileInfo);
 
-			$(".uploadedList").append(html);
-		}
-	});
+         $(".uploadedList").append(html);
+      }
+   });
 }
 
 </script>
@@ -56,8 +56,8 @@ function upload(event){
          <!-- general form elements -->
          <div class="box box-primary">
            <div class="page-header">
-			<h1>코디등록</h1>
-		</div>
+         <h1>코디등록</h1>
+      </div>
             <!-- /.box-header -->
             <div class="container">
             <div class="allborder">
@@ -88,37 +88,37 @@ function upload(event){
                   
                   
                   <div class="form-group">
-                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">대표 이미지</label>
-                  	<div class="col-sm-10">
-                  	<input type="file" class="form-control" name="uploadFile">
-                  	</div>
+                     <label class="col-sm-2 control-label" for="exampleInputEmail1">대표 이미지</label>
+                     <div class="col-sm-10">
+                     <input type="file" class="form-control" name="uploadFile">
+                     </div>
                   </div>
                    <div class="form-group">
-                  	<div class="col-sm-12" style="height:50px;"><hr></div>
+                     <div class="col-sm-12" style="height:50px;"><hr></div>
                   </div>
                   <div class="form-group">
-                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">상의</label>
-                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_url1" autocomplete="off"></div>
-                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">이미지</label>
-                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_img1" autocomplete="off"></div>
+                     <label class="col-sm-2 control-label" for="exampleInputEmail1">상의</label>
+                     <div class="col-sm-10"><input type="text" class="form-control" name="prd_url1" autocomplete="off"></div>
+                     <label class="col-sm-2 control-label" for="exampleInputEmail1">이미지</label>
+                     <div class="col-sm-10"><input type="text" class="form-control" name="prd_img1" autocomplete="off"></div>
                   </div>
                    <div class="form-group">
-                  	<div class="col-sm-12" style="height:50px;"><hr></div>
+                     <div class="col-sm-12" style="height:50px;"><hr></div>
                   </div>
                   <div class="form-group">
-                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">하의</label>
-                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_url2" autocomplete="off"></div>
-                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">이미지</label>
-                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_img2" autocomplete="off"></div>
+                     <label class="col-sm-2 control-label" for="exampleInputEmail1">하의</label>
+                     <div class="col-sm-10"><input type="text" class="form-control" name="prd_url2" autocomplete="off"></div>
+                     <label class="col-sm-2 control-label" for="exampleInputEmail1">이미지</label>
+                     <div class="col-sm-10"><input type="text" class="form-control" name="prd_img2" autocomplete="off"></div>
                   </div>
                    <div class="form-group">
-                  	<div class="col-sm-12" style="height:50px;"><hr></div>
+                     <div class="col-sm-12" style="height:50px;"><hr></div>
                   </div>
                   <div class="form-group">
-                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">액세서리</label>
-                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_url3" autocomplete="off"></div>
-                  	<label class="col-sm-2 control-label" for="exampleInputEmail1">이미지</label>
-                  	<div class="col-sm-10"><input type="text" class="form-control" name="prd_img3" autocomplete="off"></div>
+                     <label class="col-sm-2 control-label" for="exampleInputEmail1">액세서리</label>
+                     <div class="col-sm-10"><input type="text" class="form-control" name="prd_url3" autocomplete="off"></div>
+                     <label class="col-sm-2 control-label" for="exampleInputEmail1">이미지</label>
+                     <div class="col-sm-10"><input type="text" class="form-control" name="prd_img3" autocomplete="off"></div>
                   </div>
                  <%--  <div class="form-group">
                      <label for="exampleInputEmail1">쇼핑몰 선택</label> 

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kostyle.login.domain.CustomerVO;
+import kostyle.stats.domain.CustomerStats;
 import kostyle.stats.domain.HitcountStatsChart;
 import kostyle.stats.domain.SearchKeywordChart;
 import kostyle.stats.domain.SearchKeywordStats;
@@ -33,9 +34,10 @@ public class StatsController {
 	@Inject
 	private StatsService service;
 	
-//	@RequestMapping(value="/statsindex", method=RequestMethod.GET)
-//	public void statsIndexGET()throws Exception{
-//	}
+	@RequestMapping(value="/statsMain", method=RequestMethod.GET)
+	public void statsMainGET()throws Exception{
+	}
+	
 	@RequestMapping(value="/statsSide", method=RequestMethod.GET)
 	public void statssideGET()throws Exception{
 	}
@@ -107,11 +109,11 @@ public class StatsController {
 			String locate = "";
 			
 			if(chartFor.equals("gender")){
-				locate="/stats/statsSide?statsbody=statsVisitor_gender.jsp";
+				locate="/stats/statsVisitor_gender";
 			}else if(chartFor.equals("age")){
-				locate="/stats/statsSide?statsbody=statsVisitor_age.jsp";
+				locate="/stats/statsVisitor_age";
 			}else if(chartFor.equals("adr")){
-				locate="/stats/statsSide?statsbody=statsVisitor_adr.jsp";
+				locate="/stats/statsVisitor_adr";
 			}
 			
 			System.out.println("~~STATS/이동: "+locate);
@@ -142,6 +144,11 @@ public class StatsController {
 		
 	}
 	
+	
+	
+	
+	
+	//검색어 분석
 	@RequestMapping(value="/statsSearch", method=RequestMethod.POST)
 	public ResponseEntity<String> statsSearchPOST(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		ResponseEntity<String> entity = null;
@@ -173,5 +180,58 @@ public class StatsController {
 	
 	
 	
+	
+	
+	
+	//회원 분석
+	@RequestMapping(value="/statsCustomer", method=RequestMethod.GET)
+	public void statsCustomerGET()throws Exception{
+	}
+	
+	
+	@RequestMapping(value="/statsCustomer", method=RequestMethod.POST)
+	public ResponseEntity<String> statsCustomerPOST(String statsCustomer, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		ResponseEntity<String> entity = null;
+		List<CustomerStats> searchKeyList = null;
+		List<CustomerStats> shopList = null;
+		List<CustomerStats> prdList = null;
+		List<CustomerStats> test = null;
+		
+		try {
+			
+			searchKeyList = service.customerSearchKeyAll(statsCustomer);
+			shopList = service.customerVisitShopAll(statsCustomer);
+			prdList = service.customerVisitPrdAll(statsCustomer);
+			test = service.getSimilar(statsCustomer);
+			
+			HttpSession session = request.getSession();
+			
+			if(session.getAttribute("customerStatsSearchKeyAllJ") != null){
+				session.removeAttribute("customerStatsSearchKeyAllJ");
+			}
+			session.setAttribute("customerStatsSearchKeyAllJ", searchKeyList);
+			
+			if(session.getAttribute("customerStatsShopAllJ") != null){
+				session.removeAttribute("customerStatsShopAllJ");
+			}
+			session.setAttribute("customerStatsShopAllJ", shopList);
+			
+			if(session.getAttribute("customerStatsPrdAllJ") != null){
+				session.removeAttribute("customerStatsPrdAllJ");
+			}
+			session.setAttribute("customerStatsPrdAllJ", prdList);
+			
+			entity = new ResponseEntity<String>("hello", HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value="/statsCustomerChart", method=RequestMethod.GET)
+	public void statsCustomerChartGET()throws Exception{
+	}
 	
 }
