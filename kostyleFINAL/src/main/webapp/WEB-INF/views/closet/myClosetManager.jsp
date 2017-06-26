@@ -11,6 +11,40 @@
 <script src="../../../resources/js/closet/closet.js"></script>
 <!-- <script src="../../../resources/js/closet/myClosetManager.js"></script> -->
 <script type="text/javascript">
+
+//-----------------------
+function resize_btn(){
+	var windowWidth = $(window).width();
+	/*     모바일폰
+     < 768
+     .col-xs-
+
+     태블릿
+     >=768
+     .col-sm-
+
+     데스크탑
+     >=992
+     .col-md-
+
+     데스크탑
+     >=1200
+     .col-lg-
+  */
+	if(windowWidth >= 768){
+		
+	}else if(windowWidth <= 992 ){
+		
+	}
+}
+
+//창크기 리사이즈 감지. 리사이즈시 resize_btn()함수 실행
+$(window).resize(resize_btn());
+//-----------------------
+
+
+
+
 //옷장의 폴더와 관련된 이벤트들모음. 단, 폴더관리창(자식창)을 여는이벤트 하나는 부모쪽에 있음.
 
 $(function(){
@@ -168,7 +202,6 @@ function folderUpdateBtn_click(object) {
 	})
 	return str;  
 } 
-
 
 
 
