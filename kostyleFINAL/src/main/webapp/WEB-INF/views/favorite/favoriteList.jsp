@@ -59,7 +59,7 @@
 						<c:forEach items="${list}" var="Favorite">
 
 							<tr  class="tr">
-								<td class="td"><img id="s_image" src="${Favorite.s_image}"></td>
+								<td class="td"><img id="s_image" src="http://${Favorite.s_image}"></td>
 								<td class="td"><a class="shoplink" href="http://${Favorite.s_shopurl }">${Favorite.s_sname}</a></td>
 								<td class="td"><a
 									href='/favorite/comentRead${pageMaker.makeQuery(pageMaker.cri.page)}&f_num=${Favorite.f_num }'>
