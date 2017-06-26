@@ -9,6 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/resources/css/coordi/coordiRegister.css" media="screen" title="no title" charset="utf-8">
 <script type="text/javascript">
 $(document).ready(function(){
 	/* $('.file').on('change', function(){
@@ -52,21 +53,21 @@ function upload(event){
       <div class="col-md-12">
          <!-- general form elements -->
          <div class="box box-primary">
-            <div class="box-header">
-               <h3 class="box-title">코디 등록</h3>
-            </div>
+           <div class="page-header">
+			<h1>코디등록</h1>
+		</div>
             <!-- /.box-header -->
             <div class="container">
             <form action="/coordinator/coordiregister" role="form" method="post" enctype="multipart/form-data">
                <div class="box-body">
                   <div class="form-group">
                      <label for="exampleInputEmail1">코디 이름</label> <input type="text"
-                        name='cd_name' class="form-control" placeholder="Enter Title">
+                        name='cd_name' class="form-control" placeholder="Enter Title" autocomplete="off">
                   </div>
                   <div class="form-group">
                      <label for="exampleInputPassword1">코디 설명</label>
                      <textarea class="form-control" name="cd_content" rows="5"
-                        placeholder="Enter ..."></textarea>
+                        placeholder="Enter ..." autocomplete="off"></textarea>
                   </div>
                   <div class="form-group">
                      <label for="exampleInputEmail1">쇼핑몰</label> <input type="text"
@@ -79,15 +80,15 @@ function upload(event){
                   </div>
                   <div class="form-group">
                   	<label for="exampleInputEmail1">상품링크1</label>
-                  	<input type="text" class="form-control" name="prd_url1">
+                  	<input type="text" class="form-control" name="prd_url1" autocomplete="off">
                   </div>
                   <div class="form-group">
                   	<label for="exampleInputEmail1">상품링크2</label>
-                  	<input type="text" class="form-control" name="prd_url2">
+                  	<input type="text" class="form-control" name="prd_url2" autocomplete="off">
                   </div>
                   <div class="form-group">
                   	<label for="exampleInputEmail1">상품링크3</label>
-                  	<input type="text" class="form-control" name="prd_url3">
+                  	<input type="text" class="form-control" name="prd_url3" autocomplete="off">
                   </div>
                  <%--  <div class="form-group">
                      <label for="exampleInputEmail1">쇼핑몰 선택</label> 
