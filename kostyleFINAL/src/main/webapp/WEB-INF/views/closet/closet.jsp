@@ -7,9 +7,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css"	href="../../../resources/css/closet/closet.css" />
-<script src="../../../resources/jquery/jquery-3.2.1.js"></script>
-<script src="../../../resources/js/closet/closet.js"></script>
+<link rel="stylesheet" type="text/css"	href="/resources/css/closet/closet.css" />
+<script src="/resources/jquery/jquery-3.2.1.js"></script>
+<script src="/resources/js/closet/closet.js"></script>
 
 <script type="text/javascript"> 
 $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 주어서 액션에서 "not"주입.
@@ -46,7 +46,7 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 				<c:choose>
 					<c:when test="${0 == select_clo_num || select_clo_num == null}">
 						<li class="tabClick" id="0"><span class="tab_span_01"><img
-								alt="" src="../resources/images/closetImg/checked-2.png"></span><span
+								alt="" src="/resources/images/closetImg/checked-2.png"></span><span
 							class="tab_span_02">전체상품</span></li>
 					</c:when>
 					<c:otherwise>

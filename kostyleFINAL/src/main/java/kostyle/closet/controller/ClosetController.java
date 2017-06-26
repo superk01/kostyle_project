@@ -38,7 +38,22 @@ public class ClosetController {
 	public String basicCloset(){
 		return "/closet/closet";
 	}
-	
+	@RequestMapping(value="/new")
+	public String newCloset(){
+		
+		
+		
+		return "/closet/closet_bootstrap";
+	}
+	@RequestMapping(value="/new2")
+	public String newCloset2(){
+		return "/closet/closet_bootstrap02";
+	}
+	@RequestMapping(value="/closetManager", method= RequestMethod.GET)
+	public String closetmanager(){
+		
+		return "/closet/closetManager_bootstrap";
+	}
 /*	@RequestMapping(value="/closetfolder")
 	public String basicClosetFilder(){
 		return "/closet/myClosetManager";
@@ -51,7 +66,7 @@ public class ClosetController {
 		
 		ResponseEntity<String> entity = null;
 		HttpSession session = request.getSession();
-		System.out.println("session.getAttri('login'): "+ ((CustomerVO) session.getAttribute("login")).getC_num());
+		//System.out.println("session.getAttri('login'): "+ (String)((CustomerVO) session.getAttribute("login")).getC_num());
 		
 		try{
 			Map map = service.closet(request, param); //"select_clo_num", "cloList" = List<ClosetPrd>, "cloTab" = List<Closet> 
@@ -64,7 +79,7 @@ public class ClosetController {
 			System.out.println("catch끝부분");
 		}
 //		return entity;
-		return "/closet/closet";
+		return "/closet/closet_bootstrap";
 		
 	}
 	

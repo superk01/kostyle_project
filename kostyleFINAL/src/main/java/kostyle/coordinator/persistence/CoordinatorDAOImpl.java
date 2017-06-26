@@ -66,7 +66,8 @@ public class CoordinatorDAOImpl implements CoordinatorDAO {
 	@Override
 	public List<CoordiDetailVO> getCoordiDetail(String cd_num) {
 		List<CoordiDetailVO> list = session.selectList(Namespace+".detailList", cd_num);
-		return session.selectList(Namespace+".detailList", cd_num);
+		System.out.println("CoordinatorDAOImpl:"+list);
+		return list;
 	}
     
 	

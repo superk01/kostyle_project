@@ -60,7 +60,7 @@ display: inline;
     </script>
 </head>
 
-<body>
+<body id="loginBody">
 
 <section id="fullContainer">
 	<section id="rightContainer"></section>
