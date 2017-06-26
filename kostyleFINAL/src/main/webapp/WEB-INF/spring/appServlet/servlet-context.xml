@@ -60,6 +60,7 @@
        <interceptor>
          <mapping path="/logintest/testpage2" />
          <mapping path="/closet/" />
+         <mapping path="/closet/new" />
          <mapping path="/favorite/favoriteList"/>
          <mapping path="/favorite/comentModify"/>
          <mapping path="/favorite/comentRead"/>
