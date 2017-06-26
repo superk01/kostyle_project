@@ -469,7 +469,7 @@
             <form class="search-form" action="#" method="get" name="searchForm">
                <div class="search-box">
                   <dl class="clear">
-                  <dt class="search1"><input id="search-text" type="text" name="search"></dt>
+                  <dt class="search1"><input id="search-text" type="text" name="keyword"></dt>
                   <dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="sendtwo()"></dd>
                   </dl>
                </div>
@@ -528,7 +528,7 @@ function sendtwo(){
    document.searchForm.action='/stats/insertstats';
    document.searchForm.submit();
     */
-   document.searchForm.action='/search/do';
+   document.searchForm.action='/category/search';
    /* document.searchForm.attr("method", "get"); */
    document.searchForm.submit();
 }
