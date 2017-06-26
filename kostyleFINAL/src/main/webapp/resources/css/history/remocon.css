@@ -1,6 +1,7 @@
 .wing_fixed{
 	position: fixed;
 	right: 4%;
+	top: 36%;
 	}
 
 .wing_fixed .wing_relative{
@@ -8,7 +9,7 @@
 }
 .wing_banner {
 	position: absolute;
-	top: 0px;
+	/* top: 0px; */
 	left:50%;
 	z-index:10000;
 	/* margin-left:1833px; */

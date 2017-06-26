@@ -8,31 +8,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://googledrive.com/host/0B-QKv6rUoIcGREtrRTljTlQ3OTg"></script>
 <!-- ie10-viewport-bug-workaround.js -->
 <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script>
 <!-- holder.js -->
-
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-     
-<link href="../../../resources/css/admin/shopJoin.css" rel="stylesheet">
-
-<style>
-.row div{
-	border : 1px solid;
-}
-</style>
+<link href="../../../resources/css/admin/shopList.css" rel="stylesheet">
 
 
 </head>
 <body>
-검색 라디오
-<br>
-신청날짜, 엑셀 다운로드, 메일등록/미등록 모달에서 셀렉트, 모달 연령대 select.
 
-<br><br><br>
 
 <div id="searchShop">
 	<span id="searchSelect" class="searchEl">
@@ -73,42 +58,40 @@
 <!-- shoppingmall list -->
 	<div id="shopList">
 	 <form role="form" method="post" id="adShopList">
- 	<div>
- 		<span></span>
- 		<span>번호</span>
- 		<span>쇼핑몰명</span>
- 		<span>쇼핑몰 URL</span>
- 		<span>사업자등록번호</span>
- 		<span>등록여부</span>
- 		<span>방문자수</span>
- 		<span>심사점수</span>
- 		<span>수정</span>
+ 	<div class="row divider_row">
+ 		<span class="colCheck col-md-1 col-sm-1 col-xs"></span>
+ 		<span class="colSmall col-md-1 col-sm-1 col-xs-1">번호</span>
+ 		<span class="colMid col-md-1 col-sm-1 col-xs-1">쇼핑몰명</span>
+ 		<span class="col-md-2 col-sm-2 col-xs-2">쇼핑몰 URL</span>
+ 		<span class="colMid col-md-2 col-sm-2 col-xs-2">사업자등록번호</span>
+ 		<span class="colSmall col-md-1 col-sm-1 col-xs-1">등록여부</span>
+ 		<span class="colSmall col-md-1 col-sm-1 col-xs-1">심사점수</span>
+ 		<span class="colSmall col-md-1 col-sm-1 col-xs-1">수정</span>
  	</div>
  	
  	<c:forEach items="${list }" var="ShopStateAdmin">
- 		<div class="shopInfotr">
- 			<span>
+ 		<div class="shopInfotr row divider_row">
+ 			<span class="colCheck col-md-1 col-sm-1 col-xs-1">
  				<input type="checkbox" name="s_num" id="check" value="${ShopStateAdmin.shop.s_num }">
  			</span>
  			
- 			<span class="shopInfo" id="s_num">${ShopStateAdmin.shop.s_num }</span>
- 			<span class="shopInfo" id="s_sname">
+ 			<span class="shopInfo colSmall col-md-1 col-sm-1 col-xs-1" id="s_num">${ShopStateAdmin.shop.s_num }</span>
+ 			<span class="shopInfo colMid col-md-1 col-sm-1 col-xs-1" id="s_sname">
  				<a class="s_sname" data-toggle="modal" data-target="#myModal">${ShopStateAdmin.shop.s_sname }</a>
  			</span>
- 			<span class="shopInfo" id="s_shopurl">
- 				<a href="${ShopStateAdmin.shop.s_shopurl }"> ${ShopStateAdmin.shop.s_shopurl }</a>
+ 			<span class="shopInfo col-md-2 col-sm-2 col-xs-2" id="s_shopurl">
+ 				<a href="http://${ShopStateAdmin.shop.s_shopurl }" target="_blank"> ${ShopStateAdmin.shop.s_shopurl }</a>
  			</span>
- 			<span class="shopInfo" id="s_shopreg" >${ShopStateAdmin.shop.s_shopreg }</span>
-			<span class="shopInfo ${ShopStateAdmin.shopState }" id="shopstate"></span>
- 			<span class="shopInfo" id="ad_hitcount">${ShopStateAdmin.adShop.ad_hitcount }</span>
- 			<span class="shopInfo" id="s_grade">${ShopStateAdmin.adShop.s_grade }</span>
- 			<span style="display: none;" class="shopInfo" id="s_image" >${ShopStateAdmin.shop.s_image }</span>
- 			<span style="display: none;" class="shopInfo" id="s_age" >${ShopStateAdmin.shop.s_age }</span>
- 			<span style="display: none;" class="shopInfo" id="s_searchurl" >${ShopStateAdmin.shop.s_searchurl }</span>
- 			<span style="display: none;" class="shopInfo" id="s_manager" >${ShopStateAdmin.shop.s_manager }</span>
- 			<span style="display: none;" class="shopInfo" id="s_phonenumber" >${ShopStateAdmin.shop.s_phonenumber }</span>
- 			<span style="display: none;" class="shopInfo" id="s_email" >${ShopStateAdmin.shop.s_email }</span>
- 			<span class="shopInfo" id="modifyShop"><a data-toggle="modal" data-target="#myModal">수정</a></span>
+ 			<span class="shopInfo colMid col-md-2 col-sm-2 col-xs-2" id="s_shopreg" >${ShopStateAdmin.shop.s_shopreg }</span>
+			<span class="shopInfo colSmall col-md-1 col-sm-1 col-xs-1 ${ShopStateAdmin.shopState }" id="shopstate"></span>
+ 			<span class="shopInfo colSmall col-md-1 col-sm-1 col-xs-1" id="s_grade">${ShopStateAdmin.adShop.s_grade }</span>
+ 			<span style="display: none;" class="shopInfo col-md-1 col-sm-1 col-xs-1" id="s_image" >${ShopStateAdmin.shop.s_image }</span>
+ 			<span style="display: none;" class="shopInfo col-md-1 col-sm-1 col-xs-1" id="s_age" >${ShopStateAdmin.shop.s_age }</span>
+ 			<span style="display: none;" class="shopInfo col-md-1 col-sm-1 col-xs-1" id="s_searchurl" >${ShopStateAdmin.shop.s_searchurl }</span>
+ 			<span style="display: none;" class="shopInfo col-md-1 col-sm-1 col-xs-1" id="s_manager" >${ShopStateAdmin.shop.s_manager }</span>
+ 			<span style="display: none;" class="shopInfo col-md-1 col-sm-1 col-xs-1" id="s_phonenumber" >${ShopStateAdmin.shop.s_phonenumber }</span>
+ 			<span style="display: none;" class="shopInfo col-md-1 col-sm-1 col-xs-1" id="s_email" >${ShopStateAdmin.shop.s_email }</span>
+ 			<span class="shopInfo colSmall col-md-1 col-sm-1 col-xs-1" id="modifyShop"><a data-toggle="modal" data-target="#myModal">수정</a></span>
  		</div>
  	</c:forEach>
  	
@@ -240,8 +223,6 @@
 								<div class="col-md-12 m_midtitle">추가정보</div>
 							</div>
 							<div class="row">
-								<div class="col-md-3">방문자수</div>
-								<div class="col-md-3" id="m_hitcount"></div>
 								<div class="col-md-3">심사점수</div>
 								<div class="col-md-3">
 									<a id="example" tabindex="0" data-toggle="popover" data-trigger="focus" data-content="숫자만 입력 가능합니다." >
@@ -269,6 +250,9 @@
 		</div>
 <!-- modal --> 	
 <br><br>
+<br><br><br>
+<br>
+신청날짜, 엑셀 다운로드, 메일등록/미등록 모달에서 셀렉트, 모달 연령대 select.
 
 aaabbb
 <script>
@@ -295,7 +279,6 @@ aaabbb
 		$("#m_manager").val($(this).parent().find("#s_manager").text());
 		$("#m_phonenumber").val($(this).parent().find("#s_phonenumber").text());
 		$("#m_email").val($.trim($(this).parent().find("#s_email").text()));
-		$("#m_hitcount").html($(this).parent().find("#ad_hitcount").text());
 		$("#m_grade").val($(this).parent().find("#s_grade").text());
 		
 		
@@ -326,6 +309,7 @@ aaabbb
 			alert("심사 점수를 다시 입력하세요");
 		}else{
 			alert("등록ㄱㄱ");
+
 			var shop = {};
 			
 			shop["s_num"] = $("#m_num").text();
@@ -337,7 +321,8 @@ aaabbb
 			shop["s_email"] = $("#m_email").val();
 			shop["s_age"] = $("#m_age option:selected").val();
 			shop["s_phonenumber"] = $("#m_phonenumber").val();
-			shop["s_image"] = $("#m_image").attr("src");
+			shop["s_image"] = $("#m_image").attr("src").substr(8);
+			
 			
 			var jsonObj = {};
 			jsonObj["shop"] = JSON.stringify(shop);
@@ -348,6 +333,7 @@ aaabbb
 			if(checkState == "등록"){
 				alert("이미 등록된 쇼핑몰입니다.");
 			}else{
+				
 				$.ajax({
 					type:'post',
 					url:'/admin/shopModal',
@@ -361,6 +347,7 @@ aaabbb
 						location.href="/admin/shopList";
 					}
 				});
+				 
 			}
 		}
 	});

@@ -57,6 +57,8 @@
 	<context:component-scan base-package="kostyle.find.service"/>
 	<context:component-scan base-package="kostyle.ranking.persistence"/>
 	<context:component-scan base-package="kostyle.ranking.service"/>
+	<context:component-scan base-package="kostyle.coordinator.persistence"/>
+	<context:component-scan base-package="kostyle.coordinator.service"/>
 	
 	
 	

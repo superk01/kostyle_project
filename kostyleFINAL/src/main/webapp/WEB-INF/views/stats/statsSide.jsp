@@ -12,8 +12,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
+      .jbFixed {
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        z-index:10000;
+      }
 </style>
-
+    <script>
+      $(document).ready( function() {
+        var jbOffset = $('.hamburgerSticky').offset();
+        $(window).scroll(function(){
+          if ($(document).scrollTop() > jbOffset.top) {
+            $('.hamburgerSticky').addClass('jbFixed');
+          }
+          else {
+            $('.hamburgerSticky').removeClass( 'jbFixed');
+          }
+        });
+      });
+    </script>
 <title>Insert title here</title>
 
 
@@ -51,7 +69,6 @@
                   <div class="panel-body">
                   	<ul class="collapse" id="dropdown-visitor">
                   		<li><a href="statsSide?statsbody=statsVisitor.jsp">방문자수 분석</a></li>
-                  		<li><a href="#">유입경로 분석</a></li>
                   	</ul>
                   </div>
                   
@@ -77,9 +94,7 @@
                   
                   <div class="panel-body">
                   	<ul class="collapse" id="dropdown-product">
-                  		<li><a href="#">전체 상품 분석</a></li>
-                  		<li><a href="#">카테고리 분석</a></li>
-                  		<li><a href="#">검색어 분석</a></li>
+                  		<li><a href="statsSide?statsbody=statsSearch.jsp">검색어 분석</a></li>
                   		<li><a href="#">찜하기 분석</a></li>
                   	</ul>
                   </div>
@@ -107,11 +122,13 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
+        	<div class="hamburgerSticky">
             <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
                 <span class="hamb-top"></span>
     			<span class="hamb-middle"></span>
 				<span class="hamb-bottom"></span>
             </button>
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">

@@ -2,9 +2,15 @@ package kostyle.stats.domain;
 
 public class HitcountStatsChart {
 	private String cnt_date;
+	
 	private int seoul;
-	private int busan;
 	private int jeju;
+	private int jeonla;
+	private int kyoungsang;
+	private int chungcheong;
+	private int kangwon;
+	private int kyounggi;
+	private int incheon;
 	
 	private int female;
 	private int male;
@@ -14,30 +20,6 @@ public class HitcountStatsChart {
 	private int thirty;
 	
 	public void HitcountStatsChart(){}
-
-	public int getSeoul() {
-		return seoul;
-	}
-
-	public void setSeoul(int seoul) {
-		this.seoul = seoul;
-	}
-
-	public int getBusan() {
-		return busan;
-	}
-
-	public void setBusan(int busan) {
-		this.busan = busan;
-	}
-
-	public int getJeju() {
-		return jeju;
-	}
-
-	public void setJeju(int jeju) {
-		this.jeju = jeju;
-	}
 
 	public int getFemale() {
 		return female;
@@ -85,6 +67,70 @@ public class HitcountStatsChart {
 
 	public void setCnt_date(String cnt_date) {
 		this.cnt_date = cnt_date;
+	}
+
+	public int getSeoul() {
+		return seoul;
+	}
+
+	public void setSeoul(int seoul) {
+		this.seoul = seoul;
+	}
+
+	public int getJeju() {
+		return jeju;
+	}
+
+	public void setJeju(int jeju) {
+		this.jeju = jeju;
+	}
+
+	public int getJeonla() {
+		return jeonla;
+	}
+
+	public void setJeonla(int jeonla) {
+		this.jeonla = jeonla;
+	}
+
+	public int getKyoungsang() {
+		return kyoungsang;
+	}
+
+	public void setKyoungsang(int kyoungsang) {
+		this.kyoungsang = kyoungsang;
+	}
+
+	public int getChungcheong() {
+		return chungcheong;
+	}
+
+	public void setChungcheong(int chungcheong) {
+		this.chungcheong = chungcheong;
+	}
+
+	public int getKangwon() {
+		return kangwon;
+	}
+
+	public void setKangwon(int kangwon) {
+		this.kangwon = kangwon;
+	}
+
+	public int getKyounggi() {
+		return kyounggi;
+	}
+
+	public void setKyounggi(int kyounggi) {
+		this.kyounggi = kyounggi;
+	}
+
+	public int getIncheon() {
+		return incheon;
+	}
+
+	public void setIncheon(int incheon) {
+		this.incheon = incheon;
 	}
 	
 }

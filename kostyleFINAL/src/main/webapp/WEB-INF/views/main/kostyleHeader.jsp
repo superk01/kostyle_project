@@ -524,10 +524,10 @@
 
 <script>
 function sendtwo(){
-   
+   /* 
    document.searchForm.action='/stats/insertstats';
    document.searchForm.submit();
-   
+    */
    document.searchForm.action='/search/do';
    /* document.searchForm.attr("method", "get"); */
    document.searchForm.submit();

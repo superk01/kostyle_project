@@ -126,19 +126,14 @@ margin: 10px;
     margin-left: 30px;
     padding: 0 20px;
     top: 5px;
-    font: 20px/40px proLight,Helvetica,Arial,sans-serif;
+    font: 14px/40px proLight,Helvetica,Arial,sans-serif;
     color: #fff;
     background: #ae82ac;
     border: none;
     transition: all .1s ease;
 }
-#statsSubmitbt a:hover{
-    color: #fff;
-	text-decoration:none;
-	background:#b891b6;
-}
 
 #piechartbox{
-	display: inline;
 	float: left;
 }
+

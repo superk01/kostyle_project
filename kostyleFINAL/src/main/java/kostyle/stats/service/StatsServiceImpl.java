@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kostyle.stats.domain.HitcountStats;
 import kostyle.stats.domain.HitcountStatsChart;
+import kostyle.stats.domain.SearchKeywordChart;
 import kostyle.stats.domain.SearchKeywordStats;
 import kostyle.stats.persistence.StatsDAO;
 
@@ -29,7 +30,7 @@ public class StatsServiceImpl implements StatsService{
 		List<HitcountStatsChart> list = null;
 		if(chartFor.equals("gender")){
 			list = dao.statsDate_gender(s_sname, statsSearchStartDate, statsSearchEndDate);
-		}else if(chartFor.equals("area")){
+		}else if(chartFor.equals("adr")){
 			list = dao.statsDate_adr(s_sname, statsSearchStartDate, statsSearchEndDate);
 		}else if(chartFor.equals("age")){
 			list = dao.statsDate_age(s_sname, statsSearchStartDate, statsSearchEndDate);
@@ -37,6 +38,12 @@ public class StatsServiceImpl implements StatsService{
 		
 		return list;
 	}
+
+	@Override
+	public List<SearchKeywordChart> statsSearchRank()throws Exception {
+		return dao.statsSearchRank();
+	}
+	
 
 	
 }
