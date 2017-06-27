@@ -95,8 +95,12 @@ $(document).ready(function() {
 		}) */
 	});
 	$('.prdurl a').on('click',function(event) {
-		alert('이벤트 확인');
 		var link = $(this).attr('href');
+		if(link.indexOf("http")==-1){
+			link="//"+link;
+		}
+		var h_name = $(this).parent().next().find('a').html();
+		alert(h_name);
 		location.href = "#CategoryResult_top";
 		event.preventDefault();
 		if ($('#CategorysearchIframe').length > 0) {
@@ -105,6 +109,7 @@ $(document).ready(function() {
 			$('#CategoryResult_top').remove();
 			$('table.table').parent().prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
 			$('table.table').parent().prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+ '">');
+			$('table.table').parent().prepend('<input type="hidden" name="productName" id="prdName" value="'+h_name+'">');
 			$('table.table').prepend('<div id="#CategoryResult_top"></div>');
 		}
 		$('#IframeRemocon').click(function() {
@@ -115,12 +120,18 @@ $(document).ready(function() {
 	$('.prdname a').click(function(event){
 		event.preventDefault();
 		var link = $(this).attr('href');
+		if(link.indexOf("http")==-1){
+			link="//"+link;
+		}
+		var h_name = $(this).html();
+		alert(h_name);
 		if($('#CategorysearchIframe').length>0){
 			$('#CategorysearchIframe').remove();
 		}
 		location.href = "#CategoryResult_top";
 		$('table.table').parent().prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
 		$('table.table').parent().prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="' +link +'">');
+			$('table.table').parent().prepend('<input type="hidden" name="productName" id="prdName" value="'+h_name+'">');
 		$('table.table').prepend('<div id="#CategoryResult_top"></div>');
 		
 		$('#IframeRemocon').click(function(){
