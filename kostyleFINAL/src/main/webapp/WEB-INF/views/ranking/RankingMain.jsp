@@ -63,7 +63,7 @@ value="${pageContext.request.contextPath}"/>
 						<c:forEach items="${list}" var="RankingVO">
 
 							<tr>
-								<td><img id="s_image" src="${RankingVO.s_image}"></td>
+								<td><img id="s_image" src="//${RankingVO.s_image}"></td>
 								<td><a href="http://${RankingVO.s_shopurl }">${RankingVO.s_sname}</a></td>
 								<%-- <td><a
 									href='/favorite/comentRead${pageMaker.makeQuery(pageMaker.cri.page)}&f_num=${Favorite.f_num }'>

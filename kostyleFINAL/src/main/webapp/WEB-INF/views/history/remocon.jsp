@@ -109,7 +109,8 @@
  $(function(){
     $('#closet_btn').on('click',function(){
        var ajaxNum = -1; //연쇄적ajax를 위한 기반변수
-       var prdUrl = "http:"+$('#CategorysearchIframe').attr('src');
+       var prdUrl = $('#CategorysearchIframe').attr('src');
+/*        var prdUrl = "http:"+$('#CategorysearchIframe').attr('src'); */
        alert("아이프레임에서 따온 상품url: "+prdUrl);
        
        var currentUrl = document.location.href;
@@ -119,7 +120,7 @@
        if(prdUrl == undefined){
           alert("찜할 상품이 존재하지 않습니다.");
        }else{
-          prdUrl = "prdUrl="+prdUrl;
+         /*  prdUrl = "prdUrl="+prdUrl; */
           
           //ajax를 비동기식(async : false)으로 사용해서 뒤의 ajax연쇄실행
           $.ajax({
@@ -129,9 +130,12 @@
                  },
              type: "post",
              url: "/closet/duplicationCheckClosetPrd",
-             data : JSON.stringify({
+/*              data : {
                  prdUrl : prdUrl
-                   }),
+                   }, */
+              data : JSON.stringify({
+            	  prdUrl_Map : prdUrl
+                   }), 
              async: false,
              success: function(data){
                 alert("ajax중복회신결과: "+data);
