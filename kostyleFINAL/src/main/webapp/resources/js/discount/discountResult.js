@@ -52,7 +52,7 @@ $(function() {
 		}
 		location.href = "#CategoryResult_top";
 		$('#TotalCategoryResult_Box').parent().prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
-		$('#TotalCategoryResult_Box').parent().prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="' +link +'">');
+		$('#TotalCategoryResult_Box').parent().prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="' +"//"+link +'">');
 		$('#TotalCategoryResult_Box').parent().prepend('<input type="hidden" name="productName" id="prdName" value="'+h_Name+'">');
 		
 		$('#IframeRemocon').click(function(){

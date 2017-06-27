@@ -253,11 +253,6 @@
 	
 	
 	
-	
-	
-	
-	
-	
 	<!-- 취향 비슷한 회원 -->
 	<select id="getSimilar" resultType="CustomerStats">
 				select c_num, count(*) as customer_count

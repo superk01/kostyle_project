@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="/resources/css/CategoryResult/CategoryResult.css" />
-<script type="text/javascript" src="/resources/js/jquery.js"></script>
+<!-- <script type="text/javascript" src="/resources/js/jquery.js"></script> -->
 <script type="text/javascript"  src="/resources/js/CategorysearchResult/CategorysearchResult.js"></script>
 <script type="text/javascript"  src="/resources/js/customer_taste_stack/customer_taste_stack.js"></script>
 <title>Insert title here</title>

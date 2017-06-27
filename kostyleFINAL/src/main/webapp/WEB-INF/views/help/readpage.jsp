@@ -216,7 +216,6 @@ $(document).ready(function(){
 			},
 			data : 'json',
 			success : function(data){
-				alert(data.answerNum);
 				$('#replycntSmall').remove();
 				$('.bg-green').append("<small id='replycntSmall'> ["+ data.answerNum+ "] </small>");
 			}
@@ -323,5 +322,10 @@ li.replyLi{
 		  			</li>
 				</ul>
 </div>
+<br><br><br><br>
+<footer>
+<%@ include file="../main/footer.jsp" %>
+
+</footer>
 </body>
 </html>

@@ -117,4 +117,5 @@ value="${pageContext.request.contextPath}"/>
 	</div>
 
 </body>
+      <%@ include file="../main/footer.jsp" %>
 

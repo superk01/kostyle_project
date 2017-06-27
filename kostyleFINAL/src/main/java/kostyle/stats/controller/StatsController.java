@@ -1,5 +1,8 @@
 package kostyle.stats.controller;
 
+import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -277,8 +280,56 @@ public class StatsController {
 	
 	//쇼핑몰이 로그인했을 떄
 	@RequestMapping(value="/statsMainShop", method=RequestMethod.GET)
-	public void statsMainShopGET(Model model)throws Exception{
+	public String statsMainShopGET(HttpServletRequest request, HttpServletResponse response)throws Exception{
+
+		//검색어 랭킹
+		List<SearchKeywordChart> list = null;
 		
+		list = service.statsSearchRank();
+		System.out.println("~~검색어 순위");
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i).getSk_searchkey());
+		}
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("searchkeyRankingJ") != null){
+			session.removeAttribute("searchkeyRankingJ");
+		}
+		session.setAttribute("searchkeyRankingJ", list);
+		
+		
+		//차트
+		List<HitcountStatsChart> visitorAgeList = null;
+		List<HitcountStatsChart> visitorGenderList = null;
+		List<HitcountStatsChart> visitorAreaList = null;
+		
+		AdShopVO adShopVo = (AdShopVO) session.getAttribute("shoplogin");
+		String s_sname = adShopVo.getS_sname();
+		
+		Calendar cal = Calendar.getInstance();
+		String startDay = cal.get(Calendar.YEAR)+"-"+new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1)+"-"+(cal.get(Calendar.DATE)-7);
+		String endDay = cal.get(Calendar.YEAR)+"-"+new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1)+"-"+(cal.get(Calendar.DATE));
+		
+		visitorAgeList = service.statsDate(s_sname, startDay, endDay, "age");
+		visitorGenderList = service.statsDate(s_sname, startDay, endDay, "gender");
+		visitorAreaList = service.statsDate(s_sname, startDay, endDay, "adr");
+		
+		if(session.getAttribute("statsVisitorShopAgeJ") != null){
+			session.removeAttribute("statsVisitorShopAgeJ");
+		}
+		session.setAttribute("statsVisitorShopAgeJ", visitorAgeList);		
+		
+		if(session.getAttribute("statsVisitorShopGenderJ") != null){
+			session.removeAttribute("statsVisitorShopGenderJ");
+		}
+		session.setAttribute("statsVisitorShopGenderJ", visitorGenderList);		
+		
+		if(session.getAttribute("statsVisitorShopAreaJ") != null){
+			session.removeAttribute("statsVisitorShopAreaJ");
+		}
+		session.setAttribute("statsVisitorShopAreaJ", visitorAreaList);		
+		
+		return "/stats/statsMainShop";		
 	}
 	
 	@RequestMapping(value="/statsVisitorShop", method=RequestMethod.GET)
@@ -346,7 +397,6 @@ public class StatsController {
 	public void statsVisitorShop_adrGET()throws Exception{
 		
 	}	
-	
 	
 	
 	//쇼핑몰 로그인 검색어 순위
