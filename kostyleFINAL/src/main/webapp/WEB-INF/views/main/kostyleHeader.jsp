@@ -281,6 +281,9 @@
           alert(h_name);
           location.href = "#CategoryResult_top";
           event.preventDefault();
+          if(link.indexOf("http")==-1){
+  			link="//"+link;
+  		  }
           if ($('#CategorysearchIframe').length > 0) {
              $('#CategorysearchIframe').attr("src", link);
           } else {
