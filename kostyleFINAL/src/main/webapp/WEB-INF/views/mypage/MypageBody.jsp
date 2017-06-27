@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="/resources/css/kostyleMain/footer.css" />
 <%-- <%@ include file="session_check.jsp" %> --%>
 <style type="text/css">
 	@IMPORT url("../../../resources/css/mypage/MypageBody.css");
@@ -44,4 +45,5 @@
 </section>
 
 </body>
+      <%@ include file="../main/footer.jsp" %>
 </html>
