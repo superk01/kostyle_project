@@ -37,7 +37,7 @@
 	<context:component-scan base-package="kostyle.help.service"/>
 	<context:component-scan base-package="kostyle.history.persistence"/>
 	<context:component-scan base-package="kostyle.history.service"/>
-	<context:component-scan base-package="kostyle.join.persistence"/>
+	<context:component-scan base-package="kostyle.favorite.persistence"/>
 	<context:component-scan base-package="kostyle.favorite.service"/>
 	<context:component-scan base-package="kostyle.join.persistence"/>
 	<context:component-scan base-package="kostyle.join.service"/>
