@@ -44,7 +44,6 @@
             </div>
         </div>
 </body>
-
 <script>
 
 $("#statsCustomerForm").submit(function(event){
@@ -62,5 +61,4 @@ $("#statsCustomerForm").submit(function(event){
 });
 
 </script>
-
 </html>
