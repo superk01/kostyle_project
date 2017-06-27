@@ -47,7 +47,7 @@
 }
 
 .p_img{
-	width: 400px;
+	width: 350px;
 	height: 400px;
 }
 
