@@ -384,7 +384,7 @@ li.replyLi{
                 
 				<div class="btns">
 					<div class="col-sm-12">
-					<input type="button" value="글목록" id="list" class="btn btn-default">
+					<a href="/coordinator/list"><input type="button" value="글목록" id="list" class="btn btn-default"></a>
 					<button id="like" class="btn btn-default">좋아요</button>
 					</div>
 					
