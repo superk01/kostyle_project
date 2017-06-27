@@ -404,7 +404,7 @@ li.replyLi{
   					<div class="box-body">
     					<label for="exampleInputEmail1">Writer</label>
     					<input class="form-control" type="text" placeholder="USER ID" 
-    	 				id="newReplyWriter" value="${login.c_id }" readonly="readonly"> 
+    	 				id="newReplyWriter" value="${login.c_id }" readonly=l"readonly"> 
     	      			<label for="exampleInputEmail1">Reply Text</label> 
     					<input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">
     				</div>
