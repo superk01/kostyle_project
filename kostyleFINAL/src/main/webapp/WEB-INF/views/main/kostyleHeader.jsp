@@ -277,6 +277,8 @@
           /* 리모컨의 상품을 클릭하였을때 iFrame으로 상품의 링크를  띄움. */
           $('body').on('click','li.wing_prd a',function(event) {
           var link = $(this).attr('href');
+          var h_name = $(this).find('span.p_name').html();
+          alert(h_name);
           location.href = "#CategoryResult_top";
           event.preventDefault();
           if ($('#CategorysearchIframe').length > 0) {
@@ -285,6 +287,7 @@
              $('#CategoryResult_top').remove();
              $('.remocon').prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
              $('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+ '">');
+             $('.remocon').prepend('<input type="hidden" name="productName" id="prdName" value="'+h_name+'">');
              $('.remocon').prepend('<div id="#CategoryResult_top"></div>');
           }
           $('#IframeRemocon').click(function() {

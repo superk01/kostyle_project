@@ -165,11 +165,13 @@ public class ClosetDAOImpl implements ClosetDAO {
 		System.out.println("dao에서 받은 prdUrl: "+prdUrl);
 		/*int endIndex = prdUrl.length();
 		prdUrl = prdUrl.substring(2, endIndex);*/
-		String path ="";
-		if(prdUrl.indexOf("http")==0){
-			path = "http:"+prdUrl;
+		/*String path ="";*/
+		int isHttp = prdUrl.indexOf("http");
+		System.out.println("DAOImpl:"+isHttp);
+		if(isHttp==-1){
+			prdUrl = "http:"+prdUrl;
 		}
-		System.out.println("urlRepair:"+path);
+		System.out.println("urlRepair:"+prdUrl);
 
 		URL url =null;
 		BufferedReader br =null;
@@ -184,7 +186,7 @@ public class ClosetDAOImpl implements ClosetDAO {
 		String price="";
 		String prdName="";
 		try {
-			url = new URL(path);
+			url = new URL(prdUrl);
 			URLConnection con = url.openConnection(); 
 			br = new BufferedReader(new InputStreamReader(url.openStream()));
 		    String code;
