@@ -401,7 +401,7 @@
         </li>
         
         <li><a href="/help/list" style="padding:20px 59px !important">SERVICE CENTER</a></li>
-        <li><a href="#" style="padding:20px 59px !important">STATISTICS</a></li>
+        <li><a href="/stats/statsMainShop" style="padding:20px 59px !important">STATISTICS</a></li>
         <li><a href="/coordinator/list" style="padding:20px 59px !important">COORDI</a></li>
       </ul>
     </div>
@@ -586,18 +586,19 @@
   
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      <li><a href="#" style="padding:20px 90px !important">RANKING</a></li>
+      <li><a href="#" style="padding:20px 59px !important">RANKING</a></li>
       
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT</a>
           <ul class="dropdown-menu">
-            <li><a href="#" style="padding:20px 90px !important">기획할인</a></li>
-            <li><a href="#" style="padding:20px 90px !important">신상품할인</a></li>
+            <li><a href="#" style="padding:20px 59px !important">기획할인</a></li>
+            <li><a href="#" style="padding:20px 59px !important">신상품할인</a></li>
           </ul>
         </li>
         
-        <li><a href="/help/list" style="padding:20px 90px !important">SERVICE CENTER</a></li>
-        <li><a href="#" style="padding:20px 90px !important">SHOP LIST</a></li>
+        <li><a href="/help/list" style="padding:20px 59px !important">SERVICE CENTER</a></li>
+        <li><a href="/admin/shopList" style="padding:20px 59px !important">SHOP LIST</a></li>
+        <li><a href="/stats/statsMain" style="padding:20px 59px !important">STATISTICS</a></li>
       </ul>
     </div>
   </div>

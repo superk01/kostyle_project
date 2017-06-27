@@ -17,8 +17,8 @@
 
 </head>
 <body>
-
-
+<br>
+<div id="shopListCon">
 <div id="searchShop">
 	<span id="searchSelect" class="searchEl">
 		<select name="searchType">
@@ -33,12 +33,11 @@
 	<span class="searchEl">
 		<input type="text" name="keyword" value='${cri.keyword }' id="searchText">
 	</span>
-	
+	<br>
 	<span id="searchRadio" class="searchEl">
 		<label for="state_all">
 		<input type="radio" name="shopState" value="all" id="state_all" checked="checked">전체
 		</label>
-
 		<label for="state_o">
 		<input type="radio" name="shopState" value="o" id="state_o">등록
 		</label>
@@ -47,6 +46,7 @@
 		<input type="radio" name="shopState" value="x" id="state_x">미등록
 		</label>
 	</span>
+	<br>
 	<span>
 		<input type="button" id="searchBtn" class="searchEl" value="Search">
 	</span>
@@ -122,7 +122,8 @@
 	</div>
 </div>
  
- 	
+ 
+</div>	
 
 <!-- modal --> 	
 	<div class="container">
@@ -149,7 +150,7 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-md-12">
-								<img id="m_image" alt="" src="">
+								<img id="m_image" alt="" src="" width="157px">
 								</div>
 							</div>
 							<div class="row">

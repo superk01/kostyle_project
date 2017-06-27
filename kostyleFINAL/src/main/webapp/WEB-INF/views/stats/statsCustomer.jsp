@@ -32,7 +32,7 @@
 								<input type="text" name="statsCustomer" id="statsCustomer">
 								</span></label>
 								</div>
-								<button type="submit" class="btn btn-default" id="statsCustomerBtn">Sign In</button>
+								<button type="submit" class="btn btn-default" id="statsCustomerBtn">조회</button>
 								
 								</form>
 								</div>
