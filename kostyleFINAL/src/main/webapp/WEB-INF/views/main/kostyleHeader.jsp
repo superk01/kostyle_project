@@ -284,7 +284,7 @@
           } else {
              $('#CategoryResult_top').remove();
              $('.remocon').prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
-             $('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+"//"+link+ '">');
+             $('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+ '">');
              $('.remocon').prepend('<div id="#CategoryResult_top"></div>');
           }
           $('#IframeRemocon').click(function() {
@@ -365,7 +365,7 @@
             <form class="search-form" action="#" method="get" name="searchForm">
                <div class="search-box">
                   <dl class="clear">
-                  <dt class="search1"><input id="search-text" type="text" name="search" style="border:5px solid #EC971F;"></dt>
+                  <dt class="search1"><input id="search-text" type="text" name="keyword" style="border:5px solid #EC971F;"></dt>
                   <dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch2.png" alt="검색" title="검색" onclick="sendtwo()" style="border:5px solid #EC971F;"></dd>
                   </dl>
                </div>
@@ -562,7 +562,7 @@
             <form class="search-form" action="#" method="get" name="searchForm">
                <div class="search-box">
                   <dl class="clear">
-                  <dt class="search1"><input id="search-text" type="text" name="search" style="border:5px solid #427ef5;"></dt>
+                  <dt class="search1"><input id="search-text" type="text" name="keyword" style="border:5px solid #427ef5;"></dt>
                   <dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch3.png" alt="검색" title="검색" onclick="sendtwo()" style="border:5px solid #427ef5;"></dd>
                   </dl>
                </div>
