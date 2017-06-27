@@ -166,7 +166,7 @@ public class JsoupThread extends Thread{
 			
 			//색상 추출 하기
 			
-			List<String> colorList = new ArrayList<>();
+			/*List<String> colorList = new ArrayList<>();
 			
 			for(int i=0; i<prdUrl.size(); i++){
 				getColorListThread.add(new GetColorThread("http://"+prdUrl.get(i)));
@@ -180,8 +180,8 @@ public class JsoupThread extends Thread{
 						break;
 					}
 				}
-			}
-			for(int i=0; i<prdName.size(); i++){
+			}*/
+			/*for(int i=0; i<prdName.size(); i++){*/
 				/*생성자 4개*/
 				/*System.out.println(i+"번째 결과 출력:"+thumbnail.get(i)+","+prdUrl.get(i)+","+prdPrice.get(i)+","+prdName.get(i));*/
 				/*result.add(new SearchVO(thumbnail.get(i), prdUrl.get(i), prdPrice.get(i), prdName.get(i)));*/
@@ -189,8 +189,9 @@ public class JsoupThread extends Thread{
 				/*생성자 5개*/
 				/*System.out.println(thumbnail.get(i)+","+prdUrl.get(i)+","+prdPrice.get(i)+","+prdName.get(i)+","+colorList.get(i));*/
 				/*result.add(new SearchVO(thumbnail.get(i), prdUrl.get(i), finalPriceList.get(i), prdName.get(i), colorList.get(i)));*/
-				result.add(new SearchVO(prdName.get(i), finalPriceList.get(i), thumbnail.get(i), shopURL, colorList.get(i), prdUrl.get(i), keyword));
-			}
+				/*colorList.get(i)*/
+				/*result.add(new SearchVO(prdName.get(i), finalPriceList.get(i), thumbnail.get(i), shopURL));*/
+		/*	}*/
 			/*System.out.println("최종 결과 리스트:"+result);*/
 			/*System.out.println(result);*/
 			
