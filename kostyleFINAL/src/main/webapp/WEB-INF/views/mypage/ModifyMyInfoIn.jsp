@@ -44,4 +44,5 @@
 </section>
 
 </body>
+      <%@ include file="../main/footer.jsp" %>
 </html>

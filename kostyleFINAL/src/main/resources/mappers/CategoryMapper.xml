@@ -59,6 +59,7 @@
 		where pro.product_name like '%'|| wea.SEARCH_NAME ||'%' and 
 		pro.PRODUCT_KEYWORD = wea.SEARCH_KEYWORD
 		and wea.SEARCH_ID = #{level}
+		and ROWNUM &lt; = 20
 		order by DBMS_RANDOM.RANDOM
 	</select>
 	

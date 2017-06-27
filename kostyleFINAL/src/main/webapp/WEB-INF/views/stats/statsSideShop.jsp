@@ -50,7 +50,7 @@
                 <li class="sidebar-brand">
                 </li>
                 <li>
-                    <a href="/stats/statsMain">
+                    <a href="/stats/statsMainShop">
                 	<span class="ifont"><i class="fa fa-bar-chart" style="font-size:19px"></i></span>
                     HOME</a>
                 </li>
