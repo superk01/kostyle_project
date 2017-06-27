@@ -97,7 +97,7 @@
 	      var url2 = url1.substring(7);
 	      var url3 = url2.split('/');
 	      var url4 = url3[0]+"/";
-	      alert(url4);
+	      //alert(url4);
 	      
 	      self.location = "/favorite/addFavorite?s_shopurl="+url4;
 	      
@@ -111,15 +111,23 @@
        var ajaxNum = -1; //연쇄적ajax를 위한 기반변수
        var prdUrl = $('#CategorysearchIframe').attr('src');
 /*        var prdUrl = "http:"+$('#CategorysearchIframe').attr('src'); */
-       alert("아이프레임에서 따온 상품url: "+prdUrl);
+       //alert("아이프레임에서 따온 상품url: "+prdUrl);
        
        var currentUrl = document.location.href;
-       alert("currentUrl: "+currentUrl);
+       //alert("currentUrl: "+currentUrl);
 
+       //즐겨찾기 등 아이프레임은있는데 상품이 없는 경우
+       var prdNameVal = $('input#prdName').val();
+       
+       
        var param = "prdUrl="+prdUrl+"&currentUrl="+currentUrl;
        if(prdUrl == undefined){
           alert("찜할 상품이 존재하지 않습니다.");
-       }else{
+       }else if(prdNameVal == undefined || prdNameVal == null){
+          alert("찜할 상품이 존재하지 않습니다.");
+       } else{
+    	   
+    	   
          /*  prdUrl = "prdUrl="+prdUrl; */
           
           //ajax를 비동기식(async : false)으로 사용해서 뒤의 ajax연쇄실행
@@ -138,26 +146,26 @@
                    }), 
              async: false,
              success: function(data){
-                alert("ajax중복회신결과: "+data);
+                //alert("ajax중복회신결과: "+data);
                 if(data >0){
                    alert("이미 찜한 상품입니다♥");
                 }else if(data==0){
                    ajaxNum = data;
-                   //alert("ajaxNum?: "+ajaxNum);
+                   ////alert("ajaxNum?: "+ajaxNum);
                 }
              },
              error: function(data){
-             //   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+             //   //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
              }
           });
           
           var prdName = $('#prdName').val();
-          alert("if진입직전ajaxNum?: "+ajaxNum);
+          //alert("if진입직전ajaxNum?: "+ajaxNum);
           if(ajaxNum == 0){
-             alert("ajaxNum == 0.중복없음ajax if진입");
-             alert(prdName);
-             //alert("insertAjax함수 진입.");
+             //alert("ajaxNum == 0.중복없음ajax if진입");
+             //alert(prdName);
+             ////alert("insertAjax함수 진입.");
              $.ajax({
                 headers: { 
                      'Accept': 'application/json',
@@ -171,7 +179,7 @@
                    prdName : prdName
                    }),
                 success: function(result){
-                   //alert("insertAjax결과: "+result);
+                   ////alert("insertAjax결과: "+result);
                    if(result == 1 || result.equals("1")){
                       alert("해당상품이 옷장에 추가되었습니다");
                    }else{
@@ -179,10 +187,10 @@
                    }
                 },
                 error: function(data){
-             //      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+             //      //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                 }
              });
-             //alert("insertAjax함수 끝.");
+             ////alert("insertAjax함수 끝.");
              
           }
        }
