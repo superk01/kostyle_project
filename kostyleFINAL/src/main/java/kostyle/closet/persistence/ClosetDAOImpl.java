@@ -104,6 +104,12 @@ public class ClosetDAOImpl implements ClosetDAO {
 
 	
 //-------------------prd------------------------------------------------------
+	//해당상품의 중복여부 우선확인
+	@Override
+	public int check_duplication(ClosetPrd closetPrd) {
+		System.out.println("check_duplication중복여부: "+session.selectOne(namespace+".check_duplication",closetPrd));
+		return session.selectOne(namespace+".check_duplication",closetPrd);
+	}
 	
 	//찜상품추가
 	@Override
@@ -111,32 +117,29 @@ public class ClosetDAOImpl implements ClosetDAO {
 		int re= session.insert(namespace +".insertClosetPrd", closetPrd );
 		return re;
 	}
+	
+	
+	
 	//찜상품추가시 다른사람의 같은상품에대한 찜카운트연동함수
 	@Override
-	public void zzimIncreaseTransaction(String clo_prdUrl) {
-		clo_prdUrl = prdUrlRepair(clo_prdUrl);//http://가있으면 지우는함수.
-		session.update(namespace+".zzimIncreaseTransaction", clo_prdUrl);
+	public void zzimIncreaseTransaction(ClosetPrd closetPrd) {
+		/*clo_prdUrl = prdUrlRepair(clo_prdUrl);//http://가있으면 지우는함수.
+*/		session.update(namespace+".zzimIncreaseTransaction", closetPrd);
 	}
 	
-	//해당상품의 중복여부 우선확인
+	//해당상품zzim횟수 구하기 보완필요. 찜추가/삭제시 다른사람한테도 카운트반영되도록.
 	@Override
-	public int check_duplication(ClosetPrd closetPrd) {
-		System.out.println("check_duplication중복여부: "+session.selectOne(namespace+".check_duplication",closetPrd));
-		return session.selectOne(namespace+".check_duplication",closetPrd);
+	public int count_zzim(ClosetPrd closetPrd) {
+		System.out.println("보완필요한count_zzim: "+session.selectOne(namespace+".count_zzim",closetPrd));
+		return session.selectOne(namespace+".count_zzim",closetPrd);
 	}
+	
 
 	//가장 큰 clo_detail_num구하기. 찜상품추가시 +1해서 clo_detail_num으로사
 	@Override
 	public int max_detail_num() {
 		System.out.println("가장 큰 detail_num: "+session.selectOne(namespace+".max_detail_num"));
 		return session.selectOne(namespace+".max_detail_num");
-	}
-
-	//해당상품zzim횟수 구하기 보완필요. 찜추가/삭제시 다른사람한테도 카운트반영되도록.
-	@Override
-	public int count_zzim(ClosetPrd closetPrd) {
-		System.out.println("보완필요한count_zzim: "+session.selectOne(namespace+".count_zzim",closetPrd));
-		return session.selectOne(namespace+".count_zzim",closetPrd);
 	}
 
 	//(찜추가시)밑의 getImgURL,Price,Name 합쳐서 해시맵에.
@@ -292,7 +295,7 @@ public class ClosetDAOImpl implements ClosetDAO {
 	//url에서 http://, https://떼기
 	@Override
 	public String prdUrlRepair(String prdUrl) {
-		 int index1 = -1;
+		/* int index1 = -1;
 		 int index2 = -1; 
 		 
 		 index1 = prdUrl.indexOf("http://");
@@ -307,8 +310,11 @@ public class ClosetDAOImpl implements ClosetDAO {
 			  index2 = index1 +8;
 			  prdUrl = prdUrl.substring(index2);
 			  System.out.println("http://뗀 prdUrl: "+prdUrl);
-		  }
+		  }*/
 		  
+//		Pattern pattern1 = Pattern.compile("http://||htttps://");
+		prdUrl = prdUrl.replaceAll("http://||https://", "");
+		System.out.println("daoImpl prdUrlRepair : "+prdUrl);
 		  return prdUrl;
 	  }
 

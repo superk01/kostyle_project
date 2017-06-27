@@ -325,9 +325,14 @@ public class ClosetServiceImpl implements ClosetService {
 		ClosetPrd closetPrd = this.insertPrdSub(request, param);
 		String clo_prdUrl = (String)param.get("prdUrl");
 		System.out.println("service transaction의 clo_prdUrl: "+clo_prdUrl);
-
+		
+		clo_prdUrl = dao.prdUrlRepair(clo_prdUrl);
+		ClosetPrd tempPrd = new ClosetPrd();
+		tempPrd.setClo_prdUrl(clo_prdUrl);
+		int clo_zzim = dao.count_zzim(tempPrd);
+		tempPrd.setClo_zzim(clo_zzim);
+		dao.zzimIncreaseTransaction(tempPrd); //http:붙여서보내도 알아서 떼고 검색함.
 		int re = dao.insertClosetPrd(closetPrd);
-		dao.zzimIncreaseTransaction(clo_prdUrl); //http:붙여서보내도 알아서 떼고 검색함.
 		return re;
 	}
 	
@@ -413,18 +418,13 @@ public class ClosetServiceImpl implements ClosetService {
 		HttpSession session = request.getSession();
 		int dupliCount = -1;
 
-		//6. 미친건지.. c_num이 인식이 안된다! Integer로 잡혀서 일단은 인티저->스트링으로 변환
-//		System.out.println("c_num변환: "+ request.getSession().getAttribute("c_num").toString());
-//		System.out.println("c_num변환: "+ (String)request.getSession().getAttribute("c_num"));
-		System.out.println("c_num변환: "+ ((CustomerVO) session.getAttribute("login")).getC_num());
-//		String c_num = session.getAttribute("c_num").toString();
-	//	String c_num = (String)session.getAttribute("c_num");
+		//6.  c_num
+		System.out.println("c_num변환: "+ (String)((CustomerVO) session.getAttribute("login")).getC_num());
 		String c_num = ((CustomerVO) session.getAttribute("login")).getC_num();
-		//String c_num =(String)request.getSession().getAttribute("c_num");
 		//System.out.println("c_num캐스팅...테스트 String "+c_num);
 		
 		//prdUrl의 http://자르기(순서상 다른것들 구한 후에 해야함.)
-		prdUrl = dao.prdUrlRepair(prdUrl);
+		prdUrl = (String)dao.prdUrlRepair(prdUrl);
 		System.out.println("자른 prdUrl: "+prdUrl);
 		closetPrd.setClo_prdUrl(prdUrl);
 		closetPrd.setC_num(c_num);
@@ -485,8 +485,8 @@ public class ClosetServiceImpl implements ClosetService {
 		for(int i=0; i<clo_detail_numArray.length; i++){
 			int clo_detail_num = Integer.parseInt(clo_detail_numArray[i]);
 			System.out.println("clo_detail_numArray쪼개기: "+clo_detail_num);
-			dao.deleteClosetPrd(clo_detail_num);
 			dao.zzimDecreaseTransaction(clo_detail_num);
+			dao.deleteClosetPrd(clo_detail_num);
 			
 		}
 		

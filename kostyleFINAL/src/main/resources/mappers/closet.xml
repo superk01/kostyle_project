@@ -118,7 +118,12 @@ update closetdetail set clo_num = #{clo_num} where clo_detail_num = #{clo_detail
 
 </update>
 
-
+<update id="zzimIncreaseTransaction" parameterType="ClosetPrd">
+update closetdetail set clo_zzim = #{clo_zzim} where clo_prdUrl = #{clo_prdUrl}
+</update>
+<update id="zzimDecreaseTransaction" parameterType="String">
+update closetdetail set clo_zzim = clo_zzim-1 where clo_prdUrl=  #{clo_prdUrl}
+</update>
 
 <!-- <insert id = "insertBoard" parameterType="Board">
 
