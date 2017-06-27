@@ -252,9 +252,9 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 								name="check"  style="display:none"/>
                <!--          </div>	
                         <div class="closet_btn_group col-xs-6 col-sm-6 col-md-6 col-md-offset-2 pull-right ">	 -->
-                        	<button class="btn btn-primary col-xs-4 col-sm-2 col-md-2  pull-right " type="button" value="전체선택" id="checkAllBtn">전체선택</button>
-							<button class="btn btn-danger col-xs-4 col-sm-2 col-md-2 pull-right " type="button" value="삭제" id="deleteBtn">상품삭제</button>
 							<button class="btn btn-warning col-xs-4 col-sm-2 col-md-2 pull-right " type="button" value="이동" id="moveBtn1">폴더이동</button>
+							<button class="btn btn-danger col-xs-4 col-sm-2 col-md-2 pull-right " type="button" value="삭제" id="deleteBtn">상품삭제</button>
+                        	<button class="btn btn-primary col-xs-4 col-sm-2 col-md-2  pull-right " type="button" value="전체선택" id="checkAllBtn">전체선택</button>
 	                 </div>
 
                         </div>

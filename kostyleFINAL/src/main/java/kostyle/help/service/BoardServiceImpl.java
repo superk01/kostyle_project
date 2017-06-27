@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.css.CSSUnknownRule;
 
 import kostyle.help.domain.AdShoppingMallHelp;
@@ -102,9 +103,10 @@ public class BoardServiceImpl implements BoardService {
 		
 
 	}
-
+	@Transactional
 	@Override
 	public void delete(int q_Num)throws Exception {
+		replyDAO.ReplyDeletaAll(q_Num);
 		boardDAO.delete(q_Num);
 
 	}

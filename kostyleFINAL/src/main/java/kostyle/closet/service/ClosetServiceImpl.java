@@ -329,10 +329,11 @@ public class ClosetServiceImpl implements ClosetService {
 		clo_prdUrl = dao.prdUrlRepair(clo_prdUrl);
 		ClosetPrd tempPrd = new ClosetPrd();
 		tempPrd.setClo_prdUrl(clo_prdUrl);
-		int clo_zzim = dao.count_zzim(tempPrd);
+		int clo_zzim = dao.count_zzim(tempPrd) ;
+		int re = dao.insertClosetPrd(closetPrd);
+		clo_zzim +=1;
 		tempPrd.setClo_zzim(clo_zzim);
 		dao.zzimIncreaseTransaction(tempPrd); //http:붙여서보내도 알아서 떼고 검색함.
-		int re = dao.insertClosetPrd(closetPrd);
 		return re;
 	}
 	

@@ -106,6 +106,9 @@
 	<select id="R_count" parameterType="int" resultType="int">
 		select count(*) from answer where q_num = #{value}
 	</select>
+	<delete id="ReplyDeletaAll" parameterType="integer">
+		delete from answer where q_num = #{value}
+	</delete>
 	<!-- 여기까지 Reply 관련부분임. -->
 	<!-- 검색관련 include -->
 	<sql id="search">
