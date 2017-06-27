@@ -15,10 +15,11 @@
 <!-- <title>KOStyle</title> -->
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <!-- <link href="/resources/css/closet/closet_scrolling_tabs.css" rel="stylesheet" type="text/css"> -->
-
+    <!-- Latest jQuery form server -->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <!-- 리스트의 스타일 -->
 <!--     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script> -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<!--     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 		<!-- Website CSS style -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Pacifico&amp;subset=latin-ext,vietnamese" rel="stylesheet">
@@ -37,6 +38,9 @@ ul, ol, li {
 	a{
 		text-decoration: none;
 		color: black;
+	}
+	.btn_group_row{
+	margin-bottom : 30px;
 	}
 #closet_h1{
 	margin-top:50px;
@@ -135,6 +139,7 @@ margin-top:30px; margin-bottom:10px;
 
 <!-- <script src="/resources/js/closet/closet_scrolling_tabs.js"></script> -->
 <!-- <script src="/resources/js/closet/closet.js"></script> -->
+
 <script type="text/javascript">
 /* $('.nav-tabs').scrollingTabs(); */
 
@@ -161,7 +166,7 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 
 
 <section class="folder_container">
-	<h1 id="closet_h1">My Closet</h1>
+	<h1 id="closet_h1">MY CLOSET</h1>
 <!-- Nav tabs -->
 <nav id="closetNavi" class="scrtabs-tab-container" style="visibility: visible;">
 	<div class="scrtabs-tab-scroll-arrow scrtabs-js-tab-scroll-arrow-left">
@@ -239,6 +244,23 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 	</form>
 </nav>
 
+                    <div class="btn_group_row panel-footer row col-xs-12 col-sm-12 col-md-12"  style="padding: 10px 15px;">
+                        <div class="pickButton col-xs-12 col-sm-6 col-md-6  pull-right">
+                        	<input type="hidden" name="c_num" value="${sessionScope.c_num }">
+							<input type="hidden" name="clo_num" value="${requestScope.clo_num }">
+							<input type="checkbox" class="check" id="checkAll" value="0"
+								name="check"  style="display:none"/>
+               <!--          </div>	
+                        <div class="closet_btn_group col-xs-6 col-sm-6 col-md-6 col-md-offset-2 pull-right ">	 -->
+                        	<button class="btn btn-primary col-xs-4 col-sm-2 col-md-2  pull-right " type="button" value="전체선택" id="checkAllBtn">전체선택</button>
+							<button class="btn btn-danger col-xs-4 col-sm-2 col-md-2 pull-right " type="button" value="삭제" id="deleteBtn">상품삭제</button>
+							<button class="btn btn-warning col-xs-4 col-sm-2 col-md-2 pull-right " type="button" value="이동" id="moveBtn1">폴더이동</button>
+	                 </div>
+
+                        </div>
+
+
+
 <!-- 아코디언예시 -->
 <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">	
 	<div class="panel panel-default">
@@ -308,7 +330,7 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 							<span class="text-left"> ${closetPrd.clo_zzim  }</span>
 							<!--  상품 찜갯수도 가능하면 -->
 						</div>
-						<div class="shopName col-xs-6 col-sm-6 col-md-6 text-right">
+						<div class="shopName col-xs-6 col-sm-6 col-md-6 pull-right">
 							<span class="glyphicon glyphicon-home"></span><span> ${closetPrd.s_sname }</span>
 						</div>
 					</div>
@@ -321,9 +343,24 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 </ul>	
 </div>			
 <!-- END PRODUCTS -->
+ <!--        <div class="panel-footer" > -->
+<%--                     <div class="panel-footer row col-xs-12 col-sm-12 col-md-12" style="padding: 10px 15px;">
+                        <div class="pickButton col-xs-12 col-sm-6 col-md-6 pull-right">
+                        	<input type="hidden" name="c_num" value="${sessionScope.c_num }">
+							<input type="hidden" name="clo_num" value="${requestScope.clo_num }">
+							<input type="checkbox" class="check" id="checkAll" value="0"
+								name="check"  style="display:none"/>
+               <!--          </div>	
+                        <div class="closet_btn_group col-xs-6 col-sm-6 col-md-6 col-md-offset-2 pull-right ">	 -->
+                         	<button class="btn btn-primary col-xs-4 col-sm-2 col-md-2  pull-right " type="button" value="전체선택" id="checkAllBtn">전체선택</button>
+							<button class="btn btn-danger col-xs-4 col-sm-2 col-md-2 pull-right " type="button" value="삭제" id="deleteBtn">상품삭제</button>
+							<button class="btn btn-warning col-xs-4 col-sm-2 col-md-2 pull-right " type="button" value="이동" id="moveBtn1">폴더이동</button>
+	                 </div>
 
+                        </div> --%>
+           <!--          </div> -->
 </section>
-			<div class="pickButton">
+<%-- 			<div class="pickButton">
 				<!-- 히든으로 c_num값을 보내야... 아니면 jstl로 c:set해놓고 스크립트에서 c:out으로 받을 수 있음.-->
 				<input type="hidden" name="c_num" value="${sessionScope.c_num }">
 				<input type="hidden" name="clo_num" value="${requestScope.clo_num }">
@@ -332,25 +369,10 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 				<button type="button" value="전체선택" id="checkAllBtn">전체선택</button>
 				<button type="button" value="삭제" id="deleteBtn">상품삭제</button>
 				<button type="button" value="이동" id="moveBtn1">폴더이동</button>
-			</div>
+			</div> --%>
 			
 			
-         <!--        <div class="panel-footer" > -->
-                    <div class="panel-footer row col-xs-12 col-sm-12 col-md-12" style="padding: 10px 15px;">
-                        <div class="pickButton col-xs-12 col-sm-6 col-md-6 text-right">
-                        	<input type="hidden" name="c_num" value="${sessionScope.c_num }">
-							<input type="hidden" name="clo_num" value="${requestScope.clo_num }">
-							<input type="checkbox" class="check" id="checkAll" value="0"
-								name="check"  style="display:none"/>
-               <!--          </div>	
-                        <div class="closet_btn_group col-xs-6 col-sm-6 col-md-6 col-md-offset-2 text-right ">	 -->
-                        	<button class="btn btn-primary col-xs-4 col-sm-2 col-md-2 " type="button" value="전체선택" id="checkAllBtn">전체선택</button>
-							<button class="btn btn-danger col-xs-4 col-sm-2 col-md-2 " type="button" value="삭제" id="deleteBtn">상품삭제</button>
-							<button class="btn btn-warning col-xs-4 col-sm-2 col-md-2 " type="button" value="이동" id="moveBtn1">폴더이동</button>
-	                 </div>
-
-                        </div>
-           <!--          </div> -->
+        
            
 <!-- 
  <div class="panel-footer row col-xs-12 col-sm-12 col-md-12" style="padding: 10px 15px;">
@@ -365,7 +387,6 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 
                         </div>
 
- -->
 	</section>
 
 </div>
@@ -374,7 +395,7 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 </div>
 </div>
 
- <script src="js/bootstrap.min.js"></script>
+<!--  <script src="js/bootstrap.min.js"></script> -->
 <script type="text/javascript">
 
 /* 이미지 높이 일괄적용  */

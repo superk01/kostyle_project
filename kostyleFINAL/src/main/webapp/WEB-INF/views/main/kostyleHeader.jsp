@@ -395,8 +395,8 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:20px 59px !important">DISCOUNT</a>
           <ul class="dropdown-menu">
-            <li><a href="#">기획할인</a></li>
-            <li><a href="#">신상품할인</a></li>
+            <li><a href="/discount/planning">기획할인</a></li>
+            <li><a href="/discount/new">신상품할인</a></li>
           </ul>
         </li>
         

@@ -8,8 +8,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/CategoryResult/CategoryResult.css" />
+<style>
+#discount_h1{
+	margin-left : 3%;
+/* 	margin-top:50px;
+	margin-bottom: 15px;
+	font-size: 50px;
+	font-family: 'Quicksand', sans-serif; */
+	font-weight: 700;
+    margin: 15px 3% ;
+    
+}
+
+</style>
+		<!-- Website Font style -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		<link rel="stylesheet" href="product.css">
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> 
 <!-- <script type="text/javascript" src="../resources/js/jquery.js"></script> -->
 <script src="/resources/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript"  src="/resources/js/discount/discount.js"></script>
@@ -41,7 +59,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-
+<h1 id="discount_h1">기획 할인</h1>
 <div id="CategoryBody">
       <div id="CategoryResult_top"></div>
       <div id="CategoryFilter">
