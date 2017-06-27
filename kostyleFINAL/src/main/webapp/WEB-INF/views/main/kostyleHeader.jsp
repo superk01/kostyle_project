@@ -284,7 +284,7 @@
           } else {
              $('#CategoryResult_top').remove();
              $('.remocon').prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
-             $('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+ '">');
+             $('.remocon').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+"//"+link+ '">');
              $('.remocon').prepend('<div id="#CategoryResult_top"></div>');
           }
           $('#IframeRemocon').click(function() {
@@ -625,7 +625,7 @@ function sendtwo(){
    document.searchForm.action='/stats/insertstats';
    document.searchForm.submit();
     */
-   document.searchForm.action='/search/do';
+   document.searchForm.action='/category/search';
    /* document.searchForm.attr("method", "get"); */
    document.searchForm.submit();
 }

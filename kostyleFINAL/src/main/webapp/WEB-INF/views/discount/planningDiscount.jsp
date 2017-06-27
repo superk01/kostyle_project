@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="/resources/css/CategoryResult/CategoryResult.css" />
+<script type="text/javascript"  src="/resources/js/discount/discountResult.js"></script>
 <style>
 #discount_h1{
 	margin-left : 3%;
@@ -30,8 +31,8 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> 
 <!-- <script type="text/javascript" src="../resources/js/jquery.js"></script> -->
 <script src="/resources/jquery/jquery-3.2.1.js"></script>
-<script type="text/javascript"  src="/resources/js/discount/discount.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript"  src="/resources/js/discount/discount.js"></script> -->
+<!-- <script type="text/javascript">
 $(document).ready(function(){
 	$('div.CategoryResult_oneItemBox').on('click',function(event){
 		event.preventDefault();
@@ -56,7 +57,7 @@ $(document).ready(function(){
 	
 
 
-</script>
+</script> -->
 </head>
 <body>
 <h1 id="discount_h1">기획 할인</h1>

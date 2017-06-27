@@ -107,7 +107,7 @@ public class ClosetController {
 	@RequestMapping(value="/insertPrd", method=RequestMethod.POST)
 	public ResponseEntity<Integer> insertPrd(@RequestBody Map<Object,Object> param, HttpServletRequest request)throws Exception{
 		//var param = "prdUrl="+prdUrl+"&currentUrl="+currentUrl;
-		
+		System.out.println("closetController-insertPrd 진입");
 		System.out.println("/insertPrd의 param(map): "+param);
 
 		ResponseEntity<Integer> entity = null;

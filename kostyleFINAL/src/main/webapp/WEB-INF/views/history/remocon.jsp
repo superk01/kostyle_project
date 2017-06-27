@@ -152,9 +152,11 @@
              }
           });
           
+          var prdName = $('#prdName').val();
           alert("if진입직전ajaxNum?: "+ajaxNum);
           if(ajaxNum == 0){
              alert("ajaxNum == 0.중복없음ajax if진입");
+             alert(prdName);
              //alert("insertAjax함수 진입.");
              $.ajax({
                 headers: { 
@@ -165,7 +167,8 @@
                 url:"/closet/insertPrd",
                 data : JSON.stringify({
                    prdUrl : prdUrl,
-                   currentUrl : currentUrl
+                   currentUrl : currentUrl,
+                   prdName : prdName
                    }),
                 success: function(result){
                    //alert("insertAjax결과: "+result);
