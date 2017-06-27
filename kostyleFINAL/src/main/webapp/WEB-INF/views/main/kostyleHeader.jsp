@@ -395,8 +395,13 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:20px 59px !important">DISCOUNT</a>
           <ul class="dropdown-menu">
+<<<<<<< HEAD
             <li><a href="/discount/do1">기획할인</a></li>
             <li><a href="/discount/do2">신상품할인</a></li>
+=======
+            <li><a href="/discount/planning">기획할인</a></li>
+            <li><a href="/discount/new">신상품할인</a></li>
+>>>>>>> branch 'master' of https://github.com/superk01/kostyle_project
           </ul>
         </li>
         
