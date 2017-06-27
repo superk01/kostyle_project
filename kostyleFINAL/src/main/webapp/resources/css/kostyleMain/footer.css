@@ -72,3 +72,13 @@ footer div h3{
     margin-bottom: 20px;
     border-top: 1px solid #ccc;
 }
+#shopJoinForm a{
+    padding: 8px;
+    color: #fff;
+    background: #ae82ac;
+    border-radius: 6px;
+}
+#shopJoinForm a:hover{
+    background: #b891b6;
+    text-decoration: none;
+}

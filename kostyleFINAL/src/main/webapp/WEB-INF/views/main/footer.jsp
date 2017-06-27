@@ -43,9 +43,9 @@
 	                     <br>
 	                 <ul>
 	                        <li><strong>입점 문의</strong> 1577-0011 
-	                         <span   style="font-size: 11px"><br>월-금 9:00-18:00 / 점심시간:
+	                         <span style="font-size: 11px"><br>월-금 9:00-18:00 / 점심시간:
 	                              12:00~13:00</span></li> 
-	                        <li><a href="../admin/joinForm"><strong>입점 신청서 </strong></a></li>
+	                        <li><span id="shopJoinForm"><a href="../admin/joinForm"><strong>입점 신청서 </strong></a></span></li>
 
 	                  </ul>
 			</div>
