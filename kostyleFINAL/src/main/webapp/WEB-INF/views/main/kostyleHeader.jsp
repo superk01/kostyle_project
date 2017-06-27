@@ -30,6 +30,9 @@
     
 <style type="text/css">
  
+ .mainImg{
+        cursor: pointer;
+ }
 .table>thead>tr>th {
    vertical-align: bottom;
    border-bottom: 5px solid gray !important;
@@ -395,7 +398,6 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:20px 59px !important">DISCOUNT</a>
           <ul class="dropdown-menu">
-
             <li><a href="/discount/planning">기획할인</a></li>
             <li><a href="/discount/new">신상품할인</a></li>
           </ul>
@@ -587,19 +589,19 @@
   
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      <li><a href="/ranking/RankingMain" style="padding:20px 50px !important">RANKING</a></li>
+      <li><a href="/ranking/RankingMain" style="padding:20px 59px !important">RANKING</a></li>
       
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT</a>
           <ul class="dropdown-menu">
-            <li><a href="/discount/planning" style="padding:20px 50px !important">기획할인</a></li>
-            <li><a href="/discount/new" style="padding:20px 50px !important">신상품할인</a></li>
+            <li><a href="/discount/planning" style="padding:20px 59px !important">기획할인</a></li>
+            <li><a href="/discount/new" style="padding:20px 59px !important">신상품할인</a></li>
           </ul>
         </li>
         
-        <li><a href="/help/list" style="padding:20px 50px !important">SERVICE CENTER</a></li>
-        <li><a href="/admin/shopList" style="padding:20px 50px !important">SHOP LIST</a></li>
-        <li><a href="/stats/statsMain" style="padding:20px 50px !important">STATISTICS</a></li>
+        <li><a href="/help/list" style="padding:20px 59px !important">SERVICE CENTER</a></li>
+        <li><a href="/admin/shopList" style="padding:20px 59px !important">SHOP LIST</a></li>
+        <li><a href="/stats/statsMain" style="padding:20px 59px !important">STATISTICS</a></li>
       </ul>
     </div>
   </div>
