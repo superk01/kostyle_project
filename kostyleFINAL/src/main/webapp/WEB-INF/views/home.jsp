@@ -143,7 +143,7 @@ button:focus {
     </div>
     
     <div class="item">
-      <a class="shopLink" href="htt=://ggsing.com"><img class="imgAd" src="/resources/images/mainImg/shop_go.jpg" alt="..."></a>
+      <a class="shopLink" href="http://ggsing.com"><img class="imgAd" src="/resources/images/mainImg/shop_go.jpg" alt="..."></a>
       <div class="carousel-caption">
       </div>
     </div>
