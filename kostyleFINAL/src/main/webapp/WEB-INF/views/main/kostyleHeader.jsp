@@ -390,7 +390,7 @@
   
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      <li><a href="#" style="padding:20px 59px !important">RAKING</a></li>
+      <li><a href="/ranking/RankingMain" style="padding:20px 59px !important">RANKING</a></li>
       
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:20px 59px !important">DISCOUNT</a>
@@ -496,7 +496,7 @@
   
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      <li><a href="#">RANKING</a></li>
+      <li><a href="/ranking/RankingMain">RANKING</a></li>
       
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT</a>
@@ -586,7 +586,7 @@
   
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      <li><a href="#" style="padding:20px 59px !important">RANKING</a></li>
+      <li><a href="/ranking/RankingMain" style="padding:20px 59px !important">RANKING</a></li>
       
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT</a>
