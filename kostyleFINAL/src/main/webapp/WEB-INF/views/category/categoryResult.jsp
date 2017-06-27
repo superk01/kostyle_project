@@ -13,6 +13,50 @@
 <script type="text/javascript"  src="/resources/js/CategorysearchResult/CategorysearchResult.js"></script>
 <script type="text/javascript"  src="/resources/js/customer_taste_stack/customer_taste_stack.js"></script>
 <title>Insert title here</title>
+<script type="text/javascript">
+$(document).ready(function(){
+	//히스토리 상품 추가
+		$('.CategoryResult_oneItemBox').on('click',function(event){
+			alert('히스토리');
+			event.preventDefault();
+			$.ajax({
+				url : '/history/insert',
+				type : 'post',
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"POST"
+				},
+				data : JSON.stringify({h_Prdurl:$(this).eq(0).find('a').attr('href'),
+						h_Imgurl:$(this).eq(0).find('img').attr('src'),
+						h_Name:$(this).children().eq(1).find('a').html(),
+						h_Price:$(this).children().eq(2).find('a').html()}),
+				success : function(result){
+					$('.wing_fixed').remove();
+					remoconList();
+				}		
+				});
+			});
+		//아이프레임 추가
+		$('.CategoryResult_oneItemBox').click(function(event){
+			alert('아이프레임');
+			event.preventDefault();
+			var link = $(this).find('a').eq(1).attr('href');
+			var h_Name = $(this).children().eq(1).find('a').html();
+			if($('#CategorysearchIframe').length>0){
+				$('#CategorysearchIframe').remove();
+			}
+			location.href = "#CategoryResult_top";
+			$('#TotalCategoryResult_Box').parent().prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
+			$('#TotalCategoryResult_Box').parent().prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link +'">');
+			$('#TotalCategoryResult_Box').parent().prepend('<input type="hidden" name="productName" id="prdName" value="'+h_Name+'">');
+			
+			$('#IframeRemocon').click(function(){
+				$('#CategorysearchIframe').remove();
+				$('#IframeRemocon').remove();
+			});
+		});
+});
+</script>
 </head>
 <body>
 <div id="CategoryBody">

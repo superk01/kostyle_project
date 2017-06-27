@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.inject.Inject;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -114,6 +115,7 @@ public class ClosetDAOImpl implements ClosetDAO {
 	//찜상품추가
 	@Override
 	public int insertClosetPrd(ClosetPrd closetPrd) {
+		System.out.println("insertClosetPrd:"+closetPrd);
 		int re= session.insert(namespace +".insertClosetPrd", closetPrd );
 		return re;
 	}
@@ -158,8 +160,18 @@ public class ClosetDAOImpl implements ClosetDAO {
 		
 		
 		//자바의 줄바꿈은 시스템마다 달라진다. 현재 운영체제의 줄바꿈 문자 얻는법.
+		System.out.println("urlRepair:"+prdUrl);
 		String line = System.getProperty("line.separator");
 		System.out.println("dao에서 받은 prdUrl: "+prdUrl);
+		/*int endIndex = prdUrl.length();
+		prdUrl = prdUrl.substring(2, endIndex);*/
+		/*String path ="";*/
+		int isHttp = prdUrl.indexOf("http");
+		System.out.println("DAOImpl:"+isHttp);
+		if(isHttp==-1){
+			prdUrl = "http:"+prdUrl;
+		}
+		System.out.println("urlRepair:"+prdUrl);
 
 		URL url =null;
 		BufferedReader br =null;

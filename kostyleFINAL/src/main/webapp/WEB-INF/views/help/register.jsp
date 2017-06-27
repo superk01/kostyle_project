@@ -180,7 +180,11 @@ $(document).ready(function(){
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<br><br><br><br>
+<footer>
+<%@ include file="../main/footer.jsp" %>
 
+</footer>
 
 </body>
 </html>

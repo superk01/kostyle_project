@@ -22,7 +22,7 @@ $(function(){
 		//"c_num="+c_num+
 		var param = "clo_num="+clo_num+
 		"&clo_name="+clo_name;
-		//alert("param값은?: "+param);
+		////alert("param값은?: "+param);
 		
 		$.ajax({
 			headers: { 
@@ -36,14 +36,14 @@ $(function(){
 	            clo_name : clo_name,
 	         }),
 			success: function (data){
-				//alert("ajax결과: "+data);
+				////alert("ajax결과: "+data);
 				//console.log("ajax결과: "+data);
 				$('#closetBody').html(data);
 				//$('#templateBody').html(data);
 			}  ,
 			error : function(xhr, status, error) {
-				alert("ajax실패");
-				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				//alert("ajax실패");
+				////alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 			}
 		}); 
@@ -52,7 +52,7 @@ $(function(){
 //옷장 전체선택(checkbox)
 $(function(){
 	$('#allcheckCloset').on('click',function(){
-		alert("전체체크박스 클릭");
+		//alert("전체체크박스 클릭");
 		if($('#allcheckCloset').prop('checked')){
 			$('.checkCloset').prop('checked',true);
 		}else{
@@ -70,17 +70,17 @@ opener는 부모를 지칭하는 객체(?)이고 opener.을 이용해서 부모�
 	*/
 	 
 	$('#manage').on('click',function(){
-		//alert("cloTabParam의값: "+$('#cloTabParam').val() );
+		////alert("cloTabParam의값: "+$('#cloTabParam').val() );
 		var attriName = "closetTab";
 		var attriValue = $('#cloTabParam').val(); 
-		//alert("cloTabParam: "+attriValue);
-		//alert("attriVlaue의타입: "+typeof(attriValue));
+		////alert("cloTabParam: "+attriValue);
+		////alert("attriVlaue의타입: "+typeof(attriValue));
 		var attriCD = "create";
 		var param = "attriName="+attriName+"&attriValue="+attriValue
 		+"&attriCD="+attriCD; //속성 create/delete
 		
-		//alert("세션CDAttri param값: "+param);
-		//alert("param타입: "+typeof(param));
+		////alert("세션CDAttri param값: "+param);
+		////alert("param타입: "+typeof(param));
 		$.ajax({
 			headers: { 
 		        'Accept': 'application/json',
@@ -95,13 +95,13 @@ opener는 부모를 지칭하는 객체(?)이고 opener.을 이용해서 부모�
          }),
 		async: false,
 		success: function (data){
-			alert("ajax결과: session: "+data);
+			//alert("ajax결과: session: "+data);
 		}  ,
 		error : function(xhr, status, error) {
-		//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		////alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 		});
-		//alert("attriName: "+attriName+"attriValue: "+attriValue+"attriCD: "+attriCD);
+		////alert("attriName: "+attriName+"attriValue: "+attriValue+"attriCD: "+attriCD);
 
 		window.name="parentCloset"
 		window.open("/closet/closetManager","myClosetManager","height=350, width=550 top=200, left=200, location=0, resizable"); });
@@ -131,7 +131,7 @@ $(function(){
 	$('.onePrd a').on('click',function(e){//이미지와 글씨에.
 		e.preventDefault(); //a링크 이벤트 막읍시다
 		var url = $(this).attr('href');
-		//alert("아이프레임url: "+url+'입니다.');
+		////alert("아이프레임url: "+url+'입니다.');
 		location.href = "#closetBodyTop";
 		
 		if($('#prdViewIframe').length > 0 ){ //셀렉터의 존재여부 확인..src만 바꾸려고.
@@ -141,7 +141,7 @@ $(function(){
 			$('#closetbackground').prepend('<div id="iframeRemove">쇼핑몰 닫기</div>');
 			$('#closetbackground').prepend('<iframe id="prdViewIframe" width="100%" height="900" src='+'\"'+url+'\">');
 			$('#closetbackground').prepend('<div id="closetBodyTop"></div>');
-			//alert($('#prdViewIframe').attr('href'));
+			////alert($('#prdViewIframe').attr('href'));
 		}
 	$('#iframeRemove').on('click',function(){
 		$('#prdViewIframe').remove();
@@ -155,9 +155,11 @@ $(function(){
 	$('#deleteBtn').on('click', function(){
 		var clo_detail_nums = delete_move_Btn_click();
 		var clo_num;
-		clo_num = $('#navi li[class=selectTab]').attr("id");
-		//alert("$('.selectTab').attr(id)값: "+$('.selectTab').attr("id"));
-		//alert("clo_num값:"+clo_num);
+		//clo_num = $('.selectTab').attr("id");
+//		clo_num = $('#closetNavi li[class=selectTab]').attr("id");
+		clo_num = $('#naviUL li[class=selectTab]').attr("id");
+		console.log("$('.selectTab').attr(id)값: "+$('.selectTab').attr("id"));
+		console.log("clo_num값:"+clo_num);
 		if(clo_num == undefined){
 			clo_num = "0";
 		}else{
@@ -167,10 +169,12 @@ $(function(){
 		"&clo_num="+clo_num;
 		
 		//ui상에서 안보이게.
-		$("#prdSection input:checkbox:checked").each(function (index) {
+		$(".onePrd input[type=checkbox]:checked").each(function (index) {
+//			$("#prdSection input[type=checkbox]:checked").each(function (index) {
+			console.log("check");
 			$(this).parents('#prdUL li').remove();
 		});  
-		//alert("param값은?: "+param);
+		console.log("param값은?: "+param);
 		$.ajax({
 			headers: { 
 		        'Accept': 'application/json',
@@ -183,13 +187,13 @@ $(function(){
 				clo_num : clo_num
 	         }),
 			success: function(data){
-				//alert("딜리트 에이작스 결과: "+data);
-				//alert(request.getAttribute("msg"));
+				////alert("딜리트 에이작스 결과: "+data);
+				////alert(request.getAttribute("msg"));
 				
-				alert("삭제 완료");
+				//alert("삭제 완료");
 			},
 			error : function(xhr, status, error) {
-			//	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			//	//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 			}
 		});
@@ -198,9 +202,12 @@ $(function(){
 });
 function delete_move_Btn_click() {  
     var str = "";  
-    $("#prdSection input:checkbox:checked").each(function (index) {  
+    $(".onePrd input[type=checkbox]:checked").each(function (index) {  
+//    	$("#prdSection input[type=checkbox]:checked").each(function (index) {  
         str += $(this).val()+",";  
+        console.log("check값 루프 : "+str);
     });  
+    console.log("checked박스 value모음: "+str);
     return str;  
 }  
 
@@ -222,11 +229,11 @@ $(function(){
 	$('#moveBtn2').on('click',function(){
 		var clo_detail_nums = delete_move_Btn_click();
 		var clo_num = $('#closetNavi .selectTab').attr("id");
-		//alert("최초 select_clo_num: "+ clo_num);
+		////alert("최초 select_clo_num: "+ clo_num);
 		var move_clo_num = $("#hidden_move_prd :input:radio[name=selet_move]:checked").val();
 		
 		if(move_clo_num == null || clo_detail_nums == ""){
-			alert("이동할 폴더 또는 상품이 선택되지 않았습니다.");
+			//alert("이동할 폴더 또는 상품이 선택되지 않았습니다.");
 		}else{
 			if(clo_num == undefined){
 				clo_num = "0";
@@ -236,8 +243,8 @@ $(function(){
 			var param = "clo_detail_nums="+clo_detail_nums+
 						"&move_clo_num="+move_clo_num+
 						"&clo_num="+clo_num;
-			//alert("param값은?: "+param);
-			//alert("clo_num: "+clo_num);
+			////alert("param값은?: "+param);
+			////alert("clo_num: "+clo_num);
 			
 			
 			$.ajax({
@@ -254,13 +261,13 @@ $(function(){
 		         }),
 				async: false,
 				success: function(data){
-					//alert("딜리트 에이작스 결과: "+data);
-					//alert(request.getAttribute("msg"));
-					alert("상품폴더이동 완료");
+					////alert("딜리트 에이작스 결과: "+data);
+					////alert(request.getAttribute("msg"));
+					//alert("상품폴더이동 완료");
 					 
 				},
 				error : function(xhr, status, error) {
-				//	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				//	//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 				}
 			});
@@ -270,8 +277,8 @@ $(function(){
 				window.location.reload(true);//리로딩ㅋㅋㅋ;;
 			}else{
 				$("#prdSection input:checkbox:checked").each(function (index) {
-					//alert("spanhtml"+$(this).next().text());
-					//alert("move_clo_num: "+move_clo_num);
+					////alert("spanhtml"+$(this).next().text());
+					////alert("move_clo_num: "+move_clo_num);
 					if($(this).next().text() != move_clo_num ){
 						$(this).parents('#prdUL li').remove();
 					}

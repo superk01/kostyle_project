@@ -131,7 +131,8 @@ public class ClosetServiceImpl implements ClosetService {
 		Map map = new HashMap();
 		
 			request.removeAttribute("select_clo_num"); //일단 비워야 이전값이 남지않음.
-			System.out.println("클로젯액션의 clo_num은? : "+request.getParameter("clo_num"));
+			System.out.println("클로젯액션의 clo_num은? : "+param.get("clo_num"));
+//			System.out.println("클로젯액션의 clo_num은? : "+request.getParameter("clo_num"));
 			
 		if(param.get("clo_num").equals("0")){
 				//if(param.getClo_num()==0){
@@ -357,7 +358,8 @@ public class ClosetServiceImpl implements ClosetService {
 		HashMap hash = dao.urlRepair(clo_prdUrl);
 		String clo_price = (String) hash.get("price");
 		String clo_imgUrl = (String) hash.get("imgUrl");
-		String clo_prdName = (String) hash.get("prdName");
+		/*String clo_prdName = (String) hash.get("prdName");*/
+		String clo_prdName = (String)param.get("prdName");
 		System.out.println("받아온 해시맵clo_price: "+clo_price);
 		System.out.println("받아온 해시맵imgUrl: "+clo_imgUrl);
 		System.out.println("받아온 해시맵 prdName: "+clo_prdName);
@@ -394,7 +396,7 @@ public class ClosetServiceImpl implements ClosetService {
 		
 		closetPrd.setClo_detail_num(max_detail_num +1);
 		closetPrd.setClo_imgUrl(clo_imgUrl);
-		closetPrd.setClo_prdName("임시상품명");
+		closetPrd.setClo_prdName(clo_prdName);
 		closetPrd.setClo_price(clo_price); 
 		closetPrd.setS_sname(s_sname); //db조회하는것 나중에 xml파일엮으면 그때. 지금은 일단 함수로.
 		closetPrd.setClo_zzim(count_zzim); //만약 hit가 조회가안된다면 기본은 0.

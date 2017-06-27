@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/search/searchiFrame.css" />
 <!-- <script type="text/javascript" src="../resources/js/jquery.js"></script> -->
 <script src="/resources/jquery/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/resources/js/search/CategorysearchResult2.js"></script>
+<!-- <script type="text/javascript" src="/resources/js/search/CategorysearchResult2.js"></script> -->
 <script type="text/javascript">
 $(document).ready(function(){
 	$('div.CategoryResult_oneItemBox').on('click',function(event){
@@ -33,6 +33,24 @@ $(document).ready(function(){
 			}		
 			});
 		});
+	$('.CategoryResult_oneItemBox').click(function(event){
+		event.preventDefault();
+		var link = $(this).find('a').eq(1).attr('href');
+		var h_Name = $(this).children().eq(1).find('a').html();
+		if($('#CategorysearchIframe').length>0){
+			$('#CategorysearchIframe').remove();
+		}
+		location.href = "#CategoryResult_top";
+		$('#TotalCategoryResult_Box').parent().prepend(' <div id="IframeRemocon">쇼핑몰 닫기</div> ');
+		$('#TotalCategoryResult_Box').parent().prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="' +link +'">');
+		$('#TotalCategoryResult_Box').parent().prepend('<input type="hidden" name="productName" value="'+h_Name+'">');
+		
+		$('#IframeRemocon').click(function(){
+			$('#CategorysearchIframe').remove();
+			$('#IframeRemocon').remove();
+		});
+	});	
+	
 	});
 	
 
@@ -62,5 +80,9 @@ $(document).ready(function(){
 			</c:forEach>
 		</div>
 	</div>
+	<footer>
+<%@ include file="../main/footer.jsp" %>
+
+</footer>
 </body>
 </html>
