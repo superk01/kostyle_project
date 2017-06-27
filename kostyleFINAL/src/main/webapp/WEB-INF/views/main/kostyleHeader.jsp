@@ -542,7 +542,7 @@
                 <div class="col-md-4">
                    <div class="header-right">
                         <ul class="list-unstyled list-inline">
-                             <li><a id="adminlogout" ><i class="fa fa-user"></i> Logout</a></li>
+                             <li><a id="cuslogout" ><i class="fa fa-user"></i> Logout</a></li>
                         </ul>
                     </div>
                    </div>
