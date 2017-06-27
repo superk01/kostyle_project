@@ -15,7 +15,7 @@
 $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 주어서 액션에서 "not"주입.
 	var trig = '<c:out value="${trig}"/>'; 
 	if ( trig == "" ) {
-	//	 alert("trig==공백");
+	//	 //alert("trig==공백");
 		$('#0').trigger('click');
 	}
 });

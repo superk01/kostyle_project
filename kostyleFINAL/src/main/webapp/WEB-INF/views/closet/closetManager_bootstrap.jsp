@@ -67,6 +67,9 @@ img.folder_clo_num + input{
 .btn {
 	margin-left : 5px !important;
 }
+#checkAllFolderBtn{
+margin: 0 !important;
+}
 </style>
     
     
@@ -78,11 +81,17 @@ img.folder_clo_num + input{
   
   <script type="text/javascript">
 
-
+//옷장 전체선택 버튼 트리거
+$(function(){
+	$("#checkAllFolderBtn").on('click',function(){
+		$('#allcheckCloset').trigger('click');
+	});
+	
+});
 //옷장 전체선택(checkbox) -ok
 $(function(){
 	$('#allcheckCloset').on('click',function(){
-		alert("전체체크박스 클릭");
+		//alert("전체체크박스 클릭");
 		if($('#allcheckCloset').prop('checked')){
 			$('.checkCloset').prop('checked',true);
 		}else{
@@ -102,15 +111,15 @@ $(function(){
 $(function(){
 	/* 창 닫을때 session에서 제거이벤트. 열 때와비슷. */
 $(window).bind("beforeunload", function (){
-	alert("윈도우 비포어 언로드 이벤트");
+	//alert("윈도우 비포어 언로드 이벤트");
 	//닫을때는 세션의 이름과 삭제여부만 필요.
 		var attriName = "closetTab";
-		//alert("attriVlaue의타입: "+typeof(attriValue));
+		////alert("attriVlaue의타입: "+typeof(attriValue));
 		var attriCD = "delete";
 		var param = "attriName="+attriName
 					+"&attriCD="+attriCD; //속성 create/delete
 		
-		//alert("세션CDAttri param값: "+param);
+		////alert("세션CDAttri param값: "+param);
 		$.ajax({
 			headers: { 
 		        'Accept': 'application/json',
@@ -124,12 +133,12 @@ $(window).bind("beforeunload", function (){
        }),
 		async: false,
 		success: function (data){
-		//alert("ajax결과: session: "+data);
-			alert("세션삭제ajax완료.");
+		////alert("ajax결과: session: "+data);
+			//alert("세션삭제ajax완료.");
 		}  ,
 		error : function(xhr, status, error) {
-			alert("세션삭제ajax실패");
-			//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			//alert("세션삭제ajax실패");
+			////alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});
 });
@@ -158,7 +167,7 @@ $(document).keydown(function (e) {
 //옷장폴더추가(db안거치고 ui만.)
 $(function(){
 	$('#folderAddBtn').on('click',function(){
-		alert("#folderAddBtn 진입");
+		//alert("#folderAddBtn 진입");
 		var clo_nums = new Array(); //배열로 안돌리면 첫번째 값만 가져온다.
 		$('.folder_clo_num').each(function(){
 			clo_nums.push($(this).val());
@@ -198,15 +207,15 @@ function arrayMax(array){ //배열의 가장 큰 수.(폴더목록UI추가시 cl
 $(function(){
 	//옷장폴더 삭제(db안거치고 ui만.)
 	$('#folderDeleteBtn').on('click', function(){
-		alert("#folderDeleteBtn 진입");
+		//alert("#folderDeleteBtn 진입");
 		var clo_nums = folderDeleteBtn_click();
 		//alert("clo_nums값:"+clo_nums);
 		//var clo_num = $(opener.document,'#navi li[class=selectTab]').attr("id");
-		//alert("부모창에서 가져온 selectclo_num: "+clo_num); 
+		////alert("부모창에서 가져온 selectclo_num: "+clo_num); 
 		
 		$("#closetManagerSection input:checkbox:checked").each(function (index) {
 			if($(this).attr('id') != 'allcheckCloset'){//전체 체크 총괄하는 애는 필요없음			str += $(this).val()+",";  
-				$(this).parents('#closetTable tbody tr').remove();
+				$(this).parents('li.list-group-item').remove();
 			}
 		});  
 	});
@@ -214,14 +223,14 @@ $(function(){
 	
 	//옷장변경저장(추가,이름수정,삭제 반영)
 		$('#folderSaveBtn').on('click',function(){
-			alert("#folderSaveBtn 진입");
+			//alert("#folderSaveBtn 진입");
 			var folder_clo_nums	= folderUpdateBtn_click('.folder_clo_num');
 			var closet_titles = folderUpdateBtn_click('.closetTitle');
 			
 			var param =  "folder_clo_nums="+folder_clo_nums+
 			"&closet_titles="+closet_titles;
 			
-			alert("보내는 param: "+param);
+			//alert("보내는 param: "+param);
 			$.ajax({
 				headers: { 
 			        'Accept': 'application/json',
@@ -235,12 +244,12 @@ $(function(){
 		         }),
 				success: function(data){
 					opener.location.reload();
-					alert("옷장폴더수정 완료");
+					//alert("옷장폴더수정 완료");
 					self.close();
 				},
 				error : function(xhr, status, error) {
-					alert("folder save ajax실패");
-					//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					//alert("folder save ajax실패");
+					////alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		
 				}
 			});
@@ -369,8 +378,10 @@ function folderUpdateBtn_click(object) {
                             <h6>
                                 Total Count <span class="label label-info">25</span></h6> 
                         </div> -->
+                       
                         <span class="checkbox col-xs-12 col-sm-12 col-md-4">
-                        	<input type="checkbox" id="allcheckCloset" class="checkCloset allcheckCloset" value="allcheckCloset" />&nbsp&nbsp전체선택<b>(삭제시)</b>
+                        	<input type="checkbox" id="allcheckCloset" class="checkCloset allcheckCloset" value="allcheckCloset" />
+                        	 <button class="btn btn-default text-center" type="button" value="전체선택" id="checkAllFolderBtn">&nbsp&nbsp전체선택<b>(삭제시)</b></button>
                         </span>	
 			            <span id="managerRightDiv" class="col-xs-12 col-sm-12 col-md-8  col-md-offset-4" >
 							<button type="button" value="수정완료" class="folderBtn btn btn-warning pull-right" id="folderSaveBtn">저장</button>
