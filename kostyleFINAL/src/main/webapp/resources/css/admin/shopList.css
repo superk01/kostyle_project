@@ -101,3 +101,8 @@
     width: 90%;
     margin-left: 50px;
 }
+.m_midtitle{
+	padding-bottom: 9px;
+    margin: 20px 0 10px;
+    border-bottom: 1px solid #eee;
+}

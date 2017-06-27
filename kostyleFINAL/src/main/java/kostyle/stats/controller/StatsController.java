@@ -38,13 +38,18 @@ public class StatsController {
 	@RequestMapping(value="/statsMain", method=RequestMethod.GET)
 	public String statsMainGET(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		List<SearchKeywordChart> list = null;
-		List<SearchKeywordChart> chart = null;
+		List<SearchKeywordChart> shopList = null;
 		
 		list = service.statsSearchRank();
-		chart = service.searchRankChart(list);
+		shopList = service.todayShop();
 		System.out.println("~~검색어 순위");
 		for(int i=0;i<list.size();i++){
 			System.out.println(list.get(i).getSk_searchkey());
+		}
+		
+		System.out.println("~~오늘의 쇼핑몰 순위");
+		for(int i=0;i<shopList.size();i++){
+			System.out.println(shopList.get(i).getS_sname());
 		}
 		
 		HttpSession session = request.getSession();
@@ -53,12 +58,13 @@ public class StatsController {
 			session.removeAttribute("searchkeyRankingJ");
 		}
 		session.setAttribute("searchkeyRankingJ", list);
-
-		if(session.getAttribute("searchkeyRankChartJ") != null){
-			session.removeAttribute("searchkeyRankChartJ");
+		
+		if(session.getAttribute("todayShopRankJ") != null){
+			session.removeAttribute("todayShopRankJ");
 		}
-		session.setAttribute("searchkeyRankChartJ", chart);
-		return "/stats/statsSearch";
+		session.setAttribute("todayShopRankJ", shopList);
+
+		return "/stats/statsMain";
 	}
 	
 	@RequestMapping(value="/statsSide", method=RequestMethod.GET)
@@ -198,7 +204,21 @@ public class StatsController {
 		return "/stats/statsSearch";
 	}
 	
-	
+	@RequestMapping(value="/statsSearchAge", method=RequestMethod.GET)
+	public void statsSearchAgeGET(Model model)throws Exception{
+		try {
+			List<SearchKeywordChart> listTeen = service.searchRankTeen();
+			List<SearchKeywordChart> listTwenty = service.searchRankTwenty();
+			List<SearchKeywordChart> listThirty = service.searchRankThirty();
+			
+			
+			model.addAttribute("listTeen", listTeen);
+			model.addAttribute("listTwenty", listTwenty);
+			model.addAttribute("listThirty", listThirty);
+			
+		} catch (Exception e) {
+		}
+	}
 	
 	
 	
