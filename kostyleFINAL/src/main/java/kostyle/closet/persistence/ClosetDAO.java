@@ -44,7 +44,7 @@ public interface ClosetDAO {
 	//찜상품추가
 	public int insertClosetPrd(ClosetPrd closetPrd);
 	//찜상품추가시 다른사람의 같은상품에대한 찜카운트연동함수
-	public void zzimIncreaseTransaction(String clo_prdUrl);
+	public void zzimIncreaseTransaction(ClosetPrd closetPrd);
 	
 	//해당상품의 중복여부 우선확인
 	public int check_duplication(ClosetPrd closetPrd);

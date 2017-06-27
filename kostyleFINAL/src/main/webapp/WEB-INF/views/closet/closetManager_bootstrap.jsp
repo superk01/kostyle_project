@@ -11,7 +11,7 @@
     <title>옷장 편집</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-<!--     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+ <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> 
     
     <style type="text/css">
 	   .trash { color:rgb(209, 91, 71); }
@@ -24,7 +24,20 @@
 		.list-group-item:hover, a.list-group-item:focus {text-decoration: none;background-color: rgb(245, 245, 245);}
 		.list-group { margin-bottom:0px; }
     </style>
+  <style>
+  ul, ol, li {
+    list-style: none;
+}
+	a{
+		text-decoration: none;
+		color: black;
+	}
+  </style>  
 <style>
+
+#managerContainer{
+	margin-top:10px;
+}
 #fisrttr{
 	height: 56px;
 	background-color: #f5f5f5;
@@ -58,7 +71,7 @@ img.folder_clo_num + input{
 
 
 <body>
-	<section class="container">
+	<section id="managerContainer" class="container">
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-primary">
@@ -111,7 +124,7 @@ img.folder_clo_num + input{
 					</c:choose>
 				</c:forEach>   
 							
-						              <li class="list-group-item">
+	<%-- 					              <li class="list-group-item">
 				                         <tr>
 											<td><img class="folder_clo_num" src="../resources/images/closetImg/locked-1.png" alt= "" value="${tab.clo_num }" ></td>
 											<td class="secondtd">&nbsp&nbsp<input class="closetTitle" type="text" value="기본 옷장" readonly="readonly"> </td>
@@ -123,7 +136,7 @@ img.folder_clo_num + input{
 										<td><input type="checkbox" class="checkCloset folder_clo_num" value="${tab.clo_num }" /></td>
 										<td class="secondtd">&nbsp&nbsp<input class="closetTitle" type="text" value="옷장1"></td>
 									</tr>	
-			                        </li>
+			                        </li> --%>
 							  
                         <!--
                         <li class="list-group-item">

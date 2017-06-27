@@ -40,9 +40,6 @@ public class ClosetController {
 	}
 	@RequestMapping(value="/new")
 	public String newCloset(){
-		
-		
-		
 		return "/closet/closet_bootstrap";
 	}
 	@RequestMapping(value="/new2")
@@ -86,10 +83,10 @@ public class ClosetController {
 
 	@ResponseBody
 	@RequestMapping(value="/duplicationCheckClosetPrd", method=RequestMethod.POST)
-	public ResponseEntity<Integer> duplicationCheckClosetPrd(@RequestBody String prdUrl, HttpServletRequest request)throws Exception{
-		System.out.println("/duplicationCheckClosetPrd의 param(prdUrl): "+prdUrl);
+	public ResponseEntity<Integer> duplicationCheckClosetPrd(@RequestBody HashMap<String, String> prdUrl_Map, HttpServletRequest request)throws Exception{
+		System.out.println("/duplicationCheckClosetPrd의 param(prdUrl): "+prdUrl_Map.get("prdUrl_Map"));
 
-		
+		String prdUrl = prdUrl_Map.get("prdUrl_Map");
 		ResponseEntity<Integer> entity = null;
 		//	HttpSession session = request.getSession();
 			

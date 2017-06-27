@@ -498,15 +498,15 @@
       <li><a href="#">RANKING</a></li>
       
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT</a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="">DISCOUNT</a>
           <ul class="dropdown-menu">
-            <li><a href="#">기획할인</a></li>
-            <li><a href="#">신상품할인</a></li>
+            <li><a href="/discount/do1">기획할인</a></li>
+            <li><a href="/discount/do2">신상품할인</a></li>
           </ul>
         </li>
         
         <li><a href="/favorite/favoriteList">FAVORITE</a></li>
-        <li><a href="#">ZZIM</a></li>
+        <li><a href="/closet/new">ZZIM</a></li>
         <li><a href="/help/list">SERVICE CENTER</a></li>
       </ul>
     </div>
