@@ -11,6 +11,7 @@ value="${pageContext.request.contextPath}"/>
 			<ul>
 			<a href = "${path}/board/view.do?bno=${row.bno}">
 				<li><a href="${path}/mypage/MypageMain">회원정보 관리</a>
+				<li><a href="/history/list/${login.c_num}">히스토리</a>
 				<li><a href="${path}/mypage/StatsMain">통계</a>
 				<li><a href="${path}/mypage/InitMain">데이터초기화</a>
 				<li><a href="${path}/mypage/WithdrawalMain">탈퇴하기</a>

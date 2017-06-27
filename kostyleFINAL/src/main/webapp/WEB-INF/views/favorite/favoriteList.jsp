@@ -116,4 +116,4 @@
 </div>
 
 </body>
-
+<%@ include file="../main/footer.jsp" %>
