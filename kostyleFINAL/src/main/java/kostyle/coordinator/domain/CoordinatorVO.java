@@ -6,7 +6,7 @@ public class CoordinatorVO {
 	private String cd_num;
 	private String cd_name;
 	private String s_num;
-	private String s_name;
+	private String s_sname;
 	private String cd_img;
 	private String regdate;
 	private String cd_like;
@@ -47,11 +47,14 @@ public class CoordinatorVO {
 	public void setS_num(String s_num) {
 		this.s_num = s_num;
 	}
-	public String getS_name() {
-		return s_name;
+
+	
+	
+	public String getS_sname() {
+		return s_sname;
 	}
-	public void setS_name(String s_name) {
-		this.s_name = s_name;
+	public void setS_sname(String s_sname) {
+		this.s_sname = s_sname;
 	}
 	public String getCd_img() {
 		return cd_img;
@@ -117,7 +120,7 @@ public class CoordinatorVO {
 	}
 	@Override
 	public String toString() {
-		return "CoordinatorVO [cd_num=" + cd_num + ", cd_name=" + cd_name + ", s_num=" + s_num + ", s_name=" + s_name
+		return "CoordinatorVO [cd_num=" + cd_num + ", cd_name=" + cd_name + ", s_num=" + s_num + ", s_sname=" + s_sname
 				+ ", cd_img=" + cd_img + ", regdate=" + regdate + ", cd_like=" + cd_like + ", prd_url1=" + prd_url1
 				+ ", prd_url2=" + prd_url2 + ", prd_url3=" + prd_url3 + ", prd_img1=" + prd_img1 + ", prd_img2="
 				+ prd_img2 + ", prd_img3=" + prd_img3 + ", cd_content=" + cd_content + ", uploadFile=" + uploadFile

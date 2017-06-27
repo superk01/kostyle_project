@@ -2,6 +2,7 @@ package kostyle.mypage.controller;
 
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +29,8 @@ import kostyle.login.domain.LoginDTO;
 import kostyle.login.service.LoginService;
 import kostyle.mypage.domain.MyCustomerVO;
 import kostyle.mypage.service.MyCustomerService;
+import kostyle.stats.domain.CustomerStats;
+import kostyle.stats.service.StatsService;
 
 @Controller
 @RequestMapping("/mypage/*")
@@ -35,6 +38,9 @@ public class MyStatsController {
 	
 	@Inject
 	private MyCustomerService service;
+	
+	@Inject
+	private StatsService statsService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MyStatsController.class);
 	
@@ -46,10 +52,21 @@ public class MyStatsController {
 		
 	}
 	
-	@RequestMapping("/StatMain")
-	public String StatMain() throws Exception{
-				
-		return "mypage/StatMain";
+	@RequestMapping("/StatsMain")
+	public String StatMain(Model model, HttpSession session) throws Exception{
+		try {
+			   CustomerVO login = (CustomerVO) session.getAttribute("login");
+			   System.out.println(login.getC_num());
+			   String c_num = login.getC_num();
+			   
+			   model.addAttribute("searchKeyList",statsService.customerSearchKeyAll(c_num));
+			   model.addAttribute("shopList",statsService.customerVisitShopAll(c_num));
+			   model.addAttribute("prdList",statsService.customerVisitPrdAll(c_num));
+			   
+			   return null;
+			} catch (Exception e) {
+				return "redirect:/cuslogin/login";
+			}		
 		
 	}
 	

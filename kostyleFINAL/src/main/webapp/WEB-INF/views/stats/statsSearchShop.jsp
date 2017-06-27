@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="kostyle.stats.domain.SearchKeywordChart"%>
 <%@page import="java.util.List"%>
-<%@ include file="statsSide.jsp" %>
+<%@ include file="statsSideShop.jsp" %>
 <%
 	HttpSession searchkeyRankSession = request.getSession();
 	

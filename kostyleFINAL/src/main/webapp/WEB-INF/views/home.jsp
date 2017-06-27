@@ -4,11 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="main/kostyleHeader.jsp" %>
+<script type="text/javascript" src="/resources/js/main/main.js"></script>
+
 
 <html>
 <head>
 <script src="../../../resources/jquery/jquery-3.2.1.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(document).ready(function(){ 
       var returnPath1 = jQuery(location).attr('pathname')+"";
       var returnPath2 = location.pathname+"";
@@ -37,96 +39,167 @@
       }); 
       
    });
-</script>
-   <title>Home</title>
-</head>
+</script> -->
 
+<style type="text/css">
+#weather{
+	text-align: center;
+	vertical-align: middle;
+}
+#today{
+	text-align: center;
+	vertical-align: middle;
+}
 
-<body>
+.main button{
+	background: white;
+	color: black;
+	border: 3px solid black;
+	border-radius;
+	font-size: 30px;
+	position: absolute;
+	top: 320px;
+	right: 200px;
+}	
 
-<h1>
-   Hello world!  
-</h1>
-<c:set var="currentPath" value="${requestScope.currentPath }"></c:set>
-<c:set var="loginSession" value="${sessionScope.login }"></c:set>
-<c:set var="shoploginSession" value="${sessionScope.shoplogin }"></c:set>
+.col-sm-6{
+	padding-left: 0px;
+	padding-right: 0px;
+}
 
-<c:if test="${empty sessionScope.login && empty sessionScope.shoplogin}">
-   <a href="/cuslogin/login">고객로그인</a>
-   <a href="/shoplogin/login">쇼핑몰로그인</a>
-   <a href="/find/id">아이디 찾기</a>
-   <a href="/find/password">비밀번호 찾기</a>
-</c:if>
+button:focus {
+  outline: none;
+  font-size: 32px;
+}
 
-<c:choose>
-   <c:when test="${not empty login}">
-      <p>고객세션있음</p>
-      <!-- <div id="cuslogout">고객로그아웃</div> -->
-       <div id="cuslogout"><a href="/cuslogin/logout/"+${currentPath }>고객로그아웃</a></div> 
-   </c:when>
-   <c:when test="${not empty shoplogin}">
-      <p>쇼핑몰세션있음</p>
-      <div id="shoplogout">쇼핑몰로그아웃</div>
-       <div id="shoplogout"><a href="/shoplogin/logout/"+${currentPath }>쇼핑몰로그아웃</a></div> 
-      
-   </c:when>
-<%--    <c:when test="${not empty sessionScope.login}">
-      <p>고객세션있음</p>
-      <div id="cuslogout"><a href="/cuslogin/logout/${currentPath }">고객로그아웃</a></div>
-   </c:when>
-   <c:when test="${not empty sessionScope.shoplogin}">
-      <p>쇼핑몰세션있음</p>
-      <div id="shoplogout"><a href="/shoplogin/logout/${currentPath }">쇼핑몰로그아웃</a></div>
-      
-   </c:when> --%>
-</c:choose>
-<div>
-<div>${login.getC_name() }님 환영합니다.</div>
-   고객세션: ${login.c_name }
-   <br>
-   고객세션: ${sessionScope.login.c_name }
-   <br>
-   고객세션: ${loginSession.c_name }
-   <br>
-   쇼핑몰세션: ${sessionScope.shoplogin }
-</div>
+.img-responsive, .thumbnail>img, .thumbnail a>img, .carousel-inner>.item>img, .carousel-inner>.item>a>img{
+	height: 400px;
+	width: 100%;
+}
 
-<br><br><a href="/admin/shopList">쇼핑몰 리스트</a>
-<br><br><a href="/admin/joinForm">쇼핑몰 입점 신청</a>
-<br><br><a href="/stats/statsMain">통계</a>
-<br><br>
-<P>  The time on the server is ${serverTime}. </P>
-<P>  "${path }" </P>
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-   <div class="search_field">
-   <form action="#" method="post" name="form">
-      <div class="search_box">
-         <dl class="clear_float">
-            <dt><input type="text" name="search"></dt>
-            <dd><input type="image" src="../resources/images/mainImg/kostylesearch.png" alt="검색" title="검색" onclick="send()"></dd>
-         </dl>
-      </div>
-   </form>
-   </div>
-<div>
-   <a href="history/list/${login.c_num}">히스토리로 이동</a><br>
-   <a href="remocon/list/${login.c_num}">리모콘 보기</a><br>
-   <a href="coordinator/coordiregister">코디등록 페이지</a>
-</div>
-</body>
-
-<script>
-
-function send(){
-   
-   document.form.action='/stats/insertstats';
-   document.form.submit();
-   
-   document.form.action='/search/do';
-   document.form.submit();
+.mainImg{
+	width: 100% !important;
 }
 
 
-</script>
+#iframeRemove{
+ 	width : 2%;
+ 	height : 135px;
+ 	position: fixed;
+ 	overflow: hidden;
+ 	background: #3C3C3C;
+ 	bottom: 30%;
+ 	z-index: 10000;
+ 	font-size : 17px;
+ 	color: white;
+ 	font-weight : bold;
+ 	padding: 7px;
+ }
+ 
+ 
+.body {
+	margin: 0 5%;
+	font-family: 맑은 고딕;
+}
+
+
+
+</style>
+
+
+   <title>여성 통합 쇼핑몰 KOSTYLE</title>
+</head>
+
+<div class="body">
+
+<div id="favoritebackground">
+<div id="favoriteBodyTop"></div>
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active" data-interver="1000"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="6"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+  
+    <div class="item active">
+      <a class="shopLink" href="http://66girls.co.kr/"><img class="imgAd" src="/resources/images/mainImg/shop_66.jpg" alt="..."></a>
+      <div class="carousel-caption">
+      </div>
+    </div>
+    
+    <div class="item">
+      <a class="shopLink" href="http://www.dejou.co.kr/"><img class="imgAd" src="/resources/images/mainImg/shop_deju.png" alt="..."></a>
+      <div class="carousel-caption">
+      </div>
+    </div>
+    
+    <div class="item">
+      <a class="shopLink" href="htt=://ggsing.com"><img class="imgAd" src="/resources/images/mainImg/shop_go.jpg" alt="..."></a>
+      <div class="carousel-caption">
+      </div>
+    </div>
+    
+    <div class="item">
+      <a class="shopLink" href="http://hotping.co.kr/"><img class="imgAd" src="/resources/images/mainImg/shop_hot.jpg" alt="..."></a>
+      <div class="carousel-caption">
+      </div>
+    </div>
+    
+    <div class="item">
+      <a class="shopLink" href="http://imvely.com/"><img class="imgAd" src="/resources/images/mainImg/shop_im.PNG" alt="..."></a>
+      <div class="carousel-caption">
+      </div>
+    </div>
+    
+    <div class="item">
+      <a class="shopLink" href="http://loveloveme.com/"><img class="imgAd" src="/resources/images/mainImg/shop_luv.jpg" alt="..."></a>
+      <div class="carousel-caption">
+      </div>
+    </div>
+    
+    <div class="item">
+      <a class="shopLink" href="http://www.stylenanda.com/"><img class="imgAd" src="/resources/images/mainImg/shop_style.jpg" alt="..."></a>
+      <div class="carousel-caption">
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<br><br>
+
+<div class="main">
+<div class="col-sm-6" id="weather"><img class="mainImg" alt="" src="/resources/images/mainImg/main3.jpg"><a href=""><button><i class="fa fa-cloud"></i> 날씨별 옷 추천</button></a></div>
+<div class="col-sm-6" id="today"><img class="mainImg" alt="" src="/resources/images/mainImg/main4.jpg"><a href="/coordinator/list"><button><i class="fa fa-shopping-bag"></i> 오늘의 코디</button></a></div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-12" style="height:50px;">
+</div>
+
+</div>
+
+</div>
+
+<body>
+
 </html>

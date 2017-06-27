@@ -51,8 +51,10 @@ function resize_btn(){
       console.log("<=992진입");
       $('#media_1_div').html('<div class="col-xs-8 col-sm-8 col-md-8 pull-right action-buttons"><span class="col-xs-4 col-sm-4 col-md-4"><button type="button" class="btn icon-btn btn-success folderDeleteBtn" ><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span> 옷장추가</button></span><span class="col-xs-4 col-sm-4 col-md-4"><button type="button"  class="btn icon-btn btn-danger folderAddBtn" ><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span> 옷장삭제</button></span><span class="col-xs-4 col-sm-4 col-md-4"><button  type="button" class="btn btn icon-btn btn-primary folderSaveBtn" ><span class="glyphicon glyphicon-saved"></span> 옷장저장</button></span></div>');
        
-      $('#media_2_div').html('<div class="col-md-8 pull-right action-buttons"><span class="col-md-4"><button type="button" class="btn icon-btn btn-success folderDeleteBtn" ><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span> 옷장추가</button></span><span class="col-md-4"><button type="button"  class="btn icon-btn btn-danger folderAddBtn" ><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span> 옷장삭제</button></span><span class="col-md-4"><button  type="button" class="btn btn icon-btn btn-primary folderSaveBtn" ><span class="glyphicon glyphicon-saved"></span> 옷장저장</button></span></div>');
-   }*/
+<<<<<<< HEAD
+		$('#media_2_div').html('<div class="col-md-8 pull-right action-buttons"><span class="col-md-4"><button type="button" class="btn icon-btn btn-success folderDeleteBtn" ><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span> 옷장추가</button></span><span class="col-md-4"><button type="button"  class="btn icon-btn btn-danger folderAddBtn" ><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span> 옷장삭제</button></span><span class="col-md-4"><button  type="button" class="btn btn icon-btn btn-primary folderSaveBtn" ><span class="glyphicon glyphicon-saved"></span> 옷장저장</button></span></div>');
+	}*/
+
 //}
 
 

@@ -46,6 +46,21 @@ public class StatsServiceImpl implements StatsService{
 	}
 
 	@Override
+	public List<SearchKeywordChart> searchRankChart(List<SearchKeywordChart> list) throws Exception {
+		
+		String sk1 = list.get(0).getSk_searchkey();
+		String sk2 = list.get(1).getSk_searchkey();
+		String sk3 = list.get(2).getSk_searchkey();
+		String sk4 = list.get(3).getSk_searchkey();
+		String sk5 = list.get(4).getSk_searchkey();
+		String sk6 = list.get(5).getSk_searchkey();
+		String sk7 = list.get(6).getSk_searchkey();
+		String sk8 = list.get(7).getSk_searchkey();
+		
+		return dao.searchRankChart(sk1, sk2, sk3, sk4, sk5, sk6, sk7, sk8);
+	}
+
+	@Override
 	public List<CustomerStats> customerSearchKeyAll(String c_num) throws Exception {
 		return dao.customerSearchKeyAll(c_num);
 	}

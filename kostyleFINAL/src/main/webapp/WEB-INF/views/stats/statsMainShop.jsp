@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="statsSide.jsp" %>     
+<%@ include file="statsSideShop.jsp" %>     
 <%
 	HttpSession searchkeyRankSession = request.getSession();
 	
@@ -47,6 +47,7 @@
 											<td colspan="2">검색어</td>
 										</tr>
 									</thead>
+									<%-- 
 									<tbody>
 										<%for(int i=0;i<list.size();i++){ %>
 										<tr>
@@ -57,7 +58,7 @@
 									
 									</tbody>
 
-
+ --%>
 
 </table>
 </div>
