@@ -39,7 +39,7 @@
 						<div id="statsbody">
 						
 								<div class="table-responsive" id="searchkeyRankTableMain">
-								<h3 class="page-header">검색어 순위</h3>
+								<h3 class="page-header">검색어 순위<span>최근 7일</span></h3>
 								<table class="table table-striped">
 									<thead>
 										<tr>

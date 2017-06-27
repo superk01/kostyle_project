@@ -158,7 +158,10 @@ margin: 10px;
 	width: 20%;
 	float: left;
 }
-
+.searchkeyRankTable{
+	width: 100%;
+	float: left;
+}
 #curve_chart{
 	float: right;
 }
@@ -168,6 +171,14 @@ margin: 10px;
 	float: left;
 }
 
+.page-header span{
+	font-size: 14px;
+	margin-left: 79%;
+}
+#todayShopRankTableMain{
+	width: 40%;
+    padding-left: ;
+}
 
 
 
@@ -243,4 +254,25 @@ margin: 10px;
 	margin-top: 0px;
 	left: 40px;
 	width: 250px;
+}
+
+
+.searchAge{
+	margin-right: 50px;
+    width: 330px;
+    float: left;
+    position: relative;
+    font-size: 13px;
+    font-family: 'Roboto',arial,sans-serif;
+}
+
+#searchAge1{
+	float: left;
+}
+#searchAge2{
+	float: left;
+	
+}
+#searchAge3{
+	
 }

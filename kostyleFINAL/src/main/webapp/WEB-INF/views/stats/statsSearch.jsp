@@ -74,7 +74,7 @@
                     <div class="col-lg-8 col-lg-offset-2">
                     
 <div id="statsbody">
-<h3 class="page-header">검색어 순위</h3>
+<h3 class="page-header">검색어 순위<span>최근 7일</span></h3>
 
 <div class="table-responsive" id="searchkeyRankTable">
 <table class="table table-striped">
