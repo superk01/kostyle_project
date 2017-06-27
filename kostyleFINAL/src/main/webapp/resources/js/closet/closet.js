@@ -155,9 +155,11 @@ $(function(){
 	$('#deleteBtn').on('click', function(){
 		var clo_detail_nums = delete_move_Btn_click();
 		var clo_num;
-		clo_num = $('#navi li[class=selectTab]').attr("id");
-		//alert("$('.selectTab').attr(id)값: "+$('.selectTab').attr("id"));
-		//alert("clo_num값:"+clo_num);
+		//clo_num = $('.selectTab').attr("id");
+//		clo_num = $('#closetNavi li[class=selectTab]').attr("id");
+		clo_num = $('#naviUL li[class=selectTab]').attr("id");
+		console.log("$('.selectTab').attr(id)값: "+$('.selectTab').attr("id"));
+		console.log("clo_num값:"+clo_num);
 		if(clo_num == undefined){
 			clo_num = "0";
 		}else{
@@ -167,10 +169,12 @@ $(function(){
 		"&clo_num="+clo_num;
 		
 		//ui상에서 안보이게.
-		$("#prdSection input:checkbox:checked").each(function (index) {
+		$(".onePrd input[type=checkbox]:checked").each(function (index) {
+//			$("#prdSection input[type=checkbox]:checked").each(function (index) {
+			console.log("check");
 			$(this).parents('#prdUL li').remove();
 		});  
-		//alert("param값은?: "+param);
+		console.log("param값은?: "+param);
 		$.ajax({
 			headers: { 
 		        'Accept': 'application/json',
@@ -198,9 +202,12 @@ $(function(){
 });
 function delete_move_Btn_click() {  
     var str = "";  
-    $("#prdSection input:checkbox:checked").each(function (index) {  
+    $(".onePrd input[type=checkbox]:checked").each(function (index) {  
+//    	$("#prdSection input[type=checkbox]:checked").each(function (index) {  
         str += $(this).val()+",";  
+        console.log("check값 루프 : "+str);
     });  
+    console.log("checked박스 value모음: "+str);
     return str;  
 }  
 

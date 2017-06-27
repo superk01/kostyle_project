@@ -31,8 +31,8 @@
 
  <style type="text/css">
     @import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&subset=latin-ext,vietnamese');   
-body{font-family: 'Quicksand', sans-serif;}
-ul, ol, li {
+#closetBody{font-family: 'Quicksand', sans-serif;}
+#closetBody ul, ol, li {
     list-style: none;
 }
 	a{
@@ -58,6 +58,9 @@ margin-top:30px; margin-bottom:10px;
 }
 #closetNavi{
 	margin-bottom: 30px;
+	margin-right:0;
+	margin-left:0;
+	padding:0;
 }
 	.prd_p{
 		font-size: 12px;
@@ -129,11 +132,18 @@ margin-top:30px; margin-bottom:10px;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
 }
+
     </style>
 
 <style>
 .folder_container { 
 	padding: 0 3%;}
+#moveBtn2{
+	margin: 20px 0;
+}
+#hidden_move_prd{
+	display: none;
+}
 </style>
 <link rel="stylesheet" href="/resources/js/closet/jquery.scrolling-tabs.css">
 <script src="/resources/js/closet/jquery.scrolling-tabs.js"></script>
@@ -170,16 +180,16 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 <section class="folder_container">
 	<h1 id="closet_h1">MY CLOSET</h1>
 <!-- Nav tabs -->
-<nav id="closetNavi" class="scrtabs-tab-container" style="visibility: visible;">
+<nav id="closetNavi" class="scrtabs-tab-container col-xs-12 col-sm-11 col-md-11" style="visibility: visible;">
 	<div class="scrtabs-tab-scroll-arrow scrtabs-js-tab-scroll-arrow-left">
 		<span class="glyphicon glyphicon-chevron-left"></span>
 	</div>
-	<div class="scrtabs-tabs-fixed-container" style="width: 95%;">
+	<div class="scrtabs-tabs-fixed-container " >
 		
-		<div class="scrtabs-tabs-movable-container" style=" padding:0; margin:0px; width: 80%;">
+		<div class="scrtabs-tabs-movable-container " ><!-- style=" padding:0; margin:0px; width: 80%;" -->
 			<ul id="naviUL" class="nav nav-tabs" role="tablist">
 <!-- Tab panes -->
-		<!-- 전체상품은 폴더에 상관없이 항상 붙박이로 있어야함.  -->		
+		<!-- 전체상품은 폴더에 상관없이 s항상 붙박이로 있어야함.  -->		
 				<c:choose>
 					<c:when test="${0 == select_clo_num || select_clo_num == null}">
 					  <li role="presentation" class="active tabClick" id="0">
@@ -236,7 +246,7 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 	
 	</div>
 	
-	<div class="scrtabs-tab-scroll-arrow scrtabs-js-tab-scroll-arrow-right">
+	<div class="scrtabs-tab-scroll-arrow scrtabs-js-tab-scroll-arrow-right ">
 		<span class="glyphicon glyphicon-chevron-right"></span>
 	</div>
 	
@@ -254,13 +264,26 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 								name="check"  style="display:none"/>
                <!--          </div>	
                         <div class="closet_btn_group col-xs-6 col-sm-6 col-md-6 col-md-offset-2 pull-right ">	 -->
-							<button class="btn btn-warning col-xs-4 col-sm-2 col-md-2 pull-right " type="button" value="이동" id="moveBtn1">폴더이동</button>
-							<button class="btn btn-danger col-xs-4 col-sm-2 col-md-2 pull-right " type="button" value="삭제" id="deleteBtn">상품삭제</button>
-                        	<button class="btn btn-primary col-xs-4 col-sm-2 col-md-2  pull-right " type="button" value="전체선택" id="checkAllBtn">전체선택</button>
+							<button class="btn btn-warning col-xs-3 col-sm-3 col-md-3 pull-right " type="button" value="이동" id="moveBtn1">폴더이동</button>
+							<button class="btn btn-danger col-xs-3 col-sm-3 col-md-3 pull-right " type="button" value="삭제" id="deleteBtn">상품삭제</button>
+                        	<button class="btn btn-primary col-xs-3 col-sm-3 col-md-3  pull-right " type="button" value="전체선택" id="checkAllBtn">전체선택</button>
 	                 </div>
 
                         </div>
 
+		<!-- 이동폴더선택란 접었다폈다토글 -->
+			<div id="hidden_move_prd" class="col-xs-12 col-sm-5 col-sm-offset-7 col-md-3 col-md-offset-9">
+				<ul class="col-xs-12 col-sm-12 col-md-12">
+					<li><span><b>이동할 폴더 선택</b><br></span></li>
+					<c:forEach var="tab" items="${closetTab}">
+						<li class="move_prd_li col-xs-12" ><input type="radio" name="selet_move"
+							value="${tab.clo_num }"><span>${tab.clo_name }</span></li>
+					</c:forEach>
+					<li class="move_prd_li" id="move_prd_navi">
+						<button id="moveBtn2" class="btn btn-warning col-xs-12">이동</button>
+					</li>
+				</ul>
+			</div>
 
 
 <!-- 아코디언예시 -->
@@ -283,7 +306,7 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 
 
 <!--  상품section -->
-<section class="tab-content">
+<section id="prdSection' class="tab-content">
 <!--     <div role="tabpanel" class="tab-pane active" id="tab1">	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam congue laoreet magna. Nulla gravida est enim, at scelerisque ex fringilla vel. Quisque dolor mi, pulvinar eget eros non, condimentum placerat lorem. Proin quis dui molestie eros venenatis blandit vitae ut augue. Cras viverra nibh a augue congue, eget eleifend metus gravida. Etiam dui metus, pharetra vel efficitur at, convallis sed eros. Morbi mattis venenatis ipsum eget dignissim.</p></div>
  -->
 	<div role="tabpanel" class="product_container">
@@ -404,8 +427,7 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 $(document).ready(function() {
   var maxHeight = -1;
 
-  $('.prdPhoto').each(function() {
-  console.log("최대높이: "+maxHeight);
+  $('.prdPhoto img').each(function() {
     maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
   });
 
@@ -416,13 +438,13 @@ $(document).ready(function() {
 });
 </script>
 
-			}
+<!-- 			}
 			
 		}//end else
 		
 	});
 });
-
+ -->
 
 
 
