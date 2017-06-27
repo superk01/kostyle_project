@@ -59,14 +59,14 @@
     top: 5px;
     font: 14px/40px proLight,Helvetica,Arial,sans-serif;
     color: #fff;
-    background: #ae82ac;
+    background: #427ef5;
     border: none;
     transition: all .1s ease;
 }
 #shopList #adShop:hover{
     color: #fff;
 	text-decoration:none;
-	background:#b891b6;
+	background:#5b8df1;
 }
 
 #delAdShop {
@@ -76,9 +76,9 @@
     padding: 0 20px;
     top: 5px;
     font: 14px/40px proLight,Helvetica,Arial,sans-serif;
-    color: #ae82ac;
+    color: #427ef5;
     background: white;
-    border: 3px solid #ae82ac;
+    border: 3px solid #427ef5;
     transition: all .1s ease;
     width: 101px;
     height: 41px;
@@ -96,4 +96,8 @@
 }
 .colCheck{
 	width: 3%;
+}
+#shopListCon{
+    width: 90%;
+    margin-left: 50px;
 }

@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String statsbody = request.getParameter("statsbody");
-	if(statsbody==null){
-		statsbody = "statsMain.jsp";
-	}
-%>
 <%@ include file="../main/kostyleHeader.jsp" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -62,25 +56,19 @@
                 </li>
                 
                 <li class="dropdown">
-                    <a href="/stats/statsVisitor">
+                    <a href="/stats/statsVisitorShop">
                     <span class="ifont"><i class="fa fa-female" style="font-size:23px"></i></span>
                          방문자수 분석</a>
                   
                 </li>
                 
                 <li class="dropdown">
-                    <a href="/stats/statsSearch">
+                    <a href="/stats/statsSearchShop">
                    <span class="ifont"><i class="material-icons" style="font-size:24px">redeem</i></span>
                         검색어 분석 </a>
                   
                 </li>
 
-                <li class="dropdown">
-                  <a href="/stats/statsCustomer">
-                  <span class="ifont"><i class="fa fa-user" style="font-size:22px"></i></span>
-                  	상세 회원 분석</a>
-                
-                </li>
        
 
             </ul>

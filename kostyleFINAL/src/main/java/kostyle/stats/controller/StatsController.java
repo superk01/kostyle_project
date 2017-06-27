@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kostyle.login.domain.AdShopVO;
 import kostyle.login.domain.CustomerVO;
 import kostyle.stats.domain.CustomerStats;
 import kostyle.stats.domain.HitcountStatsChart;
@@ -35,7 +36,29 @@ public class StatsController {
 	private StatsService service;
 	
 	@RequestMapping(value="/statsMain", method=RequestMethod.GET)
-	public void statsMainGET()throws Exception{
+	public String statsMainGET(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		List<SearchKeywordChart> list = null;
+		List<SearchKeywordChart> chart = null;
+		
+		list = service.statsSearchRank();
+		chart = service.searchRankChart(list);
+		System.out.println("~~검색어 순위");
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i).getSk_searchkey());
+		}
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("searchkeyRankingJ") != null){
+			session.removeAttribute("searchkeyRankingJ");
+		}
+		session.setAttribute("searchkeyRankingJ", list);
+
+		if(session.getAttribute("searchkeyRankChartJ") != null){
+			session.removeAttribute("searchkeyRankChartJ");
+		}
+		session.setAttribute("searchkeyRankChartJ", chart);
+		return "/stats/statsSearch";
 	}
 	
 	@RequestMapping(value="/statsSide", method=RequestMethod.GET)
@@ -148,34 +171,31 @@ public class StatsController {
 	
 	
 	
-	//검색어 분석
-	@RequestMapping(value="/statsSearch", method=RequestMethod.POST)
-	public ResponseEntity<String> statsSearchPOST(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		ResponseEntity<String> entity = null;
+	//검색어 순위
+	@RequestMapping(value="/statsSearch", method=RequestMethod.GET)
+	public String statsSearchGET(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		List<SearchKeywordChart> list = null;
+		List<SearchKeywordChart> chart = null;
 		
-		try {
-			entity = new ResponseEntity<String>("hello", HttpStatus.OK);
-			list = service.statsSearchRank();
-			
-			for(int i=0;i<list.size();i++){
-				System.out.println(list.get(i).getSk_searchkey());
-			}
-			
-			
-			HttpSession session = request.getSession();
-			
-			if(session.getAttribute("statsSearchRankJ") != null){
-				session.removeAttribute("statsSearchRankJ");
-			}
-			session.setAttribute("statsSearchRankJ", list);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		list = service.statsSearchRank();
+		chart = service.searchRankChart(list);
+		System.out.println("~~검색어 순위");
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i).getSk_searchkey());
 		}
 		
-		return entity;
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("searchkeyRankingJ") != null){
+			session.removeAttribute("searchkeyRankingJ");
+		}
+		session.setAttribute("searchkeyRankingJ", list);
+
+		if(session.getAttribute("searchkeyRankChartJ") != null){
+			session.removeAttribute("searchkeyRankChartJ");
+		}
+		session.setAttribute("searchkeyRankChartJ", chart);
+		return "/stats/statsSearch";
 	}
 	
 	
@@ -233,5 +253,128 @@ public class StatsController {
 	@RequestMapping(value="/statsCustomerChart", method=RequestMethod.GET)
 	public void statsCustomerChartGET()throws Exception{
 	}
+	
+	
+	//쇼핑몰이 로그인했을 떄
+	@RequestMapping(value="/statsMainShop", method=RequestMethod.GET)
+	public void statsMainShopGET(Model model)throws Exception{
+		
+	}
+	
+	@RequestMapping(value="/statsVisitorShop", method=RequestMethod.GET)
+	public void statsVisitorShopGET()throws Exception{
+		
+	}
+	
+	@RequestMapping(value="/statsVisitorShop", method=RequestMethod.POST)
+	public ResponseEntity<String> statsVisitorShopPOST(@RequestBody Map<String, Object> paramMap, HttpServletRequest request)throws Exception{
+		ResponseEntity<String> entity = null;
+		List<HitcountStatsChart> chartList = null;
+		
+		try {
+			String s_sname = (String) paramMap.get("statsSearchShop");
+			String statsSearchStartDate = (String) paramMap.get("statsSearchStartDate");
+			String statsSearchEndDate = (String) paramMap.get("statsSearchEndDate");
+			String chartFor = (String) paramMap.get("chartFor");			
+
+			chartList = service.statsDate(s_sname, statsSearchStartDate, statsSearchEndDate, chartFor);
+			
+			for(int i=0;i<chartList.size();i++){
+				System.out.println("~~STATS/SUCCEED TO GET CHARTLIST: "+chartList.get(i).getCnt_date());
+			}
+			
+			HttpSession session = request.getSession();
+			
+			if(session.getAttribute("statsVisitorShopJ") != null){
+				session.removeAttribute("statsVisitorShopJ");
+			}
+			session.setAttribute("statsVisitorShopJ", chartList);
+			
+			String locate = "";
+			
+			if(chartFor.equals("gender")){
+				locate="/stats/statsVisitorShop_gender";
+			}else if(chartFor.equals("age")){
+				locate="/stats/statsVisitorShop_age";
+			}else if(chartFor.equals("adr")){
+				locate="/stats/statsVisitorShop_adr";
+			}
+			
+			System.out.println("~~STATS/이동: "+locate);
+			entity = new ResponseEntity<String>(locate, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		
+		
+		return entity;
+	}
+	
+	@RequestMapping(value="/statsVisitorShop_gender", method=RequestMethod.GET)
+	public void statsVisitorShop_genderGET()throws Exception{
+		
+	}
+	
+	@RequestMapping(value="/statsVisitorShop_age", method=RequestMethod.GET)
+	public void statsVisitorShop_ageGET()throws Exception{
+		
+	}
+	
+	@RequestMapping(value="/statsVisitorShop_adr", method=RequestMethod.GET)
+	public void statsVisitorShop_adrGET()throws Exception{
+		
+	}	
+	
+	
+	
+	//쇼핑몰 로그인 검색어 순위
+	@RequestMapping(value="/statsSearchShop", method=RequestMethod.GET)
+	public String statsSearchShopGET(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		List<SearchKeywordChart> list = null;
+		List<SearchKeywordChart> chart = null;
+		
+		list = service.statsSearchRank();
+		chart = service.searchRankChart(list);
+		System.out.println("~~검색어 순위");
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i).getSk_searchkey());
+		}
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("searchkeyRankingJ") != null){
+			session.removeAttribute("searchkeyRankingJ");
+		}
+		session.setAttribute("searchkeyRankingJ", list);
+
+		if(session.getAttribute("searchkeyRankChartJ") != null){
+			session.removeAttribute("searchkeyRankChartJ");
+		}
+		session.setAttribute("searchkeyRankChartJ", chart);
+		return "/stats/statsSearchShop";
+	}
+	
+	
+	
+	
+	
+//	@RequestMapping(value="/statsCustomerLogin", method=RequestMethod.GET)
+//	public String statsCustomerLoginGET(Model model, HttpSession session)throws Exception{
+//		try {
+//		   CustomerVO login = (CustomerVO) session.getAttribute("login");
+//		   System.out.println(login.getC_num());
+//		   String c_num = login.getC_num();
+//		   
+//		   model.addAttribute("searchKeyList",service.customerSearchKeyAll(c_num));
+//		   model.addAttribute("shopList",service.customerVisitShopAll(c_num));
+//		   model.addAttribute("prdList",service.customerVisitPrdAll(c_num));
+//		   
+//		   return null;
+//		} catch (Exception e) {
+//			return "redirect:/cuslogin/login";
+//		}
+//	}
 	
 }
