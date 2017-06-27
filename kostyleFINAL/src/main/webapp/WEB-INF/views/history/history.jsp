@@ -159,7 +159,7 @@ $(document).ready(function() {
 </head>
 <body>
 
-
+<div>
 	<div class="container">
 		<!-- 최근본 상품정보 컨터이너 -->
 		<table border="1px solid" class="table" >
@@ -231,5 +231,9 @@ $(document).ready(function() {
 
 		</ul>
 	</div>
+</div>
+<footer>
+	<%@ include file="../main/footer.jsp" %>
+</footer>
 </body>
 </html>

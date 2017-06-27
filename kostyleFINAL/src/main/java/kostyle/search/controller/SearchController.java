@@ -36,7 +36,7 @@ public class SearchController {
    }
    
    @RequestMapping(value="do", method=RequestMethod.GET)
-   public ModelAndView doSearch(HttpServletRequest request, @RequestParam("search") String keyword, HttpSession session){
+   public ModelAndView doSearch(HttpServletRequest request, @RequestParam("keyword") String keyword, HttpSession session){
       System.out.println("doSearch호출");
       /*String keyword=(String)request.getParameter("search");*/               //검색어 받음
       

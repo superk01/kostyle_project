@@ -627,7 +627,7 @@ function sendtwo(){
    document.searchForm.action='/stats/insertstats';
    document.searchForm.submit();
     */
-   document.searchForm.action='/category/search';
+   document.searchForm.action='/search/do';
    /* document.searchForm.attr("method", "get"); */
    document.searchForm.submit();
 }
