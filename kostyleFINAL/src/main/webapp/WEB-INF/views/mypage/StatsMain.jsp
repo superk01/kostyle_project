@@ -7,69 +7,68 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="/resources/css/mypage/MypageBody.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/mypage/MypageStats.css" />
 </head>
 <body>
-
+<div id=hd></div>
 <div id="page-content-wrapper">
-	<div class="hamburgerSticky">
-		<button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-			<span class="hamb-top"></span>
-			<span class="hamb-middle"></span>
-			<span class="hamb-bottom"></span>
-		</button>
-	</div>
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2">
+	<jsp:include page="menu.jsp"/>
+		<div class="row" id="contents">
+			<div id="cont_area">
 
-				<div class="listContainer">
+				<div class="listContainer" id="list1">
 					<div class="listTitleContainer">
 						<span class="listTitle">많이 본 상품</span>
-						<div class="listBody">
-						
-							<c:forEach items="${prdList }" var="CustomerStats">
-								<div class="listItemContainer">
-									<span class="listImg"><img alt="" src="http:${ CustomerStats.h_imgurl}" width="138px" height="138px"></span>
-									<span Class="listItem">${ CustomerStats.h_name}</span>
-								</div>
-							</c:forEach>
-						
+					</div>
+					<div class="listBody">
+					
+						<c:forEach items="${prdList }" var="CustomerStats" varStatus="status">
+							<div class="listItemContainer">
+								<span Class="listRank">${ status.index +1}</span>
+								<span class="listImg"><img alt="" src="http:${ CustomerStats.h_imgurl}" width="138px" height="138px"></span>
+								<span Class="listItem">${ CustomerStats.h_name}</span>
+							</div>
+						</c:forEach>
+					
 
-						</div>
 					</div>
 				</div>
 
 
 
-				<div class="listContainer">
+				<div class="listContainer" id="list2">
 					<div class="listTitleContainer">
 						<span class="listTitle">많이 검색한 키워드</span>
-						<div class="listBody">
+					</div>
+					<div class="listBody">
+					
+						<c:forEach items="${searchKeyList }" var="CustomerStats" varStatus="status">
+							<div class="listItemContainer">
+								<span Class="listRank">${ status.index +1}</span>
+								<span Class="listItem">${ CustomerStats.sk_searchkey}</span>
+							</div>
+						</c:forEach>
 						
-							<c:forEach items="${searchKeyList }" var="CustomerStats">
-								<div class="listItemContainer">
-									<span Class="listItem">${ CustomerStats.sk_searchkey}</span>
-								</div>
-							</c:forEach>
-							
-						</div>
 					</div>
 				</div>
 
 
 
-				<div class="listContainer">
+				<div class="listContainer" id="list3">
 					<div class="listTitleContainer">
 						<span class="listTitle">많이 방문한 쇼핑몰</span>
-						<div class="listBody">
-						
-							<c:forEach items="${shopList }" var="CustomerStats">
-								<div class="listItemContainer">
-									<span Class="listItem">${ CustomerStats.s_sname}</span>
-								</div>
-							</c:forEach>
+					</div>
+					<div class="listBody">
+					
+						<c:forEach items="${shopList }" var="CustomerStats" varStatus="status">
+							<div class="listItemContainer">
+								<span Class="listRank">${ status.index +1}</span>
+								<span Class="listItem">${ CustomerStats.s_sname}</span>
+							</div>
+						</c:forEach>
 
-						</div>
 					</div>
 				</div>
 
@@ -78,5 +77,6 @@
 	</div>
 </div>
 </body>
+      <%@ include file="../main/footer.jsp" %>
 
 </html>

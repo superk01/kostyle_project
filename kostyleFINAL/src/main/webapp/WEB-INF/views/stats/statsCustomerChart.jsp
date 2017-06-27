@@ -31,56 +31,56 @@
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
 
-				<div class="listContainer">
+				<div class="listContainer" id="list1">
 					<div class="listTitleContainer">
 						<span class="listTitle">많이 본 상품</span>
-						<div class="listBody">
-						
-							<%for(int i=0;i<prdList.size();i++){ %>
-							<div class="listItemContainer">
-								<span class="listRank"><%= i+1%></span>
-								<span class="listImg"><img alt="" src="http:<%=prdList.get(i).getH_imgurl() %>" width="138px" height="138px"></span>
-								<span Class="listItem"><%=prdList.get(i).getH_name() %></span>
-							</div>
-							<%} %>
-
+					</div>
+					<div class="listBody">
+					
+						<%for(int i=0;i<prdList.size();i++){ %>
+						<div class="listItemContainer">
+							<span class="listRank"><%= i+1%></span>
+							<span class="listImg"><img alt="" src="http:<%=prdList.get(i).getH_imgurl() %>" width="138px" height="138px"></span>
+							<span Class="listItem"><%=prdList.get(i).getH_name() %></span>
 						</div>
+						<%} %>
+
 					</div>
 				</div>
 
 
 
-				<div class="listContainer">
+				<div class="listContainer" id="list2">
 					<div class="listTitleContainer">
 						<span class="listTitle">많이 검색한 키워드</span>
-						<div class="listBody">
-						
-							<%for(int i=0;i<prdList.size();i++){ %>
-							<div class="listItemContainer">
-								<span class="listRank"><%= i+1%></span>
-								<span Class="listItem"><%=searchKeyList.get(i).getSk_searchkey() %></span>
-							</div>
-							<%} %>
-
+					</div>
+					<div class="listBody">
+					
+						<%for(int i=0;i<prdList.size();i++){ %>
+						<div class="listItemContainer">
+							<span class="listRank"><%= i+1%></span>
+							<span Class="listItem"><%=searchKeyList.get(i).getSk_searchkey() %></span>
 						</div>
+						<%} %>
+
 					</div>
 				</div>
 
 
 
-				<div class="listContainer">
+				<div class="listContainer" id="list3">
 					<div class="listTitleContainer">
 						<span class="listTitle">많이 방문한 쇼핑몰</span>
-						<div class="listBody">
-						
-							<%for(int i=0;i<prdList.size();i++){ %>
-							<div class="listItemContainer">
-								<span class="listRank"><%= i+1%></span>
-								<span Class="listItem"><%=shopList.get(i).getS_sname() %></span>
-							</div>
-							<%} %>
-
+					</div>
+					<div class="listBody">
+					
+						<%for(int i=0;i<prdList.size();i++){ %>
+						<div class="listItemContainer">
+							<span class="listRank"><%= i+1%></span>
+							<span Class="listItem"><%=shopList.get(i).getS_sname() %></span>
 						</div>
+						<%} %>
+
 					</div>
 				</div>
 
@@ -90,5 +90,4 @@
 	</div>
 </div>
 </body>
-
 </html>

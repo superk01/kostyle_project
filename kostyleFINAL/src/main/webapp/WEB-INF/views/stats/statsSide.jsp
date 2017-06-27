@@ -69,12 +69,21 @@
                 </li>
                 
                 <li class="dropdown">
-                    <a href="/stats/statsSearch">
+                    <a data-toggle="collapse" href="#dropdown-menu">
                    <span class="ifont"><i class="material-icons" style="font-size:24px">redeem</i></span>
-                        검색어 분석 </a>
-                  
-                </li>
-
+                        검색어 분석 <span class="caret"></span></a>
+                </li>	
+                
+                <div id="dropdown-menu" class="panel-collapse collapse dropdown-menu">
+                    <div class="panel-body">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/stats/statsSearch">검색어 순위</a></li>
+                            <li><a href="/stats/statsSearchAge">연령대별 검색어</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                
                 <li class="dropdown">
                   <a href="/stats/statsCustomer">
                   <span class="ifont"><i class="fa fa-user" style="font-size:22px"></i></span>
@@ -116,6 +125,6 @@
     <!-- /#wrapper -->
     
 
-
 </body>
+
 </html>

@@ -1,89 +1,23 @@
-/*jQuery(document).ready(function($){
-    
-    // jQuery sticky Menu
-    
-	//$(".mainmenu-area").sticky({topSpacing:0});
-    
-    
-    $('.product-carousel').owlCarousel({
-        loop:true,
-        nav:true,
-        margin:20,
-        responsiveClass:true,
-        responsive:{
-            0:{
-                items:1,
-            },
-            600:{
-                items:3,
-            },
-            1000:{
-                items:5,
-            }
-        }
-    });  
-    
-    $('.related-products-carousel').owlCarousel({
-        loop:true,
-        nav:true,
-        margin:20,
-        responsiveClass:true,
-        responsive:{
-            0:{
-                items:1,
-            },
-            600:{
-                items:2,
-            },
-            1000:{
-                items:2,
-            },
-            1200:{
-                items:3,
-            }
-        }
-    });  
-    
-    $('.brand-list').owlCarousel({
-        loop:true,
-        nav:true,
-        margin:20,
-        responsiveClass:true,
-        responsive:{
-            0:{
-                items:1,
-            },
-            600:{
-                items:3,
-            },
-            1000:{
-                items:4,
-            }
-        }
-    });    
-    
-    
-    // Bootstrap Mobile Menu fix
-    $(".navbar-nav li a").click(function(){
-        $(".navbar-collapse").removeClass('in');
-    });    
-    
-    // jQuery Scroll effect
-    $('.navbar-nav li a, .scroll-to-up').bind('click', function(event) {
-        var $anchor = $(this);
-        var headerH = $('.header-area').outerHeight();
-        $('html, body').stop().animate({
-            scrollTop : $($anchor.attr('href')).offset().top - headerH + "px"
-        }, 1200, 'easeInOutExpo');
-
-        event.preventDefault();
-    });    
-    
-    // Bootstrap ScrollPSY
-    $('body').scrollspy({ 
-        target: '.navbar-collapse',
-        offset: 95
-    })      
+$(function() {
+	$('.shopLink').on('click',function(e){
+		e.preventDefault();
+		
+		var url = $(this).attr('href');
+		location.href = "#favoriteBodyTop";
+		
+		if($('#CategorysearchIframe').length > 0){
+			$('#CategorysearchIframe').attr("src", url);
+		}else{
+			$('#favoriteBodyTop').remove();
+			$('#favoritebackground').prepend('<div id="iframeRemove">쇼핑몰닫기</div>');
+			$('#favoritebackground').prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src='+'\"'+url+'\"></iframe>');
+			$('#favoritebackground').prepend('<div id="favoriteBodyTop"></div> <br><br>');
+		}
+		$('#iframeRemove').on('click', function(){
+			$('#CategorysearchIframe').remove();
+			$('#iframeRemove').remove();
+		
+		});
+		
+	});
 });
-
-*/

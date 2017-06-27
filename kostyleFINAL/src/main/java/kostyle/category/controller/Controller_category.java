@@ -50,6 +50,7 @@ public class Controller_category {
 				map.put("list", list);
 				service.product_list_insert(map);
 			}
+			
 		}else{
 			session.setAttribute("product_list", service.product_Search(keyword));
 		}

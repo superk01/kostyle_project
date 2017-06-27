@@ -38,7 +38,7 @@
         <input type="text" id="inputShopReg" class="form-control" name="s_shopreg" placeholder="사업자등록번호" required>
         
         <label for="inputImage" class="sr-only">ShoppingMall Image</label>
-        <input type="file" id="inputImage" class="form-control" name="s_image" required>
+        <input type="text" id="inputImage" class="form-control" name="s_image" placeholder="대표 이미지 URL" required>
         
         <label for="inputAge" class="sr-only">ShoppingMall Age</label>
         <select class="form-control" id="inputAge" name="s_age">
@@ -46,7 +46,6 @@
         	<option value="10">10대</option>
         	<option value="20">20대</option>
         	<option value="30">30대</option>
-        	<option value="40">40대</option>
         </select>
         
         <label for="inputManager" class="sr-only">ShoppingMall Manager</label>
@@ -63,6 +62,7 @@
       </form>
     </div> <!-- /container -->
 
-
+<br><br><br><br>
   </body>
+      <%@ include file="../main/footer.jsp" %>
 </html>

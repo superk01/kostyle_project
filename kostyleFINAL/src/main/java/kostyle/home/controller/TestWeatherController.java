@@ -47,7 +47,6 @@ public class TestWeatherController {
 		Weather weather = getWeather.start();	
 		int level = wpk.getWeather_pick_Data(weather, value)[0];
 		List<Product_category> list = service.weather_search(level);
-		System.out.println(list.size()+ "level : " + level);
 		ResponseEntity<List<Product_category>> ent = new ResponseEntity<List<Product_category>>(list, HttpStatus.ACCEPTED);
 		return ent;
 	}

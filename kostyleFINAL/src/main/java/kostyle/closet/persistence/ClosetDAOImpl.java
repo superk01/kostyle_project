@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.inject.Inject;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -104,39 +105,43 @@ public class ClosetDAOImpl implements ClosetDAO {
 
 	
 //-------------------prd------------------------------------------------------
-	
-	//찜상품추가
-	@Override
-	public int insertClosetPrd(ClosetPrd closetPrd) {
-		int re= session.insert(namespace +".insertClosetPrd", closetPrd );
-		return re;
-	}
-	//찜상품추가시 다른사람의 같은상품에대한 찜카운트연동함수
-	@Override
-	public void zzimIncreaseTransaction(String clo_prdUrl) {
-		clo_prdUrl = prdUrlRepair(clo_prdUrl);//http://가있으면 지우는함수.
-		session.update(namespace+".zzimIncreaseTransaction", clo_prdUrl);
-	}
-	
 	//해당상품의 중복여부 우선확인
 	@Override
 	public int check_duplication(ClosetPrd closetPrd) {
 		System.out.println("check_duplication중복여부: "+session.selectOne(namespace+".check_duplication",closetPrd));
 		return session.selectOne(namespace+".check_duplication",closetPrd);
 	}
+	
+	//찜상품추가
+	@Override
+	public int insertClosetPrd(ClosetPrd closetPrd) {
+		System.out.println("insertClosetPrd:"+closetPrd);
+		int re= session.insert(namespace +".insertClosetPrd", closetPrd );
+		return re;
+	}
+	
+	
+	
+	//찜상품추가시 다른사람의 같은상품에대한 찜카운트연동함수
+	@Override
+	public void zzimIncreaseTransaction(ClosetPrd closetPrd) {
+		/*clo_prdUrl = prdUrlRepair(clo_prdUrl);//http://가있으면 지우는함수.
+*/		session.update(namespace+".zzimIncreaseTransaction", closetPrd);
+	}
+	
+	//해당상품zzim횟수 구하기 보완필요. 찜추가/삭제시 다른사람한테도 카운트반영되도록.
+	@Override
+	public int count_zzim(ClosetPrd closetPrd) {
+		System.out.println("보완필요한count_zzim: "+session.selectOne(namespace+".count_zzim",closetPrd));
+		return session.selectOne(namespace+".count_zzim",closetPrd);
+	}
+	
 
 	//가장 큰 clo_detail_num구하기. 찜상품추가시 +1해서 clo_detail_num으로사
 	@Override
 	public int max_detail_num() {
 		System.out.println("가장 큰 detail_num: "+session.selectOne(namespace+".max_detail_num"));
 		return session.selectOne(namespace+".max_detail_num");
-	}
-
-	//해당상품zzim횟수 구하기 보완필요. 찜추가/삭제시 다른사람한테도 카운트반영되도록.
-	@Override
-	public int count_zzim(ClosetPrd closetPrd) {
-		System.out.println("보완필요한count_zzim: "+session.selectOne(namespace+".count_zzim",closetPrd));
-		return session.selectOne(namespace+".count_zzim",closetPrd);
 	}
 
 	//(찜추가시)밑의 getImgURL,Price,Name 합쳐서 해시맵에.
@@ -155,8 +160,16 @@ public class ClosetDAOImpl implements ClosetDAO {
 		
 		
 		//자바의 줄바꿈은 시스템마다 달라진다. 현재 운영체제의 줄바꿈 문자 얻는법.
+		System.out.println("urlRepair:"+prdUrl);
 		String line = System.getProperty("line.separator");
 		System.out.println("dao에서 받은 prdUrl: "+prdUrl);
+		/*int endIndex = prdUrl.length();
+		prdUrl = prdUrl.substring(2, endIndex);*/
+		String path ="";
+		if(prdUrl.indexOf("http")==0){
+			path = "http:"+prdUrl;
+		}
+		System.out.println("urlRepair:"+path);
 
 		URL url =null;
 		BufferedReader br =null;
@@ -171,7 +184,7 @@ public class ClosetDAOImpl implements ClosetDAO {
 		String price="";
 		String prdName="";
 		try {
-			url = new URL(prdUrl);
+			url = new URL(path);
 			URLConnection con = url.openConnection(); 
 			br = new BufferedReader(new InputStreamReader(url.openStream()));
 		    String code;
@@ -292,7 +305,7 @@ public class ClosetDAOImpl implements ClosetDAO {
 	//url에서 http://, https://떼기
 	@Override
 	public String prdUrlRepair(String prdUrl) {
-		 int index1 = -1;
+		/* int index1 = -1;
 		 int index2 = -1; 
 		 
 		 index1 = prdUrl.indexOf("http://");
@@ -307,8 +320,11 @@ public class ClosetDAOImpl implements ClosetDAO {
 			  index2 = index1 +8;
 			  prdUrl = prdUrl.substring(index2);
 			  System.out.println("http://뗀 prdUrl: "+prdUrl);
-		  }
+		  }*/
 		  
+//		Pattern pattern1 = Pattern.compile("http://||htttps://");
+		prdUrl = prdUrl.replaceAll("http://||https://", "");
+		System.out.println("daoImpl prdUrlRepair : "+prdUrl);
 		  return prdUrl;
 	  }
 

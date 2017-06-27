@@ -27,7 +27,7 @@ value="${pageContext.request.contextPath}"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+<script type="text/javascript" src="/resources/js/ranking/rankingIframe.js"></script>
 <script>
 	var result = '${msg}';
 
@@ -45,8 +45,10 @@ value="${pageContext.request.contextPath}"/>
 		<div class="page-header">
 			<h1>쇼핑몰 순위</h1> <a href = "${path}/ranking/Rankingsort"> 랭킹 정렬 </a>
 		</div>
-
-
+<div id="rankingbackground">
+<div id="rankingBodyTop"></div>
+<br><br>
+</div>
 		<div class="box">
 			<div class="box-body">
 				<table class="table table-hover">
@@ -63,8 +65,8 @@ value="${pageContext.request.contextPath}"/>
 						<c:forEach items="${list}" var="RankingVO">
 
 							<tr>
-								<td><img id="s_image" src="${RankingVO.s_image}"></td>
-								<td><a href="http://${RankingVO.s_shopurl }">${RankingVO.s_sname}</a></td>
+								<td><img id="s_image" src="//${RankingVO.s_image}"></td>
+								<td><a class="shoplink" href="http://${RankingVO.s_shopurl }">${RankingVO.s_sname}</a></td>
 								<%-- <td><a
 									href='/favorite/comentRead${pageMaker.makeQuery(pageMaker.cri.page)}&f_num=${Favorite.f_num }'>
 										<img src="../../../resources/image/favoriteImg/comment.png"
@@ -88,17 +90,17 @@ value="${pageContext.request.contextPath}"/>
 								<li><a href="favoriteList${pageMaker.makeQuery(pageMaker.startPage - 1)}">&laquo;</a></li>
 							</c:if>
 
-							<c:forEach begin="${pageMaker.startPage }"
+							<%-- <c:forEach begin="${pageMaker.startPage }"
 								end="${pageMaker.endPage }" var="idx">
 								<li
 									<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
 									<a href="favoriteList${pageMaker.makeQuery(idx)}">${idx }</a>
 								</li>
-							</c:forEach>
+							</c:forEach> --%>
 
-							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+							<%-- <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a href="favoriteList${pageMaker.makeQuery(pageMaker.endPage + 1)}">&raquo;</a></li>
-							</c:if>
+							</c:if> --%>
 						<br><br>
 						</ul>
 					</div>
@@ -115,4 +117,5 @@ value="${pageContext.request.contextPath}"/>
 	</div>
 
 </body>
+      <%@ include file="../main/footer.jsp" %>
 

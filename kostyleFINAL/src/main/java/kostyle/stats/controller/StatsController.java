@@ -1,5 +1,8 @@
 package kostyle.stats.controller;
 
+import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kostyle.login.domain.AdShopVO;
 import kostyle.login.domain.CustomerVO;
 import kostyle.stats.domain.CustomerStats;
 import kostyle.stats.domain.HitcountStatsChart;
@@ -35,7 +39,35 @@ public class StatsController {
 	private StatsService service;
 	
 	@RequestMapping(value="/statsMain", method=RequestMethod.GET)
-	public void statsMainGET()throws Exception{
+	public String statsMainGET(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		List<SearchKeywordChart> list = null;
+		List<SearchKeywordChart> shopList = null;
+		
+		list = service.statsSearchRank();
+		shopList = service.todayShop();
+		System.out.println("~~검색어 순위");
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i).getSk_searchkey());
+		}
+		
+		System.out.println("~~오늘의 쇼핑몰 순위");
+		for(int i=0;i<shopList.size();i++){
+			System.out.println(shopList.get(i).getS_sname());
+		}
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("searchkeyRankingJ") != null){
+			session.removeAttribute("searchkeyRankingJ");
+		}
+		session.setAttribute("searchkeyRankingJ", list);
+		
+		if(session.getAttribute("todayShopRankJ") != null){
+			session.removeAttribute("todayShopRankJ");
+		}
+		session.setAttribute("todayShopRankJ", shopList);
+
+		return "/stats/statsMain";
 	}
 	
 	@RequestMapping(value="/statsSide", method=RequestMethod.GET)
@@ -175,7 +207,21 @@ public class StatsController {
 		return "/stats/statsSearch";
 	}
 	
-	
+	@RequestMapping(value="/statsSearchAge", method=RequestMethod.GET)
+	public void statsSearchAgeGET(Model model)throws Exception{
+		try {
+			List<SearchKeywordChart> listTeen = service.searchRankTeen();
+			List<SearchKeywordChart> listTwenty = service.searchRankTwenty();
+			List<SearchKeywordChart> listThirty = service.searchRankThirty();
+			
+			
+			model.addAttribute("listTeen", listTeen);
+			model.addAttribute("listTwenty", listTwenty);
+			model.addAttribute("listThirty", listThirty);
+			
+		} catch (Exception e) {
+		}
+	}
 	
 	
 	
@@ -231,21 +277,174 @@ public class StatsController {
 	public void statsCustomerChartGET()throws Exception{
 	}
 	
-	@RequestMapping(value="/statsCustomerLogin", method=RequestMethod.GET)
-	public String statsCustomerLoginGET(Model model, HttpSession session)throws Exception{
-		try {
-		   CustomerVO login = (CustomerVO) session.getAttribute("login");
-		   System.out.println(login.getC_num());
-		   String c_num = login.getC_num();
-		   
-		   model.addAttribute("searchKeyList",service.customerSearchKeyAll(c_num));
-		   model.addAttribute("shopList",service.customerVisitShopAll(c_num));
-		   model.addAttribute("prdList",service.customerVisitPrdAll(c_num));
-		   
-		   return null;
-		} catch (Exception e) {
-			return "redirect:/cuslogin/login";
+	
+	//쇼핑몰이 로그인했을 떄
+	@RequestMapping(value="/statsMainShop", method=RequestMethod.GET)
+	public String statsMainShopGET(HttpServletRequest request, HttpServletResponse response)throws Exception{
+
+		//검색어 랭킹
+		List<SearchKeywordChart> list = null;
+		
+		list = service.statsSearchRank();
+		System.out.println("~~검색어 순위");
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i).getSk_searchkey());
 		}
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("searchkeyRankingJ") != null){
+			session.removeAttribute("searchkeyRankingJ");
+		}
+		session.setAttribute("searchkeyRankingJ", list);
+		
+		
+		//차트
+		List<HitcountStatsChart> visitorAgeList = null;
+		List<HitcountStatsChart> visitorGenderList = null;
+		List<HitcountStatsChart> visitorAreaList = null;
+		
+		AdShopVO adShopVo = (AdShopVO) session.getAttribute("shoplogin");
+		String s_sname = adShopVo.getS_sname();
+		
+		Calendar cal = Calendar.getInstance();
+		String startDay = cal.get(Calendar.YEAR)+"-"+new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1)+"-"+(cal.get(Calendar.DATE)-7);
+		String endDay = cal.get(Calendar.YEAR)+"-"+new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1)+"-"+(cal.get(Calendar.DATE));
+		
+		visitorAgeList = service.statsDate(s_sname, startDay, endDay, "age");
+		visitorGenderList = service.statsDate(s_sname, startDay, endDay, "gender");
+		visitorAreaList = service.statsDate(s_sname, startDay, endDay, "adr");
+		
+		if(session.getAttribute("statsVisitorShopAgeJ") != null){
+			session.removeAttribute("statsVisitorShopAgeJ");
+		}
+		session.setAttribute("statsVisitorShopAgeJ", visitorAgeList);		
+		
+		if(session.getAttribute("statsVisitorShopGenderJ") != null){
+			session.removeAttribute("statsVisitorShopGenderJ");
+		}
+		session.setAttribute("statsVisitorShopGenderJ", visitorGenderList);		
+		
+		if(session.getAttribute("statsVisitorShopAreaJ") != null){
+			session.removeAttribute("statsVisitorShopAreaJ");
+		}
+		session.setAttribute("statsVisitorShopAreaJ", visitorAreaList);		
+		
+		return "/stats/statsMainShop";		
 	}
+	
+	@RequestMapping(value="/statsVisitorShop", method=RequestMethod.GET)
+	public void statsVisitorShopGET()throws Exception{
+		
+	}
+	
+	@RequestMapping(value="/statsVisitorShop", method=RequestMethod.POST)
+	public ResponseEntity<String> statsVisitorShopPOST(@RequestBody Map<String, Object> paramMap, HttpServletRequest request)throws Exception{
+		ResponseEntity<String> entity = null;
+		List<HitcountStatsChart> chartList = null;
+		
+		try {
+			String s_sname = (String) paramMap.get("statsSearchShop");
+			String statsSearchStartDate = (String) paramMap.get("statsSearchStartDate");
+			String statsSearchEndDate = (String) paramMap.get("statsSearchEndDate");
+			String chartFor = (String) paramMap.get("chartFor");			
+
+			chartList = service.statsDate(s_sname, statsSearchStartDate, statsSearchEndDate, chartFor);
+			
+			for(int i=0;i<chartList.size();i++){
+				System.out.println("~~STATS/SUCCEED TO GET CHARTLIST: "+chartList.get(i).getCnt_date());
+			}
+			
+			HttpSession session = request.getSession();
+			
+			if(session.getAttribute("statsVisitorShopJ") != null){
+				session.removeAttribute("statsVisitorShopJ");
+			}
+			session.setAttribute("statsVisitorShopJ", chartList);
+			
+			String locate = "";
+			
+			if(chartFor.equals("gender")){
+				locate="/stats/statsVisitorShop_gender";
+			}else if(chartFor.equals("age")){
+				locate="/stats/statsVisitorShop_age";
+			}else if(chartFor.equals("adr")){
+				locate="/stats/statsVisitorShop_adr";
+			}
+			
+			System.out.println("~~STATS/이동: "+locate);
+			entity = new ResponseEntity<String>(locate, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		
+		
+		return entity;
+	}
+	
+	@RequestMapping(value="/statsVisitorShop_gender", method=RequestMethod.GET)
+	public void statsVisitorShop_genderGET()throws Exception{
+		
+	}
+	
+	@RequestMapping(value="/statsVisitorShop_age", method=RequestMethod.GET)
+	public void statsVisitorShop_ageGET()throws Exception{
+		
+	}
+	
+	@RequestMapping(value="/statsVisitorShop_adr", method=RequestMethod.GET)
+	public void statsVisitorShop_adrGET()throws Exception{
+		
+	}	
+	
+	
+	//쇼핑몰 로그인 검색어 순위
+	@RequestMapping(value="/statsSearchShop", method=RequestMethod.GET)
+	public String statsSearchShopGET(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		List<SearchKeywordChart> list = null;
+		List<SearchKeywordChart> chart = null;
+		
+		list = service.statsSearchRank();
+		chart = service.searchRankChart(list);
+		System.out.println("~~검색어 순위");
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i).getSk_searchkey());
+		}
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("searchkeyRankingJ") != null){
+			session.removeAttribute("searchkeyRankingJ");
+		}
+		session.setAttribute("searchkeyRankingJ", list);
+
+		if(session.getAttribute("searchkeyRankChartJ") != null){
+			session.removeAttribute("searchkeyRankChartJ");
+		}
+		session.setAttribute("searchkeyRankChartJ", chart);
+		return "/stats/statsSearchShop";
+	}
+	
+	
+	
+	
+	
+//	@RequestMapping(value="/statsCustomerLogin", method=RequestMethod.GET)
+//	public String statsCustomerLoginGET(Model model, HttpSession session)throws Exception{
+//		try {
+//		   CustomerVO login = (CustomerVO) session.getAttribute("login");
+//		   System.out.println(login.getC_num());
+//		   String c_num = login.getC_num();
+//		   
+//		   model.addAttribute("searchKeyList",service.customerSearchKeyAll(c_num));
+//		   model.addAttribute("shopList",service.customerVisitShopAll(c_num));
+//		   model.addAttribute("prdList",service.customerVisitPrdAll(c_num));
+//		   
+//		   return null;
+//		} catch (Exception e) {
+//			return "redirect:/cuslogin/login";
+//		}
+//	}
 	
 }

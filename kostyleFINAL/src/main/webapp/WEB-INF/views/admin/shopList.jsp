@@ -17,8 +17,8 @@
 
 </head>
 <body>
-
-
+<br>
+<div id="shopListCon">
 <div id="searchShop">
 	<span id="searchSelect" class="searchEl">
 		<select name="searchType">
@@ -33,12 +33,11 @@
 	<span class="searchEl">
 		<input type="text" name="keyword" value='${cri.keyword }' id="searchText">
 	</span>
-	
+	<br>
 	<span id="searchRadio" class="searchEl">
 		<label for="state_all">
 		<input type="radio" name="shopState" value="all" id="state_all" checked="checked">전체
 		</label>
-
 		<label for="state_o">
 		<input type="radio" name="shopState" value="o" id="state_o">등록
 		</label>
@@ -47,6 +46,7 @@
 		<input type="radio" name="shopState" value="x" id="state_x">미등록
 		</label>
 	</span>
+	<br>
 	<span>
 		<input type="button" id="searchBtn" class="searchEl" value="Search">
 	</span>
@@ -122,7 +122,8 @@
 	</div>
 </div>
  
- 	
+ 
+</div>	
 
 <!-- modal --> 	
 	<div class="container">
@@ -149,7 +150,7 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-md-12">
-								<img id="m_image" alt="" src="">
+								<img id="m_image" alt="" src="" width="157px">
 								</div>
 							</div>
 							<div class="row">
@@ -195,7 +196,7 @@
 							<div class="row">
 								<div class="col-md-3">검색URL</div>
 								<div class="col-md-12">
-									<input type="text" id="m_searchurl" value="">
+									<input type="text" id="m_searchurl" value="" width="540px">
 								</div>
 							</div>
 							<div class="row">
@@ -252,9 +253,11 @@
 <br><br>
 <br><br><br>
 <br>
+<div hidden="hidden">
 신청날짜, 엑셀 다운로드, 메일등록/미등록 모달에서 셀렉트, 모달 연령대 select.
-
-aaabbb
+</div>
+</body>
+<%@ include file="../main/footer.jsp" %>
 <script>
 
 	$(document).ready(function(){
@@ -308,7 +311,6 @@ aaabbb
 		if(reg.test(inputGrade) || inputGrade > 100){
 			alert("심사 점수를 다시 입력하세요");
 		}else{
-			alert("등록ㄱㄱ");
 
 			var shop = {};
 			
@@ -355,9 +357,8 @@ aaabbb
 	
 	//리스트에서 adshoppingmall 등록하기
 	$("#adShop").on("click",function(){
-		
-		if($("#shopList :checked").size()<1){
-			alert("선택ㄱㄱ");
+		if($("#shopList :checked").length<1){
+			alert("쇼핑몰을 선택하세요");
 		}else{
 			var check = true;
 			$("#shopList :checked").each(function(i,item){
@@ -369,7 +370,7 @@ aaabbb
 			if(check){
 				$("#adShopList").submit();
 			}else{
-				alert("다시 선택");
+				alert("다시 선택하세요");
 			}
 		};
 	});
@@ -378,8 +379,8 @@ aaabbb
 	//리스트에서 adshoppingmall 등록취소하기
 	$("#delAdShop").on("click", function(){
 
-		if($("#shopList :checked").size()<1){
-			alert("선택ㄱㄱ");
+		if($("#shopList :checked").length<1){
+			alert("쇼핑몰을 선택하세요");
 		}else{
 			var check = true;
 			$("#shopList :checked").each(function(i,item){
@@ -392,7 +393,7 @@ aaabbb
 				$("#adShopList").attr("action","/admin/deleteAdShop");
 				$("#adShopList").submit();
 			}else{
-				alert("다시 선택");
+				alert("다시 선택하세요");
 			}
 		};
 		
@@ -435,7 +436,6 @@ aaabbb
 		if(reg.test(inputGrade) || inputGrade > 100){
 			alert("심사 점수를 다시 입력하세요");
 		}else{
-			alert("저장ㄱㄱ");
 			var shop = {};
 			
 			shop["s_num"] = $("#m_num").text();

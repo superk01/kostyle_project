@@ -365,7 +365,7 @@
             <form class="search-form" action="#" method="get" name="searchForm">
                <div class="search-box">
                   <dl class="clear">
-                  <dt class="search1"><input id="search-text" type="text" name="search" style="border:5px solid #EC971F;"></dt>
+                  <dt class="search1"><input id="search-text" type="text" name="keyword" style="border:5px solid #EC971F;"></dt>
                   <dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch2.png" alt="검색" title="검색" onclick="sendtwo()" style="border:5px solid #EC971F;"></dd>
                   </dl>
                </div>
@@ -390,18 +390,19 @@
   
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      <li><a href="#" style="padding:20px 59px !important">RAKING</a></li>
+      <li><a href="/ranking/RankingMain" style="padding:20px 59px !important">RANKING</a></li>
       
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:20px 59px !important">DISCOUNT</a>
           <ul class="dropdown-menu">
-            <li><a href="#">기획할인</a></li>
-            <li><a href="#">신상품할인</a></li>
+
+            <li><a href="/discount/planning">기획할인</a></li>
+            <li><a href="/discount/new">신상품할인</a></li>
           </ul>
         </li>
         
         <li><a href="/help/list" style="padding:20px 59px !important">SERVICE CENTER</a></li>
-        <li><a href="#" style="padding:20px 59px !important">STATISTICS</a></li>
+        <li><a href="/stats/statsMainShop" style="padding:20px 59px !important">STATISTICS</a></li>
         <li><a href="/coordinator/list" style="padding:20px 59px !important">COORDI</a></li>
       </ul>
     </div>
@@ -496,18 +497,18 @@
   
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      <li><a href="#">RANKING</a></li>
+      <li><a href="/ranking/RankingMain">RANKING</a></li>
       
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT</a>
           <ul class="dropdown-menu">
-            <li><a href="#">기획할인</a></li>
-            <li><a href="#">신상품할인</a></li>
+            <li><a href="/discount/planning">기획할인</a></li>
+            <li><a href="/discount/new">신상품할인</a></li>
           </ul>
         </li>
         
         <li><a href="/favorite/favoriteList">FAVORITE</a></li>
-        <li><a href="#">ZZIM</a></li>
+        <li><a href="/closet/new">ZZIM</a></li>
         <li><a href="/help/list">SERVICE CENTER</a></li>
       </ul>
     </div>
@@ -542,7 +543,7 @@
                 <div class="col-md-4">
                    <div class="header-right">
                         <ul class="list-unstyled list-inline">
-                             <li><a id="adminlogout" ><i class="fa fa-user"></i> Logout</a></li>
+                             <li><a id="cuslogout" ><i class="fa fa-user"></i> Logout</a></li>
                         </ul>
                     </div>
                    </div>
@@ -561,7 +562,7 @@
             <form class="search-form" action="#" method="get" name="searchForm">
                <div class="search-box">
                   <dl class="clear">
-                  <dt class="search1"><input id="search-text" type="text" name="search" style="border:5px solid #427ef5;"></dt>
+                  <dt class="search1"><input id="search-text" type="text" name="keyword" style="border:5px solid #427ef5;"></dt>
                   <dd class="search2"><input id="search-icon" type="image" src="/resources/images/mainImg/kostylesearch3.png" alt="검색" title="검색" onclick="sendtwo()" style="border:5px solid #427ef5;"></dd>
                   </dl>
                </div>
@@ -586,18 +587,19 @@
   
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      <li><a href="#" style="padding:20px 90px !important">RANKING</a></li>
+      <li><a href="/ranking/RankingMain" style="padding:20px 50px !important">RANKING</a></li>
       
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT</a>
           <ul class="dropdown-menu">
-            <li><a href="#" style="padding:20px 90px !important">기획할인</a></li>
-            <li><a href="#" style="padding:20px 90px !important">신상품할인</a></li>
+            <li><a href="/discount/planning" style="padding:20px 50px !important">기획할인</a></li>
+            <li><a href="/discount/new" style="padding:20px 50px !important">신상품할인</a></li>
           </ul>
         </li>
         
-        <li><a href="/help/list" style="padding:20px 90px !important">SERVICE CENTER</a></li>
-        <li><a href="#" style="padding:20px 90px !important">SHOP LIST</a></li>
+        <li><a href="/help/list" style="padding:20px 50px !important">SERVICE CENTER</a></li>
+        <li><a href="/admin/shopList" style="padding:20px 50px !important">SHOP LIST</a></li>
+        <li><a href="/stats/statsMain" style="padding:20px 50px !important">STATISTICS</a></li>
       </ul>
     </div>
   </div>

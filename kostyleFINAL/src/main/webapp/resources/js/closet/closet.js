@@ -1,7 +1,9 @@
-//나중에 바꿔야함! 폴더삭제시 UI만지워지고 저장버튼을 눌러야 실제반영되도록 통일!
+//나중에 바꿔야함! 폴더삭제시 UI만지워지고 저장버튼을 눌러야 실제반영되도록 통일! ->Ok
 
 //select_clo_num의 옳은표현: var clo_num = $('#closetNavi .selectTab').attr("id");
 
+$(function(){
+});
 //옷장폴더선택
 $(function(){
 	$('.tabClick').on('click',function(){
@@ -50,6 +52,7 @@ $(function(){
 //옷장 전체선택(checkbox)
 $(function(){
 	$('#allcheckCloset').on('click',function(){
+		alert("전체체크박스 클릭");
 		if($('#allcheckCloset').prop('checked')){
 			$('.checkCloset').prop('checked',true);
 		}else{
@@ -101,7 +104,7 @@ opener는 부모를 지칭하는 객체(?)이고 opener.을 이용해서 부모�
 		//alert("attriName: "+attriName+"attriValue: "+attriValue+"attriCD: "+attriCD);
 
 		window.name="parentCloset"
-		window.open("/closet/closetfolder","myClosetManager","height=350, width=550 top=200, left=200, location=0, resizable"); });
+		window.open("/closet/closetManager","myClosetManager","height=350, width=550 top=200, left=200, location=0, resizable"); });
 });
 
 
