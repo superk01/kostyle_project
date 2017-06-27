@@ -81,7 +81,7 @@ function upload(event){
                      <label class="col-sm-2 control-label" for="exampleInputEmail1">쇼핑몰</label>
                      <div class="col-sm-10">
                       <input type="text"
-                        name="s_name" class="form-control" placeholder="Enter Writer"
+                        name="s_sname" class="form-control" placeholder="Enter Writer"
                         value="${shoplogin.ad_id}" readonly="readonly">
                         </div>
                   </div>

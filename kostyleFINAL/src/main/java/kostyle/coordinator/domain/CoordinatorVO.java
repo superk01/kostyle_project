@@ -47,6 +47,9 @@ public class CoordinatorVO {
 	public void setS_num(String s_num) {
 		this.s_num = s_num;
 	}
+
+	
+	
 	public String getS_sname() {
 		return s_sname;
 	}
