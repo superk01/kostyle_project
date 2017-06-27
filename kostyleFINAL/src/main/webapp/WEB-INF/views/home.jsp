@@ -201,5 +201,6 @@ button:focus {
 </div>
 
 <body>
+<%@ include file="main/footer.jsp" %>
 
 </html>
