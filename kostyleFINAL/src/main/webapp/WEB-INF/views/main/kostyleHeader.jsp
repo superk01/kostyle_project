@@ -30,6 +30,9 @@
     
 <style type="text/css">
  
+ .mainImg{
+ 	    cursor: pointer;
+ }
 .table>thead>tr>th {
    vertical-align: bottom;
    border-bottom: 5px solid gray !important;
@@ -501,8 +504,8 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">DISCOUNT</a>
           <ul class="dropdown-menu">
-            <li><a href="#">기획할인</a></li>
-            <li><a href="#">신상품할인</a></li>
+            <li><a href="/discount/planning">기획할인</a></li>
+            <li><a href="/discount/new">신상품할인</a></li>
           </ul>
         </li>
         
