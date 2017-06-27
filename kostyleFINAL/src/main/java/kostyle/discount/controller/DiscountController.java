@@ -39,22 +39,22 @@ public class DiscountController {
 	
 	//discountUrlCrolling    과   newSaleUrlCrolling 두개 만들어야함.
 	@ResponseBody
-	@RequestMapping(value="do1", method=RequestMethod.GET)
+	@RequestMapping(value="planning", method=RequestMethod.GET)
 	public ModelAndView doDiscountCrolling(HttpServletRequest request){
 		System.out.println("doDiscount호출");
 		//String keyword=(String)request.getParameter("search");					//검색어 받음
 		List<DiscountVO> list = new ArrayList<DiscountVO>(); 
 		list = service.discountUrlCrolling();
-		return new ModelAndView("/discount/testdiscount", "list", list);
+		return new ModelAndView("/discount/planningDiscount", "list", list);
 	}
 	@ResponseBody
-	@RequestMapping(value="do2", method=RequestMethod.GET)
+	@RequestMapping(value="new", method=RequestMethod.GET)
 	public ModelAndView doNewSaleCrolling(HttpServletRequest request){
 		System.out.println("doNewSale호출");
 		//String keyword=(String)request.getParameter("search");					//검색어 받음
 		List<DiscountVO> list = new ArrayList<DiscountVO>(); 
 		list = service.newSaleUrlCrolling();
-		return new ModelAndView("/discount/testdiscount", "list", list);
+		return new ModelAndView("/discount/newDiscount", "list", list);
 	}
 	
 	
