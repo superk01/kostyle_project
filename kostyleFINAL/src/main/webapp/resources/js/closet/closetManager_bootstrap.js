@@ -171,6 +171,17 @@ function folderUpdateBtn_click(object) {
 
 
 
+//옷장 전체선택(checkbox) -ok
+$(function(){
+	$('#allcheckCloset').on('click',function(){
+		alert("전체체크박스 클릭");
+		if($('#allcheckCloset').prop('checked')){
+			$('.checkCloset').prop('checked',true);
+		}else{
+			$('.checkCloset').prop('checked',false);
+		}
+	});
+});
 
 
 
@@ -178,6 +189,7 @@ function folderUpdateBtn_click(object) {
 
 
 //옷장의 폴더와 관련된 이벤트들모음. 단, 폴더관리창(자식창)을 여는이벤트 하나는 부모쪽에 있음.
+
 
 $(function(){
 	/* 창 닫을때 session에서 제거이벤트. 열 때와비슷. */
@@ -242,6 +254,7 @@ $(function(){
 		var clo_nums = new Array(); //배열로 안돌리면 첫번째 값만 가져온다.
 		$('.folder_clo_num').each(function(){
 			clo_nums.push($(this).val());
+			console.log("push되는 clo_nums: "+$(this).val());
 		});
 		//alert("clo_nums들: "+clo_nums);
 		

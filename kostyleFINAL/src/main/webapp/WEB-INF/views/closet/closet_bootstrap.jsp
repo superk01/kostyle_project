@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <title>KOStyle</title> -->
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<!-- <link href="/resources/css/closet/closet_scrolling_tabs.css" rel="stylesheet" type="text/css"> -->
+<link href="/resources/css/closet/closet_scrolling_tabs.css" rel="stylesheet" type="text/css"> 
     <!-- Latest jQuery form server -->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <!-- 리스트의 스타일 -->
@@ -180,11 +180,11 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 <section class="folder_container">
 	<h1 id="closet_h1">MY CLOSET</h1>
 <!-- Nav tabs -->
-<nav id="closetNavi" class="scrtabs-tab-container col-xs-12 col-sm-11 col-md-11" style="visibility: visible;">
+<nav id="closetNavi" class="scrtabs-tab-container col-xs-12 col-sm-12 col-md-12" style="visibility: visible;">
 	<div class="scrtabs-tab-scroll-arrow scrtabs-js-tab-scroll-arrow-left">
 		<span class="glyphicon glyphicon-chevron-left"></span>
 	</div>
-	<div class="scrtabs-tabs-fixed-container " >
+	<div class="scrtabs-tabs-fixed-container " style="width:91%;"  >
 		
 		<div class="scrtabs-tabs-movable-container " ><!-- style=" padding:0; margin:0px; width: 80%;" -->
 			<ul id="naviUL" class="nav nav-tabs" role="tablist">
@@ -238,8 +238,10 @@ $(function(){ //최초실행시 전체폴더로가도록. trig라는 속성을 �
 				  <li role="presentation"><a href="#tab6" role="tab" data-toggle="tab">Tab Number 6</a></li>
 	 -->		
 
-		<li role="presentation" class="tabClick" id="manage" ><a href="" role="tab" data-toggle="tab"><span>My옷장 관리</span><img id="manageImg" alt=""
-					src="/resources/images/closetImg/btn_after_open.gif"></a></li>
+		<li role="presentation" class="tabClick" id="manage" >
+			<a href="" role="tab" data-toggle="tab">
+				<span class="glyphicon glyphicon-cog"></span>
+				<span> My옷장 관리</span></a></li>
 
 	</ul>	
 	</div>

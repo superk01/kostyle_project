@@ -131,7 +131,8 @@ public class ClosetServiceImpl implements ClosetService {
 		Map map = new HashMap();
 		
 			request.removeAttribute("select_clo_num"); //일단 비워야 이전값이 남지않음.
-			System.out.println("클로젯액션의 clo_num은? : "+request.getParameter("clo_num"));
+			System.out.println("클로젯액션의 clo_num은? : "+param.get("clo_num"));
+//			System.out.println("클로젯액션의 clo_num은? : "+request.getParameter("clo_num"));
 			
 		if(param.get("clo_num").equals("0")){
 				//if(param.getClo_num()==0){
