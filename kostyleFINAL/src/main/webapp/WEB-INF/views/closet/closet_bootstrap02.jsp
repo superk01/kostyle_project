@@ -82,6 +82,9 @@ margin-top:30px; margin-bottom:10px;
 	font-size:13px;
 	font-weight:600;
 }
+.btn {
+	margin-left : 10px;
+}
     </style>
     
     

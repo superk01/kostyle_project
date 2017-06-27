@@ -2,6 +2,8 @@
 
 //select_clo_num의 옳은표현: var clo_num = $('#closetNavi .selectTab').attr("id");
 
+$(function(){
+});
 //옷장폴더선택
 $(function(){
 	$('.tabClick').on('click',function(){
@@ -50,6 +52,7 @@ $(function(){
 //옷장 전체선택(checkbox)
 $(function(){
 	$('#allcheckCloset').on('click',function(){
+		alert("전체체크박스 클릭");
 		if($('#allcheckCloset').prop('checked')){
 			$('.checkCloset').prop('checked',true);
 		}else{
