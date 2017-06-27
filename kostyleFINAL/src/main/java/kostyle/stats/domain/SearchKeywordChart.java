@@ -17,7 +17,8 @@ public class SearchKeywordChart {
 	private String sk9;
 	private String sk10;
 	
-	
+	private String s_sname;
+	private String hit_count;
 	
 	public String getSk_searchkey() {
 		return sk_searchkey;
@@ -96,6 +97,18 @@ public class SearchKeywordChart {
 	}
 	public void setSk10(String sk10) {
 		this.sk10 = sk10;
+	}
+	public String getS_sname() {
+		return s_sname;
+	}
+	public void setS_sname(String s_sname) {
+		this.s_sname = s_sname;
+	}
+	public String getHit_count() {
+		return hit_count;
+	}
+	public void setHit_count(String hit_count) {
+		this.hit_count = hit_count;
 	}
 	
 	

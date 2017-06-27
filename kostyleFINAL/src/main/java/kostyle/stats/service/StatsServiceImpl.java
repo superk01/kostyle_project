@@ -61,6 +61,21 @@ public class StatsServiceImpl implements StatsService{
 	}
 
 	@Override
+	public List<SearchKeywordChart> searchRankTeen() throws Exception {
+		return dao.searchRankTeen();
+	}
+
+	@Override
+	public List<SearchKeywordChart> searchRankTwenty() throws Exception {
+		return dao.searchRankTwenty();
+	}
+
+	@Override
+	public List<SearchKeywordChart> searchRankThirty() throws Exception {
+		return dao.searchRankThirty();
+	}
+
+	@Override
 	public List<CustomerStats> customerSearchKeyAll(String c_num) throws Exception {
 		return dao.customerSearchKeyAll(c_num);
 	}
@@ -73,6 +88,11 @@ public class StatsServiceImpl implements StatsService{
 	@Override
 	public List<CustomerStats> customerVisitPrdAll(String c_num) throws Exception {
 		return dao.customerVisitPrdAll(c_num);
+	}
+
+	@Override
+	public List<SearchKeywordChart> todayShop() throws Exception {
+		return dao.todayShop();
 	}
 
 	@Override

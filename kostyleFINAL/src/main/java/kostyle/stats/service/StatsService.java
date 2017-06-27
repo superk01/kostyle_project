@@ -15,8 +15,12 @@ public interface StatsService {
 	public List<HitcountStatsChart> statsDate(String s_sname, String statsSearchStartDate, String statsSearchEndDate, String chartFor)throws Exception;
 	public List<SearchKeywordChart> statsSearchRank()throws Exception;
 	public List<SearchKeywordChart> searchRankChart(List<SearchKeywordChart> list)throws Exception;
+	public List<SearchKeywordChart> searchRankTeen()throws Exception;
+	public List<SearchKeywordChart> searchRankTwenty()throws Exception;
+	public List<SearchKeywordChart> searchRankThirty()throws Exception;
 	public List<CustomerStats> customerSearchKeyAll(String c_num)throws Exception;
 	public List<CustomerStats> customerVisitShopAll(String c_num)throws Exception;
 	public List<CustomerStats> customerVisitPrdAll(String c_num)throws Exception;
+	public List<SearchKeywordChart> todayShop()throws Exception;
 	public List<CustomerStats> getSimilar(String c_num)throws Exception;
 }

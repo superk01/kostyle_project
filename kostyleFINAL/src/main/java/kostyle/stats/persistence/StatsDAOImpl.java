@@ -90,6 +90,29 @@ public class StatsDAOImpl implements StatsDAO{
 		return session.selectList(namespace+".searchRankChart",paramMap);
 	}
 	
+	
+	@Override
+	public List<SearchKeywordChart> searchRankTeen() throws Exception {
+		RowBounds rowbounds = new RowBounds(0, 5);
+		String temp="";
+		
+		return session.selectList(namespace+".searchRankTeen", temp, rowbounds);
+	}
+
+	@Override
+	public List<SearchKeywordChart> searchRankTwenty() throws Exception {
+		RowBounds rowbounds = new RowBounds(0, 5);
+		String temp="";
+		return session.selectList(namespace+".searchRankTwenty", temp, rowbounds);
+	}
+
+	@Override
+	public List<SearchKeywordChart> searchRankThirty() throws Exception {
+		RowBounds rowbounds = new RowBounds(0, 5);
+		String temp="";
+		return session.selectList(namespace+".searchRankThirty", temp, rowbounds);
+	}
+
 	@Override
 	public List<CustomerStats> customerSearchKeyAll(String c_num) throws Exception {
 		RowBounds rowbounds = new RowBounds(0, 5);
@@ -106,6 +129,13 @@ public class StatsDAOImpl implements StatsDAO{
 	public List<CustomerStats> customerVisitPrdAll(String c_num) throws Exception {
 		RowBounds rowbounds = new RowBounds(0, 5);
 		return session.selectList(namespace+".customerVisitPrdAll", c_num, rowbounds);
+	}
+
+	@Override
+	public List<SearchKeywordChart> todayShop() throws Exception {
+		RowBounds rowbounds = new RowBounds(0, 5);
+		String temp="";
+		return session.selectList(namespace+".todayShop",temp,rowbounds);
 	}
 
 	@Override

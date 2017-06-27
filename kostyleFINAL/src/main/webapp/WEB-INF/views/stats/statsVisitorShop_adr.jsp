@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="statsVisitorShop.jsp" %>   
+<%@ include file="statsVisitorShop.jsp" %>  
 <%
 	HttpSession statsVisitorSession = request.getSession();
 
@@ -257,5 +257,4 @@
         <!-- /#page-content-wrapper -->	
   </body>
   
-
 </html>
