@@ -30,9 +30,6 @@
     
 <style type="text/css">
  
- .mainImg{
-        cursor: pointer;
- }
 .table>thead>tr>th {
    vertical-align: bottom;
    border-bottom: 5px solid gray !important;
