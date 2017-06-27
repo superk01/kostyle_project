@@ -7,9 +7,9 @@
 	HttpSession searchkeyRankSession = request.getSession();
 	
 	List<SearchKeywordChart> list = (List) searchkeyRankSession.getAttribute("searchkeyRankingJ");
+	List<SearchKeywordChart> list2 = (List) searchkeyRankSession.getAttribute("todayShopRankJ");
 	
 	
-	HttpSession loginSession = request.getSession();
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -39,7 +39,8 @@
 						<div id="statsbody">
 						
 								<div class="table-responsive" id="searchkeyRankTableMain">
-								<h3 class="page-header">검색어 순위</h3>
+								<h3 class="page-header">검색어 순위<span>최근 7일</span></h3>
+								
 								<table class="table table-striped">
 									<thead>
 										<tr>
@@ -56,13 +57,30 @@
 										<%} %>
 									
 									</tbody>
-
-
-
-</table>
-</div>
+								</table>
+								</div>
 								
+								<div class="table-responsive" id="todayShopRankTableMain">
+								<h3 class="page-header">쇼핑몰 방문 순위<span>오늘</span></h3>
 								
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<td></td>
+											<td colspan="2">쇼핑몰</td>
+										</tr>
+									</thead>
+									<tbody>
+										<%for(int i=0;i<list2.size();i++){ %>
+										<tr>
+											<td><%=i+1 %></td>
+											<td><%=list2.get(i).getS_sname() %></td>
+										</tr>
+										<%} %>
+									
+									</tbody>
+								</table>
+								</div>								
 								
 
 						</div>
