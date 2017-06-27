@@ -51,13 +51,13 @@ public class DiscountCrollingThread extends Thread {
 		String shopUrl = this.shopUrl;
 		
 		   //검색 페이지면 마지막 페이지 숫자 삭제
-		  /* if(crollUrl.indexOf("&page="+pagecount) != -1){
+		   if(crollUrl.indexOf("&page="+pagecount) != -1){
 			   crollUrl = crollUrl.substring(0, crollUrl.length() - 7);
 		   }
 		   
 		   //검색 페이지 처리
 		   pagecount ++;
-		   crollUrl = crollUrl + "&page=" + pagecount;	   */
+		   crollUrl = crollUrl + "&page=" + pagecount;	   
 		   
 		   List<Integer> startLiRowNum = new ArrayList<Integer>(); // 물품 시작 box 줄 모음
 		   List<Integer> endLiRowNum = new ArrayList<Integer>(); // 물품 끝 box 줄 모음
