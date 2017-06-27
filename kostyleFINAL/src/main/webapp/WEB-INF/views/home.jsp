@@ -188,7 +188,7 @@ button:focus {
 <br><br>
 
 <div class="main">
-<div class="col-sm-6" id="weather"><img class="mainImg" alt="" src="/resources/images/mainImg/main3.jpg"><a href=""><button><i class="fa fa-cloud"></i> 날씨별 옷 추천</button></a></div>
+<div class="col-sm-6" id="weather"><img class="mainImg" alt="" src="/resources/images/mainImg/main3.jpg"><a href="/weather/showweather"><button><i class="fa fa-cloud"></i> 날씨별 옷 추천</button></a></div>
 <div class="col-sm-6" id="today"><img class="mainImg" alt="" src="/resources/images/mainImg/main4.jpg"><a href="/coordinator/list"><button><i class="fa fa-shopping-bag"></i> 오늘의 코디</button></a></div>
 </div>
 
