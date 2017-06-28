@@ -14,9 +14,7 @@ $(document).ready(function(){
 	$("#btncom").click(function(){
 		
 		var c_id=$("#c_id").val();
-		alert(c_id);
 		var c_pass=$("#c_pass").val();
-		alert(c_pass);
 		if(c_pass==""){
 			alert("비밀번호를 입력하세요");
 			$("#c_pass").focus();
@@ -52,6 +50,7 @@ $(document).ready(function(){
 									<!-- <input type="id" name="c_id"> -->
 									
 									<%=login.getC_id() %>
+									
 									
 									
 									<%
