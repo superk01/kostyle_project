@@ -389,9 +389,16 @@ public class ClosetDAOImpl implements ClosetDAO {
 	
 	//삭제시 다른사람의 같은상품에대한 찜카운트연동함수
 	@Override
-	public void zzimDecreaseTransaction(int clo_detail_num) {
-		session.update(namespace+".zzimDecreaseTransaction", clo_detail_num);
+	public void zzimDecreaseTransaction(ClosetPrd closetPrd) {
+		session.update(namespace+".zzimDecreaseTransaction", closetPrd);
 		
+	}
+
+	
+	//상품 삭제후, clo_detail_num으로 찜상품 카운트
+	@Override
+	public int decrase_zzim(int clo_detail_num) {
+		return session.selectOne(namespace +".decrase_zzim", clo_detail_num) ;
 	}
 	
 	
