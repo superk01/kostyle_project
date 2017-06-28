@@ -64,7 +64,7 @@
          <mapping path="/favorite/favoriteList"/>
          <mapping path="/favorite/comentModify"/>
          <mapping path="/favorite/comentRead"/>
-         <mapping path="/help/insert"/>
+         <mapping path="/help/insert"/>	
          <beans:ref bean="checkLoginInterceptor"/>
       </interceptor>
       
