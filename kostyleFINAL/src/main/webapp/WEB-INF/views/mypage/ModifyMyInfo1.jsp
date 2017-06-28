@@ -129,7 +129,7 @@ $(document).ready(function(){
 										</th>
 										<td>
 											<label for="name">
-												<input  class="passText1" id="c_pass" name="c_pass"  onkeyup="pass_validation();" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw_validation();"><br>
+												<input  class="passText1" id="c_pass" name="c_pass"  onkeyup="pass_validation();" placeholder="비밀번호를 입력해주세요" type="password" onblur="pw_validation();"><br>
 												<span id="m_pw"></span>
 											</label>
 											<span id="nameMsg" style="display: block; color:red"></span>
@@ -145,7 +145,7 @@ $(document).ready(function(){
 										</th>
 										<td>
 											<label for="name">
-												<input class="checkPass2" id="c_pass2" name="c_pass2"  onkeyup="pass2_validation();" placeholder="비밀번호를 입력해주세요" type="text" onblur="pw2_validation();"><br>
+												<input class="checkPass2" id="c_pass2" name="c_pass2"  onkeyup="pass2_validation();" placeholder="비밀번호를 입력해주세요" type="password" onblur="pw2_validation();"><br>
 												<span id="m_pw2"></span>
 											</label>
 											<span id="nameMsg" style="display: block; color:red"></span>
@@ -236,7 +236,7 @@ $(document).ready(function(){
 						<div class="btn_mySite">
 							
 							<input type="hidden" name="c_id" id="c_id" value="<%=login.getC_id() %>"/>
-							<button type="button" id="completecng">변경완료오</button>
+							<button type="button" id="completecng">변경완료</button>
 							
 							
 							<button type="button" id="cancel">취소</button>
