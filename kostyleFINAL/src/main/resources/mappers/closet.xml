@@ -54,10 +54,14 @@ select count(distinct c_num) from closetdetail where clo_prdUrl = #{clo_prdUrl}
 
 </select>
 
-<select id= "decrease_zzim" parameterType ="int" resultType="int">
+<select id= "decrease_zzim"  resultType="int">
 select count(distinct c_num) from closetdetail 
-	where  clo_prdUrl = (select clo_prdUrl from closetdetail where clo_detail_num = #{clo_detail_num})
+	where  clo_prdUrl = (select clo_prdUrl from closetdetail where clo_detail_num = #{value})
 </select>
+<select id="detailNum_To_prdUrl" resultType="String">
+select clo_prdUrl from closetdetail where clo_detail_num = #{value}
+</select>
+
 
 <select id="check_duplication" parameterType="ClosetPrd" resultType="int">
 
@@ -126,8 +130,8 @@ update closetdetail set clo_num = #{clo_num} where clo_detail_num = #{clo_detail
 <update id="zzimIncreaseTransaction" parameterType="ClosetPrd">
 update closetdetail set clo_zzim = #{clo_zzim} where clo_prdUrl = #{clo_prdUrl}
 </update>
-<update id="zzimDecreaseTransaction" parameterType="Integer">
-update closetdetail set clo_zzim = #{clo_zzim} where clo_prdUrl=  (select clo_prdUrl from closetdetail where clo_detail_num=#{clo_detail_num} )
+<update id="zzimDecreaseTransaction" parameterType="ClosetPrd">
+update closetdetail set clo_zzim = #{clo_zzim} where clo_prdUrl=  #{clo_prdUrl} 
 </update>
 
 <!-- <insert id = "insertBoard" parameterType="Board">

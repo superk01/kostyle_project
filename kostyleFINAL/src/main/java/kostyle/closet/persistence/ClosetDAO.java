@@ -89,5 +89,8 @@ public interface ClosetDAO {
 	//상품 삭제후, clo_detail_num으로 찜상품 카운트
 	public int decrease_zzim(int clo_detail_num);
 	
+	//상품삭제할때 필요한 상품url. 삭제하고나면 못구해옴.
+	public String detailNum_To_prdUrl(int clo_detail_num);
+	
 	
 }//class

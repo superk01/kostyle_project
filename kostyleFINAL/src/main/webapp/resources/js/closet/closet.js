@@ -194,7 +194,7 @@ $(function(){
 				alert("상품이 삭제되었습니다.");
 			},
 			error : function(xhr, status, error) {
-				alert("상품 삭제 실패");
+			//	alert("상품 삭제 실패");
 			//	//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 			}

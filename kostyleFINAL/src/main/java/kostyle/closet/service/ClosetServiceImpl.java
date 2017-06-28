@@ -489,16 +489,21 @@ public class ClosetServiceImpl implements ClosetService {
 			int clo_detail_num = Integer.parseInt(clo_detail_numArray[i]);
 			System.out.println("clo_detail_numArray쪼개기: "+clo_detail_num);
 			
-			
 			int clo_zzim = dao.decrease_zzim(clo_detail_num);
+			System.out.println("clo_zzim: "+clo_zzim);
+			clo_zzim -= 1; 
+			System.out.println("clo_zzim-1: "+clo_zzim);
+			
+			String clo_prdUrl = dao.detailNum_To_prdUrl(clo_detail_num);
+			System.out.println("serviceImpl 삭제위해 구해온prdUrl: "+clo_prdUrl);
 			
 			ClosetPrd tempPrd = new ClosetPrd();
-			tempPrd.setClo_detail_num(clo_detail_num);
+			tempPrd.setClo_prdUrl(clo_prdUrl);
 			tempPrd.setClo_zzim(clo_zzim);
 
 			dao.zzimDecreaseTransaction(tempPrd);
-			dao.deleteClosetPrd(clo_detail_num);
 			
+			dao.deleteClosetPrd(clo_detail_num);
 			
 		}
 		
