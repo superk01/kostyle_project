@@ -12,6 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- <script src="/resources/jquery/jquery-3.2.1.js"></script> -->
 <link rel="stylesheet" type="text/css" href="/resources/css/history/historyiFrame.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/kostyleMain/footer.css"> 
 <!-- <script type="text/javascript"  src="/resources/js/search/CategorysearchResult2.js"/> -->
 <title>Insert title here</title>
 <style type="text/css">
