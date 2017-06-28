@@ -47,10 +47,10 @@ img.aaa{
 <script type="text/javascript">
 
 $(document).ready(function() {
-	alert('페이지 열림');
+	//alert('페이지 열림');
 	/* 가장 상단의 체크박스 클릭시에 모든 체크 박스가 선택 되도록. */
 	$('#chkAll').click(function() {
-		alert('체크박스 클릭 이벤트 확인');
+		//alert('체크박스 클릭 이벤트 확인');
 		if ($(this).prop('checked')) {
 			$('.checkbox').prop('checked', true);
 		} else {
@@ -61,13 +61,13 @@ $(document).ready(function() {
 	$('#deleteButton').click(function() {
 		var h_num = "";
 		var c_num = $('input[name=c_num]').val();
-		/* alert(c_num); */
+		/* //alert(c_num); */
 
 		$('input[name=box]:checked').each(function() {
 			h_num = h_num+ $(this).val()+ ",";
 		});
 		h_num = h_num.substring(0, h_num.lastIndexOf(","));
-		alert(h_num);
+		//alert(h_num);
 		if (h_num != "") {
 			/* location.href="deleteHistoryAction.history?h_num="+h_num+"&c_num="+c_num; */
 			$.ajax({
@@ -83,13 +83,13 @@ $(document).ready(function() {
 				}
 			});
 		} else {
-			alert("상품을 선택하세요");
+			//alert("상품을 선택하세요");
 		}
 
 		/* $('.checkbox').click(function(){
 		   $('input[name=box]:checked').each(function(){
 		      var test = $(this).val();
-		      alert(test);
+		      //alert(test);
 		      /* console.log(test); 
 		   })
 		}) */
@@ -100,7 +100,7 @@ $(document).ready(function() {
 			link="//"+link;
 		}
 		var h_name = $(this).parent().next().find('a').html();
-		alert(h_name);
+		//alert(h_name);
 		location.href = "#CategoryResult_top";
 		event.preventDefault();
 		if ($('#CategorysearchIframe').length > 0) {
@@ -124,7 +124,7 @@ $(document).ready(function() {
 			link="//"+link;
 		}
 		var h_name = $(this).html();
-		alert(h_name);
+		//alert(h_name);
 		if($('#CategorysearchIframe').length>0){
 			$('#CategorysearchIframe').remove();
 		}
@@ -140,25 +140,25 @@ $(document).ready(function() {
 		});
 	});	
 	/* $('.prdname a').on('click',function(event) {
-		alert('이벤트 확인');
+		//alert('이벤트 확인');
 		var link = $(this).attr('href');
-		alert(link);
+		//alert(link);
 		location.href = "#CategoryResult_top";
-		alert('이벤트 진행1');
+		//alert('이벤트 진행1');
 		event.preventDefault();
-		alert('이벤트 진행2');
+		//alert('이벤트 진행2');
 		if ($('#CategorysearchIframe').length > 0) {
 			$('#CategorysearchIframe').attr("src", link);
-		alert('이벤트 진행3');
+		//alert('이벤트 진행3');
 		} else {
 			$('#CategoryResult_top').remove();
-		alert('이벤트 진행4');
+		//alert('이벤트 진행4');
 			$('table.talbe').parent().prepend('<div id="IframeRemocon">쇼핑몰 닫기</div> ');
-		alert('이벤트 진행5');
+		//alert('이벤트 진행5');
 			$('table.talbe').parent().prepend('<iframe id="CategorysearchIframe" width="100%" height="900" src="'+link+'">');
-		alert('이벤트 진행6');
+		//alert('이벤트 진행6');
 			$('table.talbe').prepend('<div id="#CategoryResult_top"></div>');
-		alert('이벤트 진행7');
+		//alert('이벤트 진행7');
 		}
 		$('#IframeRemocon').click(function() {
 			$('#CategorysearchIframe').remove();

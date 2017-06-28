@@ -17,7 +17,7 @@
 $(document).ready(function(){
 	//히스토리 상품 추가
 		$('.CategoryResult_oneItemBox').on('click',function(event){
-			alert('히스토리');
+			//alert('히스토리');
 			event.preventDefault();
 			$.ajax({
 				url : '/history/insert',
@@ -38,7 +38,7 @@ $(document).ready(function(){
 			});
 		//아이프레임 추가
 		$('.CategoryResult_oneItemBox').click(function(event){
-			alert('아이프레임');
+			//alert('아이프레임');
 			event.preventDefault();
 			var link = $(this).find('a').eq(1).attr('href');
 			var h_Name = $(this).children().eq(1).find('a').html();

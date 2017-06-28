@@ -147,6 +147,19 @@ margin-top:30px; margin-bottom:10px;
 #hidden_move_prd{
 	display: none;
 }
+#iframeRemove{
+ 	width : 2%;
+ 	height : 135px;
+ 	position: fixed;
+ 	overflow: hidden;
+ 	background: #3C3C3C;
+ 	bottom: 30%;
+ 	
+ 	font-size : 17px;
+ 	color: white;
+ 	font-weight : bold;
+ 	padding: 7px;
+ }
 </style>
 <link rel="stylesheet" href="/resources/js/closet/jquery.scrolling-tabs.css">
 <script src="/resources/js/closet/jquery.scrolling-tabs.js"></script>
