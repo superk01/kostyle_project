@@ -72,7 +72,7 @@ value="${pageContext.request.contextPath}"/>
 										<img src="../../../resources/image/favoriteImg/comment.png"
 										title="코멘트">
 								</a></td> --%>
-								<td>gkgk</td>
+								<td>-</td>
 								<td>${RankingVO.s_age } 대</td>
 
 						</c:forEach>
