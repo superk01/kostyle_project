@@ -96,6 +96,7 @@ opener는 부모를 지칭하는 객체(?)이고 opener.을 이용해서 부모�
 		async: false,
 		success: function (data){
 			//alert("ajax결과: session: "+data);
+			
 		}  ,
 		error : function(xhr, status, error) {
 		////alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -190,9 +191,10 @@ $(function(){
 				////alert("딜리트 에이작스 결과: "+data);
 				////alert(request.getAttribute("msg"));
 				
-				//alert("삭제 완료");
+				alert("상품이 삭제되었습니다.");
 			},
 			error : function(xhr, status, error) {
+				alert("상품 삭제 실패");
 			//	//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 			}

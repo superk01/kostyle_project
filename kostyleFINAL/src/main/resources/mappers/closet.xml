@@ -54,8 +54,8 @@ select count(distinct c_num) from closetdetail where clo_prdUrl = #{clo_prdUrl}
 
 </select>
 
-<select id= "decrase_zzim" parameterType ="Integer" resultType="int">
-select count(distinc c_num) from closetdetail 
+<select id= "decrease_zzim" parameterType ="int" resultType="int">
+select count(distinct c_num) from closetdetail 
 	where  clo_prdUrl = (select clo_prdUrl from closetdetail where clo_detail_num = #{clo_detail_num})
 </select>
 
