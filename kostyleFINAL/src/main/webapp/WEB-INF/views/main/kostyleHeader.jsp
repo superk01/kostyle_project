@@ -278,7 +278,6 @@
           $('body').on('click','li.wing_prd a',function(event) {
           var link = $(this).attr('href');
           var h_name = $(this).find('span.p_name').html();
-          alert(h_name);
           location.href = "#CategoryResult_top";
           event.preventDefault();
           if(link.indexOf("http")==-1){
