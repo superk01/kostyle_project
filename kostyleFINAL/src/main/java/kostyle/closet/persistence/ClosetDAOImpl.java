@@ -398,7 +398,14 @@ public class ClosetDAOImpl implements ClosetDAO {
 	//상품 삭제후, clo_detail_num으로 찜상품 카운트
 	@Override
 	public int decrease_zzim(int clo_detail_num) {
+		System.out.println("삭제시 찜상품카운트 clo_detail_num: '"+clo_detail_num+"'");
+		System.out.println(""+session.selectOne(namespace +".decrease_zzim", clo_detail_num));
 		return session.selectOne(namespace +".decrease_zzim", clo_detail_num) ;
+	}
+
+	@Override
+	public String detailNum_To_prdUrl(int clo_detail_num) {
+		return session.selectOne(namespace+".detailNum_To_prdUrl", clo_detail_num);
 	}
 	
 	
