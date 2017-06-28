@@ -11,8 +11,7 @@
 <style type="text/css">
 .coordiImg{
    width: 300px;
-   height: 450px;
-   padding-top: 55px;
+   height: 430px !important;
 }
 
 .box{
@@ -29,14 +28,19 @@ th{
 }
 
 .cdname{
-	color: gray;
-	font-size: 15px;
+	font-size: 18px;
 	text-align: center;
+	margin-bottom: 5px;
 }
 
 
 .col-sm-4{
 	text-align: center;
+}
+
+
+.thumbnail{
+	padding: 15px 0px!important;
 }
 
 </style>
@@ -81,9 +85,9 @@ th{
                </tr>
             </tbody> --%>
             
-            <div class="col-sm-4"><img class="coordiImg" src="/${coordi.cd_img }"><br>
+            <div class="col-sm-4"><div class="thumbnail"><img class="coordiImg" src="/${coordi.cd_img }"><br>
             <a class="cdname" href="/coordinator/detail?cd_num=${coordi.cd_num }">${coordi.cd_name }</a></div>
-         	
+         	</div>
          </c:forEach>
          </div>
       </table>
