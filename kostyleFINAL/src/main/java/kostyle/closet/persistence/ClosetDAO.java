@@ -87,7 +87,7 @@ public interface ClosetDAO {
 	public void zzimDecreaseTransaction(ClosetPrd closetPrd);
 	
 	//상품 삭제후, clo_detail_num으로 찜상품 카운트
-	public int decrase_zzim(int clo_detail_num);
+	public int decrease_zzim(int clo_detail_num);
 	
 	
 }//class

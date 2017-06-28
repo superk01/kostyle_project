@@ -490,7 +490,7 @@ public class ClosetServiceImpl implements ClosetService {
 			System.out.println("clo_detail_numArray쪼개기: "+clo_detail_num);
 			
 			
-			int clo_zzim = dao.decrase_zzim(clo_detail_num);
+			int clo_zzim = dao.decrease_zzim(clo_detail_num);
 			
 			ClosetPrd tempPrd = new ClosetPrd();
 			tempPrd.setClo_detail_num(clo_detail_num);
